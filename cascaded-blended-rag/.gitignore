@@ -1,0 +1,10 @@
+# Downloaded dataset: exceeds GitHub's 100 MiB per-file limit
+/data/raw/trec-covid/corpus.jsonl
+
+# Generated retrieval indexes and embeddings
+/data/processed/
+/data/processed_squad/
+/data/processed_trec_covid/
+
+# Generated retrieval caches
+/results/*_cache.json

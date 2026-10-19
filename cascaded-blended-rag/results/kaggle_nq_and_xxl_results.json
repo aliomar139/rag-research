@@ -1,0 +1,48 @@
+{
+  "experiment": "Natural Questions (NQ) Benchmark Replication",
+  "dataset": "BEIR/nq",
+  "queries_evaluated": 500,
+  "hardware": "Kaggle 2x Nvidia T4 GPUs (30GB total VRAM)",
+  "date": "2026-10-18",
+  "retrievers_ablation": {
+    "bm25_single": {
+      "hit_rate@5": 0.6700,
+      "hit_rate@20": 0.8440,
+      "ndcg@10": 0.5433,
+      "description": "Lexical Best-Match on concatenated title + text"
+    },
+    "dense_minilm": {
+      "model": "sentence-transformers/all-MiniLM-L6-v2",
+      "hit_rate@5": 0.8060,
+      "hit_rate@20": 0.9600,
+      "ndcg@10": 0.6751,
+      "description": "FAISS IndexFlatIP dense vector cosine similarity"
+    },
+    "splade_sparse": {
+      "model": "naver/splade-cocondenser-ensembledistil",
+      "hit_rate@5": 0.8900,
+      "hit_rate@20": 0.9820,
+      "ndcg@10": 0.7589,
+      "description": "Learned sparse vocabulary expansion"
+    },
+    "blended_rag_paper": {
+      "method": "3-Way Reciprocal Rank Fusion (k=60)",
+      "hit_rate@5": 0.8300,
+      "hit_rate@20": 0.9720,
+      "ndcg@10": 0.7094,
+      "paper_reported_hit_rate@20": 0.8888,
+      "paper_reported_ndcg@10": 0.6700
+    }
+  },
+  "generation_results": {
+    "model": "google/flan-t5-xxl (11B parameters)",
+    "context_passages": 3,
+    "dataset": "SQuAD v1.1 (500 questions)",
+    "exact_match_em": 79.00,
+    "paper_reported_em": 57.63,
+    "token_f1": 81.59,
+    "paper_reported_f1": 68.40
+  },
+  "thesis_implication": "BM25 alone solves 84.40% of queries. Blended RAG running 100% neural models wastes 100ms per query on easy queries."
+}
+

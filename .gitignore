@@ -1,0 +1,70 @@
+# ==============================================================================
+# Git Ignore - Cascaded Adaptive Blended RAG Research Repository
+# Target: https://github.com/aliomar139/rag-research
+# ==============================================================================
+
+# --- Python Virtual Environments ---
+venv/
+.venv/
+env/
+ENV/
+*/venv/
+**/venv/
+
+# --- Byte-compiled / Optimized Python Files ---
+__pycache__/
+**/__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.pyd
+*.dll
+
+# --- Distribution / Packaging ---
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# --- Jupyter Notebook Artifacts ---
+.ipynb_checkpoints/
+**/.ipynb_checkpoints/
+
+# --- Large Downloaded Datasets (>100MB GitHub limit & Raw Corpora) ---
+# TREC-COVID full corpus is ~221MB (exceeds GitHub's 100MB hard limit)
+cascaded-blended-rag/data/raw/trec-covid/corpus.jsonl
+cascaded-blended-rag/data/raw/trec-covid.zip
+cascaded-blended-rag/data/raw/scifact.zip
+cascaded-blended-rag/data/raw/*.zip
+cascaded-blended-rag/data/raw/*.tar.gz
+
+# --- Generated Index Caches & Dense/Sparse Embeddings ---
+cascaded-blended-rag/data/processed/
+cascaded-blended-rag/data/processed_squad/
+cascaded-blended-rag/data/processed_trec_covid/
+*.npy
+*.npz
+
+# --- Large Score Caches and Colab Dumps ---
+cascaded-blended-rag/results/*_cache.json
+cascaded-blended-rag/results/squad_top5_for_colab.json
+
+# --- Literature Downloader & PDF Cache ---
+# 106 research PDFs (~184MB). Use Similar-Papers/download_all_papers.py to re-download.
+Similar-Papers/downloaded_papers/
+Similar-Papers/*.pkl
+*.pkl
+*.pickle
+
+# --- Operating System & Editor Files ---
+.DS_Store
+Thumbs.db
+ehthumbs.db
+desktop.ini
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+*.log
+*.tmp
