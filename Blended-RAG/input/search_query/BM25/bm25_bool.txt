@@ -1,5 +1,0 @@
-{"query" : {"multi_match": {
-                "query": question, 
-                "type": "bool_prefix",
-                "fields": ["content", "title"]
-                }}}

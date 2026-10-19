@@ -141,18 +141,12 @@ rag-research/
 │   ├── heldout_scifact_kaggle.ipynb           # Held-out conditional latency evaluation notebook
 │   └── cascade_source_bundle.zip              # Packaged bundle for Kaggle/Colab imports
 │
-├── Similar-Papers/                            # Comparative literature analysis (106 papers cataloged)
-│   ├── downloaded_papers_index.csv            # Detailed metadata catalog of all surveyed papers
-│   ├── download_report.md                     # Comprehensive download telemetry report
-│   ├── download_all_papers.py                 # Automated downloader from arXiv, ACL, IEEE, DBLP
-│   ├── analyze_benchmarks.py                  # Benchmark extraction across literature
-│   ├── categorize_papers.py                   # Taxonomy categorization script
-│   └── rank_similar_papers.py                 # Similarity ranking against Cascaded Blended RAG
-│
-└── Blended-RAG/                               # Official IBM Research base implementation clone
-    ├── code/                                  # Original IBM evaluation & indexing scripts
-    ├── input/                                 # Search query templates & mappings
-    └── image/                                 # Original publication figures
+└── Similar-Papers/                            # Comparative literature analysis (106 papers cataloged)
+    ├── downloaded_papers_index.csv            # Detailed metadata catalog of all surveyed papers
+    ├── download_report.md                     # Comprehensive download telemetry report
+    ├── download_all_papers.py                 # Automated downloader from arXiv, ACL, IEEE, DBLP
+    ├── dblp_adaptive_or_hybird_rag.csv        # DBLP query search results
+    └── consensus_adaptive_or_hybird_rag.csv   # Consensus literature search results
 ```
 
 ---
