@@ -8,10 +8,11 @@ This repository contains our reproduction of the blended retrieval approach from
 
 ## Start here
 
-- [Final results and experiment index](final_results/README.md): paper, HTML showcase, slide deck, PDFs, and links to all 32 experiment scripts.
-- [Research paper](final_results/conditional_retrieval_paper.pdf)
-- [HTML research showcase](final_results/research_showcase.html)
-- [Editable presentation](final_results/research_presentation.pptx)
+- [Final materials and guide](docs/submission/README.md): paper, showcase, slide deck, PDFs, and presentation instructions.
+- [Research paper](docs/submission/conditional_retrieval_paper.pdf)
+- [HTML research showcase](docs/submission/research_showcase.html)
+- [Editable presentation](docs/submission/research_presentation.pptx)
+- [Numbered experiment scripts](cascaded-blended-rag/experiments/)
 - [Code and implementation notes](cascaded-blended-rag/README.md)
 - [Reproduction guide](docs/reproducibility/README.md)
 
@@ -24,16 +25,16 @@ The results below come from our Python implementation and compare retrieval conf
 | TREC-COVID, all 50 queries | Selected cascade vs equally indexed fusion | **1.24x faster**, retaining 96.68% of fusion Recall@100 |
 | SQuAD, declared 256-question sample | Fastest tested cascade vs indexed fusion | **1.59x faster**, retaining 99.22% of fusion Recall@100 |
 
-The indexed fusion implementation also changes the baseline cost, so speedups against our original, non-indexed fusion include both the indexing work and the cascade decision. The table uses equally indexed fusion to show the added cascade gain separately. The comparisons measure retrieval time and recall; they don't establish answer quality or speedups on the original paper's ELSER stack. Full NQ and HotpotQA evaluations remain pending. See the [final results guide](final_results/README.md) and [paper](final_results/conditional_retrieval_paper.pdf) for protocols, other settings, and limitations.
+The indexed fusion implementation also changes the baseline cost, so speedups against our original, non-indexed fusion include both the indexing work and the cascade decision. The table uses equally indexed fusion to show the added cascade gain separately. The comparisons measure retrieval time and recall; they don't establish answer quality or speedups on the original paper's ELSER stack. Full NQ and HotpotQA evaluations remain pending. See the [final results guide](docs/submission/README.md) and [paper](docs/submission/conditional_retrieval_paper.pdf) for protocols, other settings, and limitations.
 
 ## Repository map
 
 | Path | Contents |
 |:--|:--|
 | [`cascaded-blended-rag/src/`](cascaded-blended-rag/src/) | Retrieval, indexed BM25, and routing implementation |
-| [`cascaded-blended-rag/experiments/`](cascaded-blended-rag/experiments/) | Numbered experiment scripts; the final results guide maps each script to its purpose |
+| [`cascaded-blended-rag/experiments/`](cascaded-blended-rag/experiments/) | Numbered experiment scripts; descriptions and run details are in the code README |
 | [`cascaded-blended-rag/results/`](cascaded-blended-rag/results/) | Saved reports, protocols, and validation records |
-| [`final_results/`](final_results/) | Paper, showcase, presentation, and release guide |
+| [`docs/submission/`](docs/submission/) | Paper, showcase, presentation, and release guide |
 | [`docs/`](docs/README.md) | Manuscript source, reproducibility notes, findings, and project history |
 | [`notebooks/`](notebooks/README.md) | Kaggle workflows and legacy notebooks |
 | [`requirements/`](requirements/) | Dependency lists for analysis and benchmarking |
