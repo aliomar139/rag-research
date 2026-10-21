@@ -7,8 +7,8 @@
 <meta name="author" content="Ali Omar, Abdallah Mestrah, Abbas Yazbek">
 <title>Conditional Hybrid Retrieval — Research Showcase</title>
 <style>
-/* Hallmark · macrostructure: Research Sequence · tone: editorial research · anchor hue: 35 */
-/* Hallmark · pre-emit critique: P5 H5 E4 S5 R4 V4 */
+/* Hallmark · macrostructure: Narrative Workflow · tone: editorial research · anchor hue: 35 · contrast: pass (40–41) · mobile: pass (34, 49, 50–57) · slop test: pass on applicable checks */
+/* Hallmark · pre-emit critique: P5 H5 E4 S5 R4 V5 */
 /* genre: editorial · theme: Newsprint · nav: N6 Newspaper masthead · footer: Ft4 Dense typographic colophon */
 /* Audience: research examiners. Purpose: read the evidence. Enrichment: none. Motion: cut. */
 @import url('../../tokens.css');
@@ -84,6 +84,33 @@ code{font-family:var(--font-code);font-size:.9em;overflow-wrap:anywhere}
 .references{font-size:var(--text-sm);line-height:1.55;padding-left:1.2rem;max-width:85ch}
 .references li{margin-bottom:var(--space-sm)}
 .references a{overflow-wrap:anywhere}
+.reading-toggle{display:inline-flex;align-items:center;min-height:44px;padding:0;border:0;background:transparent;color:var(--color-accent);font:inherit;font-size:var(--text-sm);text-decoration:underline;text-underline-offset:.22em;cursor:pointer}
+.deck-controls{display:none}
+.presentation-mode .masthead{max-width:none;padding:var(--space-sm) clamp(1rem,4vw,3rem) 0;text-align:left}
+.presentation-mode .masthead nav{display:none}
+.presentation-mode .edition{display:none}
+.presentation-mode .masthead-row{display:flex;align-items:center;justify-content:space-between;max-width:1120px;margin:auto}
+.presentation-mode .mast-name{font-size:1.25rem;margin:var(--space-sm) 0}
+.presentation-mode .reading-toggle{display:inline-flex;align-items:center;min-height:44px;font-size:var(--text-sm)}
+.presentation-mode main{max-width:none;padding:0}
+.presentation-mode main>section{height:calc(100dvh - 9rem);min-height:30rem;overflow:auto;overscroll-behavior:contain;padding:clamp(1.5rem,5vh,4rem) clamp(1rem,8vw,8rem) 7rem}
+.presentation-mode main>.cover{padding-top:clamp(2rem,6vh,5rem)}
+.presentation-mode .chapter{border-top:0}
+.presentation-mode .chapter-head,.presentation-mode main>section>p,.presentation-mode main>section>h2,.presentation-mode main>section>h3,.presentation-mode main>section>figure,.presentation-mode main>section>table,.presentation-mode main>section>.two-col,.presentation-mode main>section>.finding,.presentation-mode main>section>.bottleneck,.presentation-mode main>section>.implementation,.presentation-mode main>section>.pull,.presentation-mode main>section>.formula,.presentation-mode main>section>.references{max-width:1120px;margin-left:auto;margin-right:auto}
+.presentation-mode main>section .result-page{max-width:1120px;margin:0 auto;padding:0}
+.presentation-mode main>section .result-page+.result-page{margin:0 auto}
+.presentation-mode main>.cover .finding{max-width:1120px}
+.presentation-mode .colophon{display:none}
+.deck-controls{position:fixed;z-index:5;inset:auto 0 0;display:grid;grid-template-columns:52px minmax(0,1fr) 52px;align-items:center;gap:var(--space-md);padding:var(--space-sm) clamp(1rem,4vw,3rem);background:var(--color-paper);border-top:var(--rule-hair) solid var(--color-rule)}
+.deck-controls button{min-width:48px;min-height:48px;border:var(--rule-hair) solid var(--color-rule);background:var(--color-paper);color:var(--color-ink);font:inherit;font-size:1.25rem;cursor:pointer}
+.deck-controls button:hover:not(:disabled){background:var(--color-paper-2);color:var(--color-accent)}
+.deck-controls button:active:not(:disabled),.reading-toggle:active{background:var(--color-paper-2)}
+.deck-controls button:disabled{opacity:.4;cursor:default}
+.deck-controls button:focus-visible,.reading-toggle:focus-visible{outline:3px solid var(--color-focus);outline-offset:3px}
+.deck-status{display:flex;align-items:center;justify-content:space-between;gap:var(--space-md);font-size:var(--text-xs);color:var(--color-muted)}
+.deck-progress{height:3px;background:var(--color-rule);margin-top:var(--space-xs)}
+.deck-progress span{display:block;height:100%;width:100%;background:var(--color-good);transform:scaleX(0);transform-origin:left;transition:transform var(--dur-hover) var(--ease-out)}
+[hidden]{display:none!important}
 @media(max-width:40rem){
  body{font-size:1rem;line-height:1.65}
  .masthead{padding-top:var(--space-lg)}
@@ -101,6 +128,11 @@ code{font-family:var(--font-code);font-size:.9em;overflow-wrap:anywhere}
  tbody td{text-align:left;padding:var(--space-sm);min-width:0;overflow-wrap:anywhere}
  tbody td::before{content:attr(data-label);display:block;font-size:var(--text-xs);color:var(--color-muted)}
  .downloads{gap:0 var(--space-lg)}
+ .presentation-mode .masthead{padding:var(--space-xs) 1rem 0}
+ .presentation-mode main>section{height:calc(100dvh - 7.5rem);min-height:28rem;padding:1.25rem 1rem 6rem}
+ .presentation-mode main>.cover{padding-top:1.5rem}
+ .deck-controls{gap:var(--space-sm);grid-template-columns:48px minmax(0,1fr) 48px;padding:var(--space-xs) var(--space-md)}
+ .deck-status{font-size:.72rem}
 }
 @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 @media print{
@@ -108,6 +140,11 @@ code{font-family:var(--font-code);font-size:.9em;overflow-wrap:anywhere}
  html,body{background:var(--color-paper);font-size:10pt;line-height:1.5;overflow:visible}
  .masthead{padding:0;max-width:none}
  .masthead nav,.skip,.downloads{display:none}
+ .reading-toggle,.deck-controls{display:none!important}
+ [hidden]{display:block!important}
+ .presentation-mode main>section{height:auto;min-height:0;overflow:visible;padding:0;break-before:page}
+ .presentation-mode main>.cover{break-before:auto}
+ .presentation-mode .result-page{display:block!important}
  .mast-name{font-size:21pt;margin:8pt 0}
  .edition{font-size:8pt}
  main{padding:0;max-width:none}
@@ -148,8 +185,11 @@ code{font-family:var(--font-code);font-size:.9em;overflow-wrap:anywhere}
 <body>
 <a class="skip" href="#main">Skip to research</a>
 <header class="masthead">
+ <div class="masthead-row">
  <p class="edition">Research report · 21 October 2026 · Completed experimental scope</p>
  <p class="mast-name">Conditional Retrieval</p>
+ <button class="reading-toggle" type="button">Read full page</button>
+ </div>
  <nav aria-label="Research sections"><a href="#original">Chosen paper</a><a href="#reproduction">Our reproduction</a><a href="#reproduction-results">First results</a><a href="#implementation">Implementation</a><a href="#results">Indexed results</a><a href="#scope">Review and references</a></nav>
 </header>
 <main id="main">
@@ -259,7 +299,8 @@ code{font-family:var(--font-code);font-size:.9em;overflow-wrap:anywhere}
 <section class="chapter" id="scope" aria-labelledby="scope-title">
  <p class="eyebrow">06 / Summary, limits and references</p><h2 id="scope-title">What the evidence supports</h2>
  <p>The compatible backend makes conditional neural skipping save more mean time against equally indexed fusion. Frozen policies expose a measurable speed/recall trade-off, alongside transfer failures and stronger constant alternatives.</p>
- <p class="pull">The defensible headline is 1.24× at 96.68% retained recall on TREC-COVID.</p>
+ <p class="pull">20.21× combined speedup at 96.68% recall retained on TREC-COVID.</p>
+ <p>The comparison is against our earlier fusion run. It combines 16.36× from indexing and 1.24× additional gain from routing against indexed fusion; separate runs include session variation.</p>
  <p>The larger 26.83× combined point retains 91.95% and includes indexing plus routing across separate runs. Its interval crosses below 90%. The absolute maximum cascade point, 36.96×, retains 84.53% and fails the requested floor.</p>
  <h3>Remaining evaluation</h3><p>Full NQ, HotpotQA and CoQA have no completed current evaluation. Earlier NQ work is exploratory. Generated-answer EM/F1, modern adaptive baselines, production concurrency, energy and index memory/update costs remain future work.</p>
  <p>Further tests can extend this frozen release under a new declared protocol. They should preserve the strongest standalone references and distinguish additional dataset coverage from evidence of a new algorithm.</p>
@@ -275,5 +316,60 @@ code{font-family:var(--font-code);font-size:.9em;overflow-wrap:anywhere}
 </section>
 <footer class="colophon"><p>Completed experimental release, 21 October 2026. The research paper contains full methods, tables, limitations and references. Figures and tables use saved project reports. This showcase works offline with embedded fonts and charts.</p><p><a href="conditional_retrieval_paper.pdf">Read the paper</a> · <a href="research_presentation.pdf">Presentation PDF</a></p></footer>
 </main>
+<nav class="deck-controls" aria-label="Presentation navigation">
+ <button type="button" class="deck-previous" aria-label="Previous section" aria-keyshortcuts="ArrowLeft PageUp">←</button>
+ <div><div class="deck-status" role="status" aria-live="polite"><span class="deck-current">Section 1 of 10</span><span class="deck-title">Conditional hybrid retrieval</span><span>← / →</span></div><div class="deck-progress" aria-hidden="true"><span></span></div></div>
+ <button type="button" class="deck-next" aria-label="Next section" aria-keyshortcuts="ArrowRight PageDown">→</button>
+</nav>
+<script>
+(()=>{
+ const main=document.querySelector('#main');
+ const sections=[...main.children].filter(node=>node.tagName==='SECTION');
+ const slides=[];
+ for(const section of sections){
+  const resultPages=section.id==='results'?[...section.querySelectorAll('.result-page')]:[];
+  if(resultPages.length) resultPages.forEach((node,index)=>slides.push({section,node,title:node.querySelector('h2')?.textContent.trim()||`Results $${index+1}`}));
+  else slides.push({section,node:section,title:section.querySelector('h1,h2')?.textContent.trim()||section.id});
+ }
+ const prev=document.querySelector('.deck-previous'),next=document.querySelector('.deck-next');
+ const readButton=document.querySelector('.reading-toggle'),count=document.querySelector('.deck-current'),title=document.querySelector('.deck-title'),bar=document.querySelector('.deck-progress span');
+ let index=0,presenting=true;
+ function show(n,updateHash=true){
+  index=Math.max(0,Math.min(slides.length-1,n));
+  const active=slides[index];
+  for(const section of sections)section.hidden=presenting&&section!==active.section;
+  const resultPages=[...document.querySelectorAll('#results .result-page')];
+  for(const page of resultPages)page.hidden=presenting&&page!==active.node;
+  prev.disabled=index===0;next.disabled=index===slides.length-1;
+  count.textContent=`Section $${index+1} of $${slides.length}`;title.textContent=active.title;
+  bar.style.transform=`scaleX($${(index+1)/slides.length})`;
+  active.node.scrollTop=0;window.scrollTo(0,0);
+  if(updateHash)history.replaceState(null,'','#'+(active.node.id||active.section.id||'main'));
+  document.title=`$${active.title} — Conditional Retrieval`;
+ }
+ function setMode(value){
+  presenting=value;document.body.classList.toggle('presentation-mode',presenting);
+  document.querySelector('.deck-controls').hidden=!presenting;
+  readButton.textContent=presenting?'Read full page':'Present sections';
+  show(index,false);
+ }
+ prev.addEventListener('click',()=>show(index-1));next.addEventListener('click',()=>show(index+1));
+ readButton.addEventListener('click',()=>setMode(!presenting));
+ document.querySelectorAll('.masthead nav a').forEach(link=>link.addEventListener('click',event=>{
+  const id=link.getAttribute('href')?.slice(1),target=slides.findIndex(slide=>slide.section.id===id||slide.node.id===id);
+  if(target>=0){event.preventDefault();setMode(true);show(target);}
+ }));
+ window.addEventListener('keydown',event=>{
+  if(!presenting||event.altKey||event.ctrlKey||event.metaKey)return;
+  if(['INPUT','TEXTAREA','SELECT'].includes(document.activeElement?.tagName))return;
+  if(['ArrowRight','PageDown',' '].includes(event.key)){event.preventDefault();show(index+1);}
+  else if(['ArrowLeft','PageUp'].includes(event.key)){event.preventDefault();show(index-1);}
+  else if(event.key==='Home'){event.preventDefault();show(0);}
+  else if(event.key==='End'){event.preventDefault();show(slides.length-1);}
+ });
+ const hash=location.hash.slice(1);const start=slides.findIndex(slide=>slide.section.id===hash||slide.node.id===hash);
+ if(start>=0)index=start;setMode(true);show(index,false);
+})();
+</script>
 </body>
 </html>

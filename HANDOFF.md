@@ -229,7 +229,7 @@ All are under [docs/submission](docs/submission/README.md):
 | File | What it contains |
 |:--|:--|
 | `conditional_retrieval_paper.pdf` | 10-page academic paper; editable source is `docs/FINAL_MANUSCRIPT.md` |
-| `research_showcase.html` / `research_showcase.pdf` | Offline research summary and matching 10-page PDF |
+| `research_showcase.html` / `research_showcase.pdf` | Ten-section offline presentation and matching 10-page print PDF. Use the on-screen arrows or Left/Right keys; Read full page switches to continuous reading. |
 | `research_presentation.pptx` / `research_presentation.pdf` | 23 slides: 19 main plus 4 appendices, for a 15-20 minute presentation |
 | `presentation_notes.md` | Speaker notes, also inside PPTX |
 | `RELEASE_MANIFEST.json` | File SHA256 values and frozen-asset fingerprints |
@@ -336,7 +336,8 @@ bundled Python validators (`EPERM`). For this 23-slide release, the package and
 layout validators were run directly on the candidate and passed with zero
 findings before the checked bytes were copied to the deliverable. The
 `--render-existing` path also succeeded. If rebuilding, inspect validator
-results and rendered slides. Private render files live in `.local/release_build`.
+results and rendered slides. Presentation PDF slide images use 3840 × 2160
+renders. Private, regenerable previews live in `.local/release_build`.
 
 For later dataset work, declare a fresh protocol before examining outcomes,
 preserve the current release, retain BM25/Dense/SPLADE references and record

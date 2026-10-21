@@ -34,7 +34,7 @@ await fs.mkdir(build,{recursive:true});
 if(process.argv.includes('--render-existing')){
   const existing=await PresentationFile.importPptx(await FileBlob.load(path.join(out,'research_presentation.pptx')));
   for(let i=0;i<existing.slides.items.length;i++){
-    const image=await existing.export({slide:existing.slides.items[i],format:'png',scale:1.25});
+    const image=await existing.export({slide:existing.slides.items[i],format:'png',scale:3});
     await fs.writeFile(path.join(build,`slide-${String(i+1).padStart(2,'0')}.png`),new Uint8Array(await image.arrayBuffer()));
   }
   console.log('Rendered all',existing.slides.items.length,'slides from final PPTX.');
@@ -268,7 +268,7 @@ const candidate=path.join(build,'candidate.pptx');
 await (await PresentationFile.exportPptx(presentation)).save(candidate);
 console.log('Draft exported:',candidate);
 for(let i=0;i<presentation.slides.items.length;i++){
-  const image=await presentation.export({slide:presentation.slides.items[i],format:'png',scale:1.25});
+  const image=await presentation.export({slide:presentation.slides.items[i],format:'png',scale:3});
   await fs.writeFile(path.join(build,`slide-${String(i+1).padStart(2,'0')}.png`),new Uint8Array(await image.arrayBuffer()));
   console.log('Rendered slide',i+1);
 }

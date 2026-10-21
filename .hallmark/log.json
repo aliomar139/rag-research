@@ -16,5 +16,15 @@
     "nav": "N6 research sequence masthead",
     "footer": "Ft4 Dense typographic colophon",
     "brief": "Reorder the existing research showcase around the selected paper, our reproduction, first results, indexed implementation and results, then the evidence review and references."
+  },
+  {
+    "date": "2026-10-21",
+    "macrostructure": "Narrative Workflow",
+    "theme": "Newsprint",
+    "enrichment": "none; evidence charts only",
+    "nav": "N6 research sequence masthead plus previous/next deck controls",
+    "footer": "Ft4 Dense typographic colophon",
+    "brief": "Turn the existing research summary into a ten-section presentation while preserving its Newsprint design; add mouse and keyboard navigation, a reading mode, print support and high-resolution PDF output.",
+    "qa": "Clickable and keyboard navigation passed; 320–1920px layout passed; image and link checks passed; measured text contrast passed; reduced-motion fallback retained."
   }
 ]

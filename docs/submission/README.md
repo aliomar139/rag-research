@@ -6,7 +6,7 @@ No server, Kaggle session or model download is needed to read these files.
 | File | Use |
 |:--|:--|
 | [Research paper](conditional_retrieval_paper.pdf) | 10-page academic report with methods, protocol, results, limitations and references |
-| [HTML showcase](research_showcase.html) / [matching PDF](research_showcase.pdf) | A visual account of the original paper, motive, adaptation, metric differences, results and implementation |
+| [HTML showcase](research_showcase.html) / [matching PDF](research_showcase.pdf) | Ten-section presentation covering the selected paper, our reproduction, results, implementation, limits and references |
 | [Editable presentation](research_presentation.pptx) / [presentation PDF](research_presentation.pdf) | 19 main slides for a 15–20 minute talk, plus four evidence/reproduction appendices |
 | [Speaker notes](presentation_notes.md) | Detailed explanations and source references, also embedded in the PPTX |
 
@@ -18,8 +18,11 @@ and their frozen protocol assets.
 
 ## Opening and presenting
 
-1. Open the HTML in a browser to read the visual story. It embeds fonts and
-   figures; adjacent PDF/deck links work when the folder stays together.
+1. Open the HTML in a browser to present the ten sections. Click the bottom
+   arrows or use the keyboard Left/Right keys; Home and End move to the first
+   and last section. Choose **Read full page** for continuous reading.
+   It embeds fonts and figures; adjacent PDF/deck links work when the folder
+   stays together.
 2. Use the paper PDF for detailed reading and the showcase PDF for a shorter
    illustrated explanation.
 3. Install the four static font faces in [assets/fonts](assets/fonts/README.md)
@@ -27,7 +30,7 @@ and their frozen protocol assets.
    eleven tables and two data charts remain editable. The presentation
    PDF preserves the inspected appearance without requiring font installation.
 
-The presentation PDF uses high-resolution slide renders. The paper and
+The presentation PDF uses 3840 × 2160 slide renders. The paper and
 showcase PDFs retain selectable text. The PPTX carries source references in
 speaker notes and literal chart-data workbooks. Chart values round to six
 decimals for workbook compatibility; display values use two decimals, and
