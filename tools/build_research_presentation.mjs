@@ -104,7 +104,9 @@ let s=slide('Conditional Hybrid Retrieval',
 text(s,'Conditional\nhybrid retrieval',64,125,1120,240,84,{serif:true});
 text(s,'Execution cost and recall budgets',68,408,1050,54,34);
 text(s,'An indexed cascade study',68,480,1000,48,28,{color:C.muted});
-text(s,'Research project report · 21 October 2026',68,609,1050,34,22,{color:C.muted});
+text(s,'Ali Omar · Abdallah Mestrah · Abbas Yazbek',68,540,1120,32,23);
+text(s,'Supervisor: Dr. Ahmad Abboud · Lebanese University',68,575,1120,30,21,{color:C.muted});
+text(s,'Research project report · 21 October 2026',68,632,1050,30,20,{color:C.muted});
 
 s=slide('The original Blended RAG paper',
   'Sawarkar, Mangal and Solanki study keyword, dense-vector and learned-sparse retrieval with hybrid field queries. Their implementation uses Elasticsearch and ELSER. The published TREC nDCG and SQuAD answer values are reference results from that paper. Our system did not reproduce them. The paper motivates complementary retrieval signals, while this project investigates the runtime cost of always executing them. CoQA appears in the paper’s discussion of metadata-poor documents. Source: '+refs.paper);

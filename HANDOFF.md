@@ -228,7 +228,7 @@ All are under [docs/submission](docs/submission/README.md):
 
 | File | What it contains |
 |:--|:--|
-| `conditional_retrieval_paper.pdf` | 9-page academic paper; editable source is `docs/FINAL_MANUSCRIPT.md` |
+| `conditional_retrieval_paper.pdf` | 10-page academic paper; editable source is `docs/FINAL_MANUSCRIPT.md` |
 | `research_showcase.html` / `research_showcase.pdf` | Offline research summary and matching 10-page PDF |
 | `research_presentation.pptx` / `research_presentation.pdf` | 23 slides: 19 main plus 4 appendices, for a 15-20 minute presentation |
 | `presentation_notes.md` | Speaker notes, also inside PPTX |
@@ -246,8 +246,7 @@ the presentation PDF consists of high-resolution slide renders.
 
 Materials were visually reviewed and locally rendered. The final PPTX was
 imported and rendered by the authoring runtime; native PowerPoint was not opened.
-Author/institution details were not invented. Add required institutional
-metadata/template before formal hand-in. A repository license is not selected.
+Authors (Ali Omar, Abdallah Mestrah, Abbas Yazbek), supervisor (Dr. Ahmad Abboud), and Lebanese University affiliation are listed in the deliverables. Add course metadata and the required institutional template before formal hand-in. A repository license is not selected.
 
 Existing sharing ZIP:
 `artifacts/submission/rag_research_submission_20261021.zip` (about 7.73 MiB).

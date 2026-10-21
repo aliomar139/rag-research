@@ -2,6 +2,10 @@
 
 ## An Indexed Cascade Study
 
+**Authors:** Ali Omar, Abdallah Mestrah, and Abbas Yazbek  
+**Supervisor:** Dr. Ahmad Abboud  
+**Affiliation:** Lebanese University
+
 Research project report. Completed experimental scope, 21 October 2026.
 
 ## Abstract
@@ -14,7 +18,7 @@ Hybrid retrieval combines different search methods, but running every method for
 
 Sawarkar, Mangal and Solanki's *Blended RAG* combines keyword, dense-vector and learned-sparse retrieval in Elasticsearch [1]. It uses ELSER for learned sparse retrieval and reports both retrieval scores and generated-answer scores. Its published TREC-COVID and SQuAD numbers are reference results; this project did not reproduce those measurements. CoQA is discussed in the original paper, but was not evaluated here.
 
-We ask whether every query needs all retrieval branches. We first implemented the paper hybrid retrieval idea in Python using MiniLM, SPLADE and reciprocal rank fusion (RRF), and evaluated that baseline on overlapping datasets. We then added indexed BM25 and conditional routing. This is a methodological adaptation, not a reproduction of the original Elasticsearch and ELSER system. The measured speedups therefore compare our own implementation stages; they do not establish speedup on the published system.
+We ask whether every query needs all retrieval branches. We first implemented a Python baseline inspired by the hybrid retrieval approach presented in Blended RAG, using MiniLM, SPLADE and reciprocal rank fusion (RRF), and evaluated it on overlapping datasets. We then added indexed BM25 and conditional routing. This is a methodological adaptation, not a reproduction of the original Elasticsearch and ELSER system. The measured speedups therefore compare stages of our own implementation; they do not establish speedup on the published system.
 
 Query-dependent retrieval choice has been studied before [2], as has moving BM25 scoring work into index construction [3]. We do not claim these ideas as new. Instead, we measure how a frozen query gate behaves with a compatible indexed BM25 implementation on the collections and settings described below.
 
@@ -30,7 +34,7 @@ This project contributes a frozen BM25-first cascade and a compatible indexed BM
 
 ### 3.1 What we reproduced and changed
 
-We reproduce the use of complementary retrieval signals and Best Fields lexical search, while changing the engine and models and adding conditional execution. For SQuAD, we also build a paragraph-level corpus. These choices make our system different from the original. Table 1 summarizes the differences.
+Our baseline follows the broad recipe from the paper: combine complementary keyword, dense and learned-sparse retrieval, with field-aware BM25. We replace the search engine and sparse model, use MiniLM and SPLADE with RRF, and add conditional execution. For SQuAD, we also build a paragraph-level corpus. Table 1 summarizes these differences.
 
 **Table 1. Relationship to the original paper. Published quality values are contextual references rather than matched baselines.**
 
@@ -126,7 +130,7 @@ Kaggle measurements use a Tesla T4 GPU, one CPU thread, randomized query and met
 
 Recall retention is the ratio of mean Recall@100 for a method and fusion. It can exceed 100%, does not measure overlap between result lists, and is not a per-query guarantee. We also report nDCG@10 and MAP@10. Query-paired bootstrap intervals use 1,000 resamples and average query times across timing passes; they do not capture all hardware or session variation. Count-matched random routing is an offline recall reference, not a timed system.
 
-We report two speedups. Original fusion divided by indexed method combines indexing and routing gains across runs. Indexed fusion divided by indexed cascade measures the extra routing gain with the same scorer. SQuAD cross-run comparisons use the same 256 questions. Percent time saved is `1 - 1/speedup`.
+We report two speedups. Our earlier, non-indexed Python fusion latency divided by indexed method latency combines indexing and routing gains across runs. Indexed fusion divided by indexed cascade measures the extra routing gain with the same scorer. SQuAD cross-run comparisons use the same 256 questions. Percent time saved is `1 - 1/speedup`. The term original fusion refers to our earlier Python baseline, not the original Blended RAG system.
 
 ## 6. Results
 

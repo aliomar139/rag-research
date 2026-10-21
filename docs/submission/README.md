@@ -5,7 +5,7 @@ No server, Kaggle session or model download is needed to read these files.
 
 | File | Use |
 |:--|:--|
-| [Research paper](conditional_retrieval_paper.pdf) | 9-page academic report with methods, protocol, results, limitations and references |
+| [Research paper](conditional_retrieval_paper.pdf) | 10-page academic report with methods, protocol, results, limitations and references |
 | [HTML showcase](research_showcase.html) / [matching PDF](research_showcase.pdf) | A visual account of the original paper, motive, adaptation, metric differences, results and implementation |
 | [Editable presentation](research_presentation.pptx) / [presentation PDF](research_presentation.pdf) | 19 main slides for a 15–20 minute talk, plus four evidence/reproduction appendices |
 | [Speaker notes](presentation_notes.md) | Detailed explanations and source references, also embedded in the PPTX |
@@ -24,7 +24,7 @@ and their frozen protocol assets.
    illustrated explanation.
 3. Install the four static font faces in [assets/fonts](assets/fonts/README.md)
    before opening the PPTX for its intended appearance. The deck's text,
-   eleven tables and three data charts remain editable. The presentation
+   eleven tables and two data charts remain editable. The presentation
    PDF preserves the inspected appearance without requiring font installation.
 
 The presentation PDF uses high-resolution slide renders. The paper and
@@ -33,8 +33,7 @@ speaker notes and literal chart-data workbooks. Chart values round to six
 decimals for workbook compatibility; display values use two decimals, and
 original reports retain full precision.
 
-Author and institution details have not been invented. Add personal/course
-metadata and the required institutional template before formal hand-in.
+The authors, supervisor, and university are listed in the paper, showcase, and deck. Add course metadata and the required institutional template before formal hand-in.
 
 ## Completed scope
 

@@ -12,7 +12,7 @@
    methods. Discussion and conclusion define the limits of the finding.
 
 The revised source uses shorter sentences and defines technical terms at first
-use. The paper PDF is nine pages, including references, with result tables and
+use. The paper PDF is ten pages, including references, with result tables and
 figures retained.
 
 ## Paragraph roles and reverse outline
@@ -36,10 +36,10 @@ Paths beginning `results/` are relative to `cascaded-blended-rag/`.
 
 | Claim | Evidence | Status |
 |:--|:--|:--|
-| TREC primary retains 96.68% at 1.24x vs indexed fusion | `results/indexed_trec-covid_q0/indexed_cascade_benchmark.json`, r99 | Supported for 50 queries/three passes |
+| TREC primary retains 96.68% at 1.24x vs indexed fusion; combined observed ratio is 20.21x vs earlier Python fusion | `results/indexed_trec-covid_q0/indexed_cascade_benchmark.json`, r99, and original timing report | Supported within our implementation across separate runs; not a comparison with the original Blended RAG system |
 | Secondary TREC r95 reaches 1.64x at 91.95% | Same report, r95 and its retention interval | Supported point estimate; interval crosses 90% |
 | Maximum cascade reaches 2.26x indexed / 36.96x original at 84.53% | Same report and source CSV under `docs/figures/` | Supported; fails the 90% floor |
-| Fastest sampled SQuAD cascade reaches 1.59x at 99.22% | `results/indexed_squad_q256/indexed_cascade_benchmark.json`, r90 | Supported for the fixed 256-question sample |
+| Fastest sampled SQuAD cascade reaches 1.59x vs indexed fusion and 7.91x combined vs earlier Python fusion at 99.22% | `results/indexed_squad_q256/indexed_cascade_benchmark.json`, r90, and matched 256-query original timing slice | Supported for the fixed 256-question sample across separate runs |
 | Original and indexed saved rankings agree | `results/indexed_*/` compatibility records, experiment 30 | Supported on shared query IDs |
 | Saved quality metrics reproduce from raw labels | Experiments 29/31 and recorded verification reports | Supported; no independent clock measurement |
 | Models/metrics differ from the paper | Original paper [1], source modules and frozen protocols | Supported difference; causal size of each gap unmeasured |
@@ -65,14 +65,13 @@ Paths beginning `results/` are relative to `cascaded-blended-rag/`.
    Yes for the declared engineering study. Full NQ, HotpotQA, CoQA, generated
    answers, modern adaptive baselines and production measurements remain
    deferred. The release does not silently count prepared runners as results.
-5. **Method design soundness.** Is the comparison matched? All methods share
-   compatible indexing. The primary and all secondary settings retain their
-   original labels. Selection uses previously inspected TREC evidence, so
-   its follow-up supports execution analysis rather than fresh generalization.
+5. **Method design soundness.** Is the comparison matched? The indexed
+   cascade and fusion use the same compatible backend. The primary and
+   secondary settings retain their original labels. Equal-indexed comparisons
+   isolate routing; earlier-fusion ratios combine backend and routing changes
+   across sessions.
 
 ## Remaining administrative details
 
-The project report uses no invented author or institution. Add the required
-author/course details and institution template before formal submission.
-The current evidence is sufficient for this bounded report, while stronger
-scientific claims still need additional experiments.
+The paper, showcase, and deck now list the authors, supervisor, and university. Add course metadata and the institutional template if required before hand-in.
+The evidence supports a bounded course report if claims stay within our implementation. It does not show a direct improvement over the published Elasticsearch/ELSER system or preserved generated-answer quality.

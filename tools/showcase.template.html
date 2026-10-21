@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="description" content="A measured study of conditional hybrid retrieval, compatible BM25 indexing and explicit recall budgets.">
+<meta name="author" content="Ali Omar, Abdallah Mestrah, Abbas Yazbek">
 <title>Conditional Hybrid Retrieval — Research Showcase</title>
 <style>
 /* Hallmark · macrostructure: Research Sequence · tone: editorial research · anchor hue: 35 */
@@ -38,6 +39,7 @@ h2{font-size:clamp(2rem,4vw,3.15rem);line-height:1.12;margin:var(--space-sm) 0 v
 h3{font-size:var(--text-lg);font-weight:600;line-height:1.3;margin:var(--space-xl) 0 var(--space-sm)}
 p{max-width:68ch;margin:0 0 var(--space-md)}
 .lead{font-size:var(--text-lg);line-height:1.5;max-width:58ch;color:var(--color-muted)}
+.byline{font-size:var(--text-sm);line-height:1.45;color:var(--color-muted);margin:var(--space-lg) 0 0}
 .cover{padding:var(--space-3xl) 0 var(--space-4xl)}
 .eyebrow{font-size:var(--text-xs);letter-spacing:.1em;text-transform:uppercase;color:var(--color-muted);font-weight:600}
 .cover .eyebrow{color:var(--color-accent)}
@@ -155,6 +157,7 @@ code{font-family:var(--font-code);font-size:.9em;overflow-wrap:anywhere}
  <p class="eyebrow">Execution cost and recall budgets</p>
  <h1 id="title">Conditional hybrid retrieval</h1>
  <p class="lead">A BM25-first cascade decides when neural retrieval is worth its query cost. This study measures the gains after fixing an expensive lexical first stage.</p>
+ <p class="byline"><strong>Ali Omar · Abdallah Mestrah · Abbas Yazbek</strong><br>Supervisor: Dr. Ahmad Abboud · Lebanese University</p>
  <div class="finding">
   <div><span class="primary-number">20.21x</span><p><strong>Combined TREC-COVID speedup over our earlier fusion baseline.</strong> Includes 16.36x from indexing and 1.24x additional routing; primary retains 96.68% of indexed fusion Recall@100.</p></div>
   <div><span class="primary-number">7.91x</span><p><strong>Combined speedup on the fixed SQuAD sample over our earlier fusion baseline.</strong> The routing-only gain is 1.59x over indexed fusion; r90 retains 99.22% on 256 questions.</p></div>

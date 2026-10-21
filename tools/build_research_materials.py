@@ -229,7 +229,9 @@ def paper_pdf():
             if name=='H2':
                 self.outline_parent=True
     doc=AcademicDoc(str(output),pagesize=A4,rightMargin=52,leftMargin=52,topMargin=48,bottomMargin=57,
-                          title='Conditional Hybrid Retrieval under Recall Budgets',author='Research project report')
+                          title='Conditional Hybrid Retrieval under Recall Budgets',
+                          author='Ali Omar; Abdallah Mestrah; Abbas Yazbek',
+                          subject='Supervisor: Dr. Ahmad Abboud; Lebanese University')
     doc.build(story,onFirstPage=page_frame,onLaterPages=page_frame)
     return output
 
