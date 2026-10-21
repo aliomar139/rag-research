@@ -376,3 +376,73 @@ If asked "What did your project contribute?", you can say:
 ## 13. Short version to remember
 
 > BM25 matches words, Dense matches meaning, and SPLADE learns useful term expansions. Static fusion runs all three and combines their rankings with RRF. Our cascade runs BM25 first and uses a trained gate to decide whether to run the neural retrievers. We also made BM25 much faster with a postings-based implementation. The experiments show a speed-quality trade-off against fusion, while standalone baselines and dataset transfer limit broader claims.
+
+## 14. If I am asked about an implementation step, where do I find it?
+
+Use this section during questions about the code. Every folder below is relative to the repository root, `C:\Users\user\Desktop\rag-research-alone`. Click the file link, or press **Ctrl+P** in VS Code and type its filename. Use **Ctrl+F** to find the function named in the explanation.
+
+### Preparing the data and running the retrievers
+
+| If I am asked... | Folder | Open this file and show... |
+|---|---|---|
+| "Where do the datasets come from, and how is the corpus prepared?" | `cascaded-blended-rag/src/` | [paper_datasets.py](../cascaded-blended-rag/src/paper_datasets.py): `prepare_dataset`, `prepare_beir`, and `prepare_squad`. These prepare the declared collections; the SQuAD function builds the paragraph corpus and relevance labels. |
+| "Where do you read queries, splits, and relevance judgments?" | `cascaded-blended-rag/experiments/` | [12_calibrate_nfcorpus_train_check_dev.py](../cascaded-blended-rag/experiments/12_calibrate_nfcorpus_train_check_dev.py): `load_corpus`, `load_split`, and `load_qrels`. The final benchmark reuses these helpers. |
+| "Where are tokenization and the original BM25/Best Fields scores?" | `cascaded-blended-rag/src/` | [bm25_retriever.py](../cascaded-blended-rag/src/bm25_retriever.py): `simple_tokenize` and `BM25Retriever.retrieve_best_fields`. Show how title and abstract scores are combined. |
+| "Where are the dense vectors and FAISS search?" | `cascaded-blended-rag/src/` | [dense_retriever.py](../cascaded-blended-rag/src/dense_retriever.py): `DenseRetriever.__init__` prepares or loads document embeddings and the search index; `retrieve` encodes and searches a query. |
+| "Where does SPLADE encode text and retrieve documents?" | `cascaded-blended-rag/src/` | [splade_retriever.py](../cascaded-blended-rag/src/splade_retriever.py): `_encode_documents` prepares sparse document representations; `retrieve` handles a query. |
+
+### Making BM25 faster and teaching the gate
+
+| If I am asked... | Folder | Open this file and show... |
+|---|---|---|
+| "What code made BM25 faster?" | `cascaded-blended-rag/src/` | [indexed_bm25.py](../cascaded-blended-rag/src/indexed_bm25.py): `FieldPostings` stores term contributions, `IndexedBestFieldsBM25` scores queries, and `stable_top_k` selects results with the declared tie rule. |
+| "Where are the 11 gate features calculated?" | `cascaded-blended-rag/experiments/` | [12_calibrate_nfcorpus_train_check_dev.py](../cascaded-blended-rag/experiments/12_calibrate_nfcorpus_train_check_dev.py): `features` calculates the query-length, term-rarity, and BM25-score features. |
+| "Where do you train Ridge and produce out-of-fold predictions?" | `cascaded-blended-rag/experiments/` | [16_prepare_retention_tradeoff.py](../cascaded-blended-rag/experiments/16_prepare_retention_tradeoff.py): `model` creates StandardScaler + Ridge; `main` prepares the final out-of-fold predictions and fits the exported model. `nested_curve` belongs to the development comparison. |
+| "Where are the four retention thresholds calibrated?" | `cascaded-blended-rag/src/` | [retention_tradeoff.py](../cascaded-blended-rag/src/retention_tradeoff.py): `calibrate_targets` applies the clipped training-loss budgets. It calls `select_threshold` in [router_diagnostics.py](../cascaded-blended-rag/src/router_diagnostics.py). |
+| "Where are the actual frozen weights and r90/r92/r95/r99 cutoffs?" | `cascaded-blended-rag/results/` | [nfcorpus_frozen_retention_routers.json](../cascaded-blended-rag/results/nfcorpus_frozen_retention_routers.json): inspect `routers`, then `ridge11`, its coefficients/scaling values, and `policies`. The final confirmation uses `ridge11`; other saved families are development artifacts. |
+
+### Following one live query through the system
+
+| If I am asked... | Folder | Open this file and show... |
+|---|---|---|
+| "Where does the gate predict a gain and choose whether to stop?" | `cascaded-blended-rag/src/` | [retention_tradeoff.py](../cascaded-blended-rag/src/retention_tradeoff.py): `predict_gain` performs the fitted Ridge calculation; `ConditionalCascade.run` returns BM25 when the prediction is at or below the threshold. |
+| "Where do static fusion and cascade run different branches?" | `cascaded-blended-rag/src/` | [retention_tradeoff.py](../cascaded-blended-rag/src/retention_tradeoff.py): `ConditionalCascade.run` handles BM25/Dense/SPLADE baselines, static fusion, and the cascade. Show the early return and the later neural calls; escalated queries reuse their BM25 ranking. |
+| "Where are the rankings combined with RRF?" | `cascaded-blended-rag/experiments/` | [12_calibrate_nfcorpus_train_check_dev.py](../cascaded-blended-rag/experiments/12_calibrate_nfcorpus_train_check_dev.py): `fuse` implements the rank-based combination. [25_benchmark_indexed_cascade.py](../cascaded-blended-rag/experiments/25_benchmark_indexed_cascade.py) passes this helper into the final engines. |
+| "Where is an identical query/document ID excluded?" | `cascaded-blended-rag/src/` | [query_self_exclusion.py](../cascaded-blended-rag/src/query_self_exclusion.py): the BM25 and neural wrappers apply the declared self-match rule. The reported confirmations had no actual ID overlap. |
+| "Where are the fixed query sample and benchmark configuration enforced?" | `cascaded-blended-rag/experiments/` and `cascaded-blended-rag/results/` | [25_benchmark_indexed_cascade.py](../cascaded-blended-rag/experiments/25_benchmark_indexed_cascade.py): `benchmark` checks the frozen configuration and selects limited queries by SHA256 ordering. [indexed_cascade_protocol.json](../cascaded-blended-rag/results/indexed_cascade_protocol.json) records the declared settings and fingerprints. |
+
+### Measuring performance and checking the evidence
+
+| If I am asked... | Folder | Open this file and show... |
+|---|---|---|
+| "Where are warmups, repeated timings, and GPU synchronization?" | `cascaded-blended-rag/experiments/` | [25_benchmark_indexed_cascade.py](../cascaded-blended-rag/experiments/25_benchmark_indexed_cascade.py): `benchmark` prepares the engines, warms them up, randomizes query/method order, and times each retrieval with synchronization. It also records neural branch counts. |
+| "Where do you calculate recall, ranking metrics, retention, and uncertainty?" | `cascaded-blended-rag/experiments/` and `cascaded-blended-rag/src/` | [12_calibrate_nfcorpus_train_check_dev.py](../cascaded-blended-rag/experiments/12_calibrate_nfcorpus_train_check_dev.py): `recall` and `score_run`. [25_benchmark_indexed_cascade.py](../cascaded-blended-rag/experiments/25_benchmark_indexed_cascade.py) aggregates method ratios; [tradeoff_analysis.py](../cascaded-blended-rag/src/tradeoff_analysis.py) contains `latency_summary` and `paired_intervals`. |
+| "Where are the final numbers I can inspect?" | `cascaded-blended-rag/results/indexed_trec-covid_q0/` and `cascaded-blended-rag/results/indexed_squad_q256/` | Open the [TREC benchmark report](../cascaded-blended-rag/results/indexed_trec-covid_q0/indexed_cascade_benchmark.json) or [SQuAD benchmark report](../cascaded-blended-rag/results/indexed_squad_q256/indexed_cascade_benchmark.json). Each folder also has `quality_speed.csv` and verification records. |
+| "How did you check that the retrieval metrics were scored correctly?" | `cascaded-blended-rag/experiments/` | [29_verify_squad_metrics.py](../cascaded-blended-rag/experiments/29_verify_squad_metrics.py) independently scores SQuAD rankings; [31_verify_beir_metrics.py](../cascaded-blended-rag/experiments/31_verify_beir_metrics.py) checks BEIR metrics against raw labels. Saved findings are in each indexed result folder's `independent_metric_verification.json`. |
+| "How did you check that indexing preserved rankings and scores?" | `cascaded-blended-rag/experiments/` | [30_compare_indexed_execution.py](../cascaded-blended-rag/experiments/30_compare_indexed_execution.py) compares saved original/indexed outputs. [24_benchmark_indexed_bm25_cpu.py](../cascaded-blended-rag/experiments/24_benchmark_indexed_bm25_cpu.py) checks the scorer on CPU. Read `paired_backend_comparison.json` in the indexed result folders for the saved comparison. |
+
+### Finding Kaggle workflows, caches, and earlier results
+
+| If I am asked... | Folder | Open this file and show... |
+|---|---|---|
+| "What was uploaded and run in Kaggle?" | `notebooks/kaggle_fast_finish_v1/` | [START_HERE.md](../notebooks/kaggle_fast_finish_v1/START_HERE.md) explains the final workflow. `PASTE_CELL.py`, `RUN_IN_KAGGLE.py`, and `RUN_TREC_INDEXED.py` contain the notebook-side steps. The [notebook index](../notebooks/README.md) distinguishes older workflows. |
+| "How do you prepare a source ZIP for those runs?" | `cascaded-blended-rag/experiments/` | [26_package_indexed_cascade.py](../cascaded-blended-rag/experiments/26_package_indexed_cascade.py) builds the indexed package; [28_package_fast_finish.py](../cascaded-blended-rag/experiments/28_package_fast_finish.py) builds the combined workflow package. |
+| "Where do downloaded datasets, indexes, and model caches live?" | `cascaded-blended-rag/data/` | Start with [data/README.md](../cascaded-blended-rag/data/README.md): raw inputs use `raw/`, and generated indexes use `processed*` folders. [cache_utils.py](../cascaded-blended-rag/src/cache_utils.py) checks corpus fingerprints and cache metadata. Large local inputs are excluded from the sharing ZIP. |
+| "Where are the earlier fusion benchmark and the one-pass SQuAD procedure?" | `cascaded-blended-rag/experiments/` | [20_benchmark_paper_datasets.py](../cascaded-blended-rag/experiments/20_benchmark_paper_datasets.py) is the original-backend benchmark. [27_finalize_first_completed_pass.py](../cascaded-blended-rag/experiments/27_finalize_first_completed_pass.py) finalizes the completed original pass without claiming three complete passes. |
+| "Where do you import downloaded outputs and document reproduction?" | `cascaded-blended-rag/experiments/` and `docs/reproducibility/` | [22_import_paper_benchmark.py](../cascaded-blended-rag/experiments/22_import_paper_benchmark.py) imports matching result exports. The [reproduction guide](reproducibility/README.md) explains local artifact restoration and the checks; original downloaded ZIPs are retained locally under `artifacts/downloads/`. |
+
+### Finding figures, written results, and submission materials
+
+| If I am asked... | Folder | Open this file and show... |
+|---|---|---|
+| "Where are the speedup charts and their underlying values made?" | `cascaded-blended-rag/experiments/`, `tools/`, and `docs/figures/` | [32_prepare_report_assets.py](../cascaded-blended-rag/experiments/32_prepare_report_assets.py) generates figures/tables from saved reports. [build_publication_figures.py](../tools/build_publication_figures.py) makes publication assets. [all_measured_speedups.csv](figures/all_measured_speedups.csv) contains the recorded comparisons. |
+| "Where is the paper source and the explanation of the results?" | `docs/` and `docs/findings/` | [FINAL_MANUSCRIPT.md](FINAL_MANUSCRIPT.md) is the manuscript; [FINAL_RESULTS.md](FINAL_RESULTS.md) summarizes results. The [TREC findings](findings/TREC_COVID_INDEXED_FINDINGS.md) and [SQuAD findings](findings/SQUAD_INDEXED_FINDINGS.md) explain evidence and caveats. |
+| "Where do the HTML, PDFs, and presentation come from?" | `tools/` and `final_results/` | [build_research_materials.py](../tools/build_research_materials.py) builds paper/HTML material using [showcase.template.html](../tools/showcase.template.html). [build_research_presentation.mjs](../tools/build_research_presentation.mjs) authors slides. The [final-results guide](../final_results/README.md) links deliverables and rebuild instructions. |
+| "Where is the editable LaTeX paper for Overleaf?" | `final_results/overleaf_ieee/` | [main.tex](../final_results/overleaf_ieee/main.tex) is the LaTeX source; the adjacent [README.md](../final_results/overleaf_ieee/README.md) gives usage instructions. |
+| "How is the repository checked and packaged for sharing?" | `tools/` | [check_repository.py](../tools/check_repository.py) audits sharing hygiene and frozen fingerprints. [build_submission.py](../tools/build_submission.py) packages shareable files. [write_release_manifest.py](../tools/write_release_manifest.py) records final-material fingerprints. |
+
+### Which files should I show first?
+
+For a walkthrough of the final system, open [25_benchmark_indexed_cascade.py](../cascaded-blended-rag/experiments/25_benchmark_indexed_cascade.py) and find `benchmark`. It connects dataset preparation, indexed BM25, the frozen gate, neural retrieval, timing, and evaluation. Follow its calls into `src/` when asked how an individual step works.
+
+The earlier [cascaded_router.py](../cascaded-blended-rag/src/cascaded_router.py) is a heuristic prototype, not the final Ridge gate. Historical loader scripts and cached exploratory experiments are also different from the final benchmark. Use the files above when explaining the reported implementation. Frozen scripts and protocol files should be read as evidence, not edited during a demonstration.
