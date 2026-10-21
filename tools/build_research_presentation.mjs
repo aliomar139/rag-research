@@ -100,7 +100,7 @@ function footer(s,value){text(s,value,64,582,1125,69,22,{color:C.muted});}
 const pct=v=>(100*v).toFixed(2)+'%';
 
 let s=slide('Conditional Hybrid Retrieval',
-  'This presentation develops the completed research showcase. The central question is whether conditional retrieval saves actual query time while preserving a chosen fraction of fusion recall. We will distinguish the original Blended RAG paper from our adaptation, explain the metric differences, and separate the gain from indexing from the extra gain from routing. The work is a bounded engineering study. No new dataset or model run was performed for this presentation. Suggested talk length: 15–20 minutes for slides 1–18. Slides 19–22 are appendices.',{cover:true});
+  'We begin with the Blended RAG paper we chose, then explain our reproduction, its limits and results. We next describe the indexed implementation and compare its results with our first version. The expected contribution is a careful measurement of query cost under recall constraints, not a new retrieval algorithm. This is a bounded engineering study. No new dataset or model run was performed for this presentation. Suggested talk length: 15–20 minutes for slides 1–19. Slides 20–23 are appendices.',{cover:true});
 text(s,'Conditional\nhybrid retrieval',64,125,1120,240,84,{serif:true});
 text(s,'Execution cost and recall budgets',68,408,1050,54,34);
 text(s,'An indexed cascade study',68,480,1000,48,28,{color:C.muted});
@@ -115,17 +115,30 @@ text(s,'57.63 / 68.40',650,355,560,90,66,{serif:true,color:C.good});
 text(s,'Published SQuAD answer EM / F1',650,455,560,75,26);
 footer(s,'Published reference values. Our completed study measures retrieval quality and query latency.');
 
-s=slide('The first-stage bottleneck',
-  'The initial TREC implementation spent 1410.14 milliseconds in BM25 while fusion took 1493.23 milliseconds. The gate had already paid most of the runtime before deciding whether to skip neural branches. Neural-call reduction alone therefore could not establish a useful speedup. The backend optimization addresses this execution bottleneck and is applied to reference and proposed methods equally. '+measured);
-chart(s,'Original mean query latency',['BM25','Three-branch fusion'],[1410.13554,1493.23017],{max:1750,unit:'ms',h:335});
-footer(s,'Original TREC means in milliseconds. An expensive lexical stage leaves little query time to skip.');
+s=slide('What we set out to contribute',
+  'The expected contribution was an inspectable test of whether a BM25-first gate can reduce query time while respecting an explicit recall target. We also wanted to distinguish the gain from indexed lexical execution from the additional gain due to routing, and to compare the cascade with simpler retrievers. These are empirical engineering questions. Conditional retrieval and indexed sparse scoring already have prior work, so we make no algorithmic novelty claim.');
+text(s,'1',64,172,90,70,42,{serif:true,color:C.good});
+text(s,'Measure conditional retrieval under a stated recall budget',164,171,1015,70,34,{serif:true});
+text(s,'2',64,292,90,70,42,{serif:true,color:C.good});
+text(s,'Separate the BM25 indexing gain from the routing gain',164,291,1015,70,34,{serif:true});
+text(s,'3',64,412,90,70,42,{serif:true,color:C.good});
+text(s,'Report transfer failures and strong standalone baselines',164,411,1015,70,34,{serif:true});
+footer(s,'The project tests an implementation and its limits; it does not introduce a new retrieval principle.');
+
+s=slide('First baseline from our adaptation',
+  'These are the first baseline results from our Python adaptation on the overlapping paper datasets. Using the same datasets lets us compare our own implementation stages. It does not reproduce the original Elasticsearch and ELSER system or support a direct speed comparison with it. On TREC-COVID the r90 setting retains 84.53 percent recall and saves 3.56 percent mean time. On full-query SQuAD retrieval it retains 99.38 percent and saves 6.12 percent, with one complete timing pass. In the TREC run, BM25 itself takes 1410.14 milliseconds out of 1493.23 milliseconds for fusion. This showed that the gate paid most of the cost before deciding whether to skip neural retrieval. '+measured);
+table(s,[['Dataset / scope','Queries','r90 retained','Fusion to cascade mean','Time saved'],
+ ['TREC-COVID','50','84.53%','1493.23 to 1440.00 ms','3.56%'],
+ ['SQuAD dev retrieval','10,570','99.38%','148.26 to 139.19 ms','6.12%']],64,205,1152,245,[310,160,200,320,162],23);
+text(s,'In TREC, BM25 took 1410.14 of the 1493.23 ms fusion total.',64,504,1130,55,26,{color:C.muted});
+footer(s,'First Python baseline on overlapping datasets; not the original Elasticsearch / ELSER system.');
 
 s=slide('Reproduction and adaptation boundaries',
   'We reproduce the use of complementary retrieval signals and Best Fields lexical scoring, then make declared substitutions. Our accessible Python implementation uses MiniLM, SPLADE and RRF. The original paper studies a different search engine, sparse model and query formulations. We also construct an explicit SQuAD paragraph corpus. These differences prevent direct equivalence of quality or latency numbers. Source: '+refs.paper+'. Project method: docs/FINAL_MANUSCRIPT.md, sections 3–5.');
 table(s,[['Dimension','Original paper','This project'],['Engine / sparse model','Elasticsearch / ELSER','Python / SPLADE'],
  ['Retrieval question','Blended-query quality','Latency under recall budgets'],['Answer generation','NQ / SQuAD EM and F1','Not evaluated'],
  ['Timing reference','Paper system','Our original / indexed fusion']],64,180,1152,350,[280,420,452],24);
-footer(s,'Different models, corpus units and label rules are comparison limits. Their individual effects were not isolated.');
+footer(s,'These model, corpus and metric differences limit direct comparison. We did not isolate their individual effects.');
 
 s=slide('Recall retention and absolute recall',
   'Retention is the ratio of mean Recall@100 values. It is not the overlap of two result lists and it does not imply the same quality for every query. In TREC, many documents can be relevant for a topic. Recovering at least one relevant item gives a hit, while recall asks how much of the relevant set was recovered. Our primary retains 96.68 percent of a reference recall near 0.12250, giving absolute recall near 0.11844. nDCG evaluates ranking order and relevance, while EM and F1 evaluate generated answers. '+measured);
@@ -154,12 +167,12 @@ table(s,[['Study','Queries','Documents','Timing passes'],['NFCorpus dev','324','
 footer(s,'Warmed T4 query timing. The indexed SQuAD run retains the full corpus but samples its questions.');
 
 s=slide('TREC-COVID primary result',
-  'The conservative r99 policy was preselected as primary for the indexed engineering follow-up. It takes 73.90 milliseconds against indexed fusion at 91.28 milliseconds, giving 1.2351 times speedup, rounded to 1.24. It retains 96.68 percent of fusion recall, with a query-bootstrap interval of 93.58 to 98.75 percent. Mean time saved is 19.04 percent, interval 9.47 to 30.11. This meets the user’s 90 percent floor for this measured setting and misses the policy’s nominal 99 percent target. The primary p95 is slightly higher than fusion, so the claim concerns mean time. '+measured);
+  'The conservative r99 policy was preselected as primary for the indexed engineering follow-up. It takes 73.90 milliseconds against indexed fusion at 91.28 milliseconds, giving 1.2351 times speedup, rounded to 1.24. This 1.24x isolates routing because both methods use indexed BM25. Against our earlier, non-indexed fusion run, the same cascade is 20.21x faster across separate runs; that ratio combines indexing and routing. The indexing-only comparison is 16.36x. These are comparisons within our implementation, not against the original paper system. The cascade retains 96.68 percent of fusion recall, with an interval of 93.58 to 98.75 percent. Mean time saved is 19.04 percent against indexed fusion. The primary p95 is slightly higher than indexed fusion, so the claim concerns mean time. '+measured);
 text(s,'1.24×',64,175,510,120,94,{serif:true,color:C.good});
 text(s,'speedup over indexed fusion',64,314,550,80,30);
 text(s,'96.68%',665,175,535,120,85,{serif:true,color:C.good});
 text(s,'Recall@100 retained',665,314,535,70,30);
-text(s,'91.28 ms fusion / 73.90 ms cascade',64,438,1130,60,32);
+text(s,'91.28 ms indexed fusion / 73.90 ms indexed cascade',64,438,1130,60,29);
 footer(s,'Retention interval: 93.58–98.75%. All 50 queries, full corpus, three warmed passes.');
 
 s=slide('TREC-COVID operating points',
@@ -170,7 +183,7 @@ table(s,[['Configuration','Retained recall','Mean ms','vs indexed'],
 footer(s,'r95: interval crosses 90%. r92 / r90: observed recall falls below 90%. Primary remains r99.');
 
 s=slide('Indexing and routing combined',
-  'This larger progression divides original fusion latency by the indexed method latency. It combines indexing and routing across different runs. Indexing alone gives 16.36 times, followed by r99 at 20.21, r95 at 26.83, r92 at 35.56 and r90 at 36.96. These are configurations, not scaling measurements as corpus size grows. The maximum is below the requested quality floor. The r95 secondary is above 90 percent at its point estimate but its interval crosses the floor. '+measured);
+  'This progression divides our original, non-indexed fusion latency by indexed method latency. For primary r99, 20.21x is the combined observed ratio: 16.36x comes from indexed fusion alone, and 1.24x compares indexed cascade against indexed fusion. These separate runs include session variation, so they describe measured configurations rather than a causal decomposition. The larger settings reach 26.83x/35.56x/36.96x against our original fusion but do not meet the requested quality floor. These are not comparisons with the original Blended RAG system. '+measured);
 chart(s,'vs original fusion',['Original','Indexed','r99','r95','r92','r90'],[1,...['static_rrf','ridge11_r99','ridge11_r95','ridge11_r92','ridge11_r90'].map(n=>trec[n].speedup_vs_original_fusion)],{max:43,h:325});
 footer(s,'Retained recall after indexing: 100%, 96.68%, 91.95%, 84.53%, 84.53%. Separate runs include session variation.');
 
@@ -210,18 +223,18 @@ table(s,[['File or group','Responsibility'],['src/indexed_bm25.py','Compatible l
  ['Experiments 22 / 29 / 30 / 31','Import, rescore and compare saved evidence'],['Experiment 32 + publication tools','Rebuild figures and report artifacts']],64,176,1152,350,[620,532],24);
 footer(s,'Source paths remain recognizable. Large local inputs are ignored and restored separately when needed.');
 
-s=slide('Limits and deferred evaluation',
-  'The completed study does not evaluate full current NQ, HotpotQA or CoQA. The old NQ candidate pool is qrel-informed and the routing is simulated, so it cannot support the current method’s full-corpus savings. Generated-answer EM/F1, modern adaptive-retrieval baselines, concurrency, energy and index memory/update costs are unmeasured. One GPU type, small numbers of sessions and known TREC quality restrict generalization. A later study should preserve this release, declare its protocol and quality objective, and retain strong standalone actions.');
+s=slide('What to improve in a next study',
+  'The completed study does not evaluate full current NQ, HotpotQA or CoQA. Earlier NQ used a relevance-informed candidate pool and simulated routing, so it cannot establish full-corpus savings for this cascade. A next study should predeclare a new evaluation protocol, test generated-answer EM/F1 and modern adaptive baselines, then measure multiple hardware types, concurrent load, energy and index memory/update costs. It should retain strong standalone retrievers as baselines.');
 text(s,'Full NQ, HotpotQA and CoQA remain deferred',64,178,1130,96,40,{serif:true});
 text(s,'Generated-answer EM/F1 and modern adaptive baselines remain unmeasured',64,324,1130,110,32);
-text(s,'TREC quality was already inspected. Indexed SQuAD covers a fixed query sample.',64,482,1130,96,28,{color:C.muted});
+text(s,'Test new queries under a declared protocol; include hardware, load, energy and index costs.',64,482,1130,96,28,{color:C.muted});
 
-s=slide('Conclusion',
-  'The main result is that compatible first-stage indexing makes the frozen cascade deliver measurable extra mean-time savings against an equally optimized fusion reference. TREC primary gives 1.24 times at 96.68 percent retention. The fastest sampled SQuAD cascade gives 1.59 times at 99.22 percent. Every secondary point, uncertainty and standalone comparison remains visible. The contribution is execution optimization and empirical understanding of its quality/time limits. It does not establish overall superiority or a new routing principle. The current project can be reported at this scope while remaining datasets are tested later. '+measured);
-text(s,'1.24× at 96.68%',64,180,1140,100,77,{serif:true,color:C.good});
-text(s,'TREC-COVID primary over equally indexed fusion',64,300,1130,65,31);
-text(s,'1.59× at 99.22%',64,422,1130,83,60,{serif:true});
-text(s,'Fastest cascade on the fixed SQuAD sample',64,520,1130,65,28);
+s=slide('Overall review',
+  'The project met its bounded engineering aim: it optimized the lexical stage, compared routing against an equally indexed reference, and reported a real quality/time trade-off. Against our earlier fusion run, the TREC primary is 20.21 times faster at 96.68 percent indexed-fusion recall retention. The fastest indexed SQuAD setting is 7.91 times faster at 99.22 percent on the same 256-question sample. The additional routing-only gains are 1.24 times over indexed fusion on TREC and 1.59 times on SQuAD. The findings are limited by small query scopes in some results, one GPU type, previously inspected TREC quality, and stronger standalone alternatives. The work supports an implementation finding, not a new algorithm or overall superiority. '+measured);
+text(s,'20.21x at 96.68%',64,180,1140,100,77,{serif:true,color:C.good});
+text(s,'Combined gain vs our earlier fusion; includes 1.24x routing over indexed fusion',64,300,1130,65,26);
+text(s,'7.91x at 99.22%',64,422,1130,83,60,{serif:true});
+text(s,'Combined gain vs our earlier fusion; 1.59x vs indexed fusion, 256 questions',64,520,1130,65,26);
 text(s,'A measured execution contribution with explicit quality and baseline limits',64,633,1110,30,22,{color:C.muted});
 
 for(const [key,label,methods] of [['trec-covid','TREC-COVID',trec],['squad','SQuAD sample',squad]]){
@@ -248,7 +261,7 @@ s=slide('Appendix: rebuilding the report',
 text(s,'1  Figures from saved reports\n    experiments/32_prepare_report_assets.py\n\n2  Release artifacts\n    tools/build_research_materials.py\n\n3  Editable deck and print showcase\n    tools/build_research_presentation.mjs\n    tools/render_showcase.mjs',64,176,1130,390,29);
 footer(s,'See docs/submission/README.md for exact commands and runtime requirements.');
 
-await fs.writeFile(path.join(out,'presentation_notes.md'), '# Presentation speaker notes\n\nSuggested talk: 15–20 minutes on slides 1–18. Slides 19–22 are appendices.\n\n'+notes.map(n=>`## ${n.number}. ${n.title}\n\n${n.note}\n`).join('\n'));
+await fs.writeFile(path.join(out,'presentation_notes.md'), '# Presentation speaker notes\n\nSuggested talk: 15–20 minutes on slides 1–19. Slides 20–23 are appendices.\n\n'+notes.map(n=>`## ${n.number}. ${n.title}\n\n${n.note}\n`).join('\n'));
 const candidate=path.join(build,'candidate.pptx');
 await (await PresentationFile.exportPptx(presentation)).save(candidate);
 console.log('Draft exported:',candidate);
@@ -267,7 +280,7 @@ const result=await finalizePresentation({workspaceDir:root,candidatePath:candida
   layoutValidatorPath:path.join(skill,'container_tools/inspect_presentation_layout_geometry.py'),
   layoutArgs:['--expected-slide-size-emu','12192000,6858000','--validate-bullet-geometry','--validate-heading-fit',
     ...[...new Set(tableOwners)].flatMap(number=>['--require-native-table-slide',String(number)])],
-  explicitTotalSlideCount:22,requiredNativeTableOwnerSlides:[...new Set(tableOwners)],
+  explicitTotalSlideCount:23,requiredNativeTableOwnerSlides:[...new Set(tableOwners)],
   requiredNativeChartOwnerSlides:[...new Set(chartOwners)],materializeLiteralChartWorkbooks:true,
   fontPolicy:{basis:'design',families:['Newsreader','IBM Plex Sans']},verifyArtifactToolImport:true,
   receiptPath:path.join(build,`validation-${path.basename(finalPath,'.pptx')}.json`)});

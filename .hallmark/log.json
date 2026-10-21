@@ -7,5 +7,14 @@
     "nav": "N6 Newspaper masthead",
     "footer": "Ft4 Dense typographic colophon",
     "brief": "Offline research showcase and matching PDF/presentation for completed conditional retrieval study"
+  },
+  {
+    "date": "2026-10-21",
+    "macrostructure": "Research Sequence",
+    "theme": "Newsprint",
+    "enrichment": "none; evidence charts only",
+    "nav": "N6 research sequence masthead",
+    "footer": "Ft4 Dense typographic colophon",
+    "brief": "Reorder the existing research showcase around the selected paper, our reproduction, first results, indexed implementation and results, then the evidence review and references."
   }
 ]

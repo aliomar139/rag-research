@@ -15,13 +15,13 @@
   "files": [
     {
       "path": "docs/FINAL_MANUSCRIPT.md",
-      "bytes": 31656,
-      "sha256": "bb6339885c9505bfb9b9aaa910f81eca3ccee05d9d78f730e282a3cd9e3fc464"
+      "bytes": 26613,
+      "sha256": "eb79784e9ab4bf717a1546fced86d69f7f746116af583b7514baf94fb8c4bbc7"
     },
     {
       "path": "docs/review/PAPER_RELEASE_REVIEW.md",
-      "bytes": 5268,
-      "sha256": "5f4342607af1e90bce6c899e4c52ba3afc8d99f7ac73fafd0c1a5a15b73376f8"
+      "bytes": 5528,
+      "sha256": "2d82d28286cc64160a0bdd3cfc8cebc524e9d1cb1215a2160a39afa52e8c9f16"
     },
     {
       "path": "docs/submission/assets/fonts/IBMPlexSans-OFL.txt",
@@ -100,43 +100,43 @@
     },
     {
       "path": "docs/submission/conditional_retrieval_paper.pdf",
-      "bytes": 702389,
-      "sha256": "94a1b5c4338c8c8c8629a9c3ec560731c7760c9bfb870615fb197bf02ae0fa5c"
+      "bytes": 696552,
+      "sha256": "15ab3baf58558de7fb42737d10bc980e9e364ed10c9e343c35c135c09a209a80"
     },
     {
       "path": "docs/submission/presentation_notes.md",
-      "bytes": 13984,
-      "sha256": "b6aefb0cdf4f861fe17897c5b2ba77f775dfe831b9e4a1d311c00505f4a7f192"
+      "bytes": 15071,
+      "sha256": "d30735adffde065a76e00456eb3477e74e2112d4a18dc786dfcf8157c41b2559"
     },
     {
       "path": "docs/submission/README.md",
-      "bytes": 5088,
-      "sha256": "1cc8f0cb041d5603f476dd19b3934862446e37673cca8a69070fde1984502f82"
+      "bytes": 5185,
+      "sha256": "242d5c40e928fbb7fb1604250d0fe73f7859549b7bae43f9454805354c67bb41"
     },
     {
       "path": "docs/submission/research_presentation.pdf",
-      "bytes": 1136205,
-      "sha256": "b59611667f32dd1d2203d562e842805ad4d7d32406e5e93592fefb5946f418db"
+      "bytes": 1207515,
+      "sha256": "3a7f48282398d749748c24ca8cd56ce2b22eeaa245680684e1b1484453a8c49c"
     },
     {
       "path": "docs/submission/research_presentation.pptx",
-      "bytes": 100032,
-      "sha256": "9e68b4508e22c9dd2434a309e57df0e3ec5024473c77c444ee3524334eadb857"
+      "bytes": 97933,
+      "sha256": "bcb19ce58e7ee32e9ea27123b3b33774603f97891435aeef7216f9295985a1ef"
     },
     {
       "path": "docs/submission/research_showcase.html",
-      "bytes": 1157979,
-      "sha256": "29af565daf33447964ad4be912e81d0d4a012d2970fb702101eb021785ce8c38"
+      "bytes": 1161451,
+      "sha256": "7cb23bcad6b83074f6b9eef5ef3ab85e58d35b666074e4e4582144dafa58d80e"
     },
     {
       "path": "docs/submission/research_showcase.pdf",
-      "bytes": 253496,
-      "sha256": "d2cb79489e9a5d5070e56d242bba11be2cbbc5f2c4bf43bc7ebe8c64a4d53aea"
+      "bytes": 261687,
+      "sha256": "106fc52160d2a2fa0af2a1451d7d29563a67fcaa1fd107626138d474b53c74f0"
     },
     {
       "path": "tokens.css",
-      "bytes": 1117,
-      "sha256": "2f0b56d9eae1c7bd38c6529c4a23b9ca7151a63ad6b4c0dd55f157b7b16d6fb6"
+      "bytes": 1121,
+      "sha256": "73f8b64e56bcff9acbfff6d5d528cc5a828c4566fd2960338b4e6c0f53f8b723"
     },
     {
       "path": "tools/build_publication_figures.py",
@@ -150,23 +150,23 @@
     },
     {
       "path": "tools/build_research_presentation.mjs",
-      "bytes": 29337,
-      "sha256": "40a39fa7929159fd34bda6d7edac31921cab22c11b48bd3e90c5b814d0b13b1e"
+      "bytes": 31645,
+      "sha256": "6bf0a53e9a86c2936a6ffd30f929a5d0c48fc59dc2eeee695ac308f393e96eb9"
     },
     {
       "path": "tools/export_presentation_pdf.py",
       "bytes": 783,
-      "sha256": "a2fbcc3011e9f6c0b73a1ed4b6450c138f0c887d8dc708efa5be4bba7c2850d6"
+      "sha256": "9efceedafa53c1d464116187753e2f1039156cd8256b7bd27fbc205a17d01daa"
     },
     {
       "path": "tools/render_showcase.mjs",
-      "bytes": 3210,
-      "sha256": "95a6423502096a81ef41c369487510c746d12e6d8eee40c5ac911e075194c0f9"
+      "bytes": 3235,
+      "sha256": "32234e68136f840490703b5afcf6d6fd1c807239e69730e9eaf967fb3e87cd5a"
     },
     {
       "path": "tools/showcase.template.html",
-      "bytes": 23252,
-      "sha256": "426f0c767628f6162a6e3e249447c2c308df11d388024513bb9953007d2a79b0"
+      "bytes": 26978,
+      "sha256": "39d66d9db2cf6407aa2bee95360826f6217975c27e8a9a9ff162e8afcc1a04b2"
     }
   ]
 }

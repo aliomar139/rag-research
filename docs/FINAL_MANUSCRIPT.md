@@ -6,31 +6,31 @@ Research project report. Completed experimental scope, 21 October 2026.
 
 ## Abstract
 
-Hybrid retrieval improves coverage by executing complementary retrievers, but its query cost can limit the benefit of conditional routing. We study a BM25-first Ridge gate that either returns lexical results or executes Dense MiniLM and SPLADE before reciprocal rank fusion. Four policies, calibrated on NFCorpus train at nominal recall-retention targets of 90%, 92%, 95% and 99%, remain frozen during transfer. Initial measurements identify an expensive lexical stage and quality targets that fail to transfer. We implement compatible indexed BM25 scoring and apply it equally to the reference and cascade. On all 50 TREC-COVID queries, routing adds 1.24x speedup over indexed fusion at 96.68% Recall@100 retention for the preselected primary. A secondary setting reaches 1.64x at 91.95%, although its confidence interval crosses below 90%. On a fixed 256-question SQuAD sample, the fastest cascade reaches 1.59x at 99.22% retention. Saved rankings agree exactly across backends, and independent raw-label scoring reproduces the quality metrics. Standalone retrievers still offer stronger recall/time points in these collections. The contribution is a measured execution optimization and an analysis of conditional retrieval under explicit quality budgets.
+Hybrid retrieval combines different search methods, but running every method for every query can be costly. We first implemented a Blended RAG-inspired hybrid baseline in Python and evaluated it on TREC-COVID and SQuAD, then added indexed BM25 and a BM25-first gate. On all 50 TREC-COVID queries, the primary indexed cascade was 20.21x faster than our earlier fusion baseline across separate runs, retaining 96.68% of the indexed fusion Recall@100. Of this, indexed fusion alone was 16.36x faster than the earlier baseline, while routing added 1.24x over indexed fusion. On a fixed sample of 256 SQuAD questions, the fastest indexed cascade was 7.91x faster than our earlier fusion baseline; it was 1.59x faster than indexed fusion and retained 99.22%. These comparisons are within our implementation; they are not direct measurements against the original paper system. The study indicates that indexing and conditional routing may transfer to the original system, but that requires testing with Elasticsearch and ELSER.
 
 **Keywords:** hybrid retrieval, conditional computation, BM25 indexing, recall retention, retrieval evaluation.
 
 ## 1. Original paper and research context
 
-Sawarkar, Mangal and Solanki's *Blended RAG* studies keyword, dense-vector and learned-sparse retrieval with hybrid field queries [1]. Its sparse implementation uses ELSER with Elasticsearch. The paper evaluates retrieval on several collections and generated answers on NQ and SQuAD. Its reported TREC-COVID nDCG@10 of 0.87 and SQuAD answer EM/F1 of 57.63/68.40 are published reference results, not measurements reproduced here. CoQA appears in its analysis of documents without useful metadata.
+Sawarkar, Mangal and Solanki's *Blended RAG* combines keyword, dense-vector and learned-sparse retrieval in Elasticsearch [1]. It uses ELSER for learned sparse retrieval and reports both retrieval scores and generated-answer scores. Its published TREC-COVID and SQuAD numbers are reference results; this project did not reproduce those measurements. CoQA is discussed in the original paper, but was not evaluated here.
 
-This project adopts the motivation that different retrieval signals can supply useful context, then asks whether every query needs all branches. We implement MiniLM, SPLADE and reciprocal rank fusion in Python. The completed study therefore constitutes a retrieval adaptation and engineering extension. It measures our pipeline's cost and quality, without attributing its speedups to the original ELSER system.
+We ask whether every query needs all retrieval branches. We first implemented the paper hybrid retrieval idea in Python using MiniLM, SPLADE and reciprocal rank fusion (RRF), and evaluated that baseline on overlapping datasets. We then added indexed BM25 and conditional routing. This is a methodological adaptation, not a reproduction of the original Elasticsearch and ELSER system. The measured speedups therefore compare our own implementation stages; they do not establish speedup on the published system.
 
-Query-dependent selection already has precedents. Arabzadeh et al. train a classifier to choose sparse, dense or hybrid retrieval for individual queries [2]. Eager sparse scoring also predates this project: BM25S moves scoring work into index construction [3]. Our gate and postings representation do not establish algorithmic priority over those ideas. The empirical question concerns their interaction under the frozen policies, datasets and execution settings evaluated here.
+Query-dependent retrieval choice has been studied before [2], as has moving BM25 scoring work into index construction [3]. We do not claim these ideas as new. Instead, we measure how a frozen query gate behaves with a compatible indexed BM25 implementation on the collections and settings described below.
 
 ## 2. Motivation and contribution
 
-A cascade saves time only when the work it avoids exceeds the work paid before its decision. A lexical first stage can be accurate enough for some queries, but an expensive implementation can consume nearly the entire fusion runtime. Counting skipped neural calls then overstates the benefit. Our initial TREC-COVID measurements illustrate this constraint: BM25 takes 1410.14 ms against 1493.23 ms for static fusion.
+A cascade saves time only if the decision stage costs less than the work it avoids. If the first BM25 search is slow, skipping later neural searches may save little. In our initial TREC-COVID run, BM25 took 1410.14 ms while the full fusion pipeline took 1493.23 ms.
 
-Quality budgets make the decision measurable. We investigate policies calibrated to retain 90%, 92%, 95% or 99% of fusion's mean Recall@100, while reporting actual retention on later collections. Calibration is an empirical training procedure. A nominal target names the fitted policy and does not promise that the same ratio will hold on a new dataset.
+We study four gate settings calibrated to retain 90%, 92%, 95% or 99% of fusion's mean Recall@100. These percentages are calibration targets, not guarantees on new datasets; we report the measured retention for each dataset.
 
-The project supplies four related results: a frozen budgeted cascade, a compatible BM25 execution change, an evaluation that separates indexing gains from conditional-routing gains, and evidence that standalone retrievers can make fusion-relative savings an incomplete objective. We retain failed targets and faster low-quality points so readers can inspect the full trade-off. Claims of competitive superiority, a new routing principle or preserved generated-answer quality require further evidence.
+This project contributes a frozen BM25-first cascade and a compatible indexed BM25 implementation. We apply the indexed scorer to both fusion and the cascade, so the indexed-fusion comparison isolates the extra gain from routing. Comparing indexed fusion with the earlier, non-indexed fusion shows the indexing gain; comparing the indexed cascade with that earlier fusion shows the combined gain. We also compare the cascade with individual retrievers, since a faster system than fusion is not necessarily the best quality-time choice. Some targets fail to transfer, and we report those results as well. The study does not establish a new routing principle, overall superiority, or preserved generated-answer quality.
 
 ## 3. Adaptation, reproduction and metric differences
 
 ### 3.1 What we reproduced and changed
 
-Our reproduction target is the use of complementary retrieval signals and Best Fields lexical search. We substitute accessible local model and engine choices, construct a declared paragraph corpus for SQuAD, and add conditional execution. These changes produce a different experimental system. Table 1 specifies the comparison before presenting results.
+We reproduce the use of complementary retrieval signals and Best Fields lexical search, while changing the engine and models and adding conditional execution. For SQuAD, we also build a paragraph-level corpus. These choices make our system different from the original. Table 1 summarizes the differences.
 
 **Table 1. Relationship to the original paper. Published quality values are contextual references rather than matched baselines.**
 
@@ -45,32 +45,22 @@ Our reproduction target is the use of complementary retrieval signals and Best F
 
 ### 3.2 Why numerical metrics differ
 
-The metric definition determines what a number means. Top-k hit accuracy asks whether at least one relevant document occurs among the first k results. Recall@100 measures the fraction of all judged-relevant documents recovered in the first 100. A TREC query can have many relevant documents, so a method can score a hit while recovering a small fraction of that total. nDCG@10 rewards useful ordering near the top; its value is neither a recall-retention percentage nor answer accuracy.
+The metrics in the two studies measure different things. Top-k hit accuracy asks whether at least one relevant document appears in the first k results. Recall@100 measures how many of the judged relevant documents appear in the first 100. A query can count as a hit while still retrieving only a small share of its relevant documents. nDCG@10 measures the order of results near the top; it is not recall retention or answer accuracy.
 
-We define retention as the ratio of mean recalls: `rho = mean Recall_method@100 / mean Recall_fusion@100`. It can exceed 100% when a standalone method retrieves more relevant material than fusion. It does not count matching document IDs, and it does not guarantee that every query retains the same quality. For example, retaining 96.68% of a reference recall of 0.12250 yields recall near 0.11844, not 96.68% of all relevant TREC documents.
+We define recall retention as `mean Recall_method@100 / mean Recall_fusion@100`. It compares average recall, not overlap between result lists, and it does not guarantee the same quality for each query. It can exceed 100% if a standalone method has higher mean recall than fusion. For example, 96.68% retention of fusion recall 0.12250 corresponds to recall about 0.11844. It does not mean that 96.68% of all relevant TREC documents were found.
 
-Dataset construction and models also differ. Our SQuAD corpus includes unique title/paragraph pairs from official train and dev data [5]; each dev question has its annotated parent paragraph as the relevance label. Alternative answer-bearing paragraphs remain unjudged. Different models, preprocessing, document units and label rules can change quality even under a shared metric name. We have not isolated each factor in a matched ablation, so they are comparison limits rather than proven explanations for a particular numerical gap.
+The datasets and models also differ. Our SQuAD corpus contains unique title/paragraph pairs from the official train and dev sets [5]. Each dev question is labeled relevant to its annotated source paragraph; other paragraphs that may contain an answer are unjudged. Model, preprocessing, document and label differences can affect the scores. We did not run matched ablations to identify which difference explains any particular gap.
 
-Timing adds another distinction. Every reported speedup divides latencies measured inside our implementation. The original-fusion reference includes the benefit of the indexed backend across separate runs, whereas the indexed-fusion reference measures extra routing savings with the same backend. Neither ratio measures acceleration relative to the published Blended RAG engine. We do not compare our retrieval-retention percentages with the paper's EM/F1 scores.
+Speedups also use references from our own implementation. Comparing with original fusion includes the indexed backend improvement across separate runs. Comparing with indexed fusion isolates the additional routing gain using the same backend. Neither comparison measures acceleration of the published Blended RAG system. We do not compare recall retention with the original paper's answer EM/F1 scores.
 
 ## 4. Method
 
 
 ### 4.1 Retrieval actions
 
-The static reference executes Best Fields BM25, Dense MiniLM
-(`sentence-transformers/all-MiniLM-L6-v2`), using sentence embeddings [7], and SPLADE
-(`naver/splade-cocondenser-ensembledistil`) [6]. BM25 scores title and abstract
-fields separately and takes their maximum. Each branch contributes 100
-results to reciprocal rank fusion, which sums `1 / (60 + rank)` and returns
-100 documents. The confirmation and paper-dataset runners request 101
-candidates, remove an identical query/document ID and keep 100 before
-features or fusion. Actual ID overlap is zero on the reported confirmations.
+The static reference always runs three methods: Best Fields BM25, Dense MiniLM (`sentence-transformers/all-MiniLM-L6-v2`) [7], and SPLADE (`naver/splade-cocondenser-ensembledistil`) [6]. BM25 searches title and abstract separately and keeps the higher score. Each method returns up to 100 documents. RRF combines their rankings by summing `1 / (60 + rank)` for each document, then returns the top 100. Some runners request 101 results to remove a query document if present; no such overlap occurred in the reported confirmations.
 
-The cascade always executes BM25 first. A gate then chooses between returning
-that ranking and running both neural branches before the same fusion.
-Fallback retrieval reuses that query's BM25 ranking. Timed methods do not
-share neural query rankings or precomputed query results.
+The cascade always runs BM25 first. The gate either returns its ranking or runs both neural methods and combines their results with the BM25 ranking already computed. Timed methods do not share precomputed neural results.
 
 ```mermaid
 flowchart LR
@@ -84,52 +74,24 @@ flowchart LR
 
 ### 4.2 Gate and calibration
 
-The original 11 features describe query length, term specificity and the
-BM25 score distribution. They include token and unique-token counts;
-top-one and top-two scores, their gap, the top-ten mean and standard
-deviation, and top-one score per query token; plus maximum, mean and standard
-deviation of query-term IDF. Exact definitions and feature order remain in
-experiment 12 and the exported router artifact.
+The gate uses 11 features from the query and BM25 results. They describe query length, term specificity, and the BM25 score distribution (including the top scores and their spread). Exact feature definitions and order are recorded in experiment 12 and the saved router.
 
-A standardized Ridge regressor with alpha 10 predicts
-`g(q) = max(Recall_static(q) - Recall_BM25(q), 0)`.
-Inference clips negative predictions to zero. The gate exits when its
-prediction is at or below the selected threshold. For target `t`, calibration
-limits the sum of observed clipped losses on selected exits to
-`(1 - t) * sum_q Recall_static(q)`. Favorable BM25 differences do not offset
-losses during this calibration procedure.
+A standardized Ridge regression model (alpha 10) predicts how much recall fusion would add over BM25: `max(Recall_static - Recall_BM25, 0)`. Negative predictions are set to zero. If predicted gain is at or below the selected threshold, the gate returns BM25; otherwise it runs the neural methods. For each target, calibration limits the total measured recall loss from early exits relative to fusion. BM25 gains on some queries do not cancel losses on others.
 
-Thresholds use five-fold out-of-fold predictions on all 2,590 NFCorpus train
-queries, with seed 42; the exported model then fits all training queries.
-Earlier nested comparisons use five outer folds and four inner folds.
-A 69-feature coverage ablation remains development evidence; the original
-11-feature model is frozen for confirmation. This empirical calibration
-procedure provides no distribution-free guarantee on later collections.
+Thresholds were selected using five-fold out-of-fold predictions on 2,590 NFCorpus training queries (seed 42). The final model was then fitted on all training queries. Earlier nested comparisons used five outer folds and four inner folds. A 69-feature experiment was exploratory; the 11-feature model was kept for confirmation. This training procedure does not guarantee performance on new collections.
 
 ### 4.3 Compatible BM25 execution
 
-The original Python scorer repeatedly visits document term-frequency
-structures. The revised scorer precomputes per-term field contributions
-into postings and uses partitioning with a corpus-order tie rule to select
-the top results. It preserves tokenization, epsilon-adjusted IDFs, field
-normalization, duplicate query-token contributions and float64 accumulation
-order. Both reference fusion and all cascades receive the change.
+The original Python scorer repeatedly visited document term counts. The revised scorer stores per-term field contributions in postings and uses a partial sort to find the top results. It preserves the original scoring details and applies the same tie rule. Both fusion and cascade use this scorer.
 
-Local CPU comparisons verify identical full score vectors and top-100
-rankings on 50 TREC queries and 2,590 NFCorpus train queries. The separate
-Kaggle follow-ups verify every method's saved top-100 IDs, scores, routes and
-recalls against the original runs. This lets us attribute changed runtime
-to execution while retaining the same measured retrieval behavior.
+Local CPU comparisons found identical score vectors and top-100 rankings on 50 TREC queries and 2,590 NFCorpus training queries. Follow-up results also match the original runs in saved document IDs, scores, routes and recalls. The change therefore improves execution while preserving measured retrieval outputs.
 
 ## 5. Experimental protocol
 
 
 ### 5.1 Collections and evaluation scope
 
-NFCorpus, SCIDOCS and TREC-COVID use BEIR distributions, retaining their full
-corpora. BEIR supplies a heterogeneous retrieval benchmark; the split and
-inspection status of each project run are specified below.
-See BEIR [4].
+NFCorpus, SCIDOCS and TREC-COVID use their BEIR collections [4], with the full document corpus retained for each run. Table 2 gives the query scope and primary setting for each study.
 
 **Table 2. Completed evaluation contexts. Full corpora are retained in every row.**
 
@@ -142,26 +104,13 @@ See BEIR [4].
 | Indexed TREC-COVID follow-up | All 50 | 171,332 | 3 | r99 against 90% floor |
 | Indexed SQuAD follow-up | 256 of 10,570 | 20,958 | 3 | r99 against 90% floor |
 
-The SQuAD corpus contains all unique title/paragraph pairs from official
-SQuAD 1.1 train and dev data. Dev questions query the corpus; the annotated
-parent paragraph is relevant and alternative answer-bearing paragraphs are
-unjudged. This is retrieval evaluation rather than answer EM/F1. The original
-long timing job was shortened before quality scoring after one complete pass
-and 4,649 additional query repetitions. The complete pass supplies its means;
-additional records remain separate and do not establish three-pass stability.
+For SQuAD, the corpus contains unique title/paragraph pairs from SQuAD 1.1 train and dev. Dev questions are queries, and each annotated source paragraph is relevant; other answer-bearing paragraphs are unjudged. This measures retrieval, not generated-answer EM/F1. The original run has one full timing pass; extra partial records are reported separately and do not establish repeat stability.
 
-The indexed SQuAD sample is the first 256 query IDs after sorting by
-SHA256(`squad` + NUL + query ID), as declared before its outcomes. Its quality
-and timing apply to that sample. Full-query original SQuAD quality must not
-be substituted for indexed sample metrics. Full NQ/HotpotQA evaluation remains pending, and CoQA has no completed run; earlier qrel-informed NQ simulations
-and historical SciFact runs do not strengthen this report's main claims.
+The indexed SQuAD study uses 256 query IDs selected by a predeclared SHA256 ordering. Its results apply only to this sample; full-query SQuAD results are not substituted. Full NQ and HotpotQA runs and any CoQA run remain pending. Earlier qrel-informed NQ simulations and historical SciFact runs do not support this paper's main claims.
 
 ### 5.2 Fixed decisions and inspection status
 
-Weights and thresholds use NFCorpus train only. NFCorpus dev had already
-been inspected; the r92 model/threshold and confirmation protocol were frozen
-before SCIDOCS outcomes. NFCorpus test had been inspected earlier and is
-excluded from this calibration and confirmation sequence.
+Weights and thresholds use NFCorpus train only. NFCorpus dev was already inspected. The r92 model, threshold and confirmation protocol were fixed before SCIDOCS outcomes. NFCorpus test had been inspected earlier and is excluded from this calibration and confirmation sequence.
 
 The original paper-dataset extension declared r90 primary before its outcomes.
 The indexed engineering follow-up declared the existing conservative r99
@@ -173,27 +122,11 @@ follow-up on known quality, rather than a new independent generalization test.
 
 ### 5.3 Timings, metrics and comparison references
 
-Kaggle measurements use a Tesla T4, one CPU thread, randomized query/method
-ordering, warmups and GPU synchronization around each timed query. Timings
-include query retrieval and routing, while excluding corpus encoding,
-index preparation, model loading, dataset download and answer generation.
-Three passes are complete except for the explicitly amended original SQuAD
-run. Datasets and backend runs have separate sessions.
+Kaggle measurements use a Tesla T4 GPU, one CPU thread, randomized query and method order, warmups, and GPU synchronization for timed queries. Timing includes retrieval and routing, but excludes corpus encoding, index preparation, model loading, downloads and answer generation. Three passes are complete except for original SQuAD, which has one full pass. Collections and backends were run in separate sessions.
 
-Recall retention is `mean Recall_method@100 / mean Recall_fusion@100`.
-It measures relative retrieval quality and can exceed 100%; it does not
-represent overlap of retrieved lists or a per-query guarantee. nDCG@10 and
-MAP@10 report ranking quality. Query-paired bootstrap intervals use 1,000
-resamples and repeat-averaged query times, without covering all hardware or
-session variation. Count-matched random routing supplies an offline recall
-reference with 200 assignments, not a timed system.
+Recall retention is the ratio of mean Recall@100 for a method and fusion. It can exceed 100%, does not measure overlap between result lists, and is not a per-query guarantee. We also report nDCG@10 and MAP@10. Query-paired bootstrap intervals use 1,000 resamples and average query times across timing passes; they do not capture all hardware or session variation. Count-matched random routing is an offline recall reference, not a timed system.
 
-We report two speedup references. Original-fusion latency divided by indexed
-method latency describes indexing and routing combined, across runs.
-Indexed-fusion latency divided by indexed-cascade latency describes the
-additional conditional-routing gain with the same scorer. SQuAD cross-run
-comparisons use the exact same 256 questions. Percent time saved is
-`1 - 1/speedup`; a 1.24x speedup corresponds to 19.04% less mean time here.
+We report two speedups. Original fusion divided by indexed method combines indexing and routing gains across runs. Indexed fusion divided by indexed cascade measures the extra routing gain with the same scorer. SQuAD cross-run comparisons use the same 256 questions. Percent time saved is `1 - 1/speedup`.
 
 ## 6. Results
 
@@ -210,8 +143,10 @@ Recall@100 retained. Colors distinguish a failed 90% point, a point above
 These are measured configurations, not evidence of scaling to larger corpora.
 
 On TREC, indexing alone changes fusion from 1493.23 to 91.28 ms, an observed
-16.36x cross-run speedup. Indexing plus r99/r95/r92/r90 reaches
-20.21x/26.83x/35.56x/36.96x relative to original fusion, retaining
+16.36x cross-run speedup. The primary indexed cascade takes 73.90 ms: that is
+1.24x faster than equally indexed fusion (the additional routing gain), and
+20.21x faster than original fusion (the combined indexing and routing gain).
+Indexing plus r95/r92/r90 reaches 26.83x/35.56x/36.96x relative to original fusion, retaining
 96.68%/91.95%/84.53%/84.53% recall. The largest two points fail the requested
 90% floor. The 26.83x secondary point clears 90% at its observed mean but
 has a recall interval crossing below that floor. These larger ratios include
@@ -238,31 +173,13 @@ standalone baselines, are in [SPEEDUP_SUMMARY.md](SPEEDUP_SUMMARY.md).
 | r92 (secondary) | 84.53% | 0.65315 | 0.01499 | 41.99 | 2.17x |
 | r90 (secondary) | 84.53% | 0.65115 | 0.01499 | 40.41 | 2.26x |
 
-The preselected r99 primary yields 1.24x speedup, retaining 96.68% recall.
-Its mean time saving is 19.04% with a query-bootstrap interval of 9.47% to
-30.11%; its retention interval is 93.58% to 98.75%. Both lower bounds pass
-the follow-up's positive-saving and 90%-retention criteria in this setting.
-The primary exits on 11 queries, avoiding 33 invocations of each neural
-branch across three passes. It still misses its nominal 99% calibration
-label, as do all other nominal TREC targets.
+The preselected r99 primary is 1.24x faster than indexed fusion and retains 96.68% of its recall. It saves 19.04% mean time (95% query-bootstrap interval: 9.47% to 30.11%); its recall-retention interval is 93.58% to 98.75%. Both intervals meet the follow-up's positive-saving and 90% retention criteria. The gate exits on 11 queries and avoids 33 calls to each neural branch over three passes. It misses its nominal 99% calibration target, as do the other settings on TREC.
 
-The fastest secondary cascade point with observed retention above 90% is
-r95: 1.64x speedup at 91.95% retained. Its recall interval is 86.88% to
-95.76%, and its time-saving interval is 26.54% to 51.94%. The absolute maximum
-cascade speedup is 2.26x at r90, retaining 84.53%; r92 also fails 90%. These
-points remain visible without replacing the preselected primary.
+The fastest secondary point above 90% observed retention is r95: 1.64x at 91.95%. Its recall interval is 86.88% to 95.76%, crossing below the 90% floor. The fastest setting, r90, is 2.26x faster but retains 84.53%; r92 has the same retention. We retain these settings to show the full trade-off.
 
-SPLADE alone reaches 1.73x speedup, retaining 104.69% of fusion recall. It
-has higher recall and nDCG with lower mean time than the primary. The primary
-has higher MAP, 0.01769 versus 0.01662, a descriptive relative difference of
-6.43% without a significance claim. Under a recall/time objective SPLADE
-remains the stronger constant choice. This MAP difference cannot justify
-changing the original objective retrospectively to establish superiority.
+SPLADE alone is 1.73x faster than indexed fusion and retains 104.69% of fusion recall. It has higher recall and nDCG than the primary at lower mean time. The primary has higher MAP (0.01769 versus 0.01662), but this descriptive difference is not a significance result. Under a recall/time objective, SPLADE is the stronger fixed choice in this collection.
 
-Primary absolute Recall@100 is 0.11844 versus fusion's 0.12250; many documents
-are judged relevant per TREC topic. The 96.68% figure is a retention ratio.
-Primary p95 is 99.41 ms versus fusion's 97.66 ms, so the measured mean gain
-does not establish a p95 improvement.
+Absolute Recall@100 is 0.11844 for the primary and 0.12250 for fusion. The 96.68% figure is their ratio, not the proportion of all relevant documents retrieved. Primary p95 latency is 99.41 ms versus 97.66 ms for fusion, so the mean-time gain does not imply a p95 gain.
 
 ### 6.3 Indexed SQuAD sample
 
@@ -279,19 +196,9 @@ does not establish a p95 improvement.
 | r92 (secondary) | 100.00% | 0.80287 | 0.76757 | 21.31 | 1.39x |
 | r90 (secondary) | 99.22% | 0.80092 | 0.76757 | 18.59 | 1.59x |
 
-Additional cascade speedup grows from 1.04x at r99 to 1.19x, 1.39x and 1.59x
-as the nominal setting becomes more permissive. Observed recall retention is
-100% at the first three points and 99.22% at r90. The primary's mean saving
-is 4.19% (interval 1.90% to 7.04%). Secondary r90 saves 37.08% (31.58% to
-42.69%) and retains 99.22% (98.05% to 100%). The primary remains r99.
+Additional speedup ranges from 1.04x at r99 to 1.59x at r90. Observed retention is 100% for the first three settings and 99.22% for r90. The primary saves 4.19% mean time (interval 1.90% to 7.04%). Secondary r90 saves 37.08% (31.58% to 42.69%) and retains 99.22% (98.05% to 100%). The primary remains r99.
 
-BM25 alone retains 95.70% at 1.03 ms, reaching 28.59x speedup over indexed
-fusion; it is the fastest listed method meeting the user's 90% floor here.
-SPLADE has the highest nDCG and MAP at 16.96 ms, while retaining 98.83%
-recall. These baselines limit a claim of practical cascade superiority.
-Zero sampled losses and empirical intervals of [1, 1] at r92/r95/r99 do not
-guarantee zero loss on unmeasured questions. r90 p95 is 31.48 ms versus
-fusion's 31.37 ms, so a tail-latency improvement is not shown.
+BM25 alone retains 95.70% at 1.03 ms, making it the fastest listed method above the 90% floor. SPLADE has the highest nDCG and MAP at 16.96 ms and retains 98.83%. These baselines prevent a claim that the cascade is the best practical choice. No sampled losses at r92/r95/r99 do not guarantee zero loss on unseen questions. For r90, p95 is 31.48 ms versus 31.37 ms for fusion, so a tail-latency gain is not shown.
 
 ### 6.4 Earlier calibration and original-backend findings
 
@@ -304,34 +211,15 @@ fusion's 31.37 ms, so a tail-latency improvement is not shown.
 | TREC-COVID | r90 | 84.53% | 1493.23 | 1440.00 | 3.56% |
 | SQuAD full queries, one pass | r90 | 99.38% | 148.26 | 139.19 | 6.12% |
 
-All nominal targets pass on NFCorpus dev and full-query SQuAD. All fail on
-SCIDOCS and TREC. SCIDOCS r92's retention interval, 88.27% to 91.61%, crosses
-90%; the original TREC r90 point fails even at its observed 84.53% retention.
-No recalibration follows these results. The original full-query SQuAD result
-has one complete timing pass, despite its 10,570-query quality coverage.
+All nominal settings meet their targets on NFCorpus dev and full-query SQuAD, while all miss on SCIDOCS and TREC. SCIDOCS r92's interval (88.27% to 91.61%) crosses 90%; TREC r90 retains 84.53%. We did not recalibrate after these results. Original full-query SQuAD quality covers 10,570 questions but has only one complete timing pass.
 
-Dense has higher recall and lower time than every cascade on NFCorpus dev
-and SCIDOCS. It retains 99.77% of fusion recall at 6.62 ms on NFCorpus; on
-SCIDOCS it retains 109.65% at 10.14 ms and leads all three quality metrics.
-These outcomes remain part of the project. Per-policy original-backend
-values, the development feature ablation and random-assignment references
-remain in the detailed findings and combined machine-readable table.
+Dense has higher recall and lower latency than every cascade on NFCorpus dev and SCIDOCS: it retains 99.77% at 6.62 ms on NFCorpus, and 109.65% at 10.14 ms on SCIDOCS, where it also leads all three quality metrics. Detailed per-policy results, the feature ablation and random-routing reference are available in the project reports.
 
 ### 6.5 Compatibility and component execution
 
-All 400 TREC and 2,048 sampled SQuAD first-pass rankings match the original
-runs exactly: document IDs and order, scores, routes and per-query recalls.
-Maximum saved-ranking score difference is zero. Independent raw-label
-scoring reproduces all three aggregate quality metrics for every method on
-both indexed collections and on original full-query SQuAD/TREC.
+All 400 TREC and 2,048 sampled SQuAD first-pass rankings match the original runs in document IDs, order, scores, routes and per-query recall. The maximum score difference is zero. Independent scoring from raw relevance labels reproduces the aggregate quality metrics for both indexed collections and original full-query SQuAD/TREC.
 
-Across TREC pipeline runs, BM25 alone changes from 1410.14 to 8.11 ms, an
-observed 173.78x scorer ratio. Dense and SPLADE standalone means remain
-close. This scorer result preserves BM25 quality; BM25 still retains only
-71.38% of fusion recall. The larger scorer ratio is not an end-to-end cascade
-speedup. Separate paired local CPU measurements show 134.85x scorer speedup
-on TREC and 34.59x on NFCorpus train, with identical full score vectors.
-Those measurements have different hardware and scope.
+In separate TREC pipeline runs, BM25 latency falls from 1410.14 ms to 8.11 ms (173.78x); Dense and SPLADE times remain similar. BM25 retains only 71.38% of fusion recall, and this scorer ratio is not an end-to-end cascade speedup. Paired CPU checks also found identical BM25 scores, with 134.85x speedup on TREC and 34.59x on NFCorpus training data.
 
 ![Quality and latency of all indexed methods](figures/indexed_quality_latency.png)
 
@@ -339,66 +227,34 @@ Those measurements have different hardware and scope.
 The complete reference corpus is common within each panel. Error bars are
 95% query-bootstrap intervals. The SQuAD panel is a declared sample.
 
-Relative to original fusion, indexed standalone BM25, Dense and SPLADE reach 184.02x, 49.10x and 28.29x on TREC, retaining 71.38%, 69.81% and 104.69% of fusion recall respectively. On the same SQuAD sample, their original-fusion ratios are 142.25x, 13.58x and 8.67x, retaining 95.70%, 95.70% and 98.83%. These are standalone comparisons; the BM25 scorer ratio, combined cascade ratios and additional routing gains remain distinct quantities.
+Against original fusion, indexed BM25, Dense and SPLADE are 184.02x, 49.10x and 28.29x faster on TREC, retaining 71.38%, 69.81% and 104.69% of fusion recall. On the same SQuAD sample, they are 142.25x, 13.58x and 8.67x faster and retain 95.70%, 95.70% and 98.83%. These are standalone comparisons, separate from the BM25 scorer and cascade speedups.
 
 ## 7. Implementation and reproducibility
 
 ### 7.1 Modules and execution paths
 
-The implementation keeps retrieval, policy decisions and scoring separate. `src/indexed_bm25.py` implements the compatible postings backend. `src/bm25_retriever.py`, `src/dense_retriever.py` and `src/splade_retriever.py` expose the branch implementations. The frozen weights and thresholds live in `results/nfcorpus_frozen_retention_routers.json`; the indexed protocol records model revisions and source fingerprints. Experiments 20 and 25 execute original and indexed benchmark pipelines respectively.
+The code separates retrieval, routing and scoring. `src/indexed_bm25.py` implements indexed BM25; the other retriever modules implement BM25, Dense and SPLADE. The saved router file contains the frozen model and thresholds. The indexed protocol records model revisions and source fingerprints. Experiments 20 and 25 run the original and indexed pipelines.
 
-The gate consumes only query and initial BM25 features at inference time. It either returns those lexical results or runs Dense and SPLADE, reusing the already-computed BM25 ranking during fusion. A static reference executes all branches for every query. Evaluated methods do not reuse another method's neural query rankings, which would hide the actual cost of conditional execution. Corpus representations and indexes are prepared before the query-timing window.
+At inference, the gate uses only the query and initial BM25 results. It returns BM25 or runs Dense and SPLADE, then fuses their results. The static reference always runs all three methods. Each method is timed independently; indexes and corpus representations are prepared before timing.
 
 ### 7.2 Evidence and rebuilding the report
 
-The evidence supports both artifact consistency and independent quality scoring. Experiment 22 imports result archives and checks frozen assets, timings, branch decisions and rankings. Experiment 30 compares original/indexed outputs on identical query IDs. Experiments 29 and 31 reconstruct SQuAD labels or read exact BEIR relevance labels to rescore saved rankings. These checks strengthen the reported retrieval results, while clock accuracy and broader hardware variability remain experimental limitations.
+Experiments 22 and 30 check the saved rankings, decisions, timings and frozen files. Experiments 29 and 31 independently score saved rankings from SQuAD or BEIR relevance labels. These checks support the reported retrieval metrics, but do not verify clock accuracy or broader hardware behavior.
 
-Experiment 32 rebuilds the complete speedup figures and CSV tables from compact reports without retrieval. The submission builders create this paper, the offline HTML/PDF showcase and the editable presentation from the same recorded evidence. Current navigation and reproduction commands appear in `docs/reproducibility/README.md`. Raw datasets, neural caches and bulk per-query records remain excluded from the source-sharing ZIP; the artifact catalog records the original local export hashes needed to identify matching evidence.
+The publication scripts rebuild figures and documents from saved reports; they do not rerun retrieval. Reproduction commands and original data-export hashes are listed in the repository guides and artifact catalog. Large datasets and query-level results are stored separately from the source-sharing package.
 
 ## 8. Discussion and limitations
 
-First-stage cost controls how much a gate can save. On original TREC, BM25
-alone consumes 1410.14 ms against fusion's 1493.23 ms. After compatible
-indexing, that first stage takes 8.11 ms and the same gate can avoid a larger
-fraction of the remaining query cost. The study changes reference and
-proposed method together, rather than giving the execution improvement only
-to the cascade. Original/indexed comparisons are separate runs, so their
-ratios include run variability.
+The BM25 first stage limits savings when it is slow. On original TREC it takes 1410.14 ms of fusion's 1493.23 ms. After indexing it takes 8.11 ms, leaving more of the remaining cost for conditional routing to avoid. We apply indexing to both the cascade and reference. Since original and indexed runs are separate, their speedup ratios also include run variation.
 
-Training calibration does not ensure transfer. Identical rankings after
-indexing preserve the original quality misses, while the indexed primary
-choice uses already-inspected evidence. The work supports an engineering
-follow-up, not a new independent guarantee. Standalone quality/time comparisons
-also matter: fusion itself need not be the most efficient useful action.
+Calibration on one training collection does not guarantee transfer. The indexed TREC primary was chosen using already-inspected quality results, so that follow-up tests execution rather than independent generalization. A fast cascade also need not be the best option: standalone methods are stronger quality-time choices in several measured settings.
 
-The measurements cover one GPU type, small numbers of timing sessions and
-prepared indexes. They exclude production concurrency, energy, memory/update
-cost and generated answers. We have not measured modern adaptive retrieval
-baselines, full NQ/HotpotQA, CoQA or the original paper's ELSER implementation.
-Method novelty, publication competitiveness and overall superiority remain
-unestablished. A future method study should define its quality/cost objective
-on training and validation data before evaluating new independent queries.
-
-### 8.1 Deferred evaluation
-
-Full-corpus Natural Questions, HotpotQA and CoQA remain outside this release. Earlier NQ results use a qrel-informed candidate pool and simulated routing, so they cannot establish full-corpus savings of the present cascade. Generated-answer EM/F1, modern adaptive-retrieval baselines, concurrency, energy, and index memory/update costs also remain unmeasured. The indexed SQuAD study covers its fixed 256-question sample, not all 10,570 questions.
-
-Further testing should preserve this release and declare the new protocol before inspecting outcomes. Additional datasets can assess transfer, but would not by themselves establish a new algorithm or superiority over stronger retrieval strategies. A later study should retain the strongest standalone methods and use a new validation boundary for any revised gate.
+The measurements use one GPU type and a small number of timing sessions with prepared indexes. They exclude production concurrency, energy, index memory and update costs, and generated answers. We did not evaluate modern adaptive baselines, full NQ or HotpotQA, CoQA, or the original ELSER system. Our results make indexed lexical scoring and conditional routing reasonable candidates to test in the original Elasticsearch/ELSER pipeline, but do not show that the same gains will transfer. Future work should implement the changes in that system and evaluate new collections, answer quality, and strong standalone and adaptive baselines.
 
 ## 9. Conclusion
 
 
-Compatible indexing makes conditional neural skipping deliver larger mean
-savings against an equally optimized fusion reference. TREC cascade speedup
-ranges from 1.24x to 2.26x while recall retention declines from 96.68% to
-84.53%. Its fastest secondary point above 90% observed retention reaches
-1.64x at 91.95%, with uncertainty crossing the floor; the conservative primary
-retains 96.68% at 1.24x. Against our original fusion implementation, indexing
-and routing together reach 26.83x at that 91.95% secondary point and 36.96x
-at the 84.53% point. On sampled SQuAD, the cascade reaches 1.59x over indexed
-fusion at 99.22% retention. Strong constant baselines remain preferable under
-the recall/time objective on these datasets. The contribution is a measured
-execution optimization and empirical analysis of its quality/time limits.
+We first evaluated a Python hybrid-retrieval baseline inspired by Blended RAG on TREC-COVID and SQuAD, then tested indexed BM25 and conditional routing on the same collections (with the declared SQuAD sample for the indexed follow-up). On TREC-COVID, indexing plus the primary gate was 20.21x faster than our earlier fusion run across separate sessions and retained 96.68% of indexed fusion recall. Indexed fusion alone accounted for a 16.36x observed ratio, while routing added 1.24x against the indexed reference. On the fixed SQuAD sample, the fastest cascade was 7.91x faster than our earlier fusion run, or 1.59x over indexed fusion, retaining 99.22%. These results suggest the method may be useful in the original system; confirming that requires a direct Elasticsearch/ELSER evaluation. They do not establish superiority over the published system.
 
 ## References
 
@@ -416,19 +272,3 @@ execution optimization and empirical analysis of its quality/time limits.
 
 [7] Nils Reimers and Iryna Gurevych. 2019. *Sentence-BERT: Sentence Embeddings using Siamese BERT-Networks*. EMNLP-IJCNLP. [Paper](https://arxiv.org/abs/1908.10084).
 
-## Appendix A. Evidence entry points
-
-All implementation paths here are relative to `cascaded-blended-rag/`.
-
-| Evidence | Location |
-|:--|:--|
-| All-query indexed TREC-COVID | `results/indexed_trec-covid_q0/` |
-| Fixed-sample indexed SQuAD | `results/indexed_squad_q256/` |
-| Original full-query SQuAD | `results/paper_squad_one_pass/` |
-| Combined metrics | `results/final_quality_speed.csv` |
-| Frozen policies and protocol | `results/nfcorpus_frozen_retention_routers.json`, `results/indexed_cascade_protocol.json` |
-
-Frozen weights SHA256: `3efd7382cd91cfc43bd7ae5d4eaf27571ae92657dec97e3eaf85fbb36131a5d1`.
-Indexed runner SHA256: `ddb7b5656ed20e0ab20cb2199f544137e3679c161b99cb935c5f14919e44a104`.
-
-The [reproduction guide](reproducibility/README.md), [complete speedup tables](SPEEDUP_SUMMARY.md) and [release review](review/PAPER_RELEASE_REVIEW.md) document commands, claim support and the answered five-part self-review. Original exports are identified in the [artifact catalog](reproducibility/artifact_catalog.json).

@@ -5,9 +5,9 @@ No server, Kaggle session or model download is needed to read these files.
 
 | File | Use |
 |:--|:--|
-| [Research paper](conditional_retrieval_paper.pdf) | 11-page academic report with methods, protocol, results, limitations and references |
+| [Research paper](conditional_retrieval_paper.pdf) | 9-page academic report with methods, protocol, results, limitations and references |
 | [HTML showcase](research_showcase.html) / [matching PDF](research_showcase.pdf) | A visual account of the original paper, motive, adaptation, metric differences, results and implementation |
-| [Editable presentation](research_presentation.pptx) / [presentation PDF](research_presentation.pdf) | 18 main slides for a 15–20 minute talk, plus four evidence/reproduction appendices |
+| [Editable presentation](research_presentation.pptx) / [presentation PDF](research_presentation.pdf) | 19 main slides for a 15–20 minute talk, plus four evidence/reproduction appendices |
 | [Speaker notes](presentation_notes.md) | Detailed explanations and source references, also embedded in the PPTX |
 
 The editable paper source is [FINAL_MANUSCRIPT.md](../FINAL_MANUSCRIPT.md).

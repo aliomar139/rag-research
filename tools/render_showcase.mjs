@@ -18,7 +18,7 @@ try {
   await page.evaluate(()=>document.fonts.ready);
   await page.screenshot({path:path.join(build,'desktop.png'),fullPage:true});
   await page.screenshot({path:path.join(build,'desktop-fold.png'),fullPage:false});
-  for(const id of ['original','motive','adaptation','implementation','scope'])
+  for(const id of ['original','reproduction','reproduction-results','implementation','method','scope'])
     await page.locator('#'+id).screenshot({path:path.join(build,id+'.png')});
   const results=page.locator('.result-page');
   for(let i=0;i<await results.count();i++)

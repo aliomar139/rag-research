@@ -7,8 +7,8 @@ ROOT=Path(__file__).resolve().parents[1]
 
 def main():
     slides=sorted((ROOT/'.local/release_build/presentation').glob('slide-*.png'))
-    if len(slides)!=22:
-        raise RuntimeError('Render all 22 slides before exporting the presentation PDF.')
+    if len(slides)!=23:
+        raise RuntimeError('Render all 23 slides before exporting the presentation PDF.')
     output=ROOT/'docs/submission/research_presentation.pdf'
     pdf=canvas.Canvas(str(output),pagesize=(1280,720))
     pdf.setTitle('Conditional Hybrid Retrieval - Research Presentation')

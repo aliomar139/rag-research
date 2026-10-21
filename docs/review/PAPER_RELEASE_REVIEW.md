@@ -2,14 +2,18 @@
 
 ## Story and section outline
 
-1. Original paper: establish the research source and the adaptation boundary.
-2. Motivation: explain why first-stage cost can prevent useful early exits.
+1. Original paper: establish the research source and adaptation boundary.
+2. Motivation: explain why the cost of the first search limits savings.
 3. Reproduction and metrics: distinguish hit accuracy, absolute recall,
    retention, nDCG and answer EM/F1 before presenting any comparisons.
-4. Method and protocol: define the gate, calibration, compatible indexing,
-   fixed decisions, timing window and sample boundaries.
-5. Results: report all four settings, both speedup references and the strong
-   standalone alternatives. Implementation, limitations and conclusion follow.
+4. Method: explain the retrieval choices, gate, calibration and indexed scorer.
+5. Protocol: state datasets, inspection status, timing window and metrics.
+6. Results: compare all four settings, both speedup references and standalone
+   methods. Discussion and conclusion define the limits of the finding.
+
+The revised source uses shorter sentences and defines technical terms at first
+use. The paper PDF is nine pages, including references, with result tables and
+figures retained.
 
 ## Paragraph roles and reverse outline
 
@@ -49,9 +53,10 @@ Paths beginning `results/` are relative to `cascaded-blended-rag/`.
    retaining transfer failures and stronger standalone choices. Algorithmic
    novelty and SOTA competitiveness need a separate study.
 2. **Writing clarity.** Can readers identify the references and estimands?
-   The manuscript defines retention and both speedup denominators before
-   results, labels original/full versus indexed/sample SQuAD, and supplies
-   code/evidence paths. Paragraphs carry one stated message.
+   The manuscript explains retention and both speedup references before the
+   results, distinguishes full and sampled SQuAD, and keeps the method and
+   timing details needed to interpret the findings. Paragraphs have one main
+   point and technical terms are explained in context.
 3. **Experimental strength.** Do results support useful execution gains?
    Three indexed timing passes, exact ranking agreement and independent
    scoring support the bounded claim. One GPU type, few sessions and known
