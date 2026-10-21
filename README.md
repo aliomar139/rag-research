@@ -1,116 +1,56 @@
 # Conditional Hybrid Retrieval
 
-A BM25-first Ridge gate chooses whether to return a lexical ranking or run
-Dense MiniLM and SPLADE before reciprocal rank fusion. This repository contains
-the compatible indexed BM25 implementation, frozen benchmark protocols,
-measured results and the submission manuscript.
+**A master's research project on deciding when a search system should spend the extra cost of neural retrieval.**
+
+This repository contains our reproduction of the blended retrieval approach from the selected paper, experiments with a BM25-first cascade, and the final paper and presentation. The cascade uses an explicit decision rule to decide whether to run a second retrieval stage. We also implemented indexed BM25 fusion, which reduced the cost of the lexical baseline.
+
+**Authors:** Ali Omar, Abdallah Mestrah, and Abbas Yazbek. **Supervisor:** Dr. Ahmad Abboud. **Institution:** Lebanese University.
 
 ## Start here
 
-The [final material bundle](docs/submission/README.md) includes the research
-paper, offline HTML/PDF showcase and editable presentation with speaker notes.
+- [Final results and experiment index](final_results/README.md): paper, HTML showcase, slide deck, PDFs, and links to all 32 experiment scripts.
+- [Research paper](final_results/conditional_retrieval_paper.pdf)
+- [HTML research showcase](final_results/research_showcase.html)
+- [Editable presentation](final_results/research_presentation.pptx)
+- [Code and implementation notes](cascaded-blended-rag/README.md)
+- [Reproduction guide](docs/reproducibility/README.md)
 
-| Reader goal | File |
+## What we measured
+
+The results below come from our Python implementation and compare retrieval configurations on the same project datasets. They show an improvement over our reproduced baseline in these experiments; they are not direct timing measurements of the original Elasticsearch and ELSER system.
+
+| Evaluation | Comparison | Result |
+|:--|:--|--:|
+| TREC-COVID, all 50 queries | Selected cascade vs equally indexed fusion | **1.24x faster**, retaining 96.68% of fusion Recall@100 |
+| SQuAD, declared 256-question sample | Fastest tested cascade vs indexed fusion | **1.59x faster**, retaining 99.22% of fusion Recall@100 |
+
+The indexed fusion implementation also changes the baseline cost, so speedups against our original, non-indexed fusion include both the indexing work and the cascade decision. The table uses equally indexed fusion to show the added cascade gain separately. The comparisons measure retrieval time and recall; they don't establish answer quality or speedups on the original paper's ELSER stack. Full NQ and HotpotQA evaluations remain pending. See the [final results guide](final_results/README.md) and [paper](final_results/conditional_retrieval_paper.pdf) for protocols, other settings, and limitations.
+
+## Repository map
+
+| Path | Contents |
 |:--|:--|
-| Understand the project and its development | [Plain-language explanation](docs/adhd-explanation.md) |
-| Read the submission report | [Consolidated manuscript](docs/FINAL_MANUSCRIPT.md) |
-| Inspect every speedup and quality trade-off | [Full speedup tables](docs/SPEEDUP_SUMMARY.md) |
-| Reproduce plots or audit evidence | [Reproduction guide](docs/reproducibility/README.md) |
-| Understand changes since the last commit | [CHANGELOG.md](CHANGELOG.md) |
+| [`cascaded-blended-rag/src/`](cascaded-blended-rag/src/) | Retrieval, indexed BM25, and routing implementation |
+| [`cascaded-blended-rag/experiments/`](cascaded-blended-rag/experiments/) | Numbered experiment scripts; the final results guide maps each script to its purpose |
+| [`cascaded-blended-rag/results/`](cascaded-blended-rag/results/) | Saved reports, protocols, and validation records |
+| [`final_results/`](final_results/) | Paper, showcase, presentation, and release guide |
+| [`docs/`](docs/README.md) | Manuscript source, reproducibility notes, findings, and project history |
+| [`notebooks/`](notebooks/README.md) | Kaggle workflows and legacy notebooks |
+| [`requirements/`](requirements/) | Dependency lists for analysis and benchmarking |
 
-## Measured result
+## Reproduce and inspect
 
-**TREC-COVID: all 50 queries, 171,332 documents, three warmed T4 timing passes.**
+To review the saved evidence and regenerate report figures, follow the [reproduction guide](docs/reproducibility/README.md). It describes the required inputs and how to restore ignored data. The final PDFs and reports are already included, so reading the results does not require running the benchmarks.
 
-| Configuration | Recall retained | Speedup vs our original fusion | Speedup vs equally indexed fusion |
-|:--|--:|--:|--:|
-| Indexed fusion | 100.00% | 16.36x | 1.00x |
-| r99, primary | 96.68% | 20.21x | 1.24x |
-| r95, secondary | 91.95% | 26.83x | 1.64x |
-| r92, secondary | 84.53% | 35.56x | 2.17x |
-| r90, secondary | 84.53% | 36.96x | 2.26x |
-
-The largest two cascade points fail the 90% floor. The r95 point's recall
-interval crosses below 90%; the conservative primary's lower bound is 93.58%.
-Original-implementation ratios combine indexing and routing across runs.
-The extra cascade benefit is the last column, using the same indexed scorer.
-
-On the declared 256-question SQuAD sample, the fastest cascade retains 99.22%
-recall at 1.59x over indexed fusion, or 7.91x over same-query original fusion.
-SQuAD's full corpus remains in use; the indexed query sample is not the full
-10,570-question evaluation. Standalone SPLADE or Dense/BM25 often provides a
-better recall/time choice. Earlier target failures remain reported.
-
-These are retrieval results from our MiniLM/SPLADE/RRF adaptation. They do
-not establish acceleration of the original paper's ELSER system, preserved
-answer quality or overall method superiority. Full NQ/HotpotQA remain pending.
-
-![Measured speedup progression](docs/figures/speedup_progression.png)
-
-## Repository layout
-
-```text
-cascaded-blended-rag/
-  src/                 Retrieval and routing implementation
-  experiments/         Numbered scripts, kept at their provenance paths
-  results/             Compact reports, frozen assets and validation records
-  data/                Local-only datasets and generated indexes
-  tests/               Existing focused checks
-
-docs/
-  FINAL_MANUSCRIPT.md   Current report
-  FINAL_RESULTS.md      Results entry point
-  SPEEDUP_SUMMARY.md    Complete speedup tables
-  adhd-explanation.md   Plain-language project history
-  submission/          Paper PDF, HTML/PDF showcase and editable slide deck
-  findings/            Individual experiment interpretation
-  figures/             PNG/SVG plots and CSV source values
-  reproducibility/     Reproduction, artifact inventory and layout migration
-  review/              Claim audit and submission checklist
-  history/             Superseded drafts, plans and chronological ledger
-
-notebooks/             Versioned Kaggle workflows and labeled legacy notebooks
-Similar-Papers/        Literature catalogs and optional downloader
-requirements/          Analysis, benchmark and optional literature dependencies
-tools/                 Sharing audits, ZIP builder and explicit input restoration
-artifacts/             Ignored local downloads, old exports and submission ZIP
-```
-
-Detailed indexes: [documentation](docs/README.md),
-[code](cascaded-blended-rag/README.md), [Kaggle](notebooks/README.md).
-
-## Regenerate figures without a GPU
-
-From the repository root, using Python 3.12 or a compatible newer interpreter:
-
-```powershell
-python -m venv .venv
-.\.venv\Scripts\python.exe -m pip install -r requirements/analysis.txt
-.\.venv\Scripts\python.exe cascaded-blended-rag/experiments/32_prepare_report_assets.py
-```
-
-On Linux/macOS use `.venv/bin/python` instead. The checked-in reports are
-sufficient for both figures and all speedup tables; no dataset, model download
-or new timing run is needed. Full benchmark dependencies are in `requirements.txt`.
-
-## Check and package for sharing
+Run the repository audit and build a shareable archive with:
 
 ```powershell
 python tools/check_repository.py
 python tools/build_submission.py
 ```
 
-The audit checks current navigation, shareable sizes, secret patterns, syntax
-and frozen fingerprints. It does not run the unit tests or retrieval.
-The sharing ZIP is written to
-`artifacts/submission/rag_research_submission_20261021.zip`, with a SHA256
-manifest for its files. It includes source, compact evidence, figures and
-labeled history. Raw corpora, large rankings, downloaded papers, original
-result ZIPs, environments and local working notes are excluded.
+The audit checks repository links, shareable files, and frozen source fingerprints. The archive is written to `artifacts/submission/`.
 
-Original local artifacts are retained and inventoried in
-[artifact_catalog.json](docs/reproducibility/artifact_catalog.json).
-Receive matching ZIPs separately for full record-level revalidation; the
-[reproduction guide](docs/reproducibility/README.md) explains how.
-`.gitattributes` preserves exact frozen code/JSON bytes across platforms.
-A repository license file has not been selected.
+## Study scope
+
+This is an engineering reproduction and extension using our Python retrieval setup. Its measurements support conclusions about the evaluated datasets and configurations. They do not by themselves show that the proposed cascade improves the original paper's system or preserves downstream answer quality.
