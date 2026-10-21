@@ -8,7 +8,7 @@ This guide follows the project story in plain language. It starts with the searc
 
 When someone asks a question, a search system has to find useful documents from a large collection. Our project studies whether it is necessary to run every search method for every question.
 
-The regular hybrid system runs three retrievers-BM25, Dense, and SPLADE-then combines their rankings. We call that **static fusion**. Our idea was to run BM25 first and use a small decision model to decide whether the other two searches are likely to help.
+The regular hybrid system runs BM25, Dense, and SPLADE, then combines their rankings. We call that **static fusion**. Our idea was to run BM25 first and use a small decision model to decide whether the other two searches are likely to help.
 
 That two-stage approach is a **cascade**. The decision model is the **gate**.
 
@@ -34,7 +34,7 @@ Retrieval quality and answer quality are different things. Our experiments study
 - **Ranking:** documents ordered from most to least relevant according to a retriever.
 - **qrels:** relevance judgments used as the evaluation answer key. They say which documents are judged relevant to which queries.
 
-The retriever does not see qrels when it makes its live decision. Qrels are used afterward to score its results.
+The retriever does not see qrels when it makes its live decision. Training qrels help create the examples used to teach the gate. Evaluation qrels score its results after the rankings and decisions are fixed.
 
 ### What is a dense vector?
 
@@ -76,13 +76,19 @@ RRF score for a document = sum over retrievers of 1 / (60 + its rank)
 
 For example, a document ranked near the top by several retrievers receives a strong combined score. A document that appears in only one list gets credit from that list alone. The constant 60 softens the effect of small rank differences.
 
-In our **static fusion** baseline, all three retrievers run for every query and RRF combines their top results. On the cascade's early-exit path, only BM25 ran, so there is nothing to fuse. On the escalated path, the system runs Dense and SPLADE and applies RRF to all three rankings.
+In our **static fusion** baseline, all three retrievers run for every query and RRF combines their top results. On the cascade's early-exit path, only BM25 ran, so there is nothing to fuse. On the escalated path, the system reuses the existing BM25 ranking, runs Dense and SPLADE, and applies RRF to all three rankings.
 
 ## 5. What are we measuring?
 
 ### Recall@100
 
 **Recall@100** measures how many of the judged relevant documents appear in the first 100 results. If 20 documents are judged relevant and 10 appear in the top 100, recall is 10/20, or 50%.
+
+### Hit@k, or top-k retrieval accuracy
+
+**Hit@k** asks whether at least one relevant document appears in the first k results. Each query gets a hit or a miss; averaging those outcomes gives the hit rate.
+
+If a query has 20 relevant documents and the top 10 contains one, it gets a hit at 10, but its Recall@10 is only 1/20, or 5%. This is why top-k retrieval accuracy and recall can give different numbers for the same ranking. Neither measures the correctness of a generated answer.
 
 ### Recall retention
 
@@ -100,16 +106,64 @@ That does **not** mean 90% of the document lists match, 90% of all relevant docu
 
 These metrics focus on the ordering of the first 10 results:
 
-- **nDCG@10** gives more credit when relevant documents appear near the top.
+- **nDCG@10** gives more credit when relevant documents appear near the top and can distinguish different relevance grades.
 - **MAP@10** rewards relevant documents appearing early and penalizes irrelevant results ahead of them.
 
 Recall@100, nDCG@10, and MAP@10 measure different aspects of retrieval. A method can lead on one and not the others.
 
 ### Latency, speedup, and time saved
 
-**Latency** is how long the system takes to answer a query. Speedup is a ratio: reference time divided by the new system's time. If one takes 100 ms and the other takes 50 ms, the second is 2x faster and saves 50% of the time.
+**Retrieval latency** is how long the search system takes to return its ranking for a query. Speedup is a ratio: reference time divided by the new system's time. If one takes 100 ms and the other takes 50 ms, the second is 2x faster and saves 50% of the time.
 
-Our main timing results report **mean query latency**. A lower mean does not prove that the slowest queries improved. In particular, the project does not show a p95 latency improvement.
+Our main timing results report **mean query latency**, the average across the measured queries. **p95 latency** is the time within which approximately 95% of measured queries finish; roughly 5% take longer. A lower mean does not prove that the slowest queries improved. The project does not show a p95 latency improvement.
+
+### What happens before timing, and what happens during it?
+
+| Stage | Work included | Part of reported query latency? |
+|---|---|---|
+| Offline preparation | Download data, load models, encode corpus documents, build indexes | No |
+| Live retrieval | Process the query, run the selected retrievers, compute gate features and its decision, and fuse results when needed | Yes |
+
+Document representations are prepared beforehand, but neural query encoding runs when a query uses Dense or SPLADE. The gate is already trained; it does not retrain for each question. Generating an LLM answer is outside the experiment.
+
+The indexed runs use a T4 GPU, one CPU thread, warmups, randomized query/method order, and GPU synchronization around timed queries. Warmups let the system get ready before measurement. Repeated timing passes rerun queries to measure runtime variation; they are not additional training rounds. Each timed method performs its own retrieval without borrowing another method's neural query results.
+
+These measurements describe search with prepared indexes. They do not measure total setup time, index memory, or production performance under many simultaneous users.
+
+### What is a confidence interval?
+
+A reported percentage comes from a particular set of queries. A **confidence interval** expresses uncertainty in that estimate. We calculate 95% query-bootstrap intervals by resampling the measured queries 1,000 times, keeping each query's method and baseline results paired.
+
+For example, TREC r95 retains 91.95% at the measured point, but its retention interval is 86.88%-95.76%. Because the interval crosses below 90%, the result gives weaker evidence for clearing that floor than the point estimate alone suggests. TREC r99's interval, 93.58%-98.75%, stays above the floor.
+
+An interval does not guarantee performance on a future dataset or mean that 95% of individual queries achieve that retention. These intervals describe query-sampling uncertainty; they do not capture all GPU, hardware, or session variation.
+
+### Why do the charts show two different speedups?
+
+Both charts show the same methods, but divide by different reference times:
+
+| Comparison | Reference | What the ratio includes |
+|---|---|---|
+| Versus our original fusion | Earlier Python fusion with the slower BM25 implementation | Indexing plus routing improvements across separate runs |
+| Versus equally indexed fusion | Fusion that already uses the efficient BM25 scorer | Additional routing benefit with the same indexed first stage |
+
+The versions form this progression:
+
+```text
+Original fusion -> make BM25 faster -> indexed fusion -> add the gate -> indexed cascade
+```
+
+For the same 256 SQuAD questions:
+
+| Version | Mean time | Speedup vs original fusion | Speedup vs indexed fusion |
+|---|---:|---:|---:|
+| Original fusion | 147.01 ms | 1.00x | Not this comparison's reference |
+| Indexed fusion | 29.55 ms | 4.98x | 1.00x |
+| Indexed cascade r90, secondary | 18.59 ms | 7.91x | 1.59x |
+
+The 7.91x ratio is the combined improvement over our starting implementation. The 1.59x ratio, equivalent to 37.08% less mean time, is the extra gain over already indexed fusion. This r90 setting retained 99.22% of fusion's mean Recall@100 on the sample.
+
+"Original fusion" always means our earlier Python implementation, not the published paper's Elasticsearch/ELSER system. Cross-run comparisons include session variation. The growing bars show different gate settings, rather than performance as corpus size increases.
 
 ## 6. What did the original paper do, and what did we change?
 
@@ -139,13 +193,19 @@ The final model uses 11 features. They describe query length, term rarity, and t
 
 IDF means *inverse document frequency*: a word that appears in few documents has a higher IDF than a common word. A large BM25 score gap can mean one result stands out, but the gate does not use that clue alone; it combines all 11 features.
 
-The model predicts the extra recall fusion might add over BM25:
+During training, we run BM25 and fusion on training questions and score both against training qrels. Their measured recalls give the **training target**, the extra recall we want the gate to learn to estimate:
 
 ```text
-predicted gain = max(fusion Recall@100 - BM25 Recall@100, 0)
+training target = max(actual fusion Recall@100 - actual BM25 Recall@100, 0)
 ```
 
-At query time, the gate does not know the true recall. It uses the query and BM25 results to estimate the gain. The decision is:
+At query time, the trained gate sees the query and BM25-result features. It calculates a prediction without knowing the true recall or running the neural branches first:
+
+```text
+predicted gain = max(Ridge(standardized query and BM25 features), 0)
+```
+
+The training target comes from known relevance labels. The live prediction comes from the fitted model and can be wrong. The decision is:
 
 ```text
 if predicted gain <= selected threshold:
@@ -158,6 +218,19 @@ For example, if the predicted gain is 0.01 and the threshold is 0.02, the gate e
 
 Ridge is a linear model with regularization. It multiplies each standardized feature by a learned weight, adds the results and an intercept, then floors negative predictions at zero. Standardization puts features on comparable scales. Regularization discourages overly large weights, which can help when features overlap or are correlated. The model uses `alpha = 10`; alpha controls the strength of that regularization.
 
+### What are training, development, testing, and transfer?
+
+| Term | In simple terms | Role in our project |
+|---|---|---|
+| Training | Examples used to teach the model | NFCorpus train supplies the gate's weights and calibration thresholds |
+| Development, or dev | Data inspected while investigating design choices | NFCorpus dev supplies development evidence; it is not an untouched final test |
+| Evaluation or testing | Measure a fixed system on a declared set of queries | Later studies evaluate the frozen policies, with each study's inspection status reported |
+| Transfer | Use a trained model on a different collection | Apply the NFCorpus-trained gate to SCIDOCS, TREC-COVID, or SQuAD without refitting it |
+
+**Data leakage** happens when evaluation information influences learning or selection in a way the claimed protocol excludes. In this project, the final weights and thresholds use NFCorpus train labels only. NFCorpus test had already been inspected earlier and is excluded from this calibration and confirmation sequence.
+
+Freezing the gate means keeping its weights and thresholds fixed during later evaluation. It prevents retuning those values to suit each outcome. It does not make every later study independent of previously inspected evidence; the indexed TREC follow-up has that limitation.
+
 ### What do r90, r92, r95, and r99 mean?
 
 These names refer to **training calibration targets** of 90%, 92%, 95%, and 99% recall retention. Five-fold out-of-fold predictions were generated on 2,590 NFCorpus training queries using seed 42. This means each training query's calibration prediction came from a fold model that did not train on that query. After selecting the thresholds, the final Ridge model was fitted on all 2,590 training queries.
@@ -169,7 +242,9 @@ These names refer to **training calibration targets** of 90%, 92%, 95%, and 99% 
 | r95 | 0.07567 | 23.3% | More conservative |
 | r99 | 0.06300 | 6.4% | Most conservative; escalates most often |
 
-The threshold is the predicted-gain cutoff, not a recall score. A *higher* cutoff lets more predictions count as small enough to exit. During calibration, each early exit has an estimated clipped recall loss, `max(fusion recall - BM25 recall, 0)`. The calibration procedure adds those losses and selects a cutoff so their total fits the policy's loss budget. Losses on one query are not canceled by BM25 doing better on another query.
+The threshold is the predicted-gain cutoff, not a recall score. A *higher* cutoff lets more predictions count as small enough to exit. During calibration, out-of-fold predictions determine which training queries would exit. The cost of each selected exit is its measured clipped training loss, `max(actual fusion recall - actual BM25 recall, 0)`, calculated from training qrels. The calibration procedure adds those measured losses and selects a cutoff so their total fits the policy's loss budget. Losses on one query are not canceled by BM25 doing better on another query.
+
+For a target of 90%, the budget allows total clipped loss of up to 10% of the sum of fusion's training-query recalls. This is an aggregate budget, so an individual query can lose more than 10% even when the calibration target is met.
 
 They are not guarantees on other datasets. For example, an r99 setting can retain less than 99% on TREC-COVID. The project reports the measured retention separately from the target.
 
@@ -193,6 +268,12 @@ This changed how the existing BM25 scores were computed, not the BM25 formula. C
 
 ## 9. What the final measurements show
 
+### What do primary and secondary results mean?
+
+The **primary** setting is the main comparison declared before its evaluation outcomes. **Secondary** settings show other operating points, including faster but less reliable choices. Keeping this distinction avoids choosing a favorable result afterward and presenting it as the original plan.
+
+For the indexed follow-up, r99 was the preselected primary evaluated against the user's 90% retention floor. Its name still refers to a 99% training target. The r90, r92, and r95 settings remain secondary even when one is faster. Earlier studies keep their originally declared primaries.
+
 ### Indexed TREC-COVID
 
 The indexed follow-up covers all **50 queries** and all **171,332 documents**, with three timing passes. The preselected primary is the r99 policy:
@@ -211,6 +292,8 @@ The r95 point was faster and retained 91.95%, but its recall interval crossed be
 
 The primary cascade was also 20.21x faster than the earlier, non-indexed fusion run. That comparison combines the BM25 indexing improvement and routing, and it spans separate runs. The cascade-only comparison is 1.24x against equally indexed fusion.
 
+TREC quality had already been inspected when the indexed follow-up was planned. The gate stayed frozen, and r99 was selected before the new indexed outcomes, but this follow-up measures faster execution on known quality. It is not a fresh independent test of whether the gate generalizes to an unseen collection.
+
 ### Indexed SQuAD
 
 The indexed follow-up uses a fixed, hash-selected sample of **256 questions** and the full **20,958-paragraph corpus**, with three timing passes.
@@ -219,11 +302,23 @@ The fastest cascade, r90, was 1.59x faster than indexed fusion and retained 99.2
 
 BM25 alone retained 95.70% and took 1.03 ms, making it the fastest listed method above a 90% recall floor for this sample. The indexed SQuAD numbers apply to these 256 questions, not all 10,570 questions.
 
+### Which original-paper datasets did we actually evaluate?
+
+| Dataset | Completed scope in this project |
+|---|---|
+| TREC-COVID | All 50 queries and the full corpus; three timing passes for both original and indexed studies |
+| SQuAD | Original study: all 10,570 questions, one complete timing pass. Indexed study: 256 fixed questions, three passes. Both use the full 20,958-paragraph corpus |
+| Natural Questions, or NQ | No completed current full-corpus live benchmark; earlier restricted or qrel-informed exploratory results do not count as that evaluation |
+| HotpotQA | Preparation code exists, but no completed current run |
+| CoQA | No completed current run |
+
+NFCorpus and SCIDOCS are additional development and transfer collections used in this project. They do not replace the uncompleted datasets above. Original SQuAD's extra partial timing records do not establish three complete passes, and the indexed sample's results cannot be presented as results for all 10,570 questions.
+
 ### What these results do and do not establish
 
 The evidence supports a measured execution improvement over full fusion at selected recall trade-offs. It does not establish that the cascade is always the best choice: a standalone method can be faster and have stronger quality on a dataset.
 
-The study also does not establish a new routing principle, preserved generated-answer quality, or speedup on the original Elasticsearch/ELSER system. Full NQ and HotpotQA evaluations remain pending.
+The study also does not establish a new routing principle, preserved generated-answer quality, or speedup on the original Elasticsearch/ELSER system. Full NQ and HotpotQA evaluations and any CoQA evaluation remain pending.
 
 ## 10. The contribution, in one answer
 
@@ -239,9 +334,15 @@ If asked "What did your project contribute?", you can say:
 
 **What does the gate predict?**  It estimates the recall gain that fusion may add over BM25, using query and BM25-result features.
 
+**How can it predict recall without seeing the correct documents?**  During training, known relevance labels teach it how the features relate to measured recall gain. During live use, it applies that learned relationship without seeing qrels. The estimate can be wrong.
+
 **What does r99 guarantee?**  Nothing about a new dataset. It names a 99% training calibration target. We report measured retention separately.
 
+**Why not headline whichever setting was fastest?**  The main comparison was selected before its outcomes. We report faster secondary settings too, along with their quality losses and uncertainty.
+
 **Why was indexed BM25 necessary?**  BM25 was so slow in the original implementation that it consumed most of the query time. Making the first stage faster gave the cascade room to save time by skipping neural searches.
+
+**Does 7.91x mean the gate alone made SQuAD nearly eight times faster?**  No. That ratio combines indexing and routing against our earlier fusion. The gate's additional gain over already indexed fusion is 1.59x at that sampled secondary point.
 
 **Did the cascade beat fusion?**  The primary indexed cascade was faster on average than equally indexed fusion while retaining most of its Recall@100 in the measured TREC-COVID and SQuAD settings. That does not mean it beat every standalone method.
 
@@ -255,6 +356,7 @@ If asked "What did your project contribute?", you can say:
 |---|---|
 | Short project overview | [README.md](../README.md) |
 | Full research method, protocol, results, and limitations | [FINAL_MANUSCRIPT.md](FINAL_MANUSCRIPT.md) |
+| Both speedup references and every measured operating point | [SPEEDUP_SUMMARY.md](SPEEDUP_SUMMARY.md) |
 | Project story and experiment history | [adhd-explanation.md](adhd-explanation.md) |
 | BM25 and Best Fields scoring | [bm25_retriever.py](../cascaded-blended-rag/src/bm25_retriever.py) |
 | Dense vectors and FAISS | [dense_retriever.py](../cascaded-blended-rag/src/dense_retriever.py) |
@@ -262,6 +364,7 @@ If asked "What did your project contribute?", you can say:
 | Early baseline RRF implementation | [04_baseline_blended_rag.py](../cascaded-blended-rag/experiments/04_baseline_blended_rag.py) |
 | Final cascade and Ridge inference | [retention_tradeoff.py](../cascaded-blended-rag/src/retention_tradeoff.py) |
 | Gate features, training, and calibration | [12_calibrate_nfcorpus_train_check_dev.py](../cascaded-blended-rag/experiments/12_calibrate_nfcorpus_train_check_dev.py) |
+| Final four-policy training and calibration | [16_prepare_retention_tradeoff.py](../cascaded-blended-rag/experiments/16_prepare_retention_tradeoff.py) |
 | Earlier heuristic router prototype | [cascaded_router.py](../cascaded-blended-rag/src/cascaded_router.py) |
 | Indexed BM25 scorer | [indexed_bm25.py](../cascaded-blended-rag/src/indexed_bm25.py) |
 | Indexed benchmark runner | [25_benchmark_indexed_cascade.py](../cascaded-blended-rag/experiments/25_benchmark_indexed_cascade.py) |
