@@ -14,159 +14,159 @@
   },
   "files": [
     {
+      "path": "docs/design/tokens.css",
+      "bytes": 1224,
+      "sha256": "e46a1a84c4b5e62c50fb0f1f7020cd86fc928005ec22180473e0a8eef67e2dc6"
+    },
+    {
       "path": "docs/FINAL_MANUSCRIPT.md",
       "bytes": 26964,
       "sha256": "ced2ba9329cdf79b44d828077cc582520cb11033d060b7c6d78d81b9dae4415f"
     },
     {
       "path": "docs/review/PAPER_RELEASE_REVIEW.md",
-      "bytes": 5999,
-      "sha256": "6216793e34261e1f6e8d6d6334cbe092c2cab5b081506c9daf8bfa61fea7ed8a"
+      "bytes": 6000,
+      "sha256": "cdcede16865aa67f79450db5eb052ac6f2fbf615c495589debcf0c1b311b5424"
     },
     {
-      "path": "docs/submission/assets/fonts/IBMPlexSans-OFL.txt",
+      "path": "final_results/assets/fonts/IBMPlexSans-OFL.txt",
       "bytes": 4456,
       "sha256": "7e6b2818edbd8f6a01ae80641cc8f16a51080d08fb4e532be3a0b6f74adb07da"
     },
     {
-      "path": "docs/submission/assets/fonts/IBMPlexSans-Regular.ttf",
+      "path": "final_results/assets/fonts/IBMPlexSans-Regular.ttf",
       "bytes": 200500,
       "sha256": "975dcda37d80f038dcd143c22e33ca2d97a0cc5a929aace1c749153b0fe1afa5"
     },
     {
-      "path": "docs/submission/assets/fonts/IBMPlexSans-SemiBold.ttf",
+      "path": "final_results/assets/fonts/IBMPlexSans-SemiBold.ttf",
       "bytes": 202632,
       "sha256": "a20caf8286023a6a7a85e40b1d2a4ae9fc3e3b1f9eda8f4c542dd4986af67bb1"
     },
     {
-      "path": "docs/submission/assets/fonts/Newsreader-400.ttf",
+      "path": "final_results/assets/fonts/Newsreader-400.ttf",
       "bytes": 118616,
       "sha256": "012f84c3ff34204dac975188ce2b24785d2b5f60b4777ca558179ab73ac989f5"
     },
     {
-      "path": "docs/submission/assets/fonts/Newsreader-600.ttf",
+      "path": "final_results/assets/fonts/Newsreader-600.ttf",
       "bytes": 118872,
       "sha256": "27e11bbfc3493994d0ec3c6a34a2dadd3017c9c15906a2b2e6a226d7c1ecd40a"
     },
     {
-      "path": "docs/submission/assets/fonts/Newsreader-OFL.txt",
+      "path": "final_results/assets/fonts/Newsreader-OFL.txt",
       "bytes": 4394,
       "sha256": "fdfad38143ec470553cae82a1e45320bdd1b9ec70415d37bd0171051d8a4ded8"
     },
     {
-      "path": "docs/submission/assets/fonts/Newsreader-Variable.ttf",
+      "path": "final_results/assets/fonts/Newsreader-Variable.ttf",
       "bytes": 451664,
       "sha256": "8a08d13f8a6c0d51be379a60af84f945f65369a67e509ee3c3bdcc421254d7c1"
     },
     {
-      "path": "docs/submission/assets/fonts/README.md",
+      "path": "final_results/assets/fonts/README.md",
       "bytes": 667,
       "sha256": "7f53f0a25f9ff69210001b8e1ab75157892816b6eb2e58f19c067fcd9b3aa6c3"
     },
     {
-      "path": "docs/submission/assets/pipeline.png",
+      "path": "final_results/assets/pipeline.png",
       "bytes": 60652,
       "sha256": "058c64b4212b69a4129e00920aaae71eccfa69edba0fc40527081388348dec5b"
     },
     {
-      "path": "docs/submission/assets/pipeline.svg",
+      "path": "final_results/assets/pipeline.svg",
       "bytes": 34816,
       "sha256": "db5a5e34fcf3d6e4c844536762a23e6783a7c8a03acb30f8474af9dce6bd7cc7"
     },
     {
-      "path": "docs/submission/assets/results.json",
+      "path": "final_results/assets/results.json",
       "bytes": 26267,
       "sha256": "1609897d9757734a4f71f7c47df470dddbb96795c863a38a49db182efefa17e1"
     },
     {
-      "path": "docs/submission/assets/speedup_squad.png",
+      "path": "final_results/assets/speedup_squad.png",
       "bytes": 120891,
       "sha256": "9c2985d775aa9a8a20b89d3c186461394f6c70c6a7c10abe1ebc643c1c3e9118"
     },
     {
-      "path": "docs/submission/assets/speedup_squad.svg",
+      "path": "final_results/assets/speedup_squad.svg",
       "bytes": 84589,
       "sha256": "03e7b395a78005ec21acedaa31e9547391872702a9d262165cb664e7af74cf54"
     },
     {
-      "path": "docs/submission/assets/speedup_trec-covid.png",
+      "path": "final_results/assets/speedup_trec-covid.png",
       "bytes": 124140,
       "sha256": "e4a33357e4ffee007174bdf551cb016938f0eefaafe6b5d496401177ea75d7ab"
     },
     {
-      "path": "docs/submission/assets/speedup_trec-covid.svg",
+      "path": "final_results/assets/speedup_trec-covid.svg",
       "bytes": 85214,
       "sha256": "98eef055238e5afe457711b79d0f0a27f36ba9cd55780eddd1b36e1cf9ea7b1d"
     },
     {
-      "path": "docs/submission/conditional_retrieval_paper.pdf",
-      "bytes": 696862,
-      "sha256": "244bb95ac105cb57ca5cafafd4099021ad8739d52e3356097e75f59c0c57298e"
+      "path": "final_results/conditional_retrieval_paper.pdf",
+      "bytes": 696044,
+      "sha256": "0b2ed841e8edb9bbbdfb602bf7d3f79401ce0eb72d78e1afbf6a11e2d3b454b7"
     },
     {
-      "path": "docs/submission/presentation_notes.md",
-      "bytes": 15071,
-      "sha256": "d30735adffde065a76e00456eb3477e74e2112d4a18dc786dfcf8157c41b2559"
+      "path": "final_results/presentation_notes.md",
+      "bytes": 15049,
+      "sha256": "07ab1a306fde4d058a8f1840a03dfa8ca46cf8d698049f266a67aeaf3dac2c7f"
     },
     {
-      "path": "docs/submission/README.md",
-      "bytes": 5388,
-      "sha256": "765ad409b7ba9ed0025ebf53a79c8a8b9c74128ff712f0db189ff357e7298f2e"
+      "path": "final_results/README.md",
+      "bytes": 7708,
+      "sha256": "5fce6fe7cd0e11098528b096558924847e595c70f31b4e3209e3fed402694bfa"
     },
     {
-      "path": "docs/submission/research_presentation.pdf",
+      "path": "final_results/research_presentation.pdf",
       "bytes": 3600631,
       "sha256": "d5c03147491c73f98608ad565b4f23b6136beb086646168c0cd8aab6a007881f"
     },
     {
-      "path": "docs/submission/research_presentation.pptx",
-      "bytes": 98180,
-      "sha256": "cee20ae975672a379c00aea7268553ac7d08a9de1d28d83975148198890d6fe9"
+      "path": "final_results/research_presentation.pptx",
+      "bytes": 98110,
+      "sha256": "d6659f76bf3014bb417b2770eb535053790f8c7941f071ac394117229f84d52b"
     },
     {
-      "path": "docs/submission/research_showcase.html",
-      "bytes": 1170020,
-      "sha256": "58145c071f2492c67e7bdc9a4e0169ad1a8b1e7fc9c37fe3af8afe6275493119"
+      "path": "final_results/research_showcase.html",
+      "bytes": 1169986,
+      "sha256": "8d15206ad675be17e21d47fe2b860c9a95262c4032bbd0787835107e3fe52161"
     },
     {
-      "path": "docs/submission/research_showcase.pdf",
+      "path": "final_results/research_showcase.pdf",
       "bytes": 261080,
-      "sha256": "bf947506a5fc80150dd94bc1d00d836dfe2de4aab558dc2afc627cc6db5457e2"
-    },
-    {
-      "path": "tokens.css",
-      "bytes": 1224,
-      "sha256": "e46a1a84c4b5e62c50fb0f1f7020cd86fc928005ec22180473e0a8eef67e2dc6"
+      "sha256": "a40380ddd8503c629e297d637639ab20dd3758e584c6197556a4f39980503985"
     },
     {
       "path": "tools/build_publication_figures.py",
-      "bytes": 4829,
-      "sha256": "256567b20ac3a93aae4eb362a964d646b6449d818b43c4a397004a0de059ea45"
+      "bytes": 4839,
+      "sha256": "1ddc2d344ac66dd7510c18c35151a8be0e44d300cbb201b9935910b65b633321"
     },
     {
       "path": "tools/build_research_materials.py",
-      "bytes": 13553,
-      "sha256": "d5de386626835fd2e4804e4eae9948313395a17b2d3d761816fa1f4424cf0f02"
+      "bytes": 14024,
+      "sha256": "e3dd8d451576b15e78ca5dfd0b1a9d886445496113be3d881df586746c62dd50"
     },
     {
       "path": "tools/build_research_presentation.mjs",
-      "bytes": 31812,
-      "sha256": "43408b60fa4425cf5b0b28f9c8d7953d62199139c4657a965bafb188215facbb"
+      "bytes": 31521,
+      "sha256": "0159c11b828f2df80ecef9535ba7dd3ec9783ba71a47dbf6fe51a61759b8d652"
     },
     {
       "path": "tools/export_presentation_pdf.py",
-      "bytes": 783,
-      "sha256": "9efceedafa53c1d464116187753e2f1039156cd8256b7bd27fbc205a17d01daa"
+      "bytes": 781,
+      "sha256": "ef652b70e438c5d5b2e65b275d881f8ad5222bd8aebfb3643fefdc314947664e"
     },
     {
       "path": "tools/render_showcase.mjs",
-      "bytes": 4468,
-      "sha256": "ac77d231fec95fac04b02df2c5e0bba281d1f93cfca04c065438604743f3d996"
+      "bytes": 4464,
+      "sha256": "fb298e543b17b61f73411e8d288f029ad72f64c4bffd88b73b1474d23b3298ff"
     },
     {
       "path": "tools/showcase.template.html",
-      "bytes": 35433,
-      "sha256": "aad4191f8b4cfb85324dc7877b7989e46f67ab199c5b3a49ee77e1a69b5ca6df"
+      "bytes": 35025,
+      "sha256": "ea64750eabeaaaa303822f04f90df2395c5bdc77729432cc977e395035c16683"
     }
   ]
 }

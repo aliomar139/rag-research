@@ -68,7 +68,7 @@ require the per-query records restored from the matching result ZIPs.
 
 ## 4. Reproduce retrieval itself
 
-Install `requirements.txt` for the full neural environment, then follow the
+Install `requirements/full-benchmark.txt` for the full neural environment, then follow the
 versioned [Kaggle workflows](../../notebooks/README.md). The final combined
 workflow uses experiments 25/27 with frozen assets inside the source package.
 Experiments 26 and 28 rebuild the indexed and combined upload packages:

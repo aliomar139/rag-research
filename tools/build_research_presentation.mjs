@@ -14,7 +14,7 @@ const require=createRequire(path.join(runtime,'__runtime__.cjs'));
 const artifactEntry=require.resolve('@oai/artifact-tool');
 const artifactRequire=createRequire(artifactEntry);
 const {FontLibrary}=artifactRequire('skia-canvas');
-const fontDir=path.join(root,'docs/submission/assets/fonts');
+const fontDir=path.join(root,'final_results/assets/fonts');
 FontLibrary.use('Newsreader',[path.join(fontDir,'Newsreader-400.ttf'),path.join(fontDir,'Newsreader-600.ttf')]);
 FontLibrary.use('IBM Plex Sans',[path.join(fontDir,'IBMPlexSans-Regular.ttf'),path.join(fontDir,'IBMPlexSans-SemiBold.ttf')]);
 try {
@@ -25,10 +25,10 @@ try {
 } catch {}
 const {Presentation,PresentationFile,FileBlob}=await import(pathToFileURL(artifactEntry).href);
 const {applyPresentationChartFont,finalizePresentation}=await import(pathToFileURL(path.join(skill,'container_tools/artifact_tool_utils.mjs')).href);
-const data=JSON.parse(await fs.readFile(path.join(root,'docs/submission/assets/results.json'),'utf8'));
-const css=await fs.readFile(path.join(root,'tokens.css'),'utf8');
+const data=JSON.parse(await fs.readFile(path.join(root,'final_results/assets/results.json'),'utf8'));
+const css=await fs.readFile(path.join(root,'docs/design/tokens.css'),'utf8');
 const C=Object.fromEntries([...css.matchAll(/--color-([\w-]+):\s*(#[0-9a-fA-F]{6})/g)].map(x=>[x[1],x[2]]));
-const out=path.join(root,'docs/submission');
+const out=path.join(root,'final_results');
 const build=path.join(root,'.local/release_build/presentation');
 await fs.mkdir(build,{recursive:true});
 if(process.argv.includes('--render-existing')){
@@ -46,7 +46,7 @@ const trec=data.datasets['trec-covid'].methods, squad=data.datasets.squad.method
 const refs={paper:'https://arxiv.org/html/2404.07220v2',strategy:'https://arxiv.org/abs/2109.10739',
   bm25s:'https://arxiv.org/abs/2407.03618',beir:'https://arxiv.org/abs/2104.08663',
   squad:'https://arxiv.org/abs/1606.05250',splade:'https://arxiv.org/abs/2107.05720',sbert:'https://arxiv.org/abs/1908.10084'};
-const measured='Project evidence: docs/submission/assets/results.json and docs/figures/all_measured_speedups.csv. Underlying original reports and SHA256 fingerprints are in results.json.';
+const measured='Project evidence: final_results/assets/results.json and docs/figures/all_measured_speedups.csv. Underlying original reports and SHA256 fingerprints are in results.json.';
 
 function text(slide,value,x,y,w,h,size=28,{serif=false,bold=false,color=C.ink,align='left'}={}){
   const shape=slide.shapes.add({geometry:'textbox',position:{left:x,top:y,width:w,height:h},
@@ -259,9 +259,9 @@ text(s,'Thakur et al. (2021)\nBEIR benchmark\n\nRajpurkar et al. (2016)\nSQuAD\n
 footer(s,'Full URLs and source details are in speaker notes and the research paper.');
 
 s=slide('Appendix: rebuilding the report',
-  'To rebuild figures, run experiment 32 from the repository root using the documented analysis requirements. To rebuild the release figures, paper and HTML, use the publication tools and requirements. The editable presentation builder uses the bundled Codex Artifact Tool runtime. Headless browser rendering creates the showcase PDF. Exact commands and required environment variables appear in docs/submission/README.md. No new Kaggle run is necessary to read or regenerate current result plots. Full record-level rescoring needs original matching result archives separately.');
+  'To rebuild figures, run experiment 32 from the repository root using the documented analysis requirements. To rebuild the release figures, paper and HTML, use the publication tools and requirements. The editable presentation builder uses the bundled Codex Artifact Tool runtime. Headless browser rendering creates the showcase PDF. Exact commands and required environment variables appear in final_results/README.md. No new Kaggle run is necessary to read or regenerate current result plots. Full record-level rescoring needs original matching result archives separately.');
 text(s,'1  Figures from saved reports\n    experiments/32_prepare_report_assets.py\n\n2  Release artifacts\n    tools/build_research_materials.py\n\n3  Editable deck and print showcase\n    tools/build_research_presentation.mjs\n    tools/render_showcase.mjs',64,176,1130,390,29);
-footer(s,'See docs/submission/README.md for exact commands and runtime requirements.');
+footer(s,'See final_results/README.md for exact commands and runtime requirements.');
 
 await fs.writeFile(path.join(out,'presentation_notes.md'), '# Presentation speaker notes\n\nSuggested talk: 15–20 minutes on slides 1–19. Slides 20–23 are appendices.\n\n'+notes.map(n=>`## ${n.number}. ${n.title}\n\n${n.note}\n`).join('\n'));
 const candidate=path.join(build,'candidate.pptx');

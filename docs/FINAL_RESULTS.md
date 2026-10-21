@@ -2,7 +2,7 @@
 
 Updated 21 October 2026.
 
-The [final research materials](submission/README.md) contain the paper PDF,
+The [final research materials](../final_results/README.md) contain the paper PDF,
 offline HTML/PDF showcase and editable presentation for this completed scope.
 
 ## Next action

@@ -93,7 +93,7 @@ In `rag-research-alone`:
 - Root artifacts: `cascaded-blended-rag/results/cascade_heldout_scifact.json`, `cascaded-blended-rag/results/learned_cascaded-blended-rag/results/cascade_heldout_scifact.json`, `cascaded-blended-rag/results/threshold_frontier_scifact.json`, and `cascaded-blended-rag/results/router_training_scifact.jsonl`.
 - Experiment source: `cascaded-blended-rag/experiments/08_evaluate_cascade_heldout.py`, `09_evaluate_learned_router.py`, and `10_compare_router_models.py`.
 - Compact CV result: `cascaded-blended-rag/results/compact_router_cv_scifact.json`.
-- Notes: `docs/history/results_ledger.md`, `docs/history/plans/improvement_plan.md`, and `PROJECT_ANCHOR.md`.
+- Notes: `docs/history/results_ledger.md`, `docs/history/plans/improvement_plan.md`, and `.local/PROJECT_ANCHOR.md`.
 - Existing source bundle/notebooks are under `notebooks/`; the user prefers direct Python instructions for the next run.
 
 **Path mismatch to resolve before rerunning experiment 10:** the active repo root contains `cascaded-blended-rag/results/router_training_scifact.jsonl`, while experiment 10 expects it at `cascaded-blended-rag/results/router_training_scifact.jsonl`. Experiment 09 has the same `results/` expectation. The prior model comparison output exists, but the script may fail from the current alone-repo layout unless the file is copied into the expected location or the script is changed to accept/find the root artifact. The Kaggle source bundle may have had a separate `results/` copy; inspect before assuming.

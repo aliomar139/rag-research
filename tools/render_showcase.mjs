@@ -14,7 +14,7 @@ await fs.mkdir(build,{recursive:true});
 const browser=await chromium.launch({headless:true});
 try {
   const page=await browser.newPage({viewport:{width:1280,height:800},deviceScaleFactor:1});
-  await page.goto(pathToFileURL(path.join(root,'docs/submission/research_showcase.html')).href);
+  await page.goto(pathToFileURL(path.join(root,'final_results/research_showcase.html')).href);
   await page.evaluate(()=>document.fonts.ready);
   const expectedSlides=10;
   const status=page.locator('.deck-current');
@@ -51,7 +51,7 @@ try {
     if(width===375) await page.screenshot({path:path.join(build,'mobile-fold.png'),fullPage:false});
   }
   await page.setViewportSize({width:1280,height:960});
-  await page.pdf({path:path.join(root,'docs/submission/research_showcase.pdf'),format:'A4',printBackground:true,
+  await page.pdf({path:path.join(root,'final_results/research_showcase.pdf'),format:'A4',printBackground:true,
     preferCSSPageSize:true,displayHeaderFooter:true,headerTemplate:'<span></span>',
     footerTemplate:'<div style="font-size:8px;width:100%;text-align:center">Conditional Hybrid Retrieval / completed experimental scope / <span class="pageNumber"></span> of <span class="totalPages"></span></div>'});
   await fs.writeFile(path.join(build,'layout_observations.json'),JSON.stringify(observations,null,2));

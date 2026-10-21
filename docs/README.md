@@ -15,7 +15,7 @@ may contain superseded claims.
 
 ## Detailed folders
 
-- [submission](submission/README.md): paper, offline showcase and slide deck.
+- [Final results](../final_results/README.md): paper, offline showcase and slide deck.
 - [findings](findings/README.md): individual experiment interpretations.
 - [figures](figures/README.md): exported figures, numerical CSVs and source fingerprints.
 - [review](review/README.md): claim audit and remaining submission details.

@@ -10,8 +10,8 @@ from matplotlib import font_manager
 from matplotlib.patches import FancyArrowPatch, Rectangle
 
 ROOT = Path(__file__).resolve().parents[1]
-OUT = ROOT / 'docs/submission/assets'
-COLORS = dict(re.findall(r'--color-([\w-]+):\s*(#[0-9a-fA-F]{6})', (ROOT/'tokens.css').read_text()))
+OUT = ROOT / 'final_results/assets'
+COLORS = dict(re.findall(r'--color-([\w-]+):\s*(#[0-9a-fA-F]{6})', (ROOT/'docs/design/tokens.css').read_text()))
 
 
 def main():

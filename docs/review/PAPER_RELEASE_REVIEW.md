@@ -12,7 +12,7 @@
    methods. Discussion and conclusion define the limits of the finding.
 
 The revised source uses shorter sentences and defines technical terms at first
-use. The paper PDF is ten pages, including references, with result tables and
+use. The paper PDF is nine pages, including references, with result tables and
 figures retained.
 
 ## Paragraph roles and reverse outline

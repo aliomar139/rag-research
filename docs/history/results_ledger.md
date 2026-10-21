@@ -587,7 +587,7 @@ and generated-answer EM/F1 remain deferred. No retrieval, neural encoding,
 training or new timing run was performed to create the material release.
 
 Publication sources and exact rebuilding commands are in
-`docs/submission/README.md`. The HTML embeds licensed fonts and chart assets;
+`final_results/README.md`. The HTML embeds licensed fonts and chart assets;
 the PPTX contains editable tables/charts and speaker notes. The presentation
 PDF preserves inspected slide renders. Frozen benchmark source and policy
 fingerprints remain unchanged.

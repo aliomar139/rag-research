@@ -42,11 +42,11 @@ to reassure them.
 
 | Need | Current source |
 |:--|:--|
-| Plain-language project history | [docs/adhd-explanation.md](docs/adhd-explanation.md) |
-| Authoritative manuscript and results | [docs/FINAL_MANUSCRIPT.md](docs/FINAL_MANUSCRIPT.md), [docs/FINAL_RESULTS.md](docs/FINAL_RESULTS.md) |
-| All measured speedups and quality trade-offs | [docs/SPEEDUP_SUMMARY.md](docs/SPEEDUP_SUMMARY.md), [CSV](docs/figures/all_measured_speedups.csv) |
-| Deliverables and rebuild instructions | [docs/submission/README.md](docs/submission/README.md) |
-| Reproduction, claim review and completion status | [reproduction guide](docs/reproducibility/README.md), [paper review](docs/review/PAPER_RELEASE_REVIEW.md), [finish checklist](docs/review/PROJECT_FINISH_CHECKLIST.md) |
+| Plain-language project history | [Project explanation](../adhd-explanation.md) |
+| Authoritative manuscript and results | [Manuscript](../FINAL_MANUSCRIPT.md), [Results](../FINAL_RESULTS.md) |
+| All measured speedups and quality trade-offs | [Speedup summary](../SPEEDUP_SUMMARY.md), [CSV](../figures/all_measured_speedups.csv) |
+| Deliverables and rebuild instructions | [Final results guide](../../final_results/README.md) |
+| Reproduction, claim review and completion status | [Reproduction guide](../reproducibility/README.md), [paper review](../review/PAPER_RELEASE_REVIEW.md), [finish checklist](../review/PROJECT_FINISH_CHECKLIST.md) |
 
 Current indexed evidence is under:
 
@@ -224,11 +224,11 @@ throughput or scaling study was completed.
 
 ## 9. Finished deliverables
 
-All are under [docs/submission](docs/submission/README.md):
+All are under [final_results](../../final_results/README.md):
 
 | File | What it contains |
 |:--|:--|
-| `conditional_retrieval_paper.pdf` | 10-page academic paper; editable source is `docs/FINAL_MANUSCRIPT.md` |
+| `conditional_retrieval_paper.pdf` | 9-page academic paper; editable source is `docs/FINAL_MANUSCRIPT.md` |
 | `research_showcase.html` / `research_showcase.pdf` | Ten-section offline presentation and matching 10-page print PDF. Use the on-screen arrows or Left/Right keys; Read full page switches to continuous reading. |
 | `research_presentation.pptx` / `research_presentation.pdf` | 23 slides: 19 main plus 4 appendices, for a 15-20 minute presentation |
 | `presentation_notes.md` | Speaker notes, also inside PPTX |
@@ -240,7 +240,7 @@ The audience/tone remain an editorial research account for the
 supervisor/examiners.
 The PPTX has editable text, native tables and 2 native charts with embedded
 data. Install the four static Newsreader/IBM Plex Sans fonts from
-`docs/submission/assets/fonts/` for its intended appearance. Font licenses
+`final_results/assets/fonts/` for its intended appearance. Font licenses
 are included. HTML embeds fonts. Paper/showcase PDFs have selectable text;
 the presentation PDF consists of high-resolution slide renders.
 
@@ -279,15 +279,17 @@ The release manifest and audit cover additional protected assets. Saved
 reports include model revisions and runtime details. Current dependency
 ranges are not an exact Kaggle environment lockfile.
 
-Repository cleanup is already complete. Keep the current top-level structure:
-code/results in `cascaded-blended-rag`, current writing in `docs`, historical
-drafts in `docs/history`, versioned Kaggle instructions in `notebooks`, and
-publication/sharing utilities in `tools`.
+Repository cleanup keeps only `README.md` and the required `.gitignore` and
+`.gitattributes` files at the root. Final hand-in materials live in
+`final_results`; code/results remain in `cascaded-blended-rag`; current writing
+and history remain in `docs`; benchmark requirements are in `requirements`.
+Kaggle workflows stay in `notebooks`, and publication/sharing utilities stay in
+`tools`.
 
 Local raw data, caches, environments, downloaded ZIPs and large rankings are
 ignored, not disposable. Original downloads are under `artifacts/downloads`;
 source packages under `artifacts/source_bundles`; old exports under
-`artifacts/legacy_exports`. `PROJECT_ANCHOR.md` is an ignored local historical
+`artifacts/legacy_exports`. `.local/PROJECT_ANCHOR.md` is an ignored local historical
 note, not the shared entry point. The current explanation filename is
 `docs/adhd-explanation.md`, not the older misspelling `adhdd-explanation.md`.
 
@@ -299,8 +301,8 @@ there is no need to rebuild materials or run retrieval.
 For requested edits to the paper/showcase/deck:
 
 1. Edit the relevant source. Preserve frozen experiments, weights, protocols and measured report JSON.
-2. Rebuild only affected artifacts using [the submission guide](docs/submission/README.md); inspect changed pages/slides.
-3. Regenerate `docs/submission/RELEASE_MANIFEST.json` after final artifact bytes are settled.
+2. Rebuild only affected artifacts using [the final results guide](../../final_results/README.md); inspect changed pages/slides.
+3. Regenerate `final_results/RELEASE_MANIFEST.json` after final artifact bytes are settled.
 4. If preparing a new shared bundle, run the repository audit and ZIP builder below. These do not execute unit tests or retrieval.
 5. Report changed files and any limits. Commit or push only when requested.
 

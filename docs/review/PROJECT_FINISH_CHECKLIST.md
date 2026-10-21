@@ -1,7 +1,7 @@
 # Finish this version of the project
 
-Next action: open the [final HTML showcase](../submission/research_showcase.html),
-then review the [paper and slide deck](../submission/README.md).
+Next action: open the [final HTML showcase](../../final_results/research_showcase.html),
+then review the [paper and slide deck](../../final_results/README.md).
 No new Kaggle upload, dataset title or benchmark is needed for these results.
 
 ## Prepared

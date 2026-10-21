@@ -17,10 +17,10 @@ from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle, Image, KeepTogether
 
 ROOT = Path(__file__).resolve().parents[1]
-OUT = ROOT / 'docs/submission'
+OUT = ROOT / 'final_results'
 ASSETS = OUT / 'assets'
 REPORTS = ROOT / 'cascaded-blended-rag/results'
-PALETTE = dict(re.findall(r'--color-([\w-]+):\s*(#[0-9a-fA-F]{6})', (ROOT/'tokens.css').read_text()))
+PALETTE = dict(re.findall(r'--color-([\w-]+):\s*(#[0-9a-fA-F]{6})', (ROOT/'docs/design/tokens.css').read_text()))
 
 
 def load_data():
@@ -89,7 +89,7 @@ def baseline_table(data,key):
 
 
 def showcase(data):
-    css=(ROOT/'tokens.css').read_text()
+    css=(ROOT/'docs/design/tokens.css').read_text()
     faces=[]
     for family,weight,name in [('Newsreader',400,'Newsreader-400.ttf'),('Newsreader',600,'Newsreader-600.ttf'),
                                 ('IBM Plex Sans',400,'IBMPlexSans-Regular.ttf'),('IBM Plex Sans',600,'IBMPlexSans-SemiBold.ttf')]:
@@ -111,7 +111,7 @@ def inline(text):
     def link(match):
         target=match.group(2)
         if not re.match(r'^[A-Za-z][A-Za-z0-9+.-]*:',target) and not target.startswith('#'):
-            target='../'+target
+            target='../docs/'+target
         return f'<a href="{html.escape(target,quote=True)}" color="{PALETTE["good"]}">{match.group(1)}</a>'
     text=re.sub(r'\[([^\]]+)\]\(([^)]+)\)',link,text)
     text=re.sub(r'\*\*([^*]+)\*\*',r'<b>\1</b>',text)
@@ -135,10 +135,11 @@ def paper_pdf():
         'h1':ParagraphStyle('Title',parent=body,fontName='Display',fontSize=29,leading=31,spaceAfter=12,keepWithNext=True),
         'h2':ParagraphStyle('H2',parent=body,fontName='DisplayBold',fontSize=17,leading=20,spaceBefore=17,spaceAfter=8,keepWithNext=True),
         'h3':ParagraphStyle('H3',parent=body,fontName='BodyBold',fontSize=11.5,leading=15,spaceBefore=10,spaceAfter=5,keepWithNext=True),
+        'byline':ParagraphStyle('Byline',parent=body,fontSize=9.5,leading=13.5,spaceAfter=10),
         'caption':ParagraphStyle('Caption',parent=body,fontSize=8.4,leading=11,textColor=muted,spaceAfter=7,keepWithNext=True),
         'cell':ParagraphStyle('Cell',parent=body,fontSize=8,leading=10.4,spaceAfter=0),
         'code':ParagraphStyle('Code',parent=body,fontSize=8.3,leading=11.8,spaceAfter=9),
-        'ref':ParagraphStyle('Reference',parent=body,fontSize=8.8,leading=12,spaceAfter=7),
+        'ref':ParagraphStyle('Reference',parent=body,fontSize=8.5,leading=11,spaceAfter=4),
     }
     lines=(ROOT/'docs/FINAL_MANUSCRIPT.md').read_text(encoding='utf-8').splitlines()
     story=[]; i=0; refs=False; figure_number=0
@@ -191,6 +192,12 @@ def paper_pdf():
             elif line.startswith('## Appendix'): refs=False
             style=styles['h3'] if line=='## An Indexed Cascade Study' else styles['h2']
             story.append(Paragraph(inline(line[3:]),style))
+        elif line.startswith('**Authors:**'):
+            byline=[line]
+            while i+1<len(lines) and lines[i+1].strip().startswith(('**Supervisor:**','**Affiliation:**')):
+                i+=1
+                byline.append(lines[i].strip())
+            story.append(Paragraph('<br/>'.join(inline(part) for part in byline),styles['byline']))
         else:
             parts=[line]; i+=1
             while i<len(lines) and lines[i].strip() and not lines[i].startswith(('#','|','```','![')):

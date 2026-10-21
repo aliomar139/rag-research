@@ -6,9 +6,9 @@ retrieval, training or timing experiment was run during the cleanup.
 
 ## Current study
 
-- Finalized an 11-page paper with explicit original-paper/adaptation and
-  metric distinctions, plus a visual HTML/PDF showcase and a 22-slide editable
-  deck. [Final materials](docs/submission/README.md) include speaker notes,
+- Finalized a 9-page paper with explicit original-paper/adaptation and
+  metric distinctions, plus a 10-section HTML/PDF showcase and a 23-slide editable
+  deck. [Final materials](../../final_results/README.md) include speaker notes,
   reproducible sources and licensed offline fonts. Remaining datasets and
   generated-answer metrics remain deferred.
 - Retained experiments 09–32, frozen NFCorpus-trained routing weights,
@@ -16,8 +16,8 @@ retrieval, training or timing experiment was run during the cleanup.
 - Added the indexed BM25 implementation and its measured original/indexed
   comparisons. TREC-COVID covers all 50 queries; indexed SQuAD covers the
   declared 256-question sample. Full NQ/HotpotQA results remain pending.
-- Consolidated conclusions in [the manuscript](docs/FINAL_MANUSCRIPT.md),
-  [results](docs/FINAL_RESULTS.md) and [complete speedup tables](docs/SPEEDUP_SUMMARY.md).
+- Consolidated conclusions in [the manuscript](../FINAL_MANUSCRIPT.md),
+  [results](../FINAL_RESULTS.md) and [complete speedup tables](../SPEEDUP_SUMMARY.md).
   Failed quality thresholds, uncertainty and stronger standalone baselines
   remain visible.
 
@@ -31,8 +31,8 @@ retrieval, training or timing experiment was run during the cleanup.
   Historical documents carry a notice directing readers to the current report.
 - Grouped literature catalogs and downloader reports into named folders;
   moved early notebooks into `notebooks/legacy`.
-- Added folder indexes and a [reproduction guide](docs/reproducibility/README.md).
-  The [migration table](docs/reproducibility/layout_migration.csv) records moved
+- Added folder indexes and a [reproduction guide](../reproducibility/README.md).
+  The [migration table](../reproducibility/layout_migration.csv) records moved
   paths and the four byte-identical root exports that were removed.
 
 ## Local files and sharing
@@ -48,7 +48,7 @@ retrieval, training or timing experiment was run during the cleanup.
   and weight fingerprints are checked without rewriting the original assets.
 - Added standard-library repository checks and a submission ZIP builder with
   a per-file SHA256 manifest. The shared archive excludes Git metadata and
-  local bulk artifacts. The [artifact catalog](docs/reproducibility/artifact_catalog.json)
+  local bulk artifacts. The [artifact catalog](../reproducibility/artifact_catalog.json)
   records original local filenames, sizes and fingerprints.
 
 ## Helper compatibility
@@ -68,4 +68,4 @@ Kaggle environment.
 
 Apply author/course details and the required report template, then review
 the final manuscript. The repository has no selected license. See the
-[submission checklist](docs/review/PROJECT_FINISH_CHECKLIST.md).
+[submission checklist](../review/PROJECT_FINISH_CHECKLIST.md).
