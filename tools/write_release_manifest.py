@@ -15,7 +15,7 @@ def main():
     names={p for p in (ROOT/'final_results').rglob('*') if p.is_file() and p!=output}
     names.update(ROOT/name for name in [
         'docs/FINAL_MANUSCRIPT.md','docs/review/PAPER_RELEASE_REVIEW.md','docs/design/tokens.css',
-        'tools/build_publication_figures.py','tools/build_research_materials.py',
+        'tools/build_publication_figures.py','tools/build_research_materials.py','tools/build_four_page_showcase.py',
         'tools/build_research_presentation.mjs','tools/render_showcase.mjs',
         'tools/export_presentation_pdf.py','tools/showcase.template.html',
     ])

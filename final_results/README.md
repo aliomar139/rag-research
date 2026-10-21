@@ -1,4 +1,4 @@
-# Final results
+﻿# Final results
 
 This folder contains the materials prepared for review and presentation.
 The figures, tables, and PDFs use the saved project reports; opening them does
@@ -9,12 +9,13 @@ not require a Kaggle session or model downloads.
 | File | What it contains |
 |:--|:--|
 | [Research paper](conditional_retrieval_paper.pdf) | 9-page report with method, evaluation, limitations and references |
-| [HTML showcase](research_showcase.html) | Ten-section presentation; use the on-screen arrows or Left/Right keys. “Read full page” switches to continuous reading. |
-| [Presentation PDF](research_presentation.pdf) | 23-slide presentation at 3840 × 2160 slide render resolution |
+| [HTML showcase](research_showcase.html) | Ten-section presentation; use the on-screen arrows or Left/Right keys. â€œRead full pageâ€ switches to continuous reading. |
+| [Presentation PDF](research_presentation.pdf) | 23-slide presentation at 3840 Ã— 2160 slide render resolution |
 | [Showcase PDF](research_showcase.pdf) | Ten-page printable version of the HTML showcase |
+| [Four-page research showcase](research_showcase_4page.pdf) | Short PDF covering the base paper, reproduction, contribution and implementation, and future work with references |
 | [Editable presentation](research_presentation.pptx) | PowerPoint deck with editable text, tables, charts and speaker notes |
 | [Speaker notes](presentation_notes.md) | Talk track and evidence references for the presentation |
-| [Three-speaker showcase script](showcase_speaking_script.pdf) | Three-page spoken script, about two minutes per presenter |
+| [HTML showcase speaking script](showcase_speaking_script.md) | 10 presentation slides split across three presenters (3, 3 and 4 slides) with balanced talk time |
 | [Release manifest](RELEASE_MANIFEST.json) | File hashes and the scope of the released evidence |
 
 Authors: Ali Omar, Abdallah Mestrah and Abbas Yazbek. Supervisor: Dr. Ahmad
@@ -68,11 +69,11 @@ restore matching query records and run the versioned Kaggle workflows.
 
 ## Reading the comparisons
 
-On TREC-COVID, the primary indexed cascade is 20.21× faster than our earlier
-fusion run and retains 96.68% of indexed fusion Recall@100. The 20.21× ratio
-combines indexing and routing across separate runs; routing alone adds 1.24×
+On TREC-COVID, the primary indexed cascade is 20.21Ã— faster than our earlier
+fusion run and retains 96.68% of indexed fusion Recall@100. The 20.21Ã— ratio
+combines indexing and routing across separate runs; routing alone adds 1.24Ã—
 over indexed fusion. On the fixed 256-question SQuAD sample, the fastest
-cascade is 7.91× faster than our earlier fusion run, or 1.59× over indexed
+cascade is 7.91Ã— faster than our earlier fusion run, or 1.59Ã— over indexed
 fusion, at 99.22% retained recall.
 
 These are comparisons within our Python implementation. They do not establish
