@@ -4,6 +4,8 @@ Updated 22 October 2026.
 
 This guide follows the project story in plain language. It starts with the search concepts, explains what we changed, then summarizes what the experiments show and where the evidence lives.
 
+For a model or algorithm name, use **Ctrl+F**. The explanations distinguish the final evaluated pipeline, the original paper's system, and historical experiments so that a name appearing in the repository does not imply it was part of the final benchmark.
+
 ## 1. What is the project about?
 
 When someone asks a question, a search system has to find useful documents from a large collection. Our project studies whether it is necessary to run every search method for every question.
@@ -14,7 +16,7 @@ That two-stage approach is a **cascade**. The decision model is the **gate**.
 
 > Run the inexpensive first search. If it looks sufficient, return it. If it may be missing useful documents, run the more expensive searches too.
 
-This project measures retrieval quality and retrieval time. It does not measure the quality of answers written by a language model.
+The final study measures retrieval quality and retrieval time. Generated-answer quality is outside the final cascade evaluation; Section 6 explains the separate historical generation work.
 
 ## 2. The basic concepts
 
@@ -25,7 +27,7 @@ This project measures retrieval quality and retrieval time. It does not measure 
 1. A retriever finds documents related to a question.
 2. A language model uses those documents to help write an answer.
 
-Retrieval quality and answer quality are different things. Our experiments study the first step. We did not test generated-answer Exact Match or F1.
+Retrieval quality and answer quality are different things. Our final experiments study the first step. Generated-answer Exact Match and F1 are outside the completed cascade evaluation.
 
 ### What are the corpus, query, ranking, and qrels?
 
@@ -36,21 +38,142 @@ Retrieval quality and answer quality are different things. Our experiments study
 
 The retriever does not see qrels when it makes its live decision. Training qrels help create the examples used to teach the gate. Evaluation qrels score its results after the rankings and decisions are fixed.
 
-### What is a dense vector?
+### What are dense retrieval and embeddings?
 
-A **dense vector** is a list of numbers that represents text. A neural model encodes a query and each document into vectors. Text with similar meaning tends to have vectors that are close to each other.
+A **dense vector**, also called a dense embedding, is a list of numbers that represents text. A neural model encodes a query and each document into vectors. Text with similar meaning tends to receive similar vectors. **Dense retrieval** is the search approach that finds documents by comparing those vectors.
 
 Dense search can match a question to a document even when they use different words. For example, it may connect "heart attack" and "myocardial infarction." It can be less reliable for exact names, numbers, and rare terms. In our project, MiniLM creates the vectors and FAISS searches them.
 
-### What does "sparse" mean?
+### What are MiniLM and Sentence Transformers?
+
+**MiniLM** is a family of compact Transformer neural models. Our specific pretrained sentence-embedding model is `sentence-transformers/all-MiniLM-L6-v2`. It converts each text into a vector containing 384 numbers. **Sentence Transformers** is the software library we use to load that model and produce its embeddings. The [model card](https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2) describes its embedding output.
+
+We load the existing model weights and encode our corpus; we do not fine-tune MiniLM in this study. The part we train for our contribution is the Ridge gate.
+
+**L6** identifies its six Transformer layers, as recorded in the [model configuration](https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/blob/main/config.json). **v2** identifies the model release. The 384 numbers are the length of each output embedding; they are different from the model's total number of learned parameters.
+
+The MiniLM family uses **knowledge distillation**: a smaller student learns from a larger teacher's behavior. See the [MiniLM paper](https://arxiv.org/abs/2002.10957). The downloaded sentence-embedding checkpoint has already undergone its published training; our experiment does not repeat that training.
+
+### What are Transformers, BERT, and Sentence-BERT?
+
+| Name | In simple terms | Why it appears here |
+|---|---|---|
+| Transformer | A neural-network architecture that uses attention to combine information across tokens | The neural encoders and FLAN-T5 are based on Transformer architectures |
+| Attention | A learned calculation that lets a token's representation depend on other relevant tokens | Helps the model represent a word using its context |
+| BERT | A Transformer encoder pretrained to represent text using context on both sides | The loaded MiniLM configuration uses a BERT-style encoder; the SPLADE checkpoint is also BERT-based |
+| Sentence-BERT, or SBERT | An approach for learning sentence embeddings that can be compared efficiently | Related work underlying sentence-embedding retrieval; our actual checkpoint is the named MiniLM model |
+| Encoder-decoder | A model with an encoder that represents the input and a decoder that generates output tokens | FLAN-T5 uses this structure to produce text answers |
+
+Primary references: the [Transformer paper](https://arxiv.org/abs/1706.03762), [BERT paper](https://arxiv.org/abs/1810.04805), and [Sentence-BERT paper](https://arxiv.org/abs/1908.10084). These describe model designs, rather than additional retrieval branches in our final system.
+
+### What do pretrained, fine-tuned, inference, and checkpoint mean?
+
+| Term | Meaning in this project |
+|---|---|
+| Pretrained | Model weights were learned before our experiment; we download existing MiniLM and SPLADE weights |
+| Fine-tuning | Further training that changes an existing model's weights for a task or dataset; we do not fine-tune the neural retrievers here |
+| Inference | Apply a trained model to new input, such as encoding a question or predicting its escalation gain |
+| Checkpoint / model revision | A saved set of weights and its version; the frozen protocol records the neural-model revisions |
+| Parameter | A learned number inside a model; this differs from an input feature such as query length |
+
+### What is FAISS, and what does it do here?
+
+**FAISS** is a library for searching collections of vectors. After MiniLM creates document embeddings, FAISS stores them in an index. For a new query, MiniLM creates its embedding and FAISS finds the highest-scoring document vectors.
+
+```text
+Document text -> MiniLM -> document vectors -> FAISS index
+Query text    -> MiniLM -> query vector    -> search that index -> ranked documents
+```
+
+Our code uses `faiss.IndexFlatIP`, which compares the query with every stored vector using inner products. It performs exact, exhaustive vector search. We normalize query and document vectors to length one, so their inner product equals cosine similarity. See the official [FAISS index descriptions](https://github.com/facebookresearch/faiss/wiki/Faiss-indexes) and [similarity documentation](https://github.com/facebookresearch/faiss/wiki/MetricType-and-distances).
+
+**Cosine similarity** compares the directions of vectors. A higher value means the query and document embeddings point in more similar directions. MiniLM supplies the learned text representation; FAISS performs the vector search.
+
+### What are kNN, top-k, dot products, and normalization?
+
+| Term | Meaning | Our implementation |
+|---|---|---|
+| kNN, or k-nearest-neighbor search | Find the k vectors most similar to the query under a chosen comparison | The dense branch returns nearest document embeddings using FAISS |
+| Top-k | Keep the highest-ranked k results | The final retrieval output contains 100 documents; ranking metrics may inspect only the first 10 |
+| Dot product / inner product | Multiply corresponding vector entries and add the products | Scores dense vectors and SPLADE's sparse representations |
+| Vector normalization | Rescale a vector to a chosen length, here length one | Makes the dense branch's inner products equal cosine similarity |
+| Approximate nearest-neighbor search, or ANN | Trade exact neighbor recovery for a potentially faster search | Useful background when reading vector-search papers; our `IndexFlatIP` performs exhaustive exact search |
+
+Vector normalization is different from **StandardScaler**, which rescales the gate's feature columns using their training means and standard deviations. Our SPLADE branch uses sparse dot products without the dense branch's cosine-normalization step.
+
+### What are sparse representations and SPLADE?
 
 A sparse vector has many possible positions, but most are zero. SPLADE uses a neural language model to assign weights to vocabulary terms. It can give weight to related terms as well as terms written in the text, which lets it combine learned expansion with term-based search.
 
+Our pretrained model is `naver/splade-cocondenser-ensembledistil`, a learned sparse encoder for passage retrieval. Its [model card](https://huggingface.co/naver/splade-cocondenser-ensembledistil) identifies the model and its dot-product similarity. We use its existing weights rather than fine-tuning it on the evaluation collections.
+
+In our implementation, SPLADE encodes documents into a SciPy sparse matrix. A query receives its own sparse representation, which is scored against that matrix. The dense branch uses FAISS; the SPLADE branch uses sparse-matrix scoring. Their search implementations are visible in `dense_retriever.py` and `splade_retriever.py`.
+
+The words **CoCondenser** and **ensembledistil** identify the initialization and distillation variant of our published SPLADE checkpoint. Distillation transfers information from teacher models during the checkpoint's training. We load one completed checkpoint, rather than running an extra teacher ensemble during retrieval. See the checkpoint's [training-method paper](https://arxiv.org/abs/2205.04733).
+
 ### What is BM25?
 
-**BM25** is a widely used word-matching method. It scores documents using how often query words occur, how rare those words are across the corpus, and document length. Rare, matching terms usually count more than common terms.
+**BM25** is a word-matching scoring algorithm. It scores documents using how often query words occur, how rare those words are across the corpus, and document length. Rare, matching terms usually count more than common terms. It calculates scores from corpus statistics and a scoring formula.
 
 Our **Best Fields BM25** scores the title and abstract separately, then keeps the higher of the two scores. This lets a strong title match count without requiring the same match to appear in the abstract.
+
+### What are TF, IDF, TF-IDF, postings, and BM25S?
+
+| Name | In simple terms | Status in this project |
+|---|---|---|
+| Term frequency, or TF | How often a term occurs in a document | One input to BM25 scoring |
+| Inverse document frequency, or IDF | A measure of how rare a term is across the corpus | Used by BM25 and several gate features |
+| TF-IDF | A classical weighting scheme combining term frequency and rarity | Background for understanding lexical retrieval; it is not a separate final benchmark method |
+| Inverted index / postings | A mapping from a term to documents containing it and associated scoring information | Our indexed BM25 precomputes per-term field contributions to avoid repeating the original scoring work |
+| BM25S | Existing work on efficient BM25 using eager sparse scoring | Related work cited in the manuscript; our benchmark uses the project's own `IndexedBestFieldsBM25` implementation |
+
+BM25S is described in its [paper](https://arxiv.org/abs/2407.03618). The fact that we implement efficient BM25 does not establish that the general indexing idea is new.
+
+### Which names are models, algorithms, or tools?
+
+The retrieval names describe different parts of the system:
+
+| Name | What kind of thing is it? | Its job in our project |
+|---|---|---|
+| BM25 | Lexical scoring algorithm | Rank documents from matching words and corpus statistics |
+| Dense retrieval | Retrieval approach | Find documents using embedding similarity |
+| MiniLM | Pretrained neural model | Create the dense query and document embeddings |
+| FAISS | Vector-search library | Search our dense embeddings using `IndexFlatIP` |
+| SPLADE | Learned sparse retrieval model | Create weighted term representations for the sparse branch |
+
+The remaining names describe the gate, fusion, and the original paper's setup:
+
+| Name | What kind of thing is it? | Where it fits |
+|---|---|---|
+| Ridge regression | Learning algorithm that produces a fitted linear model | Our trained gate predicts the gain from running fusion |
+| StandardScaler | Feature preprocessing step | Center and scale the gate's input features using training statistics |
+| RRF | Ranking-combination algorithm | Combine BM25, Dense, and SPLADE rankings |
+| ELSER | Elastic's learned sparse retrieval model | Used in the original paper's system; explained in Section 6 |
+| Elasticsearch | Search engine | Runs the original paper's retrieval infrastructure; our reported pipeline runs in Python |
+
+### What software runs those models and algorithms?
+
+| Name | What it does in this implementation |
+|---|---|
+| Sentence Transformers / Hugging Face Transformers | Load the pretrained dense model and the SPLADE tokenizer/model, respectively |
+| PyTorch / CUDA | Execute neural-model calculations; CUDA enables supported work on the NVIDIA GPU |
+| scikit-learn | Fit the StandardScaler + Ridge gate and generate cross-validation predictions |
+| NumPy / SciPy | Handle numerical arrays and sparse matrices used in scoring |
+| rank-bm25 | Supply the original `BM25Okapi` scorer that our compatible indexed implementation preserves |
+
+An **encoder** converts text into a numerical representation. A **tokenizer** splits text into the input pieces a model or scorer expects. Our BM25 tokenizer uses lowercase word tokens, while the neural models use their own tokenizers. These software libraries provide the operations used by the retrieval methods and gate.
+
+Additional tool names appear in the implementation and historical notebook:
+
+| Name | What it does | Where it fits |
+|---|---|---|
+| Hugging Face Hub | Hosts downloadable model checkpoints, configurations, and tokenizers | Supplies the pretrained models used by our Python libraries |
+| ranx | Computes ranking-evaluation metrics | Used in the earlier baseline evaluation scripts |
+| Accelerate / `device_map="auto"` | Help place a large neural model across available devices | Appear in the legacy FLAN-T5-XXL loading code |
+| FP16 / FP32 | Store floating-point numbers using 16 or 32 bits | The legacy XXL notebook explicitly loads FP16 weights; numerical precision affects memory and computation |
+| bitsandbytes / quantization | A library and techniques for lower-bit model storage or computation | The legacy notebook installs bitsandbytes, but its displayed XXL load uses FP16; installation alone does not establish a 4-bit or 8-bit run |
+
+The **CPU** handles general processing, while the **GPU** can accelerate neural calculations. **T4** names the NVIDIA GPU used for the reported Kaggle timings; **VRAM** is memory on a GPU. A hardware name is separate from a model name such as MiniLM or FLAN-T5-XXL.
 
 ## 3. Why use three retrievers?
 
@@ -111,6 +234,17 @@ These metrics focus on the ordering of the first 10 results:
 
 Recall@100, nDCG@10, and MAP@10 measure different aspects of retrieval. A method can lead on one and not the others.
 
+### What are precision, MRR, Exact Match, and answer F1?
+
+| Metric | What it measures | Status here |
+|---|---|---|
+| Precision@k | The fraction of the first k returned documents judged relevant | A retrieval concept; different from recall's fraction of all judged-relevant documents |
+| MRR@k | Average reciprocal rank of the first relevant result, with zero if none occurs in the first k | Appears in earlier baseline scripts; it is different from MAP, which considers multiple relevant results |
+| Exact Match, or EM | The fraction of generated answers that exactly match an accepted reference under the evaluation's normalization rules | An answer-generation metric reported by the original paper and historical work, outside our final cascade evaluation |
+| Answer token F1 | Combines the precision and recall of answer tokens relative to a reference answer | An answer-generation metric; its recall concerns answer words, rather than retrieved documents |
+
+For answer F1, precision asks how many predicted answer tokens are supported by the reference, and recall asks how many reference tokens the answer recovers. Their harmonic mean gives F1. Keeping the same retrieval retention does not establish that generated answers keep the same EM or F1.
+
 ### Latency, speedup, and time saved
 
 **Retrieval latency** is how long the search system takes to return its ranking for a query. Speedup is a ratio: reference time divided by the new system's time. If one takes 100 ms and the other takes 50 ms, the second is 2x faster and saves 50% of the time.
@@ -170,6 +304,55 @@ The 7.91x ratio is the combined improvement over our starting implementation. Th
 The project is inspired by *Blended RAG*. The paper combines keyword, dense-vector, and learned-sparse retrieval in Elasticsearch, using ELSER for learned sparse search.
 
 Our implementation uses Python BM25, MiniLM, SPLADE, and RRF. We then added the BM25-first cascade and an indexed BM25 scorer. This is an adaptation of the broad hybrid-retrieval idea, not an exact reproduction of the original Elasticsearch/ELSER system. The paper's published numbers are context, not matched baselines for our speedup claims.
+
+### What are Elasticsearch and ELSER?
+
+**Elasticsearch** is a search engine that stores indexed documents and executes search queries. A search engine provides the infrastructure in which retrieval methods run.
+
+**ELSER** stands for **Elastic Learned Sparse EncodeR**. It is Elastic's model for semantic sparse retrieval. It expands text into weighted terms using learned relevance associations, helping retrieve related content beyond literal word matches. The [official ELSER documentation](https://www.elastic.co/docs/explore-analyze/machine-learning/nlp/ml-nlp-elser) explains how Elasticsearch stores and searches its weighted terms.
+
+SPLADE and ELSER both serve the learned sparse retrieval role, but they are different models with different weights and implementations. We use SPLADE in our Python experiments. ELSER belongs to the original paper's setup, so there is no ELSER inference step in our final benchmark. We have not demonstrated that our speedups carry over to the Elasticsearch/ELSER system.
+
+### What is XXL? What are T5 and FLAN-T5-XXL?
+
+In this project context, **XXL means the size variant in `google/flan-t5-xxl`**, the large answer-generation model. Its role is to write an answer using a question and retrieved context.
+
+| Part of the name | Meaning |
+|---|---|
+| T5 | Text-to-Text Transfer Transformer: an encoder-decoder model that accepts text and generates text |
+| FLAN | Identifies the instruction-tuned version, trained on tasks expressed through instructions |
+| XXL | The extra-extra-large size variant of this model family |
+| 11B parameters | Approximately 11 billion learned model weights; B means billion |
+
+The [T5 paper](https://arxiv.org/abs/1910.10683) explains the text-to-text design, and the [FLAN-T5-XXL model card](https://huggingface.co/google/flan-t5-xxl) describes the instruction-tuned checkpoint and model size.
+
+### How is MiniLM different from FLAN-T5-XXL?
+
+| Model | Input and output | Role | Status |
+|---|---|---|---|
+| `all-MiniLM-L6-v2` | Text in, 384-number embedding out | Represent queries and documents for dense retrieval | Used in our final evaluated pipeline |
+| `flan-t5-xxl` | Instructions/question/context in, generated text out | Write an answer after retrieval | Used in the original paper's RAG evaluation and present in historical project generation work; outside the final cascade evaluation |
+
+```text
+Retrieval stage: question -> find documents using BM25 / MiniLM + FAISS / SPLADE
+Generation stage: question + retrieved passages -> FLAN-T5-XXL -> written answer
+```
+
+Section V of [Blended RAG](https://arxiv.org/html/2404.07220v2) specifies FLAN-T5-XXL for its generation experiments. Our legacy [reproduction notebook](../notebooks/legacy/reproduction.ipynb) contains XXL generation code, and [kaggle_nq_and_xxl_results.json](../cascaded-blended-rag/results/kaggle_nq_and_xxl_results.json) contains a historical summary. Those records do not constitute a matched evaluation of answer quality under our final cascade versus fusion. The current contribution therefore reports retrieval quality and query retrieval time.
+
+### What other model names appear in the original paper's comparisons?
+
+These are context from the paper's comparison tables. They are not methods we ran in the final indexed benchmark.
+
+| Name | What it is | Where it belongs |
+|---|---|---|
+| monoT5-3B | A T5-based reranker that reads a query/document pair and scores relevance; 3B indicates the model scale | A prior retrieval-ranking comparison; see the [monoT5 paper](https://arxiv.org/abs/2003.06713) |
+| COCO-DR Large | A dense retriever trained to cope with distribution shifts using contrastive and distributionally robust learning | A prior retrieval comparison; see the [COCO-DR paper](https://arxiv.org/abs/2210.15212) |
+| PaLM 540B | Google's Pathways Language Model at a 540-billion-parameter scale | A prior answer-generation comparison; see the [PaLM paper](https://arxiv.org/abs/2204.02311) |
+| GLaM | Generalist Language Model, using a mixture of expert networks with selective activation | A prior answer-generation comparison; see the [GLaM paper](https://arxiv.org/abs/2112.06905) |
+| RAG-original / RAG-end2end | RAG pipeline variants compared in the original paper, including a variant further adapted to SQuAD | Published pipeline comparisons, rather than names for our indexed cascade |
+
+A **reranker** scores an initial candidate list after retrieval. Our final system combines rankings with RRF rather than adding a monoT5 reranking stage. **Zero-shot** and **one-shot** in prompting describe using no task examples or one example in the prompt; they do not mean the underlying language model was never trained.
 
 ## 7. How the cascade decides
 
@@ -249,6 +432,24 @@ For a target of 90%, the budget allows total clipped loss of up to 10% of the su
 They are not guarantees on other datasets. For example, an r99 setting can retain less than 99% on TREC-COVID. The project reports the measured retention separately from the target.
 
 The final evaluation gate is the compact **11-feature Ridge** model. The repository also contains an earlier hand-written threshold router and exploratory gate versions; those are not the final reported policy.
+
+### What are the other gate algorithms in the repository?
+
+| Name | How it makes a prediction or decision | Status |
+|---|---|---|
+| Heuristic / hand-written threshold router | Apply manually chosen rules to clues such as BM25 scores | Early prototype in `cascaded_router.py` |
+| Decision tree | Follow learned feature-threshold branches and return a prediction at a leaf | Development candidate in experiment 10 |
+| Random Forest | Average predictions from a collection of randomized decision trees | Earlier learned-router attempt and development reference |
+| ExtraTrees | Average trees with additional randomness in the candidate split thresholds | Development candidate, including small ensembles |
+| Ridge69 / coverage-feature gate | Apply Ridge to an expanded 69-feature input set | Feature-development ablation; the final indexed confirmations use Ridge11 |
+
+The tree methods are explained in [scikit-learn's ensemble guide](https://scikit-learn.org/stable/modules/ensemble.html). The local [model-comparison script](../cascaded-blended-rag/experiments/10_compare_router_models.py) shows which candidates were compared. Their presence is part of the development record, rather than evidence that the final runtime runs all these models.
+
+A **regressor** predicts a number, as Ridge does for gain. A **classifier** predicts a category. Our gain regressor produces a number first; the calibrated cutoff turns it into an early-exit or escalation decision.
+
+An **oracle policy** uses known relevance outcomes to estimate what hindsight routing could achieve. It is an offline diagnostic, not a deployable gate. The **random-routing reference** chooses the same number of exits without the learned gain ranking; its reported recall is an offline comparison, not a separately timed live system.
+
+An **ablation** changes a component to investigate its contribution, such as comparing different feature sets. The original fusion, indexed fusion, and indexed cascade comparisons also separate the observed indexing improvement from the additional routing gain.
 
 ## 8. What happened as we developed the project?
 
@@ -330,6 +531,12 @@ If asked "What did your project contribute?", you can say:
 
 **Why combine different retrievers?**  They find different kinds of matches: exact terms, semantic similarity, and learned term expansion.
 
+**What is the difference between Dense, MiniLM, and FAISS?**  Dense is the retrieval approach. MiniLM is our model for turning text into dense vectors. FAISS is the library that searches those vectors.
+
+**Did you use ELSER or SPLADE?**  We used SPLADE. ELSER is the learned sparse model used in the original paper's Elasticsearch setup. They fill a similar role but are different models.
+
+**Did MiniLM or XXL write the answers in the final experiment?**  MiniLM produced retrieval embeddings. The final experiment did not include answer generation. FLAN-T5-XXL belongs to the original paper's generation stage and the project's separate historical generation work.
+
 **Why use RRF?**  The retrievers' raw scores are on different scales. RRF combines their ranks instead.
 
 **What does the gate predict?**  It estimates the recall gain that fusion may add over BM25, using query and BM25-result features.
@@ -348,7 +555,7 @@ If asked "What did your project contribute?", you can say:
 
 **Did you reproduce Blended RAG?**  We reproduced the broad idea of combining retrieval methods, but changed the engine and models. Our results are not a direct reproduction of the original system or its speed.
 
-**Did you test answer quality?**  No. We evaluated retrieval rankings, not LLM-generated answers.
+**Did you test answer quality?**  The final cascade study evaluated retrieval rankings. Historical FLAN-T5-XXL generation records are separate; they do not establish preserved answer quality under the final cascade.
 
 ## 12. Where to find the work in the repository
 
@@ -446,3 +653,5 @@ Use this section during questions about the code. Every folder below is relative
 For a walkthrough of the final system, open [25_benchmark_indexed_cascade.py](../cascaded-blended-rag/experiments/25_benchmark_indexed_cascade.py) and find `benchmark`. It connects dataset preparation, indexed BM25, the frozen gate, neural retrieval, timing, and evaluation. Follow its calls into `src/` when asked how an individual step works.
 
 The earlier [cascaded_router.py](../cascaded-blended-rag/src/cascaded_router.py) is a heuristic prototype, not the final Ridge gate. Historical loader scripts and cached exploratory experiments are also different from the final benchmark. Use the files above when explaining the reported implementation. Frozen scripts and protocol files should be read as evidence, not edited during a demonstration.
+
+If asked about XXL, open [notebooks/legacy/reproduction.ipynb](../notebooks/legacy/reproduction.ipynb) and find `google/flan-t5-xxl`. If asked about MiniLM, open [src/dense_retriever.py](../cascaded-blended-rag/src/dense_retriever.py) and find `SentenceTransformer`. State which experiment each file belongs to: the former is historical generation code, while the latter supplies the dense branch of the final evaluated retrieval pipeline.
