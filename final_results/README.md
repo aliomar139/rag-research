@@ -14,6 +14,7 @@ not require a Kaggle session or model downloads.
 | [Showcase PDF](research_showcase.pdf) | Ten-page printable version of the HTML showcase |
 | [Editable presentation](research_presentation.pptx) | PowerPoint deck with editable text, tables, charts and speaker notes |
 | [Speaker notes](presentation_notes.md) | Talk track and evidence references for the presentation |
+| [Three-speaker showcase script](showcase_speaking_script.pdf) | Three-page spoken script, about two minutes per presenter |
 | [Release manifest](RELEASE_MANIFEST.json) | File hashes and the scope of the released evidence |
 
 Authors: Ali Omar, Abdallah Mestrah and Abbas Yazbek. Supervisor: Dr. Ahmad
