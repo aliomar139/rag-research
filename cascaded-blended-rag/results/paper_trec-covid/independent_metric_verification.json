@@ -1,0 +1,120 @@
+{
+  "dataset": "trec-covid",
+  "raw_qrels_sha256": "10669ab7d526cb04f52079139fd88c3d467a0776441b046567f540582798982b",
+  "qrels_match_exactly": true,
+  "evaluated_queries": 50,
+  "qrels_grade_counts": {
+    "-1": 2,
+    "0": 41661,
+    "1": 10456,
+    "2": 14217
+  },
+  "definition": "Positive grades are relevant; nDCG uses linear graded gains and log2(rank+1). AP@10 divides the sum of precision at relevant top10 ranks by all judged relevant documents.",
+  "scope": "Independent scoring in saved ranking order, not inference or clock verification.",
+  "methods": {
+    "static_rrf": {
+      "independent_metrics": {
+        "recall@100": 0.12250379771406615,
+        "ndcg@10": 0.763230270108098,
+        "map@10": 0.01860520079137317
+      },
+      "difference_from_report": {
+        "recall@100": -2.7755575615628914e-17,
+        "ndcg@10": -1.1102230246251565e-16,
+        "map@10": 0.0
+      },
+      "matches_within_1e_10": true
+    },
+    "bm25": {
+      "independent_metrics": {
+        "recall@100": 0.08743926180314512,
+        "ndcg@10": 0.5496902353877124,
+        "map@10": 0.01144903283162699
+      },
+      "difference_from_report": {
+        "recall@100": 0.0,
+        "ndcg@10": 0.0,
+        "map@10": 0.0
+      },
+      "matches_within_1e_10": true
+    },
+    "dense": {
+      "independent_metrics": {
+        "recall@100": 0.08551749768487697,
+        "ndcg@10": 0.4725358848707596,
+        "map@10": 0.010544708731052146
+      },
+      "difference_from_report": {
+        "recall@100": -1.3877787807814457e-17,
+        "ndcg@10": 0.0,
+        "map@10": 1.734723475976807e-18
+      },
+      "matches_within_1e_10": true
+    },
+    "splade": {
+      "independent_metrics": {
+        "recall@100": 0.12824918552685155,
+        "ndcg@10": 0.7289882991880643,
+        "map@10": 0.016622086132625214
+      },
+      "difference_from_report": {
+        "recall@100": 0.0,
+        "ndcg@10": 0.0,
+        "map@10": -3.469446951953614e-18
+      },
+      "matches_within_1e_10": true
+    },
+    "ridge11_r90": {
+      "independent_metrics": {
+        "recall@100": 0.1035531129372889,
+        "ndcg@10": 0.6511526236618478,
+        "map@10": 0.014989941912411004
+      },
+      "difference_from_report": {
+        "recall@100": 0.0,
+        "ndcg@10": -1.1102230246251565e-16,
+        "map@10": -3.469446951953614e-18
+      },
+      "matches_within_1e_10": true
+    },
+    "ridge11_r92": {
+      "independent_metrics": {
+        "recall@100": 0.1035531129372889,
+        "ndcg@10": 0.653145685997749,
+        "map@10": 0.014989941912411004
+      },
+      "difference_from_report": {
+        "recall@100": 0.0,
+        "ndcg@10": 0.0,
+        "map@10": -3.469446951953614e-18
+      },
+      "matches_within_1e_10": true
+    },
+    "ridge11_r95": {
+      "independent_metrics": {
+        "recall@100": 0.1126462987003502,
+        "ndcg@10": 0.7056057727508248,
+        "map@10": 0.017423374764666513
+      },
+      "difference_from_report": {
+        "recall@100": -1.3877787807814457e-17,
+        "ndcg@10": -1.1102230246251565e-16,
+        "map@10": 0.0
+      },
+      "matches_within_1e_10": true
+    },
+    "ridge11_r99": {
+      "independent_metrics": {
+        "recall@100": 0.11843687455557682,
+        "ndcg@10": 0.7228052785989337,
+        "map@10": 0.017691278010060804
+      },
+      "difference_from_report": {
+        "recall@100": -1.3877787807814457e-17,
+        "ndcg@10": 0.0,
+        "map@10": -3.469446951953614e-18
+      },
+      "matches_within_1e_10": true
+    }
+  }
+}

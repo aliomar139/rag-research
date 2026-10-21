@@ -75,6 +75,52 @@ def score_run(qrels, rankings):
     return {key: float(value) for key, value in metrics.items()}
 
 
+def recall_at_k(qrels, rankings, k=TOP_K):
+    """Fast macro Recall@k for threshold selection (avoids repeated JIT scoring)."""
+    per_query = []
+    for qid, relevant_docs in qrels.items():
+        relevant = {doc_id for doc_id, rel in relevant_docs.items() if rel > 0}
+        if not relevant:
+            continue
+        retrieved = {doc_id for doc_id, _ in rankings.get(qid, [])[:k]}
+        per_query.append(len(retrieved & relevant) / len(relevant))
+    return mean(per_query) if per_query else 0.0
+
+
+def per_query_recall(relevant_docs, ranking, k=TOP_K):
+    relevant = {doc_id for doc_id, rel in relevant_docs.items() if rel > 0}
+    if not relevant:
+        return 0.0
+    retrieved = {doc_id for doc_id, _ in ranking[:k]}
+    return len(retrieved & relevant) / len(relevant)
+
+
+def router_features(query, bm25_ranking, doc_freqs, total_docs):
+    """Return inference-time features only; no qrels or relevance labels enter."""
+    tokens = simple_tokenize(query)
+    unique_tokens = list(dict.fromkeys(tokens))
+    scores = [float(score) for _, score in bm25_ranking[:10]]
+    s1 = scores[0] if scores else 0.0
+    s2 = scores[1] if len(scores) > 1 else 0.0
+    idfs = []
+    for token in unique_tokens:
+        df = doc_freqs.get(token, 0)
+        idfs.append(math.log((total_docs - df + 0.5) / (df + 0.5) + 1.0))
+    return {
+        "query_token_count": len(tokens),
+        "query_unique_token_count": len(unique_tokens),
+        "bm25_top1": s1,
+        "bm25_top2": s2,
+        "bm25_gap12": s1 - s2,
+        "bm25_top10_mean": mean(scores) if scores else 0.0,
+        "bm25_top10_std": (sum((x - mean(scores)) ** 2 for x in scores) / len(scores)) ** 0.5 if scores else 0.0,
+        "bm25_top1_per_query_token": s1 / max(1, len(tokens)),
+        "max_idf": max(idfs, default=0.0),
+        "mean_idf": mean(idfs) if idfs else 0.0,
+        "idf_std": (sum((x - mean(idfs)) ** 2 for x in idfs) / len(idfs)) ** 0.5 if idfs else 0.0,
+    }
+
+
 def percentile(values, pct):
     ordered = sorted(values)
     if not ordered:
@@ -90,7 +136,7 @@ def percentile(values, pct):
 def main():
     corpus, train_queries, train_qrels = download_and_load_scifact(split="train")
     _, test_queries, test_qrels = download_and_load_scifact(split="test")
-    print(f"Corpus: {len(corpus)} | train queries: {len(train_queries)} | test queries: {len(test_queries)}")
+    print(f"Corpus: {len(corpus)} | train queries: {len(train_queries)} | test queries: {len(test_queries)}", flush=True)
 
     bm25 = BM25Retriever(corpus)
     dense = DenseRetriever(corpus, cache_dir="data/processed_scifact")
@@ -109,7 +155,7 @@ def main():
     # build the oracle-free training table; no test qrels influence selection.
     train_rows = {}
     train_static = {}
-    for qid, query in train_queries.items():
+    for query_index, (qid, query) in enumerate(train_queries.items(), start=1):
         b, b_ms = timed_call(bm25.retrieve_best_fields, query, top_k=TOP_K)
         d, d_ms = timed_call(dense.retrieve, query, top_k=TOP_K)
         s, s_ms = timed_call(splade.retrieve, query, top_k=TOP_K)
@@ -123,10 +169,35 @@ def main():
         fuse_start = time.perf_counter()
         train_static[qid] = fuse_rankings([b, d, s])
         train_rows[qid]["latencies"]["fusion_ms"] = (time.perf_counter() - fuse_start) * 1000.0
+        if query_index % 25 == 0 or query_index == len(train_queries):
+            print(f"Training retrievals: {query_index}/{len(train_queries)}", flush=True)
 
-    train_baseline = score_run(train_qrels, train_static)["recall@100"]
+    train_baseline = recall_at_k(train_qrels, train_static)
     train_target = TRAIN_RECALL_FRACTION * train_baseline
+
+    # Optional supervised-router export. Labels are computed from train qrels,
+    # but features contain only information available when a query arrives.
+    if os.environ.get("EXPORT_ROUTER_DATA") == "1":
+        os.makedirs("results", exist_ok=True)
+        export_path = "results/router_training_scifact.jsonl"
+        with open(export_path, "w", encoding="utf-8") as export_file:
+            for qid, row in train_rows.items():
+                labels = train_qrels.get(qid, {})
+                bm25_recall = per_query_recall(labels, row["bm25"])
+                static_recall = per_query_recall(labels, train_static[qid])
+                record = {
+                    "query_id": qid,
+                    "features": router_features(row["query"], row["bm25"], doc_freqs, len(corpus)),
+                    "bm25_recall@100": bm25_recall,
+                    "static_recall@100": static_recall,
+                    "recall_gain_from_escalation": max(0.0, static_recall - bm25_recall),
+                }
+                export_file.write(json.dumps(record) + "\n")
+        print(f"Saved train-only router examples: {export_path}", flush=True)
     best = None
+    candidate_results = []
+    candidate_index = 0
+    total_candidates = len(TAU_HIGH) * len(TAU_GAP) * len(TAU_IDF)
     for tau_high in TAU_HIGH:
         for tau_gap in TAU_GAP:
             for tau_idf in TAU_IDF:
@@ -136,6 +207,7 @@ def main():
                 )
                 candidate_run = {}
                 candidate_latency = []
+                candidate_exits = 0
                 for qid, row in train_rows.items():
                     route_start = time.perf_counter()
                     decision, _ = candidate_router.route_query(
@@ -143,6 +215,7 @@ def main():
                     )
                     route_ms = (time.perf_counter() - route_start) * 1000.0
                     if decision == "EARLY_EXIT":
+                        candidate_exits += 1
                         candidate_run[qid] = row["bm25"]
                         candidate_latency.append(row["latencies"]["bm25_ms"] + route_ms)
                     else:
@@ -155,8 +228,26 @@ def main():
                             + row["latencies"]["fusion_ms"]
                         )
 
-                recall = score_run(train_qrels, candidate_run)["recall@100"]
+                recall = recall_at_k(train_qrels, candidate_run)
+                candidate_index += 1
+                if candidate_index % 10 == 0 or candidate_index == total_candidates:
+                    print(f"Threshold candidates scored: {candidate_index}/{total_candidates}", flush=True)
                 avg_latency = mean(candidate_latency)
+                candidate_results.append({
+                    "thresholds": {
+                        "tau_high": tau_high,
+                        "tau_gap": tau_gap,
+                        "tau_idf": tau_idf,
+                    },
+                    "train_recall@100": recall,
+                    "train_static_recall@100": train_baseline,
+                    "train_recall_ratio": recall / train_baseline if train_baseline else 0.0,
+                    "train_quality_target_recall@100": train_target,
+                    "train_exit_count": candidate_exits,
+                    "train_exit_rate": candidate_exits / len(train_queries),
+                    "train_estimated_latency_ms": avg_latency,
+                    "meets_quality_constraint": recall >= train_target,
+                })
                 if recall >= train_target and (best is None or avg_latency < best["train_estimated_latency_ms"]):
                     best = {
                         "thresholds": {
@@ -188,12 +279,38 @@ def main():
             tau_idf=best["thresholds"]["tau_idf"],
         )
 
+    if os.environ.get("FRONTIER_ONLY") == "1":
+        frontier = {
+            "dataset": "BEIR SciFact",
+            "corpus_documents": len(corpus),
+            "train_queries": len(train_queries),
+            "train_static_recall@100": train_baseline,
+            "train_quality_target_recall@100": train_target,
+            "train_recall_constraint_fraction": TRAIN_RECALL_FRACTION,
+            "threshold_sweep_train": candidate_results,
+            "hardware": {
+                "cuda_available": torch.cuda.is_available(),
+                "cuda_device": torch.cuda.get_device_name(0) if torch.cuda.is_available() else "cpu",
+            },
+        }
+        os.makedirs("results", exist_ok=True)
+        out_path = "results/threshold_frontier_scifact.json"
+        with open(out_path, "w", encoding="utf-8") as f:
+            json.dump(frontier, f, indent=2)
+        print(json.dumps({
+            "output": out_path,
+            "candidates": len(candidate_results),
+            "qualifying_candidates": sum(row["meets_quality_constraint"] for row in candidate_results),
+            "fastest_candidate": min(candidate_results, key=lambda row: row["train_estimated_latency_ms"]),
+        }, indent=2), flush=True)
+        return
+
     # Measure both systems on the exact same held-out queries. The static path
     # runs all branches. The cascade path really skips neural calls on exits.
     static_rankings = {}
     test_branch_rankings = {"bm25_best_fields": {}, "dense": {}, "splade": {}}
     static_ms = []
-    for qid, query in test_queries.items():
+    for query_index, (qid, query) in enumerate(test_queries.items(), start=1):
         query_start = time.perf_counter()
         b, b_ms = timed_call(bm25.retrieve_best_fields, query, top_k=TOP_K)
         d, d_ms = timed_call(dense.retrieve, query, top_k=TOP_K)
@@ -209,10 +326,12 @@ def main():
             "splade_ms": s_ms,
             "total_ms": (time.perf_counter() - query_start) * 1000.0,
         })
+        if query_index % 25 == 0 or query_index == len(test_queries):
+            print(f"Static test retrievals: {query_index}/{len(test_queries)}", flush=True)
 
     cascade_rankings = {}
     cascade_rows = {}
-    for qid, query in test_queries.items():
+    for query_index, (qid, query) in enumerate(test_queries.items(), start=1):
         query_start = time.perf_counter()
         b, b_ms = timed_call(bm25.retrieve_best_fields, query, top_k=TOP_K)
         route_start = time.perf_counter()
@@ -240,6 +359,8 @@ def main():
             "telemetry": telemetry,
             "timings": timings,
         }
+        if query_index % 25 == 0 or query_index == len(test_queries):
+            print(f"Cascade test retrievals: {query_index}/{len(test_queries)}", flush=True)
 
     static_metrics = score_run(test_qrels, static_rankings)
     branch_metrics = {
@@ -264,6 +385,7 @@ def main():
         "rrf_k": RRF_K,
         "train_recall_constraint_fraction": TRAIN_RECALL_FRACTION,
         "selection": best,
+        "threshold_sweep_train": candidate_results,
         "test_static": {
             "metrics": static_metrics,
             "latency_ms": {

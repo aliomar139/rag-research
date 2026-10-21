@@ -12,11 +12,12 @@ from bs4 import BeautifulSoup
 # Paths
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 PAPERS_DIR = os.path.join(BASE_DIR, "downloaded_papers")
-INDEX_CSV = os.path.join(BASE_DIR, "downloaded_papers_index.csv")
-REPORT_MD = os.path.join(BASE_DIR, "download_report.md")
-DOCS_DIR = os.path.join(os.path.dirname(BASE_DIR), "docs")
+INDEX_CSV = os.path.join(BASE_DIR, "reports", "downloaded_papers_index.csv")
+REPORT_MD = os.path.join(BASE_DIR, "reports", "download_report.md")
+REFERENCE_PDF = os.path.join(BASE_DIR, "local", "Blended-Rag.pdf")
 
 os.makedirs(PAPERS_DIR, exist_ok=True)
+os.makedirs(os.path.dirname(INDEX_CSV), exist_ok=True)
 
 HEADERS = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 PaperResearchDownloader/1.0",
@@ -272,8 +273,8 @@ def try_scrape_landing(landing_url, dest_path):
     return False, "Scraping failed", None
 
 def load_and_deduplicate():
-    f1 = os.path.join(BASE_DIR, 'consensus_adaptive_or_hybird_rag.csv.csv')
-    f2 = os.path.join(BASE_DIR, 'dblp_adaptive_or_hybird_rag.csv')
+    f1 = os.path.join(BASE_DIR, 'catalogs', 'consensus_adaptive_or_hybrid_rag.csv')
+    f2 = os.path.join(BASE_DIR, 'catalogs', 'dblp_adaptive_or_hybrid_rag.csv')
     
     df1 = pd.read_csv(f1)
     df2 = pd.read_csv(f2)
@@ -364,7 +365,7 @@ def main():
     success_count = 0
 
     # Also check existing Blended-Rag.pdf in docs
-    existing_blended = os.path.join(DOCS_DIR, "Blended-Rag.pdf")
+    existing_blended = REFERENCE_PDF
 
     for i, paper in enumerate(unique_papers, 1):
         title = paper['title']

@@ -1,0 +1,3984 @@
+{
+  "dataset": "BEIR SciFact",
+  "train_queries": 809,
+  "test_queries": 300,
+  "router": "RandomForestRegressor predicts nonnegative Recall@100 gain from escalation",
+  "feature_names": [
+    "query_token_count",
+    "query_unique_token_count",
+    "bm25_top1",
+    "bm25_top2",
+    "bm25_gap12",
+    "bm25_top10_mean",
+    "bm25_top10_std",
+    "bm25_top1_per_query_token",
+    "max_idf",
+    "mean_idf",
+    "idf_std"
+  ],
+  "threshold": 0.09514860076619283,
+  "train_oof_calibration": {
+    "folds": 5,
+    "static_recall@100": 0.9583848372476307,
+    "target_recall@100": 0.939217140502678,
+    "allowed_aggregate_recall_loss": 0.019167696744952632,
+    "observed_oof_aggregate_loss_at_threshold": 0.0188504326328801,
+    "oof_exit_rate": 0.7676143386897404,
+    "oof_policy_recall@100": 0.9432426864441696,
+    "oof_policy_recall_ratio": 0.9842003439380912
+  },
+  "test_static": {
+    "metrics": {
+      "recall@100": 0.9610000000000001,
+      "ndcg@10": 0.6984106746290535,
+      "map@10": 0.6537900132275132
+    },
+    "latency_ms": {
+      "mean": 56.007277623336144,
+      "p50": 53.317139999990104,
+      "p95": 84.80699390033806,
+      "p99": 92.37292376000367
+    }
+  },
+  "test_single_retrievers": {
+    "bm25": {
+      "recall@100": 0.8705555555555554,
+      "ndcg@10": 0.6369455818501196,
+      "map@10": 0.5907566137566137
+    },
+    "dense": {
+      "recall@100": 0.925,
+      "ndcg@10": 0.6450816521455774,
+      "map@10": 0.5959314814814816
+    },
+    "splade": {
+      "recall@100": 0.932,
+      "ndcg@10": 0.7024466040656876,
+      "map@10": 0.6589623015873015
+    }
+  },
+  "test_cascade": {
+    "metrics": {
+      "recall@100": 0.9345555555555556,
+      "ndcg@10": 0.6694014468233096,
+      "map@10": 0.6199933862433862
+    },
+    "early_exit_rate": 0.7066666666666667,
+    "queries_with_neural_branches_skipped": 212,
+    "dense_query_invocations_skipped": 212,
+    "splade_query_invocations_skipped": 212,
+    "latency_ms": {
+      "mean": 61.4820880399869,
+      "p50": 59.04700049995881,
+      "p95": 93.1362127500961,
+      "p99": 103.47864478999324
+    },
+    "per_query": {
+      "1": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.15857757086129826,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 19.42910399975517,
+          "router_ms": 20.741677999922103,
+          "dense_ms": 7.460437000190723,
+          "splade_ms": 11.865771000429959,
+          "fusion_ms": 0.19492000001264387,
+          "total_ms": 59.823830000368616
+        }
+      },
+      "3": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.1595925337674825,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 55.13023100002101,
+          "router_ms": 20.941559999755555,
+          "dense_ms": 7.5777629999720375,
+          "splade_ms": 11.181798000052368,
+          "fusion_ms": 0.15799399989191443,
+          "total_ms": 95.12585899983605
+        }
+      },
+      "5": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.1579210568453008,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 23.554311000225425,
+          "router_ms": 21.322685000086494,
+          "dense_ms": 7.681065999804559,
+          "splade_ms": 11.304741999992984,
+          "fusion_ms": 0.1874300000963558,
+          "total_ms": 64.1615310000816
+        }
+      },
+      "13": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0688513766090402,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 28.26539999978195,
+          "router_ms": 21.26425999995263,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 49.59108200000628
+        }
+      },
+      "36": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.00037681349572092155,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 27.687971999966976,
+          "router_ms": 21.677022999938345,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 49.419050000324205
+        }
+      },
+      "42": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0051593464118587255,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 38.382547999844974,
+          "router_ms": 21.15353499993944,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 59.591358000034234
+        }
+      },
+      "48": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.026331739985676183,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 37.4402940001346,
+          "router_ms": 20.365634999961912,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 57.8607499996906
+        }
+      },
+      "49": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.003555440547364865,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 21.354488000270067,
+          "router_ms": 20.74824900000749,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 42.156088999945496
+        }
+      },
+      "50": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.02575653553059506,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 19.784105999860913,
+          "router_ms": 20.75300700016669,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 40.58919499993863
+        }
+      },
+      "51": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.10070051768797199,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 24.994936999974016,
+          "router_ms": 20.764804999998887,
+          "dense_ms": 7.998480999958701,
+          "splade_ms": 11.791197000093234,
+          "fusion_ms": 0.19514199993864167,
+          "total_ms": 65.86196300031588
+        }
+      },
+      "53": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.048276208115827536,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 26.985105000221665,
+          "router_ms": 23.0542270001024,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 50.09864500016192
+        }
+      },
+      "54": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0425722848138685,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 32.198137000250426,
+          "router_ms": 20.290516999921238,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 52.540696999585634
+        }
+      },
+      "56": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0003403551623875882,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 39.256493000266346,
+          "router_ms": 20.48657000023013,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 59.79600599994228
+        }
+      },
+      "57": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0003403551623875882,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 37.20356800022273,
+          "router_ms": 19.85412699968947,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 57.10970200016163
+        }
+      },
+      "70": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.08008729575240522,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 16.60992000006445,
+          "router_ms": 20.229777999702492,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 36.89057200017487
+        }
+      },
+      "72": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.16151569915591235,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 21.61134799962383,
+          "router_ms": 20.321178000358486,
+          "dense_ms": 8.114042999750382,
+          "splade_ms": 12.071155999819894,
+          "fusion_ms": 0.1797350000742881,
+          "total_ms": 62.43313799996031
+        }
+      },
+      "75": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.005540213892168918,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 38.961782999649586,
+          "router_ms": 20.581603999744402,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 59.603435000099125
+        }
+      },
+      "94": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.1319178969291929,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 20.59638199989422,
+          "router_ms": 21.682469000097626,
+          "dense_ms": 8.285091999823635,
+          "splade_ms": 11.985278999873117,
+          "fusion_ms": 0.17698300007396028,
+          "total_ms": 62.85247000005256
+        }
+      },
+      "99": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.07506585369149954,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 31.18938999978127,
+          "router_ms": 20.252356000128202,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 51.5066369998749
+        }
+      },
+      "100": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0487879083696507,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 22.80124699973385,
+          "router_ms": 24.93739800002004,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 47.7932939998027
+        }
+      },
+      "113": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.011576082110677042,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 35.56029400033367,
+          "router_ms": 20.251074000043445,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 55.86497500007681
+        }
+      },
+      "115": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.11541304773892759,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 28.928053000072396,
+          "router_ms": 20.826173999921593,
+          "dense_ms": 8.305124999878899,
+          "splade_ms": 12.902038999982324,
+          "fusion_ms": 0.19746400039366563,
+          "total_ms": 71.27573200023107
+        }
+      },
+      "118": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0003403551623875882,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 33.23271299996122,
+          "router_ms": 21.95666399984475,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 55.270944999847416
+        }
+      },
+      "124": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.00035582580285822867,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 40.50119800012908,
+          "router_ms": 37.68589899982544,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 78.25256199976138
+        }
+      },
+      "127": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0782357135790449,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 33.4836320002978,
+          "router_ms": 21.24083700027768,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 54.78542999981073
+        }
+      },
+      "128": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.1442006113441547,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 23.522498000147607,
+          "router_ms": 22.287351000159106,
+          "dense_ms": 8.817990000352438,
+          "splade_ms": 13.552662000165583,
+          "fusion_ms": 0.21279700013110414,
+          "total_ms": 68.56532400024662
+        }
+      },
+      "129": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.00037681349572092155,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 42.34404699991501,
+          "router_ms": 20.66410099996574,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 63.07377999974051
+        }
+      },
+      "130": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.00037681349572092155,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 36.88193600009981,
+          "router_ms": 23.870016999808286,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 60.80805000010514
+        }
+      },
+      "132": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.03683970191563322,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 17.400101000021095,
+          "router_ms": 20.574049000060768,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 38.02674100006698
+        }
+      },
+      "133": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.09880342027754269,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 54.52966600023501,
+          "router_ms": 20.25681099985377,
+          "dense_ms": 8.083664999958273,
+          "splade_ms": 13.569075999839697,
+          "fusion_ms": 0.1442259999748785,
+          "total_ms": 96.70478199996069
+        }
+      },
+      "137": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.002562061764394463,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 34.55523800039373,
+          "router_ms": 20.32826100003149,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 54.954759999873204
+        }
+      },
+      "141": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0003403551623875882,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 31.093708000298648,
+          "router_ms": 20.59839200001079,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 51.744516999860934
+        }
+      },
+      "142": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.007239101470979293,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 52.89880500004074,
+          "router_ms": 21.136501999990287,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 74.08965199965678
+        }
+      },
+      "143": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.006833483009187308,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 45.761314000174025,
+          "router_ms": 22.265591000177665,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 68.08270200008337
+        }
+      },
+      "146": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0058963664461511075,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 50.00002000042514,
+          "router_ms": 22.19898600014858,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 72.2707050003919
+        }
+      },
+      "148": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.09899035510741615,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 16.071128000021417,
+          "router_ms": 20.7415210002182,
+          "dense_ms": 7.870162000017444,
+          "splade_ms": 11.256176000188134,
+          "fusion_ms": 0.15628299979653093,
+          "total_ms": 56.242840999857435
+        }
+      },
+      "163": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.005019924735729952,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 25.19438800027274,
+          "router_ms": 20.647343000291585,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 45.90288000008513
+        }
+      },
+      "171": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0003685702215246863,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 30.085091999808355,
+          "router_ms": 20.698395000181335,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 50.83817500008081
+        }
+      },
+      "179": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.05080697207377415,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 22.721403000105056,
+          "router_ms": 20.747056999880442,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 43.52260399991792
+        }
+      },
+      "180": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0005646486528972356,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 57.00834000026589,
+          "router_ms": 21.340199999940523,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 78.40582400012863
+        }
+      },
+      "183": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.14643643743380627,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 22.275796000030823,
+          "router_ms": 19.93653199997425,
+          "dense_ms": 7.630019999851356,
+          "splade_ms": 12.105002999760472,
+          "fusion_ms": 0.20944999960192945,
+          "total_ms": 62.28174099987882
+        }
+      },
+      "185": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.15450574605967163,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 25.29199799982962,
+          "router_ms": 21.165618000395625,
+          "dense_ms": 7.380231999832176,
+          "splade_ms": 11.895522000031633,
+          "fusion_ms": 0.17352499980916036,
+          "total_ms": 66.02500600001804
+        }
+      },
+      "198": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.06249763294197622,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 15.559877000214328,
+          "router_ms": 20.538723999834474,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 36.1592849999397
+        }
+      },
+      "208": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.057322412688390605,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 20.84531299988157,
+          "router_ms": 19.9205730000358,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 40.817818000050465
+        }
+      },
+      "212": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.09007279489650663,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 18.878138000218314,
+          "router_ms": 19.66085899994141,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 38.59013099963704
+        }
+      },
+      "213": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0015523888610815236,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 37.070331999984774,
+          "router_ms": 19.889213000169548,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 57.014431999959925
+        }
+      },
+      "216": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.032033486960397636,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 23.59699799990267,
+          "router_ms": 20.098044999940612,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 43.74953300020934
+        }
+      },
+      "217": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.03393479044682856,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 22.245282999847404,
+          "router_ms": 19.90127700037192,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 42.19880100026785
+        }
+      },
+      "218": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0019626802775552835,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 19.650623999950767,
+          "router_ms": 20.713168999918707,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 40.42620200016245
+        }
+      },
+      "219": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.001564289591029004,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 19.599536999976408,
+          "router_ms": 20.699021999917022,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 40.35054699988905
+        }
+      },
+      "230": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.04245543098663052,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 34.952831999817136,
+          "router_ms": 20.83768400007102,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 55.86525599983361
+        }
+      },
+      "232": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.013345917565355157,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 30.222122999930434,
+          "router_ms": 20.253612000033172,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 50.52762299965252
+        }
+      },
+      "233": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.07103054589860305,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 29.05344900000273,
+          "router_ms": 20.26862100001381,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 49.3728349997582
+        }
+      },
+      "236": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.06277416135500384,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 24.737136000112514,
+          "router_ms": 20.18354600022576,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 44.97069100034423
+        }
+      },
+      "237": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.02145415699339355,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 30.066811999859056,
+          "router_ms": 20.430662999842752,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 50.55917200024851
+        }
+      },
+      "238": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.16524800141930432,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 19.962479999776406,
+          "router_ms": 20.11166200009029,
+          "dense_ms": 8.392043000185367,
+          "splade_ms": 11.946179000005941,
+          "fusion_ms": 0.15696400032538804,
+          "total_ms": 60.68003000018507
+        }
+      },
+      "239": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.07049946949980547,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 23.384713000268675,
+          "router_ms": 19.964931000231445,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 43.41324400002122
+        }
+      },
+      "248": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.06440049518511877,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 20.811022000088997,
+          "router_ms": 19.95748600029401,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 40.82088399991335
+        }
+      },
+      "249": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.06455322004634813,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 19.299478999982966,
+          "router_ms": 20.223512000029586,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 39.57698400017762
+        }
+      },
+      "261": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.12399688462560486,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 31.325723999998445,
+          "router_ms": 19.893971000328747,
+          "dense_ms": 7.998080000106711,
+          "splade_ms": 12.267697999959637,
+          "fusion_ms": 0.15521000022999942,
+          "total_ms": 71.75176299961095
+        }
+      },
+      "268": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.11038957165124186,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 13.822712999626674,
+          "router_ms": 20.979880000140838,
+          "dense_ms": 6.986028000028455,
+          "splade_ms": 11.938843999814708,
+          "fusion_ms": 0.19430400016062777,
+          "total_ms": 54.057576000104746
+        }
+      },
+      "269": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.09731635530517145,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 14.165726000101131,
+          "router_ms": 20.183112999802688,
+          "dense_ms": 7.150477000323008,
+          "splade_ms": 11.670970999603014,
+          "fusion_ms": 0.13948800005891826,
+          "total_ms": 53.41070100030265
+        }
+      },
+      "274": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0005646486528972356,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 55.18775300015477,
+          "router_ms": 20.523321999917243,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 75.78445399985867
+        }
+      },
+      "275": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.016050549653733037,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 41.06135299980451,
+          "router_ms": 21.064011999897048,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 62.18002000014167
+        }
+      },
+      "279": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.001122433951638368,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 27.66237999958321,
+          "router_ms": 23.026906000268355,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 50.75979200000802
+        }
+      },
+      "294": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.14365159136453073,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 30.158967999796005,
+          "router_ms": 20.472644999699696,
+          "dense_ms": 8.11926599999424,
+          "splade_ms": 12.210588000016287,
+          "fusion_ms": 0.146942999890598,
+          "total_ms": 71.2149450000652
+        }
+      },
+      "295": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.00433640665581203,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 46.10571200009872,
+          "router_ms": 20.47567599993272,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 66.66280699982963
+        }
+      },
+      "298": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.004056007418068176,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 32.993846999943344,
+          "router_ms": 20.47835000030318,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 53.526844999851164
+        }
+      },
+      "300": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.01002724294960923,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 66.00254099976155,
+          "router_ms": 20.018896000237874,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 86.079232999964
+        }
+      },
+      "303": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0008628961567671452,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 36.2915669998074,
+          "router_ms": 20.104141000047093,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 56.452151000030426
+        }
+      },
+      "312": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.14562007481211708,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 35.566223000387254,
+          "router_ms": 20.23200000030556,
+          "dense_ms": 7.9063860002861475,
+          "splade_ms": 13.293933000113611,
+          "fusion_ms": 0.1491410002927296,
+          "total_ms": 77.2543120001501
+        }
+      },
+      "314": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.012055944712238345,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 59.56309800012605,
+          "router_ms": 21.001506999709818,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 80.64767599989864
+        }
+      },
+      "324": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.07096009934307126,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 17.18937299983736,
+          "router_ms": 21.529861000090023,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 38.77902499971242
+        }
+      },
+      "327": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0004281252241159833,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 29.034982999746717,
+          "router_ms": 21.2662129997625,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 50.35498799998095
+        }
+      },
+      "338": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.005556407541404223,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 17.371627000102308,
+          "router_ms": 20.44064400024581,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 37.871375999657175
+        }
+      },
+      "343": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.02578957899682195,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 44.39467700012756,
+          "router_ms": 20.411601999967388,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 64.89355800022167
+        }
+      },
+      "350": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.005493917595872622,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 35.8305280001332,
+          "router_ms": 20.087897999928828,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 55.98126199993203
+        }
+      },
+      "354": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0003403551623875882,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 27.366085999801726,
+          "router_ms": 19.9104640000769,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 47.33077699984278
+        }
+      },
+      "362": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.18775434448062447,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 59.6903430000566,
+          "router_ms": 19.94024800023908,
+          "dense_ms": 7.995862000370835,
+          "splade_ms": 13.30172500001936,
+          "fusion_ms": 0.1793569999790634,
+          "total_ms": 101.23114299994995
+        }
+      },
+      "380": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.03210165880921832,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 32.10990299976402,
+          "router_ms": 20.452765000300133,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 52.62280499982808
+        }
+      },
+      "384": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.015218230350280344,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 33.16978300017581,
+          "router_ms": 20.66689600042082,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 53.899464000096486
+        }
+      },
+      "385": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.1387080335883711,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 34.95032599994374,
+          "router_ms": 19.88682399996833,
+          "dense_ms": 7.699308000155725,
+          "splade_ms": 11.687550999795349,
+          "fusion_ms": 0.1457200000913872,
+          "total_ms": 74.49372100018081
+        }
+      },
+      "386": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0020116474605835367,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 42.09206199993787,
+          "router_ms": 22.490810000363126,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 64.64457899983245
+        }
+      },
+      "388": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.09164521261023553,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 24.90807499998482,
+          "router_ms": 19.796730999587453,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 44.764856999790936
+        }
+      },
+      "399": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0004254545397822243,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 28.23461700018015,
+          "router_ms": 20.257192999906692,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 48.55692999990424
+        }
+      },
+      "410": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.00037681349572092155,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 24.25728900016111,
+          "router_ms": 19.952181999997265,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 44.26161400033379
+        }
+      },
+      "411": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.00037681349572092155,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 23.323715000060474,
+          "router_ms": 20.316481000008935,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 43.694020999737404
+        }
+      },
+      "415": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.003226686214239346,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 31.933260000187147,
+          "router_ms": 21.614263000174105,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 53.60264899991307
+        }
+      },
+      "421": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.16121173775785622,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 33.225393000066106,
+          "router_ms": 20.353200000045035,
+          "dense_ms": 8.034637000037037,
+          "splade_ms": 12.430601999767532,
+          "fusion_ms": 0.16759800018917304,
+          "total_ms": 74.31973599977937
+        }
+      },
+      "431": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.04223139460335249,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 31.654388999868388,
+          "router_ms": 20.783444000244344,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 52.50392699963413
+        }
+      },
+      "436": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.00891551839881893,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 36.954066999896895,
+          "router_ms": 20.119082999826787,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 57.13035400003719
+        }
+      },
+      "437": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.16995323579680588,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 51.71725999980481,
+          "router_ms": 21.30464900028528,
+          "dense_ms": 7.8614740000375605,
+          "splade_ms": 11.928187000194157,
+          "fusion_ms": 0.17609300039111986,
+          "total_ms": 93.10137000011309
+        }
+      },
+      "439": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.02696060548357238,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 40.44412600023861,
+          "router_ms": 20.40707200012548,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 60.913294999863865
+        }
+      },
+      "440": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.02696060548357238,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 37.031586000011885,
+          "router_ms": 20.123685999806185,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 57.20868399976098
+        }
+      },
+      "443": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0114456551825763,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 26.40442099982465,
+          "router_ms": 20.54839999982505,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 47.00570799968773
+        }
+      },
+      "452": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.1619123219350866,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 25.77956000004633,
+          "router_ms": 20.571440999901824,
+          "dense_ms": 8.044690999668092,
+          "splade_ms": 12.474337000185187,
+          "fusion_ms": 0.1873489995887212,
+          "total_ms": 67.17194200018639
+        }
+      },
+      "475": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.05950406535877311,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 27.75674099984826,
+          "router_ms": 21.498582000276656,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 49.32980800003861
+        }
+      },
+      "478": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.1869823470082573,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 61.32922100005089,
+          "router_ms": 22.793145999912667,
+          "dense_ms": 7.925832999717386,
+          "splade_ms": 13.362311000037153,
+          "fusion_ms": 0.14857899986964185,
+          "total_ms": 105.6752360000246
+        }
+      },
+      "491": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.06895261413032025,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 36.525800000163144,
+          "router_ms": 20.564801000091393,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 57.15447500006121
+        }
+      },
+      "501": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.07396384129584552,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 20.34991699974853,
+          "router_ms": 20.134132000293903,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 40.53764499985846
+        }
+      },
+      "502": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.2078234414333156,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 38.91250200013019,
+          "router_ms": 19.95626699999775,
+          "dense_ms": 7.779641999604792,
+          "splade_ms": 12.266313000054652,
+          "fusion_ms": 0.2430340000501019,
+          "total_ms": 79.35684599988235
+        }
+      },
+      "507": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.021930559097237866,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 39.67771800034825,
+          "router_ms": 20.32540299978791,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 60.073268999985885
+        }
+      },
+      "508": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.12027892498278457,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 29.092964000028587,
+          "router_ms": 20.623502000034932,
+          "dense_ms": 7.972561999849859,
+          "splade_ms": 12.193891999686457,
+          "fusion_ms": 0.16028600020945305,
+          "total_ms": 70.14364199994816
+        }
+      },
+      "513": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.09758835024212885,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 19.273603000328876,
+          "router_ms": 21.387859999776992,
+          "dense_ms": 7.232612999814592,
+          "splade_ms": 11.74791199991887,
+          "fusion_ms": 0.15201999985947623,
+          "total_ms": 59.89921599984882
+        }
+      },
+      "514": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.015409947858051633,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 55.984604000059335,
+          "router_ms": 20.513848000064172,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 76.56307600018408
+        }
+      },
+      "516": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.004829080697667892,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 39.148294999904465,
+          "router_ms": 20.59072300016851,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 59.8047220000808
+        }
+      },
+      "517": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.09833770944898627,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 22.318845999961923,
+          "router_ms": 21.132670000042708,
+          "dense_ms": 8.00822600012907,
+          "splade_ms": 11.927288000151748,
+          "fusion_ms": 0.16125700039992807,
+          "total_ms": 63.66213799992693
+        }
+      },
+      "521": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0703221818211783,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 64.93353200039564,
+          "router_ms": 21.857385999737744,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 86.87241100005849
+        }
+      },
+      "525": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.06139353505832747,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 51.237563000086084,
+          "router_ms": 20.88688200001343,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 72.18020800019076
+        }
+      },
+      "527": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.13489313386376875,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 42.432197000380256,
+          "router_ms": 20.70078699989608,
+          "dense_ms": 8.186778999970556,
+          "splade_ms": 13.413078999747086,
+          "fusion_ms": 0.19079999992754892,
+          "total_ms": 85.04498799993598
+        }
+      },
+      "528": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0005646486528972356,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 67.0970699998179,
+          "router_ms": 20.645857000090473,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 87.80920900017009
+        }
+      },
+      "532": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.11890832375723695,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 18.7839659997735,
+          "router_ms": 20.030449000387307,
+          "dense_ms": 7.722885000021051,
+          "splade_ms": 12.355132999800844,
+          "fusion_ms": 0.23333599983743625,
+          "total_ms": 59.23834100030945
+        }
+      },
+      "533": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.11890832375723695,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 20.72219000001496,
+          "router_ms": 21.71052400035478,
+          "dense_ms": 7.2295969998776854,
+          "splade_ms": 11.934369999835326,
+          "fusion_ms": 0.16434799999842653,
+          "total_ms": 61.885930000244116
+        }
+      },
+      "535": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.16040164817653427,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 27.256311000201094,
+          "router_ms": 22.661333000087325,
+          "dense_ms": 7.015234999926179,
+          "splade_ms": 11.66055299972868,
+          "fusion_ms": 0.14273000033426797,
+          "total_ms": 68.84138499981418
+        }
+      },
+      "536": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.06819445904669905,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 19.78809700040074,
+          "router_ms": 20.320462999734445,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 40.16569400027947
+        }
+      },
+      "539": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.05131847707058689,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 17.281236000144418,
+          "router_ms": 20.755838999775733,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 38.102178999906755
+        }
+      },
+      "540": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0883790032537204,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 22.4239710000802,
+          "router_ms": 20.695669999895472,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 43.17165100019338
+        }
+      },
+      "544": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.10051211813844584,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 25.43122100041728,
+          "router_ms": 21.12781999994695,
+          "dense_ms": 7.732249000127922,
+          "splade_ms": 12.348206000297068,
+          "fusion_ms": 0.17445000003135647,
+          "total_ms": 66.93848699978844
+        }
+      },
+      "549": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.009429566333581342,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 19.224939000196173,
+          "router_ms": 20.560782000302424,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 39.844108000124834
+        }
+      },
+      "551": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0047352041651042235,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 62.06672400003299,
+          "router_ms": 20.333375000063825,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 82.46100199994544
+        }
+      },
+      "552": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.006515637926919152,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 51.25181600033102,
+          "router_ms": 21.006083999964176,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 72.31732599984753
+        }
+      },
+      "554": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0917887059565095,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 35.25745900014954,
+          "router_ms": 21.360953000112204,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 56.69058099965696
+        }
+      },
+      "560": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.06951679413868202,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 37.275098000009166,
+          "router_ms": 20.346641999822168,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 57.689303000188374
+        }
+      },
+      "569": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.07552102717749436,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 26.22004399972866,
+          "router_ms": 20.340699999906064,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 46.61910499999067
+        }
+      },
+      "575": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.14080601754997382,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 32.6745980000851,
+          "router_ms": 20.381428999826312,
+          "dense_ms": 8.123086000068724,
+          "splade_ms": 12.027083999782917,
+          "fusion_ms": 0.17792099970392883,
+          "total_ms": 73.54908400020577
+        }
+      },
+      "577": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.1443613426331156,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 58.356888000162144,
+          "router_ms": 20.989977000226645,
+          "dense_ms": 7.982331999755843,
+          "splade_ms": 13.45794000008027,
+          "fusion_ms": 0.1624489996174816,
+          "total_ms": 101.10820199997761
+        }
+      },
+      "578": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0008593380951636247,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 33.48662200005492,
+          "router_ms": 22.354759000336344,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 55.90770600019823
+        }
+      },
+      "587": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.19902291460280833,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 70.23001599964118,
+          "router_ms": 20.304901000145037,
+          "dense_ms": 7.7644080001846305,
+          "splade_ms": 14.053563000288705,
+          "fusion_ms": 0.3521240000736725,
+          "total_ms": 112.84112699968318
+        }
+      },
+      "589": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.003459871431006276,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 52.93785599997136,
+          "router_ms": 20.16828500018164,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 73.18499200027873
+        }
+      },
+      "593": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.01067353690812117,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 28.852074000042194,
+          "router_ms": 22.112277000360336,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 51.01826700001766
+        }
+      },
+      "597": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.10102576329334154,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 19.893259000127728,
+          "router_ms": 20.438381000076333,
+          "dense_ms": 7.470497999747749,
+          "splade_ms": 11.297822999949858,
+          "fusion_ms": 0.1687559997662902,
+          "total_ms": 59.37573499977589
+        }
+      },
+      "598": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.03960944075581573,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 51.01663000004919,
+          "router_ms": 20.701407000160543,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 71.78273799991075
+        }
+      },
+      "613": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0035640385929163127,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 29.780119999941235,
+          "router_ms": 20.151270000042132,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 49.98601499983124
+        }
+      },
+      "619": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.09624780718752203,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 38.6365089998435,
+          "router_ms": 21.331433999876026,
+          "dense_ms": 8.609456000158389,
+          "splade_ms": 12.359063000076276,
+          "fusion_ms": 0.20610199999282486,
+          "total_ms": 81.25782199977039
+        }
+      },
+      "623": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0509867263351986,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 34.71101399964027,
+          "router_ms": 20.391176999964955,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 55.170329000247875
+        }
+      },
+      "628": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.1890123260090352,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 42.30915800008006,
+          "router_ms": 20.435480000287498,
+          "dense_ms": 7.61346199988111,
+          "splade_ms": 14.09185600005003,
+          "fusion_ms": 0.17728200009514694,
+          "total_ms": 84.751827999753
+        }
+      },
+      "636": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.021345097600840007,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 38.879300999724364,
+          "router_ms": 20.628658999612526,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 59.578441999747156
+        }
+      },
+      "637": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.03536474432383119,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 35.24238099998911,
+          "router_ms": 20.88308699967456,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 56.1974770002962
+        }
+      },
+      "641": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.07511769955365837,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 26.151761999699374,
+          "router_ms": 20.829842000239296,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 47.037956999702146
+        }
+      },
+      "644": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.11279902950453828,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 19.955989999743906,
+          "router_ms": 20.972634999907314,
+          "dense_ms": 7.772053000280721,
+          "splade_ms": 11.370941000222956,
+          "fusion_ms": 0.1739180002005014,
+          "total_ms": 60.35865600006218
+        }
+      },
+      "649": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.18477164257621667,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 36.62045400005809,
+          "router_ms": 20.27897200014195,
+          "dense_ms": 7.502317000216863,
+          "splade_ms": 12.267517999589472,
+          "fusion_ms": 0.15867899992372259,
+          "total_ms": 76.93381699982638
+        }
+      },
+      "659": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.1319178969291929,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 19.870144999913464,
+          "router_ms": 20.172308999917732,
+          "dense_ms": 7.0674670000698825,
+          "splade_ms": 11.702619000061532,
+          "fusion_ms": 0.17191400002047885,
+          "total_ms": 59.09015899987935
+        }
+      },
+      "660": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.07491923506323893,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 17.543147999731445,
+          "router_ms": 20.210581000355887,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 37.80918899974495
+        }
+      },
+      "674": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.057556494475996624,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 30.34921900007248,
+          "router_ms": 19.884585999989213,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 50.28480500004662
+        }
+      },
+      "684": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.013561927300911337,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 32.90548099994339,
+          "router_ms": 20.508252999661636,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 53.46568999993906
+        }
+      },
+      "690": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.3123499488546748,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 54.729106000195316,
+          "router_ms": 22.312573999897722,
+          "dense_ms": 8.782684999914636,
+          "splade_ms": 13.700414000140881,
+          "fusion_ms": 0.20206699991831556,
+          "total_ms": 99.86329600042154
+        }
+      },
+      "691": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.02792389544769035,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 37.08950899999763,
+          "router_ms": 20.41257900009441,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 57.56456700009949
+        }
+      },
+      "692": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.07065062847216742,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 27.49660600011339,
+          "router_ms": 20.25002099981066,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 47.80041100002563
+        }
+      },
+      "693": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.12506947335213117,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 27.626277999843296,
+          "router_ms": 21.423744000003353,
+          "dense_ms": 7.992635000391601,
+          "splade_ms": 12.121602000206622,
+          "fusion_ms": 0.16765600003054715,
+          "total_ms": 69.44876899979135
+        }
+      },
+      "700": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.11404274674561324,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 33.77043499995125,
+          "router_ms": 22.544649000337813,
+          "dense_ms": 8.024208000279032,
+          "splade_ms": 12.151635999998689,
+          "fusion_ms": 0.2137070000571839,
+          "total_ms": 76.84599999993225
+        }
+      },
+      "702": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0014296349735059613,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 36.844628999915585,
+          "router_ms": 21.056361999853834,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 58.00389600017297
+        }
+      },
+      "715": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.21333348254299078,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 40.44691499984765,
+          "router_ms": 21.02380699989226,
+          "dense_ms": 8.24530699992465,
+          "splade_ms": 12.446469999758847,
+          "fusion_ms": 0.23990299996512476,
+          "total_ms": 82.54277099968022
+        }
+      },
+      "716": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.11032683969756212,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 31.95100699986142,
+          "router_ms": 21.072763000120176,
+          "dense_ms": 8.42628500004139,
+          "splade_ms": 12.205570999867632,
+          "fusion_ms": 0.19058500038227066,
+          "total_ms": 74.00145499968858
+        }
+      },
+      "718": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.06299021864417079,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 32.57164199976614,
+          "router_ms": 21.469087000241416,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 54.120610999689234
+        }
+      },
+      "721": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0003403551623875882,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 41.62908500029516,
+          "router_ms": 21.387972999946214,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 63.08118800006923
+        }
+      },
+      "723": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0003403551623875882,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 39.58824100027414,
+          "router_ms": 22.43092299977434,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 62.08345000004556
+        }
+      },
+      "727": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0009627167483652856,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 36.1305189999257,
+          "router_ms": 21.766626000044198,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 57.96075499983999
+        }
+      },
+      "728": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.00037681349572092155,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 30.736725999759074,
+          "router_ms": 22.160471999995934,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 52.96056899987889
+        }
+      },
+      "729": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.008682651543821853,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 34.75805700009005,
+          "router_ms": 23.014257999875554,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 57.83848900000521
+        }
+      },
+      "742": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.041812213700028286,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 23.907836000034877,
+          "router_ms": 23.342635000062728,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 47.31314900027428
+        }
+      },
+      "743": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.08963476422571115,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 15.623172000232444,
+          "router_ms": 24.13085800026238,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 39.81131999989884
+        }
+      },
+      "744": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.008744899921580972,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 44.47967499982042,
+          "router_ms": 22.072204999858513,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 66.61320000011983
+        }
+      },
+      "756": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.005404349166466485,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 41.49661599967658,
+          "router_ms": 21.580705999895144,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 63.14318499971705
+        }
+      },
+      "759": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.03106843691737531,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 50.916066000354476,
+          "router_ms": 20.914376000291668,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 71.90544099967155
+        }
+      },
+      "768": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.007079724265930714,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 30.417796000165254,
+          "router_ms": 21.149136000076396,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 51.626697999836324
+        }
+      },
+      "770": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.00583473211495762,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 68.98936100014907,
+          "router_ms": 22.35639299988179,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 91.41593200001807
+        }
+      },
+      "775": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.13640882033467808,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 43.01096300014251,
+          "router_ms": 22.182401000009122,
+          "dense_ms": 9.001927000099386,
+          "splade_ms": 13.288922000356251,
+          "fusion_ms": 0.20318699989729794,
+          "total_ms": 87.83309000000372
+        }
+      },
+      "781": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.02449430278527127,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 41.8585840002379,
+          "router_ms": 22.00269400009347,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 63.93337200006499
+        }
+      },
+      "783": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0015424370181393878,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 42.40926600004968,
+          "router_ms": 21.767980999811698,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 64.24483000000691
+        }
+      },
+      "784": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.11029604378879299,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 46.85975899974437,
+          "router_ms": 21.51113299987628,
+          "dense_ms": 8.82395100006761,
+          "splade_ms": 13.898308000079851,
+          "fusion_ms": 0.18158600005335757,
+          "total_ms": 91.41443299995444
+        }
+      },
+      "785": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.019272005531257554,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 43.867177000265656,
+          "router_ms": 22.03196400023444,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 65.9658260001379
+        }
+      },
+      "793": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.040619450633633675,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 15.940039999804867,
+          "router_ms": 20.760604000315652,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 36.757665000095585
+        }
+      },
+      "800": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.14510050190797885,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 51.115846000357124,
+          "router_ms": 21.05466200009687,
+          "dense_ms": 8.215931999984605,
+          "splade_ms": 13.060243999916565,
+          "fusion_ms": 0.2232459996776015,
+          "total_ms": 93.79822499977308
+        }
+      },
+      "805": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.006588241622097373,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 25.045646999842575,
+          "router_ms": 21.65493399979823,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 46.77077299993471
+        }
+      },
+      "808": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.12302130070360102,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 26.609173999986524,
+          "router_ms": 20.45212499979243,
+          "dense_ms": 7.514746999731869,
+          "splade_ms": 11.830336999992142,
+          "fusion_ms": 0.19294399999125744,
+          "total_ms": 66.72492099960436
+        }
+      },
+      "811": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.003852392227815099,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 40.98791800015533,
+          "router_ms": 21.549048999986553,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 62.65572800020891
+        }
+      },
+      "814": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.009905718228721149,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 68.73959899985493,
+          "router_ms": 21.138524999969377,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 89.94793300007586
+        }
+      },
+      "820": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.11821715644991188,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 22.924126999896544,
+          "router_ms": 20.93121300003986,
+          "dense_ms": 8.952944000157004,
+          "splade_ms": 12.301875000048312,
+          "fusion_ms": 0.1988310000342608,
+          "total_ms": 65.44206399985342
+        }
+      },
+      "821": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.11883798978324521,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 23.212551000142412,
+          "router_ms": 20.342236000033154,
+          "dense_ms": 7.467547000032937,
+          "splade_ms": 13.148570000339532,
+          "fusion_ms": 0.21561799985647667,
+          "total_ms": 64.50306600027034
+        }
+      },
+      "823": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.009439060806500895,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 21.04030899999998,
+          "router_ms": 21.502357999906963,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 42.60714600013671
+        }
+      },
+      "830": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0022338038965763105,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 44.975031000376475,
+          "router_ms": 20.677833999798167,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 65.71176099987497
+        }
+      },
+      "831": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.11004860142682185,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 31.80923800027813,
+          "router_ms": 21.367929999996704,
+          "dense_ms": 8.40454299986959,
+          "splade_ms": 13.957119999759016,
+          "fusion_ms": 0.31028000012156554,
+          "total_ms": 75.98212499988222
+        }
+      },
+      "832": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.010865380364441363,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 23.050212999805808,
+          "router_ms": 21.489375000328437,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 44.61012000001574
+        }
+      },
+      "834": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.15892749263022138,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 29.705124999964028,
+          "router_ms": 22.15436200003751,
+          "dense_ms": 8.629097000266484,
+          "splade_ms": 11.724606999905518,
+          "fusion_ms": 0.16333400026269373,
+          "total_ms": 72.48970199998439
+        }
+      },
+      "837": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.01392001872370984,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 23.930209000354807,
+          "router_ms": 20.48294300038833,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 44.47715100013738
+        }
+      },
+      "839": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.14007217426368201,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 37.434159999975236,
+          "router_ms": 25.96503999984634,
+          "dense_ms": 9.416180000243912,
+          "splade_ms": 16.19285300012052,
+          "fusion_ms": 0.3034160004062869,
+          "total_ms": 89.50709999999162
+        }
+      },
+      "845": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0003840408619953268,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 41.02117899992663,
+          "router_ms": 30.118120000224735,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 71.23163400001431
+        }
+      },
+      "847": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0021097740570249486,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 48.49258300009751,
+          "router_ms": 20.76702300018951,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 69.40578900002947
+        }
+      },
+      "852": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.10925920724570837,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 40.48720500031777,
+          "router_ms": 21.828186999755417,
+          "dense_ms": 8.16525400023238,
+          "splade_ms": 11.731086000054347,
+          "fusion_ms": 0.16319199994541123,
+          "total_ms": 82.49311700001272
+        }
+      },
+      "859": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.07818116961996328,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 23.089387999789324,
+          "router_ms": 20.219694999923377,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 43.367194999973435
+        }
+      },
+      "870": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.05765683897911907,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 11.31948000011107,
+          "router_ms": 20.60320300006424,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 31.976322999980766
+        }
+      },
+      "873": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.06881838570049935,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 21.134065999831364,
+          "router_ms": 21.470824999596516,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 42.657962999783194
+        }
+      },
+      "879": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.04064925096478419,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 27.535871000054613,
+          "router_ms": 21.308474999841565,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 48.897847999796795
+        }
+      },
+      "880": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.010680998426392745,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 23.406752000028064,
+          "router_ms": 20.874069999990752,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 44.33357399966553
+        }
+      },
+      "882": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.001310180099808934,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 29.356768000070588,
+          "router_ms": 20.60633799965217,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 50.03062299965677
+        }
+      },
+      "887": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.1186448814131054,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 32.58101500023258,
+          "router_ms": 20.947120000073483,
+          "dense_ms": 7.877074999669276,
+          "splade_ms": 11.882851999871491,
+          "fusion_ms": 0.4840159999730531,
+          "total_ms": 73.9105389998258
+        }
+      },
+      "903": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.002972110583182928,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 29.466535999745247,
+          "router_ms": 20.57830500007185,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 50.10500600019441
+        }
+      },
+      "904": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0003685702215246863,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 56.55260300000009,
+          "router_ms": 20.798670000203856,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 77.41073299985146
+        }
+      },
+      "907": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.014499362800442025,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 44.008953999764344,
+          "router_ms": 21.225756000148976,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 65.29256500016345
+        }
+      },
+      "911": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0003403551623875882,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 41.23182600005748,
+          "router_ms": 21.75514300006398,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 63.04485600003318
+        }
+      },
+      "913": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.044682961270688576,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 20.469864000006055,
+          "router_ms": 21.27695399985896,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 41.826978999779385
+        }
+      },
+      "914": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.02735510322420734,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 20.678113000030862,
+          "router_ms": 20.98806300000433,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 41.719565999756014
+        }
+      },
+      "921": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.07773229846488794,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 26.847063000332128,
+          "router_ms": 21.529591000216897,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 48.43769799981601
+        }
+      },
+      "922": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.013513635482826294,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 35.861464999925374,
+          "router_ms": 21.217047999925853,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 57.14087700016535
+        }
+      },
+      "936": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0003403551623875882,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 23.483454000142956,
+          "router_ms": 20.723092000025645,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 44.26260499985801
+        }
+      },
+      "956": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.033278648258291084,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 34.974932999830344,
+          "router_ms": 20.370456999899034,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 55.40061500005322
+        }
+      },
+      "957": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.04827969579943879,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 27.630809000129375,
+          "router_ms": 20.742124000207696,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 48.42787899997347
+        }
+      },
+      "960": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0645684422974532,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 14.501183999982459,
+          "router_ms": 20.70619699998133,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 35.26102300020284
+        }
+      },
+      "967": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.015397171201613474,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 28.65056500013452,
+          "router_ms": 20.639434999793593,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 49.345288000040455
+        }
+      },
+      "971": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.020177737370762717,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 54.75085099988064,
+          "router_ms": 21.823563999987527,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 76.6359009999178
+        }
+      },
+      "975": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.011725106163136179,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 30.91793500016138,
+          "router_ms": 20.719201999781944,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 51.69402899991837
+        }
+      },
+      "982": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.053401722793970284,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 48.436505000154284,
+          "router_ms": 24.109140999826195,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 72.60188500004006
+        }
+      },
+      "985": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0008593380951636247,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 33.90913900011583,
+          "router_ms": 20.300096000028134,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 54.27043300005607
+        }
+      },
+      "993": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.005868720591693295,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 23.31979299970044,
+          "router_ms": 21.042574000148306,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 44.41856599987659
+        }
+      },
+      "1012": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.00038479960683203266,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 26.681814000312443,
+          "router_ms": 21.373917999881087,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 48.11124399975597
+        }
+      },
+      "1014": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.029192202701660227,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 23.255417000200396,
+          "router_ms": 20.037977000356477,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 43.34670299977006
+        }
+      },
+      "1019": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.012830927600193321,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 24.41023999972458,
+          "router_ms": 20.532229999844276,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 44.997804000104225
+        }
+      },
+      "1020": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.1412891865832082,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 59.51670700005707,
+          "router_ms": 21.326926000256208,
+          "dense_ms": 7.967495000229974,
+          "splade_ms": 12.020696000035969,
+          "fusion_ms": 0.18811900008586235,
+          "total_ms": 101.14066100004493
+        }
+      },
+      "1021": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.1412048953954687,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 57.83456999961345,
+          "router_ms": 21.285070999965683,
+          "dense_ms": 7.836945999770251,
+          "splade_ms": 11.679779999667517,
+          "fusion_ms": 0.15592299996569636,
+          "total_ms": 98.90295200011678
+        }
+      },
+      "1024": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0557636409809285,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 28.02482000015516,
+          "router_ms": 19.927851999909763,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 48.01982600019983
+        }
+      },
+      "1029": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.06358947652971735,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 57.47835700003634,
+          "router_ms": 20.48657200020898,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 78.04347399996914
+        }
+      },
+      "1041": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.004474723275963874,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 40.41393099987545,
+          "router_ms": 20.772506999946927,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 61.249479000252904
+        }
+      },
+      "1049": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.10752131045578059,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 28.739643999870168,
+          "router_ms": 20.269707999887032,
+          "dense_ms": 8.203326000057132,
+          "splade_ms": 12.165235999873403,
+          "fusion_ms": 0.23523499976363382,
+          "total_ms": 69.74045900005876
+        }
+      },
+      "1062": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.010749005163127013,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 18.823904000328184,
+          "router_ms": 20.82273099995291,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 39.707795999675
+        }
+      },
+      "1086": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0004190752720297368,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 48.62839699990218,
+          "router_ms": 21.26571700000568,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 69.94906999989325
+        }
+      },
+      "1088": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.08882079378128233,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 31.488328000250476,
+          "router_ms": 20.364023000183806,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 51.92723499976637
+        }
+      },
+      "1089": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0009037825396080692,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 36.47852199992485,
+          "router_ms": 21.808138999858784,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 58.34268600028736
+        }
+      },
+      "1099": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.11070578113934751,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 11.47265999998126,
+          "router_ms": 21.880610000152956,
+          "dense_ms": 7.90929300001153,
+          "splade_ms": 11.621521000051871,
+          "fusion_ms": 0.15042200038806186,
+          "total_ms": 53.14623699996446
+        }
+      },
+      "1100": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.11252912572983632,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 11.27965600016978,
+          "router_ms": 21.09357800009093,
+          "dense_ms": 7.386611000129051,
+          "splade_ms": 11.260524000135774,
+          "fusion_ms": 0.16179199974430958,
+          "total_ms": 51.28560500043022
+        }
+      },
+      "1104": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.003685574302996654,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 61.37570800001413,
+          "router_ms": 20.715214000119886,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 82.15414500000406
+        }
+      },
+      "1107": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0016189519417842886,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 26.08327100006136,
+          "router_ms": 20.92901800006075,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 47.06634500007567
+        }
+      },
+      "1110": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.137823597079316,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 22.360465000019758,
+          "router_ms": 20.26037899986477,
+          "dense_ms": 7.730998000170075,
+          "splade_ms": 12.920140999995056,
+          "fusion_ms": 0.16901199978747172,
+          "total_ms": 63.545821999923646
+        }
+      },
+      "1121": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0018259364050100116,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 34.11377300017193,
+          "router_ms": 20.388986999932968,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 54.57801200009271
+        }
+      },
+      "1130": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0005169732557467929,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 44.904198000040196,
+          "router_ms": 20.542474999729166,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 65.50318600011451
+        }
+      },
+      "1132": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.06239019368355901,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 37.7611569997498,
+          "router_ms": 20.34320100028708,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 58.1583979997049
+        }
+      },
+      "1137": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.036079748536040346,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 19.672763000016857,
+          "router_ms": 20.81312500013155,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 40.540755999700195
+        }
+      },
+      "1140": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.1509006451524236,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 28.488684999956604,
+          "router_ms": 20.23314100006246,
+          "dense_ms": 8.02647499995146,
+          "splade_ms": 12.199195999983203,
+          "fusion_ms": 0.161775999913516,
+          "total_ms": 69.23148199985008
+        }
+      },
+      "1144": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0027220881438659787,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 51.11960700014606,
+          "router_ms": 20.67719499973464,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 71.87747700027103
+        }
+      },
+      "1146": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.002057243507196576,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 29.618186999869067,
+          "router_ms": 20.88933499999257,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 50.582679999934044
+        }
+      },
+      "1150": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.01046691398199081,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 34.218979999877774,
+          "router_ms": 20.836499000324693,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 55.112758000177564
+        }
+      },
+      "1163": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0012675477321765665,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 27.182955000171205,
+          "router_ms": 20.452548999855935,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 47.6904789998116
+        }
+      },
+      "1175": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.10570596141874374,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 24.289199999657285,
+          "router_ms": 20.243730999936815,
+          "dense_ms": 7.832762999896659,
+          "splade_ms": 12.095703999875695,
+          "fusion_ms": 0.20221900012984406,
+          "total_ms": 64.77963399993314
+        }
+      },
+      "1179": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0018221003333687199,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 28.193669999836857,
+          "router_ms": 20.48551600000792,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 48.74221599993689
+        }
+      },
+      "1180": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.008250259192351927,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 25.72246800036737,
+          "router_ms": 22.064128999772947,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 47.85262399991552
+        }
+      },
+      "1185": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0036286684387991214,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 71.90172799982975,
+          "router_ms": 20.48475999981747,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 92.46235699993122
+        }
+      },
+      "1187": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.162080763838584,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 60.74624299981224,
+          "router_ms": 20.750599000166403,
+          "dense_ms": 8.317340000303375,
+          "splade_ms": 13.290456000049744,
+          "fusion_ms": 0.20513100025709718,
+          "total_ms": 103.45645699999295
+        }
+      },
+      "1191": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.1100293933924492,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 29.959398999835685,
+          "router_ms": 20.83767700014505,
+          "dense_ms": 7.360208999671158,
+          "splade_ms": 12.018969000109792,
+          "fusion_ms": 0.22690500009048264,
+          "total_ms": 70.52451200024734
+        }
+      },
+      "1194": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.004159376353061936,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 52.94279600002483,
+          "router_ms": 21.347713000068325,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 74.36602799998582
+        }
+      },
+      "1196": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.10754313994213488,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 31.754801000261068,
+          "router_ms": 20.03010099997482,
+          "dense_ms": 7.876799999849027,
+          "splade_ms": 12.738774999888847,
+          "fusion_ms": 0.1924010002767318,
+          "total_ms": 72.70930599997882
+        }
+      },
+      "1197": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.10963074330731624,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 33.6583690000225,
+          "router_ms": 20.76747399996748,
+          "dense_ms": 7.445716999882279,
+          "splade_ms": 11.582855000142445,
+          "fusion_ms": 0.15024200001789723,
+          "total_ms": 73.72095600021566
+        }
+      },
+      "1199": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.002064699591211148,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 46.51823000040167,
+          "router_ms": 20.55111699974077,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 67.14739000017289
+        }
+      },
+      "1200": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.1819586749271314,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 53.00612100018043,
+          "router_ms": 21.18137899969952,
+          "dense_ms": 7.674737000343157,
+          "splade_ms": 13.499433000106364,
+          "fusion_ms": 0.2326519997950527,
+          "total_ms": 95.71355100024448
+        }
+      },
+      "1202": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.10571407914531562,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 43.20111199967869,
+          "router_ms": 21.850381999684032,
+          "dense_ms": 8.336899999903835,
+          "splade_ms": 12.620635000075708,
+          "fusion_ms": 0.18786900000122841,
+          "total_ms": 86.35362099994381
+        }
+      },
+      "1204": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.07647170432261877,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 39.713162000225566,
+          "router_ms": 21.570583000084298,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 61.35122200021215
+        }
+      },
+      "1207": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.0989807562494974,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 51.53909899991049,
+          "router_ms": 20.75089299978572,
+          "dense_ms": 8.165132000158337,
+          "splade_ms": 13.248933000340912,
+          "fusion_ms": 0.21552699990934343,
+          "total_ms": 94.03724199955832
+        }
+      },
+      "1213": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.07526362862289189,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 34.911288999865064,
+          "router_ms": 20.71593099981328,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 55.68910200008759
+        }
+      },
+      "1216": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.011415097185062194,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 30.574665000131063,
+          "router_ms": 21.122317999925144,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 51.750516000083735
+        }
+      },
+      "1221": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.031087579221597,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 40.821509000124934,
+          "router_ms": 21.101363000070705,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 61.9781810000859
+        }
+      },
+      "1225": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.03730627447570536,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 22.388034999949014,
+          "router_ms": 20.391420999658294,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 42.83384600012141
+        }
+      },
+      "1226": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.14778001212189087,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 38.58589900028164,
+          "router_ms": 19.919089999802964,
+          "dense_ms": 8.16678299997875,
+          "splade_ms": 12.21846899989032,
+          "fusion_ms": 1.3155990000086604,
+          "total_ms": 80.35796500007564
+        }
+      },
+      "1232": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0009863084234362754,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 41.71246299983977,
+          "router_ms": 20.83737300017674,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 62.61125299988635
+        }
+      },
+      "1241": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.14101633539588768,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 26.19514199977857,
+          "router_ms": 21.016697000050044,
+          "dense_ms": 8.216959000037605,
+          "splade_ms": 11.896041999989393,
+          "fusion_ms": 0.16729499975554063,
+          "total_ms": 67.67583300006663
+        }
+      },
+      "1245": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0888714051105689,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 31.229211000209034,
+          "router_ms": 20.84726699968087,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 52.142333000119834
+        }
+      },
+      "1259": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.1945860584107009,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 58.856204000221624,
+          "router_ms": 20.348385000033886,
+          "dense_ms": 8.099599000161106,
+          "splade_ms": 13.361926000015956,
+          "fusion_ms": 0.1698900000519643,
+          "total_ms": 100.96338800030935
+        }
+      },
+      "1262": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.006670620668543288,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 35.73266400007924,
+          "router_ms": 20.81595900017419,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 56.60929399982706
+        }
+      },
+      "1266": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.03627345132908811,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 56.038575999991735,
+          "router_ms": 20.220461000008072,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 76.31592000007004
+        }
+      },
+      "1270": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0003685702215246863,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 35.006983000130276,
+          "router_ms": 22.143859000152588,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 57.20619500016255
+        }
+      },
+      "1271": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.005957719526988503,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 52.93785999992906,
+          "router_ms": 21.28169000025082,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 74.28831000015634
+        }
+      },
+      "1272": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.005661972375240226,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 39.794493000044895,
+          "router_ms": 21.607087000120373,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 61.46387099988715
+        }
+      },
+      "1273": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0003403551623875882,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 31.246860999999626,
+          "router_ms": 21.627150000313122,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 52.945246000035695
+        }
+      },
+      "1274": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.02150539529672577,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 60.46325099987371,
+          "router_ms": 20.80806100002519,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 81.3324279997687
+        }
+      },
+      "1278": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.12928486737051925,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 39.52748099982273,
+          "router_ms": 21.001130000058765,
+          "dense_ms": 7.99581900037083,
+          "splade_ms": 13.29203300019799,
+          "fusion_ms": 0.20914100014124415,
+          "total_ms": 82.15010599997186
+        }
+      },
+      "1279": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.11673634042836975,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 35.16183900001124,
+          "router_ms": 21.927886999947077,
+          "dense_ms": 7.891275000019959,
+          "splade_ms": 12.285848000374244,
+          "fusion_ms": 0.1826210000217543,
+          "total_ms": 77.56487699998615
+        }
+      },
+      "1280": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0013356520616104174,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 36.93668100004288,
+          "router_ms": 21.999933999722998,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 59.003842000038276
+        }
+      },
+      "1281": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.13046291818198777,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 26.1620880000919,
+          "router_ms": 20.948849999967933,
+          "dense_ms": 7.71070199971291,
+          "splade_ms": 11.635569999725703,
+          "fusion_ms": 0.17375200013702852,
+          "total_ms": 66.73580100004983
+        }
+      },
+      "1282": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.21463984423147664,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 39.636785999846325,
+          "router_ms": 20.812220000152593,
+          "dense_ms": 7.963077000113117,
+          "splade_ms": 12.444169999980659,
+          "fusion_ms": 0.19219200021325378,
+          "total_ms": 81.2020449998272
+        }
+      },
+      "1290": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0026258200643010433,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 31.041321999964566,
+          "router_ms": 21.562411999639153,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 52.6650410001821
+        }
+      },
+      "1292": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.07109302338028396,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 27.126023000164423,
+          "router_ms": 20.191027000237227,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 47.37131299998509
+        }
+      },
+      "1298": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0027527926542421214,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 60.456648000126734,
+          "router_ms": 21.05169099968407,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 81.56537299964839
+        }
+      },
+      "1303": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.16560871862526153,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 22.551944000042567,
+          "router_ms": 20.70589699997072,
+          "dense_ms": 8.033668000280159,
+          "splade_ms": 11.772571000165044,
+          "fusion_ms": 0.1726729997244547,
+          "total_ms": 63.35681199971077
+        }
+      },
+      "1316": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.04036161803370883,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 29.24605199996222,
+          "router_ms": 20.304286999817123,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 49.61003600010372
+        }
+      },
+      "1319": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.12684908775744796,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 26.688948999890272,
+          "router_ms": 21.026415000051202,
+          "dense_ms": 7.591505000164034,
+          "splade_ms": 13.553736000176286,
+          "fusion_ms": 0.3039379998881486,
+          "total_ms": 69.31394899993393
+        }
+      },
+      "1320": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.18067719882038338,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 42.6432469998872,
+          "router_ms": 21.326681000118697,
+          "dense_ms": 7.936201000120491,
+          "splade_ms": 12.097161999918171,
+          "fusion_ms": 0.14878199999657227,
+          "total_ms": 84.2793800002255
+        }
+      },
+      "1332": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.013942327063503127,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 57.65306699959183,
+          "router_ms": 20.712451999770565,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 78.43663099993137
+        }
+      },
+      "1335": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.024410412362863475,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 24.106522999773006,
+          "router_ms": 21.37786600042091,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 45.54380500030675
+        }
+      },
+      "1336": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.03227029601955859,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 21.065627000098175,
+          "router_ms": 21.287388000018836,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 42.408690999764076
+        }
+      },
+      "1337": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0020608264018638542,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 32.015779000175826,
+          "router_ms": 21.368116000303417,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 53.43787300034819
+        }
+      },
+      "1339": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0013030290335522643,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 33.771501000046555,
+          "router_ms": 21.688194000034855,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 55.5158450001727
+        }
+      },
+      "1344": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.17048857269852874,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 70.68472099990686,
+          "router_ms": 21.678238000276906,
+          "dense_ms": 8.34196100004192,
+          "splade_ms": 13.641385000028095,
+          "fusion_ms": 0.1484250001340115,
+          "total_ms": 114.62541400032933
+        }
+      },
+      "1352": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0003403551623875882,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 32.53387199993085,
+          "router_ms": 21.328039999843895,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 53.92176200030008
+        }
+      },
+      "1359": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.019056690650438926,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 49.7600430003331,
+          "router_ms": 20.538278999993054,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 70.35388599979342
+        }
+      },
+      "1362": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.1442006113441547,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 20.59541300013734,
+          "router_ms": 20.35804500019367,
+          "dense_ms": 7.746035000309348,
+          "splade_ms": 12.853440000071714,
+          "fusion_ms": 0.16319499991368502,
+          "total_ms": 61.82085199998255
+        }
+      },
+      "1363": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.16638183241152182,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 29.844912000044133,
+          "router_ms": 20.586681000168028,
+          "dense_ms": 7.4313979998805735,
+          "splade_ms": 11.43924899997728,
+          "fusion_ms": 0.18561399974714732,
+          "total_ms": 69.59687600010511
+        }
+      },
+      "1368": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.05998766840962844,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 23.312027999963902,
+          "router_ms": 21.15676599987637,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 44.5280490002915
+        }
+      },
+      "1370": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.023349980196151185,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 21.573503000126948,
+          "router_ms": 19.976752999809833,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 41.60248199968919
+        }
+      },
+      "1379": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.12864693904805047,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 40.36155299991151,
+          "router_ms": 20.722306999687135,
+          "dense_ms": 7.990810999672249,
+          "splade_ms": 12.004498000351305,
+          "fusion_ms": 0.13658199986821273,
+          "total_ms": 81.3207500000317
+        }
+      },
+      "1382": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.07358026778570759,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 21.843691999947623,
+          "router_ms": 20.11971599995377,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 42.02041299959092
+        }
+      },
+      "1385": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.059441520403639994,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 15.78578099997685,
+          "router_ms": 20.64809500006959,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 36.485985000126675
+        }
+      },
+      "1389": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.011220301568412172,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 21.07686499994088,
+          "router_ms": 22.104464000221924,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0,
+          "total_ms": 43.23461900003167
+        }
+      },
+      "1395": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.2855352303595096,
+        "threshold": 0.09514860076619283,
+        "timings": {
+          "bm25_ms": 51.23706099993797,
+          "router_ms": 19.982819999768253,
+          "dense_ms": 8.233812999606016,
+          "splade_ms": 13.19043800003783,
+          "fusion_ms": 0.1750390001689084,
+          "total_ms": 92.92646699987017
+        }
+      }
+    }
+  },
+  "model_artifact": "/kaggle/working/cascaded-blended-rag/results/learned_router_scifact.joblib",
+  "hardware": {
+    "cuda_available": true,
+    "cuda_device": "Tesla T4"
+  }
+}

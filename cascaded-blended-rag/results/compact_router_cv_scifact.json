@@ -1,0 +1,533 @@
+{
+  "dataset": "BEIR SciFact train split",
+  "queries": 809,
+  "features": [
+    "query_token_count",
+    "query_unique_token_count",
+    "bm25_top1",
+    "bm25_top2",
+    "bm25_gap12",
+    "bm25_top10_mean",
+    "bm25_top10_std",
+    "bm25_top1_per_query_token",
+    "max_idf",
+    "mean_idf",
+    "idf_std"
+  ],
+  "threshold_calibration": "nested cross-validation using train-only labels",
+  "quality_target_fraction": 0.99,
+  "note": "Development comparison only; no original held-out test qrels are used.",
+  "models": [
+    {
+      "model": "decision_tree_depth_3",
+      "nested_oof_exit_rate": 0.622991347342398,
+      "nested_oof_policy_recall@100": 0.9490111248454882,
+      "nested_oof_static_recall@100": 0.9583848372476307,
+      "nested_oof_recall_ratio": 0.9902192605331042,
+      "nested_oof_aggregate_recall_loss": 0.009373712402142464,
+      "quality_target_fraction": 0.99,
+      "folds": [
+        {
+          "fold": 1,
+          "queries": 162,
+          "threshold": 0.004006410256410256,
+          "calibration_exit_rate": 0.6537867078825348,
+          "calibration_aggregate_loss": 0.008629572385368366,
+          "calibration_allowed_loss": 0.009634209170530662,
+          "outer_exit_rate": 0.7037037037037037,
+          "outer_policy_recall@100": 0.9228395061728395,
+          "outer_static_recall@100": 0.9382716049382716,
+          "outer_recall_ratio": 0.9835526315789475
+        },
+        {
+          "fold": 2,
+          "queries": 162,
+          "threshold": 0.004711425206124852,
+          "calibration_exit_rate": 0.5579598145285936,
+          "calibration_aggregate_loss": 0.008887171561051005,
+          "calibration_allowed_loss": 0.009546625450798566,
+          "outer_exit_rate": 0.4567901234567901,
+          "outer_policy_recall@100": 0.9670781893004117,
+          "outer_static_recall@100": 0.9732510288065844,
+          "outer_recall_ratio": 0.9936575052854123
+        },
+        {
+          "fold": 3,
+          "queries": 162,
+          "threshold": 0.001199040767386091,
+          "calibration_exit_rate": 0.5595054095826894,
+          "calibration_aggregate_loss": 0.006105100463678516,
+          "calibration_allowed_loss": 0.00957238536836683,
+          "outer_exit_rate": 0.5802469135802469,
+          "outer_policy_recall@100": 0.9444444444444444,
+          "outer_static_recall@100": 0.9629629629629629,
+          "outer_recall_ratio": 0.9807692307692308
+        },
+        {
+          "fold": 4,
+          "queries": 162,
+          "threshold": 0.02,
+          "calibration_exit_rate": 0.5935085007727975,
+          "calibration_aggregate_loss": 0.008887171561051005,
+          "calibration_allowed_loss": 0.00960072127769192,
+          "outer_exit_rate": 0.7345679012345679,
+          "outer_policy_recall@100": 0.9434156378600822,
+          "outer_static_recall@100": 0.9516460905349795,
+          "outer_recall_ratio": 0.9913513513513511
+        },
+        {
+          "fold": 5,
+          "queries": 161,
+          "threshold": 0.006090808416389811,
+          "calibration_exit_rate": 0.5848765432098766,
+          "calibration_aggregate_loss": 0.007716049382716049,
+          "calibration_allowed_loss": 0.009565329218107004,
+          "outer_exit_rate": 0.639751552795031,
+          "outer_policy_recall@100": 0.967391304347826,
+          "outer_static_recall@100": 0.9658385093167702,
+          "outer_recall_ratio": 1.0016077170418005
+        }
+      ],
+      "local_single_row_predict_ms": 0.06404650000331458,
+      "model_nodes_or_estimators": 13
+    },
+    {
+      "model": "random_forest_300_reference",
+      "nested_oof_exit_rate": 0.6093943139678616,
+      "nested_oof_policy_recall@100": 0.9518953440461474,
+      "nested_oof_static_recall@100": 0.9583848372476307,
+      "nested_oof_recall_ratio": 0.9932287188306105,
+      "nested_oof_aggregate_recall_loss": 0.006489493201483287,
+      "quality_target_fraction": 0.99,
+      "folds": [
+        {
+          "fold": 1,
+          "queries": 162,
+          "threshold": 0.05790673646803955,
+          "calibration_exit_rate": 0.6275115919629057,
+          "calibration_aggregate_loss": 0.008887171561051005,
+          "calibration_allowed_loss": 0.009634209170530662,
+          "outer_exit_rate": 0.5740740740740741,
+          "outer_policy_recall@100": 0.941358024691358,
+          "outer_static_recall@100": 0.9382716049382716,
+          "outer_recall_ratio": 1.0032894736842106
+        },
+        {
+          "fold": 2,
+          "queries": 162,
+          "threshold": 0.048016813535379343,
+          "calibration_exit_rate": 0.6043276661514683,
+          "calibration_aggregate_loss": 0.008887171561051005,
+          "calibration_allowed_loss": 0.009546625450798566,
+          "outer_exit_rate": 0.6234567901234568,
+          "outer_policy_recall@100": 0.9578189300411524,
+          "outer_static_recall@100": 0.9732510288065844,
+          "outer_recall_ratio": 0.9841437632135307
+        },
+        {
+          "fold": 3,
+          "queries": 162,
+          "threshold": 0.04903473646576682,
+          "calibration_exit_rate": 0.6445131375579598,
+          "calibration_aggregate_loss": 0.008887171561051005,
+          "calibration_allowed_loss": 0.00957238536836683,
+          "outer_exit_rate": 0.6481481481481481,
+          "outer_policy_recall@100": 0.9320987654320988,
+          "outer_static_recall@100": 0.9629629629629629,
+          "outer_recall_ratio": 0.9679487179487181
+        },
+        {
+          "fold": 4,
+          "queries": 162,
+          "threshold": 0.05477744430311561,
+          "calibration_exit_rate": 0.6043276661514683,
+          "calibration_aggregate_loss": 0.008887171561051005,
+          "calibration_allowed_loss": 0.00960072127769192,
+          "outer_exit_rate": 0.6234567901234568,
+          "outer_policy_recall@100": 0.9516460905349795,
+          "outer_static_recall@100": 0.9516460905349795,
+          "outer_recall_ratio": 1.0
+        },
+        {
+          "fold": 5,
+          "queries": 161,
+          "threshold": 0.06481740642082832,
+          "calibration_exit_rate": 0.6141975308641975,
+          "calibration_aggregate_loss": 0.009259259259259259,
+          "calibration_allowed_loss": 0.009565329218107004,
+          "outer_exit_rate": 0.577639751552795,
+          "outer_policy_recall@100": 0.9767080745341615,
+          "outer_static_recall@100": 0.9658385093167702,
+          "outer_recall_ratio": 1.0112540192926045
+        }
+      ],
+      "local_single_row_predict_ms": 9.778754099999787,
+      "model_nodes_or_estimators": 300
+    },
+    {
+      "model": "extra_trees_8",
+      "nested_oof_exit_rate": 0.5723114956736712,
+      "nested_oof_policy_recall@100": 0.94979398434281,
+      "nested_oof_static_recall@100": 0.9583848372476307,
+      "nested_oof_recall_ratio": 0.9910361134995702,
+      "nested_oof_aggregate_recall_loss": 0.008590852904820645,
+      "quality_target_fraction": 0.99,
+      "folds": [
+        {
+          "fold": 1,
+          "queries": 162,
+          "threshold": 0.05301068235874501,
+          "calibration_exit_rate": 0.5517774343122102,
+          "calibration_aggregate_loss": 0.008887171561051005,
+          "calibration_allowed_loss": 0.009634209170530662,
+          "outer_exit_rate": 0.4876543209876543,
+          "outer_policy_recall@100": 0.9370370370370371,
+          "outer_static_recall@100": 0.9382716049382716,
+          "outer_recall_ratio": 0.998684210526316
+        },
+        {
+          "fold": 2,
+          "queries": 162,
+          "threshold": 0.058134729366330726,
+          "calibration_exit_rate": 0.5950540958268934,
+          "calibration_aggregate_loss": 0.00811437403400309,
+          "calibration_allowed_loss": 0.009546625450798566,
+          "outer_exit_rate": 0.6481481481481481,
+          "outer_policy_recall@100": 0.9516460905349795,
+          "outer_static_recall@100": 0.9732510288065844,
+          "outer_recall_ratio": 0.9778012684989429
+        },
+        {
+          "fold": 3,
+          "queries": 162,
+          "threshold": 0.06425734429996817,
+          "calibration_exit_rate": 0.6831530139103554,
+          "calibration_aggregate_loss": 0.00919629057187017,
+          "calibration_allowed_loss": 0.00957238536836683,
+          "outer_exit_rate": 0.6851851851851852,
+          "outer_policy_recall@100": 0.9320987654320988,
+          "outer_static_recall@100": 0.9629629629629629,
+          "outer_recall_ratio": 0.9679487179487181
+        },
+        {
+          "fold": 4,
+          "queries": 162,
+          "threshold": 0.0563023042087035,
+          "calibration_exit_rate": 0.5595054095826894,
+          "calibration_aggregate_loss": 0.008887171561051005,
+          "calibration_allowed_loss": 0.00960072127769192,
+          "outer_exit_rate": 0.49382716049382713,
+          "outer_policy_recall@100": 0.9516460905349795,
+          "outer_static_recall@100": 0.9516460905349795,
+          "outer_recall_ratio": 1.0
+        },
+        {
+          "fold": 5,
+          "queries": 161,
+          "threshold": 0.05723564108742908,
+          "calibration_exit_rate": 0.5262345679012346,
+          "calibration_aggregate_loss": 0.009259259259259259,
+          "calibration_allowed_loss": 0.009565329218107004,
+          "outer_exit_rate": 0.546583850931677,
+          "outer_policy_recall@100": 0.9767080745341615,
+          "outer_static_recall@100": 0.9658385093167702,
+          "outer_recall_ratio": 1.0112540192926045
+        }
+      ],
+      "local_single_row_predict_ms": 0.4273629999952391,
+      "model_nodes_or_estimators": 8
+    },
+    {
+      "model": "extra_trees_32",
+      "nested_oof_exit_rate": 0.5525339925834364,
+      "nested_oof_policy_recall@100": 0.9535022661722291,
+      "nested_oof_static_recall@100": 0.9583848372476307,
+      "nested_oof_recall_ratio": 0.9949054170249356,
+      "nested_oof_aggregate_recall_loss": 0.004882571075401576,
+      "quality_target_fraction": 0.99,
+      "folds": [
+        {
+          "fold": 1,
+          "queries": 162,
+          "threshold": 0.06488856513080617,
+          "calibration_exit_rate": 0.6012364760432767,
+          "calibration_aggregate_loss": 0.008887171561051005,
+          "calibration_allowed_loss": 0.009634209170530662,
+          "outer_exit_rate": 0.5185185185185185,
+          "outer_policy_recall@100": 0.9370370370370371,
+          "outer_static_recall@100": 0.9382716049382716,
+          "outer_recall_ratio": 0.998684210526316
+        },
+        {
+          "fold": 2,
+          "queries": 162,
+          "threshold": 0.059749927119416256,
+          "calibration_exit_rate": 0.6182380216383307,
+          "calibration_aggregate_loss": 0.008887171561051005,
+          "calibration_allowed_loss": 0.009546625450798566,
+          "outer_exit_rate": 0.6111111111111112,
+          "outer_policy_recall@100": 0.9578189300411524,
+          "outer_static_recall@100": 0.9732510288065844,
+          "outer_recall_ratio": 0.9841437632135307
+        },
+        {
+          "fold": 3,
+          "queries": 162,
+          "threshold": 0.0570444712957463,
+          "calibration_exit_rate": 0.6568778979907264,
+          "calibration_aggregate_loss": 0.008423493044822258,
+          "calibration_allowed_loss": 0.00957238536836683,
+          "outer_exit_rate": 0.6296296296296297,
+          "outer_policy_recall@100": 0.9444444444444444,
+          "outer_static_recall@100": 0.9629629629629629,
+          "outer_recall_ratio": 0.9807692307692308
+        },
+        {
+          "fold": 4,
+          "queries": 162,
+          "threshold": 0.05441194126352012,
+          "calibration_exit_rate": 0.5425038639876353,
+          "calibration_aggregate_loss": 0.008887171561051005,
+          "calibration_allowed_loss": 0.00960072127769192,
+          "outer_exit_rate": 0.49382716049382713,
+          "outer_policy_recall@100": 0.9516460905349795,
+          "outer_static_recall@100": 0.9516460905349795,
+          "outer_recall_ratio": 1.0
+        },
+        {
+          "fold": 5,
+          "queries": 161,
+          "threshold": 0.05437669449598729,
+          "calibration_exit_rate": 0.5015432098765432,
+          "calibration_aggregate_loss": 0.009259259259259259,
+          "calibration_allowed_loss": 0.009565329218107004,
+          "outer_exit_rate": 0.5093167701863354,
+          "outer_policy_recall@100": 0.9767080745341615,
+          "outer_static_recall@100": 0.9658385093167702,
+          "outer_recall_ratio": 1.0112540192926045
+        }
+      ],
+      "local_single_row_predict_ms": 1.1879101000085939,
+      "model_nodes_or_estimators": 32
+    },
+    {
+      "model": "decision_tree_depth_4",
+      "nested_oof_exit_rate": 0.5265760197775031,
+      "nested_oof_policy_recall@100": 0.9496291718170581,
+      "nested_oof_static_recall@100": 0.9583848372476307,
+      "nested_oof_recall_ratio": 0.9908641444539984,
+      "nested_oof_aggregate_recall_loss": 0.008755665430572601,
+      "quality_target_fraction": 0.99,
+      "folds": [
+        {
+          "fold": 1,
+          "queries": 162,
+          "threshold": 0.025,
+          "calibration_exit_rate": 0.6615146831530139,
+          "calibration_aggregate_loss": 0.00940236991241628,
+          "calibration_allowed_loss": 0.009634209170530662,
+          "outer_exit_rate": 0.654320987654321,
+          "outer_policy_recall@100": 0.9228395061728395,
+          "outer_static_recall@100": 0.9382716049382716,
+          "outer_recall_ratio": 0.9835526315789475
+        },
+        {
+          "fold": 2,
+          "queries": 162,
+          "threshold": 0.021739130434782608,
+          "calibration_exit_rate": 0.642967542503864,
+          "calibration_aggregate_loss": 0.00927357032457496,
+          "calibration_allowed_loss": 0.009546625450798566,
+          "outer_exit_rate": 0.691358024691358,
+          "outer_policy_recall@100": 0.9454732510288067,
+          "outer_static_recall@100": 0.9732510288065844,
+          "outer_recall_ratio": 0.9714587737843553
+        },
+        {
+          "fold": 3,
+          "queries": 162,
+          "threshold": -5e-324,
+          "calibration_exit_rate": 0.0,
+          "calibration_aggregate_loss": 0.0,
+          "calibration_allowed_loss": 0.00957238536836683,
+          "outer_exit_rate": 0.0,
+          "outer_policy_recall@100": 0.9629629629629629,
+          "outer_static_recall@100": 0.9629629629629629,
+          "outer_recall_ratio": 1.0
+        },
+        {
+          "fold": 4,
+          "queries": 162,
+          "threshold": 0.01,
+          "calibration_exit_rate": 0.58887171561051,
+          "calibration_aggregate_loss": 0.008887171561051005,
+          "calibration_allowed_loss": 0.00960072127769192,
+          "outer_exit_rate": 0.6358024691358025,
+          "outer_policy_recall@100": 0.9495884773662551,
+          "outer_static_recall@100": 0.9516460905349795,
+          "outer_recall_ratio": 0.9978378378378376
+        },
+        {
+          "fold": 5,
+          "queries": 161,
+          "threshold": 0.0,
+          "calibration_exit_rate": 0.5879629629629629,
+          "calibration_aggregate_loss": 0.008487654320987654,
+          "calibration_allowed_loss": 0.009565329218107004,
+          "outer_exit_rate": 0.6521739130434783,
+          "outer_policy_recall@100": 0.967391304347826,
+          "outer_static_recall@100": 0.9658385093167702,
+          "outer_recall_ratio": 1.0016077170418005
+        }
+      ],
+      "local_single_row_predict_ms": 0.05805920000420883,
+      "model_nodes_or_estimators": 21
+    },
+    {
+      "model": "decision_tree_depth_2",
+      "nested_oof_exit_rate": 0.4969097651421508,
+      "nested_oof_policy_recall@100": 0.9508652657601978,
+      "nested_oof_static_recall@100": 0.9583848372476307,
+      "nested_oof_recall_ratio": 0.992153912295787,
+      "nested_oof_aggregate_recall_loss": 0.0075195714874328745,
+      "quality_target_fraction": 0.99,
+      "folds": [
+        {
+          "fold": 1,
+          "queries": 162,
+          "threshold": 0.008382642998027613,
+          "calibration_exit_rate": 0.1901081916537867,
+          "calibration_aggregate_loss": 0.006568778979907265,
+          "calibration_allowed_loss": 0.009634209170530662,
+          "outer_exit_rate": 0.0,
+          "outer_policy_recall@100": 0.9382716049382716,
+          "outer_static_recall@100": 0.9382716049382716,
+          "outer_recall_ratio": 1.0
+        },
+        {
+          "fold": 2,
+          "queries": 162,
+          "threshold": 0.0030718954248366006,
+          "calibration_exit_rate": 0.2550231839258114,
+          "calibration_aggregate_loss": 0.005409582689335394,
+          "calibration_allowed_loss": 0.009546625450798566,
+          "outer_exit_rate": 0.5123456790123457,
+          "outer_policy_recall@100": 0.9639917695473252,
+          "outer_static_recall@100": 0.9732510288065844,
+          "outer_recall_ratio": 0.9904862579281185
+        },
+        {
+          "fold": 3,
+          "queries": 162,
+          "threshold": 0.05303030303030303,
+          "calibration_exit_rate": 0.633693972179289,
+          "calibration_aggregate_loss": 0.006568778979907265,
+          "calibration_allowed_loss": 0.00957238536836683,
+          "outer_exit_rate": 0.6851851851851852,
+          "outer_policy_recall@100": 0.9382716049382716,
+          "outer_static_recall@100": 0.9629629629629629,
+          "outer_recall_ratio": 0.9743589743589743
+        },
+        {
+          "fold": 4,
+          "queries": 162,
+          "threshold": 0.02,
+          "calibration_exit_rate": 0.60741885625966,
+          "calibration_aggregate_loss": 0.008887171561051005,
+          "calibration_allowed_loss": 0.00960072127769192,
+          "outer_exit_rate": 0.6666666666666666,
+          "outer_policy_recall@100": 0.9372427983539093,
+          "outer_static_recall@100": 0.9516460905349795,
+          "outer_recall_ratio": 0.9848648648648647
+        },
+        {
+          "fold": 5,
+          "queries": 161,
+          "threshold": 0.011945392491467578,
+          "calibration_exit_rate": 0.4537037037037037,
+          "calibration_aggregate_loss": 0.007716049382716049,
+          "calibration_allowed_loss": 0.009565329218107004,
+          "outer_exit_rate": 0.6211180124223602,
+          "outer_policy_recall@100": 0.9767080745341615,
+          "outer_static_recall@100": 0.9658385093167702,
+          "outer_recall_ratio": 1.0112540192926045
+        }
+      ],
+      "local_single_row_predict_ms": 0.05970869999146089,
+      "model_nodes_or_estimators": 7
+    },
+    {
+      "model": "ridge",
+      "nested_oof_exit_rate": 0.4919653893695921,
+      "nested_oof_policy_recall@100": 0.9522661722290894,
+      "nested_oof_static_recall@100": 0.9583848372476307,
+      "nested_oof_recall_ratio": 0.9936156491831472,
+      "nested_oof_aggregate_recall_loss": 0.006118665018541303,
+      "quality_target_fraction": 0.99,
+      "folds": [
+        {
+          "fold": 1,
+          "queries": 162,
+          "threshold": 0.0658555813977886,
+          "calibration_exit_rate": 0.5332302936630603,
+          "calibration_aggregate_loss": 0.008887171561051005,
+          "calibration_allowed_loss": 0.009634209170530662,
+          "outer_exit_rate": 0.46296296296296297,
+          "outer_policy_recall@100": 0.9370370370370371,
+          "outer_static_recall@100": 0.9382716049382716,
+          "outer_recall_ratio": 0.998684210526316
+        },
+        {
+          "fold": 2,
+          "queries": 162,
+          "threshold": 0.050133841420008055,
+          "calibration_exit_rate": 0.5069551777434312,
+          "calibration_aggregate_loss": 0.00811437403400309,
+          "calibration_allowed_loss": 0.009546625450798566,
+          "outer_exit_rate": 0.4876543209876543,
+          "outer_policy_recall@100": 0.9578189300411524,
+          "outer_static_recall@100": 0.9732510288065844,
+          "outer_recall_ratio": 0.9841437632135307
+        },
+        {
+          "fold": 3,
+          "queries": 162,
+          "threshold": 0.054450671840081885,
+          "calibration_exit_rate": 0.5486862442040186,
+          "calibration_aggregate_loss": 0.00919629057187017,
+          "calibration_allowed_loss": 0.00957238536836683,
+          "outer_exit_rate": 0.5370370370370371,
+          "outer_policy_recall@100": 0.9567901234567902,
+          "outer_static_recall@100": 0.9629629629629629,
+          "outer_recall_ratio": 0.9935897435897437
+        },
+        {
+          "fold": 4,
+          "queries": 162,
+          "threshold": 0.05946033691356925,
+          "calibration_exit_rate": 0.5054095826893354,
+          "calibration_aggregate_loss": 0.008887171561051005,
+          "calibration_allowed_loss": 0.00960072127769192,
+          "outer_exit_rate": 0.47530864197530864,
+          "outer_policy_recall@100": 0.9454732510288067,
+          "outer_static_recall@100": 0.9516460905349795,
+          "outer_recall_ratio": 0.9935135135135136
+        },
+        {
+          "fold": 5,
+          "queries": 161,
+          "threshold": 0.05639130377058095,
+          "calibration_exit_rate": 0.4444444444444444,
+          "calibration_aggregate_loss": 0.008796296296296297,
+          "calibration_allowed_loss": 0.009565329218107004,
+          "outer_exit_rate": 0.4968944099378882,
+          "outer_policy_recall@100": 0.9642857142857143,
+          "outer_static_recall@100": 0.9658385093167702,
+          "outer_recall_ratio": 0.9983922829581994
+        }
+      ],
+      "local_single_row_predict_ms": 0.1442594999971334,
+      "model_nodes_or_estimators": null
+    }
+  ]
+}

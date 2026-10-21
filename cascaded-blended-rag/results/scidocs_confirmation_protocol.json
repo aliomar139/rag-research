@@ -1,0 +1,40 @@
+{
+  "schema": 1,
+  "prepared_date_client": "2026-10-20",
+  "evaluation_dataset": "BEIR SCIDOCS",
+  "split": "official test",
+  "expected_queries": 1000,
+  "corpus": "official full corpus, no label-dependent slice",
+  "dataset_source": "https://github.com/beir-cellar/beir#-available-datasets",
+  "archive_md5": "38121350fc3a4d2f48850f6aff52e4a9",
+  "training_dataset": "BEIR NFCorpus train",
+  "families": [
+    "ridge11"
+  ],
+  "targets": [
+    0.9,
+    0.92,
+    0.95,
+    0.99
+  ],
+  "primary_candidate_target": 0.92,
+  "timing_repeats": 3,
+  "frozen_routers_sha256": "3efd7382cd91cfc43bd7ae5d4eaf27571ae92657dec97e3eaf85fbb36131a5d1",
+  "benchmark_source_sha256": "eb790a5545eaf5f4e31944c1c83f93b516a02a47887c49c88c461292ac317b4e",
+  "development_result_zip_sha256": "dcecca5e7e0dd8d75190fcfc961210a8724b9c976d3fe17580b3e245b7a4bd79",
+  "selection_reason": "Original compact gate and r92 selected using NFCorpus development evidence. Report all targets and strong baselines; no SCIDOCS grades or outcomes inspected during preparation.",
+  "baselines": [
+    "bm25",
+    "dense",
+    "splade",
+    "static_rrf"
+  ],
+  "self_match_policy": "Request 101 per branch, exclude identical query/document ID before keeping 100, features and fusion.",
+  "outcome_rules": [
+    "No refitting, threshold adjustment or query/corpus subsampling on SCIDOCS.",
+    "Report every fixed policy, all metrics, target misses and timing uncertainty.",
+    "Savings versus full fusion do not establish superiority over standalone retrievers.",
+    "Any target miss or failed transfer is retained in the final report; no retuning followed by a fresh-test claim.",
+    "Generated-answer quality is not measured."
+  ]
+}

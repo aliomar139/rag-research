@@ -1,0 +1,392 @@
+{
+  "dataset": "BEIR NFCorpus",
+  "split": "train",
+  "queries": 2590,
+  "features": [
+    "query_token_count",
+    "query_unique_token_count",
+    "bm25_top1",
+    "bm25_top2",
+    "bm25_gap12",
+    "bm25_top10_mean",
+    "bm25_top10_std",
+    "bm25_top1_per_query_token",
+    "max_idf",
+    "mean_idf",
+    "idf_std"
+  ],
+  "quality_target_fraction": 0.99,
+  "outer_folds": 5,
+  "inner_folds": 4,
+  "seed": 17,
+  "models_completed": 4,
+  "local_thread_limit": 1,
+  "models_expected": 4,
+  "models": [
+    {
+      "model": "ridge_alpha10",
+      "nested_oof_exit_rate": 0.043243243243243246,
+      "nested_oof_policy_recall@100": 0.3159475752847928,
+      "nested_oof_static_recall@100": 0.31777556345680197,
+      "nested_oof_recall_ratio": 0.9942475495846058,
+      "nested_oof_aggregate_recall_loss": 0.0018279881720091873,
+      "quality_target_fraction": 0.99,
+      "folds": [
+        {
+          "fold": 1,
+          "queries": 518,
+          "threshold": 0.0625900576786699,
+          "calibration_exit_rate": 0.06418918918918919,
+          "calibration_aggregate_loss": 0.0031470511115908803,
+          "calibration_allowed_loss": 0.003180051051924915,
+          "outer_exit_rate": 0.059845559845559844,
+          "outer_policy_recall@100": 0.31463321105429926,
+          "outer_static_recall@100": 0.3168573965140449,
+          "outer_recall_ratio": 0.9929804843307578
+        },
+        {
+          "fold": 2,
+          "queries": 518,
+          "threshold": 0.061180292915699014,
+          "calibration_exit_rate": 0.05501930501930502,
+          "calibration_aggregate_loss": 0.0031558040467929566,
+          "calibration_allowed_loss": 0.0031589351279298758,
+          "outer_exit_rate": 0.05019305019305019,
+          "outer_policy_recall@100": 0.3216628950393808,
+          "outer_static_recall@100": 0.32530376611206085,
+          "outer_recall_ratio": 0.9888077807515273
+        },
+        {
+          "fold": 3,
+          "queries": 518,
+          "threshold": 0.06087987619378564,
+          "calibration_exit_rate": 0.056467181467181465,
+          "calibration_aggregate_loss": 0.0032029071878756994,
+          "calibration_allowed_loss": 0.0032132099149896937,
+          "outer_exit_rate": 0.03474903474903475,
+          "outer_policy_recall@100": 0.3017634140322762,
+          "outer_static_recall@100": 0.30359385128813365,
+          "outer_recall_ratio": 0.9939707696710885
+        },
+        {
+          "fold": 4,
+          "queries": 518,
+          "threshold": 0.06341695790402423,
+          "calibration_exit_rate": 0.04922779922779923,
+          "calibration_aggregate_loss": 0.00312325375095342,
+          "calibration_allowed_loss": 0.003177126576399815,
+          "outer_exit_rate": 0.03861003861003861,
+          "outer_policy_recall@100": 0.3173986956489888,
+          "outer_static_recall@100": 0.3180271867240846,
+          "outer_recall_ratio": 0.9980237819238987
+        },
+        {
+          "fold": 5,
+          "queries": 518,
+          "threshold": 0.062380909519700864,
+          "calibration_exit_rate": 0.04971042471042471,
+          "calibration_aggregate_loss": 0.0031571649930558854,
+          "calibration_allowed_loss": 0.0031594555015958124,
+          "outer_exit_rate": 0.032818532818532815,
+          "outer_policy_recall@100": 0.3242796606490188,
+          "outer_static_recall@100": 0.32509561664568587,
+          "outer_recall_ratio": 0.9974901045880408
+        }
+      ],
+      "local_single_row_predict_ms": 0.14301820000400767,
+      "model_nodes_or_estimators": null,
+      "outer_folds_meeting_target": 4,
+      "minimum_outer_fold_recall_ratio": 0.9888077807515273,
+      "passes_pooled_target": true,
+      "specification": "Pipeline(steps=[('standardscaler', StandardScaler()),\n                ('ridge', Ridge(alpha=10.0))])"
+    },
+    {
+      "model": "tree_depth4_leaf25",
+      "nested_oof_exit_rate": 0.028185328185328186,
+      "nested_oof_policy_recall@100": 0.3168312206669412,
+      "nested_oof_static_recall@100": 0.31777556345680197,
+      "nested_oof_recall_ratio": 0.9970282712125876,
+      "nested_oof_aggregate_recall_loss": 0.0009443427898607748,
+      "quality_target_fraction": 0.99,
+      "folds": [
+        {
+          "fold": 1,
+          "queries": 518,
+          "threshold": 0.035950378964079543,
+          "calibration_exit_rate": 0.06515444015444015,
+          "calibration_aggregate_loss": 0.0026785311722563395,
+          "calibration_allowed_loss": 0.003180051051924915,
+          "outer_exit_rate": 0.055984555984555984,
+          "outer_policy_recall@100": 0.3142384761128056,
+          "outer_static_recall@100": 0.3168573965140449,
+          "outer_recall_ratio": 0.9917347032764526
+        },
+        {
+          "fold": 2,
+          "queries": 518,
+          "threshold": 0.0289999678348727,
+          "calibration_exit_rate": 0.048745173745173745,
+          "calibration_aggregate_loss": 0.002825908603901576,
+          "calibration_allowed_loss": 0.0031589351279298758,
+          "outer_exit_rate": 0.025096525096525095,
+          "outer_policy_recall@100": 0.3244429547307045,
+          "outer_static_recall@100": 0.32530376611206085,
+          "outer_recall_ratio": 0.9973538228848546
+        },
+        {
+          "fold": 3,
+          "queries": 518,
+          "threshold": 0.035631828239292965,
+          "calibration_exit_rate": 0.05888030888030888,
+          "calibration_aggregate_loss": 0.0029343357663997385,
+          "calibration_allowed_loss": 0.0032132099149896937,
+          "outer_exit_rate": 0.021235521235521235,
+          "outer_policy_recall@100": 0.30296133058481167,
+          "outer_static_recall@100": 0.30359385128813365,
+          "outer_recall_ratio": 0.9979165562785998
+        },
+        {
+          "fold": 4,
+          "queries": 518,
+          "threshold": 0.03450969416494154,
+          "calibration_exit_rate": 0.04777992277992278,
+          "calibration_aggregate_loss": 0.0026835342599810835,
+          "calibration_allowed_loss": 0.003177126576399815,
+          "outer_exit_rate": 0.017374517374517374,
+          "outer_policy_recall@100": 0.3177270198527949,
+          "outer_static_recall@100": 0.3180271867240846,
+          "outer_recall_ratio": 0.9990561597126911
+        },
+        {
+          "fold": 5,
+          "queries": 518,
+          "threshold": 0.04602041174254935,
+          "calibration_exit_rate": 0.05067567567567568,
+          "calibration_aggregate_loss": 0.0021517581133066945,
+          "calibration_allowed_loss": 0.0031594555015958124,
+          "outer_exit_rate": 0.021235521235521235,
+          "outer_policy_recall@100": 0.3247863220535896,
+          "outer_static_recall@100": 0.32509561664568587,
+          "outer_recall_ratio": 0.9990486042374623
+        }
+      ],
+      "local_single_row_predict_ms": 0.060119600006146356,
+      "model_nodes_or_estimators": 21,
+      "outer_folds_meeting_target": 5,
+      "minimum_outer_fold_recall_ratio": 0.9917347032764526,
+      "passes_pooled_target": true,
+      "specification": "DecisionTreeRegressor(max_depth=4, min_samples_leaf=25, random_state=17)"
+    },
+    {
+      "model": "extra_trees64_depth8_leaf10",
+      "nested_oof_exit_rate": 0.07104247104247104,
+      "nested_oof_policy_recall@100": 0.3145753884244385,
+      "nested_oof_static_recall@100": 0.31777556345680197,
+      "nested_oof_recall_ratio": 0.9899294489558871,
+      "nested_oof_aggregate_recall_loss": 0.0032001750323634726,
+      "quality_target_fraction": 0.99,
+      "folds": [
+        {
+          "fold": 1,
+          "queries": 518,
+          "threshold": 0.05509676695063073,
+          "calibration_exit_rate": 0.08156370656370657,
+          "calibration_aggregate_loss": 0.0031785790974551073,
+          "calibration_allowed_loss": 0.003180051051924915,
+          "outer_exit_rate": 0.10038610038610038,
+          "outer_policy_recall@100": 0.3100268087460428,
+          "outer_static_recall@100": 0.3168573965140449,
+          "outer_recall_ratio": 0.9784427068985928
+        },
+        {
+          "fold": 2,
+          "queries": 518,
+          "threshold": 0.05552804336724544,
+          "calibration_exit_rate": 0.07673745173745174,
+          "calibration_aggregate_loss": 0.0031398996180815497,
+          "calibration_allowed_loss": 0.0031589351279298758,
+          "outer_exit_rate": 0.06177606177606178,
+          "outer_policy_recall@100": 0.32248951763836264,
+          "outer_static_recall@100": 0.32530376611206085,
+          "outer_recall_ratio": 0.9913488598446513
+        },
+        {
+          "fold": 3,
+          "queries": 518,
+          "threshold": 0.0559657055924267,
+          "calibration_exit_rate": 0.06901544401544402,
+          "calibration_aggregate_loss": 0.0031956740268289778,
+          "calibration_allowed_loss": 0.0032132099149896937,
+          "outer_exit_rate": 0.07142857142857142,
+          "outer_policy_recall@100": 0.3003026142353331,
+          "outer_static_recall@100": 0.30359385128813365,
+          "outer_recall_ratio": 0.9891590786874108
+        },
+        {
+          "fold": 4,
+          "queries": 518,
+          "threshold": 0.05368263469054739,
+          "calibration_exit_rate": 0.05791505791505792,
+          "calibration_aggregate_loss": 0.0029590865568625067,
+          "calibration_allowed_loss": 0.003177126576399815,
+          "outer_exit_rate": 0.05019305019305019,
+          "outer_policy_recall@100": 0.316870575080446,
+          "outer_static_recall@100": 0.3180271867240846,
+          "outer_recall_ratio": 0.9963631673897049
+        },
+        {
+          "fold": 5,
+          "queries": 518,
+          "threshold": 0.057639408966894914,
+          "calibration_exit_rate": 0.06660231660231661,
+          "calibration_aggregate_loss": 0.0029771942955880482,
+          "calibration_allowed_loss": 0.0031594555015958124,
+          "outer_exit_rate": 0.07142857142857142,
+          "outer_policy_recall@100": 0.32318742642200793,
+          "outer_static_recall@100": 0.32509561664568587,
+          "outer_recall_ratio": 0.9941303723397857
+        }
+      ],
+      "local_single_row_predict_ms": 2.327576500014402,
+      "model_nodes_or_estimators": 64,
+      "outer_folds_meeting_target": 3,
+      "minimum_outer_fold_recall_ratio": 0.9784427068985928,
+      "passes_pooled_target": false,
+      "specification": "ExtraTreesRegressor(max_depth=8, max_features=0.8, min_samples_leaf=10,\n                    n_estimators=64, n_jobs=1, random_state=17)"
+    },
+    {
+      "model": "hist_gradient_boosting100_leaf7",
+      "nested_oof_exit_rate": 0.040154440154440155,
+      "nested_oof_policy_recall@100": 0.31617884591422285,
+      "nested_oof_static_recall@100": 0.31777556345680197,
+      "nested_oof_recall_ratio": 0.9949753293638761,
+      "nested_oof_aggregate_recall_loss": 0.001596717542579118,
+      "quality_target_fraction": 0.99,
+      "folds": [
+        {
+          "fold": 1,
+          "queries": 518,
+          "threshold": 0.04364675602429461,
+          "calibration_exit_rate": 0.05067567567567568,
+          "calibration_aggregate_loss": 0.003000478147790203,
+          "calibration_allowed_loss": 0.003180051051924915,
+          "outer_exit_rate": 0.03667953667953668,
+          "outer_policy_recall@100": 0.3157678286974307,
+          "outer_static_recall@100": 0.3168573965140449,
+          "outer_recall_ratio": 0.9965613306534699
+        },
+        {
+          "fold": 2,
+          "queries": 518,
+          "threshold": 0.04767044775658476,
+          "calibration_exit_rate": 0.06274131274131274,
+          "calibration_aggregate_loss": 0.003148182312213754,
+          "calibration_allowed_loss": 0.0031589351279298758,
+          "outer_exit_rate": 0.04826254826254826,
+          "outer_policy_recall@100": 0.3219536386658673,
+          "outer_static_recall@100": 0.32530376611206085,
+          "outer_recall_ratio": 0.9897015411587965
+        },
+        {
+          "fold": 3,
+          "queries": 518,
+          "threshold": 0.04781684318010634,
+          "calibration_exit_rate": 0.060328185328185326,
+          "calibration_aggregate_loss": 0.0031902294631630914,
+          "calibration_allowed_loss": 0.0032132099149896937,
+          "outer_exit_rate": 0.05019305019305019,
+          "outer_policy_recall@100": 0.3014538024558352,
+          "outer_static_recall@100": 0.30359385128813365,
+          "outer_recall_ratio": 0.9929509480405537
+        },
+        {
+          "fold": 4,
+          "queries": 518,
+          "threshold": 0.048001215240726314,
+          "calibration_exit_rate": 0.05936293436293436,
+          "calibration_aggregate_loss": 0.0031717467673350193,
+          "calibration_allowed_loss": 0.003177126576399815,
+          "outer_exit_rate": 0.032818532818532815,
+          "outer_policy_recall@100": 0.31738861140323793,
+          "outer_static_recall@100": 0.3180271867240846,
+          "outer_recall_ratio": 0.9979920731701448
+        },
+        {
+          "fold": 5,
+          "queries": 518,
+          "threshold": 0.04689715000626079,
+          "calibration_exit_rate": 0.05791505791505792,
+          "calibration_aggregate_loss": 0.0029789032521071283,
+          "calibration_allowed_loss": 0.0031594555015958124,
+          "outer_exit_rate": 0.032818532818532815,
+          "outer_policy_recall@100": 0.32433034834874336,
+          "outer_static_recall@100": 0.32509561664568587,
+          "outer_recall_ratio": 0.9976460208696798
+        }
+      ],
+      "local_single_row_predict_ms": 0.5174281000217889,
+      "model_nodes_or_estimators": null,
+      "outer_folds_meeting_target": 4,
+      "minimum_outer_fold_recall_ratio": 0.9897015411587965,
+      "passes_pooled_target": true,
+      "specification": "HistGradientBoostingRegressor(early_stopping=False, l2_regularization=1.0,\n                              learning_rate=0.05, max_leaf_nodes=7,\n                              random_state=17)"
+    }
+  ],
+  "oracle_same_clipped_budget": {
+    "exits": 1421,
+    "exit_rate": 0.5486486486486486,
+    "recall@100": 0.318257401296395,
+    "recall_ratio": 1.0015162834874765,
+    "mean_clipped_loss": 0.003161878979373247,
+    "mean_signed_loss": -0.0004818378395930467
+  },
+  "provenance": {
+    "input_zip_sha256": "129d3dd1a05e5bd770197c6bb6f601aa5aca6fcdacbd243856f5f1f7b7e72386",
+    "examples_sha256": "f0269a1cda95e3b972aa2a5f15fde1a244b15a8943c546381781d83313c53365",
+    "retrieval_manifest": {
+      "schema": 1,
+      "dataset": "BEIR NFCorpus",
+      "split": "train",
+      "corpus_sha256": "10cc83ef1826b1425e6a87090b5140b39b27755d5a27e48215a88611c899991f",
+      "queries_sha256": "d024e6621b84925d485ae473d316a0c3af31c62c8068a59fb29d22f7613aef2a",
+      "train_qrels_sha256": "6336b80f9bffc4f063f3aa450047ad35c0b7c534efe4a6ba35e16dbace047f6a",
+      "retrieval_code_sha256": {
+        "12_calibrate_nfcorpus_train_check_dev.py": "ec9c8c209b6f9e8102664308b0236cf361097e545dce0ff6dcdb9cecd1daf665",
+        "13_diagnose_nfcorpus_train_router.py": "725b80d83b903e05e8886acf255debf57d85719f33c8d2ff2138ab0b5c5725dc",
+        "bm25_retriever.py": "91d58e2a26c068a1011b24f3001f89d943aaff64ca46816a9eb92fd224d7c160",
+        "dense_retriever.py": "65f559fd791c586cf3db6f1f499f857d5715b52917ae54fad71c2dbfffdb356e",
+        "splade_retriever.py": "74f68b433dc8dcb76268ad591a0adb9f90a4228cb363025d1306fd12e6ce71c1",
+        "cache_utils.py": "6e07356c78f41fbb3cf1f755bd18f8793bde4007c2bd745450de3be24df5b792"
+      },
+      "feature_names": [
+        "query_token_count",
+        "query_unique_token_count",
+        "bm25_top1",
+        "bm25_top2",
+        "bm25_gap12",
+        "bm25_top10_mean",
+        "bm25_top10_std",
+        "bm25_top1_per_query_token",
+        "max_idf",
+        "mean_idf",
+        "idf_std"
+      ],
+      "top_k": 100,
+      "rrf_k": 60,
+      "corpus_documents": 3633,
+      "queries": 2590,
+      "dense_model": "sentence-transformers/all-MiniLM-L6-v2",
+      "splade_model": "naver/splade-cocondenser-ensembledistil"
+    }
+  },
+  "versions": {
+    "numpy": "2.5.4",
+    "scikit_learn": "1.9.1"
+  },
+  "limits": [
+    "Nested train-only comparison: thresholds use inner OOF labels; outer-fold labels score the fixed policy.",
+    "Model selection from these comparisons remains development work, not an independent final test.",
+    "Prediction timings are local single-row model inference, not Kaggle retrieval or end-to-end latency.",
+    "The oracle uses relevance labels and is a retrospective upper bound."
+  ]
+}

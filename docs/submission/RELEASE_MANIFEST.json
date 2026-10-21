@@ -1,0 +1,172 @@
+{
+  "release_date": "2026-10-21",
+  "scope": "Completed conditional retrieval engineering study. Additional full NQ, HotpotQA, CoQA and answer-generation evaluations are deferred.",
+  "new_retrieval_training_or_timing_runs_for_materials": 0,
+  "main_evaluations": {
+    "trec_covid": "all 50 queries, 171332 documents, 3 indexed passes",
+    "squad_indexed": "fixed 256 questions of 10570, 20958 documents, 3 passes",
+    "squad_original": "all 10570 questions, 1 complete timing pass"
+  },
+  "frozen_assets_sha256": {
+    "nfcorpus_frozen_retention_routers.json": "3efd7382cd91cfc43bd7ae5d4eaf27571ae92657dec97e3eaf85fbb36131a5d1",
+    "indexed_cascade_protocol.json": "b1f9f79192a9600492e2446130d29eac4925733db6ed2b236825344efb385e0f",
+    "paper_datasets_protocol.json": "4b5d1c19db54b715fd636068e14222267d2515b0b3b40e32e0aea278da225c5f"
+  },
+  "files": [
+    {
+      "path": "docs/FINAL_MANUSCRIPT.md",
+      "bytes": 31656,
+      "sha256": "bb6339885c9505bfb9b9aaa910f81eca3ccee05d9d78f730e282a3cd9e3fc464"
+    },
+    {
+      "path": "docs/review/PAPER_RELEASE_REVIEW.md",
+      "bytes": 5268,
+      "sha256": "5f4342607af1e90bce6c899e4c52ba3afc8d99f7ac73fafd0c1a5a15b73376f8"
+    },
+    {
+      "path": "docs/submission/assets/fonts/IBMPlexSans-OFL.txt",
+      "bytes": 4456,
+      "sha256": "7e6b2818edbd8f6a01ae80641cc8f16a51080d08fb4e532be3a0b6f74adb07da"
+    },
+    {
+      "path": "docs/submission/assets/fonts/IBMPlexSans-Regular.ttf",
+      "bytes": 200500,
+      "sha256": "975dcda37d80f038dcd143c22e33ca2d97a0cc5a929aace1c749153b0fe1afa5"
+    },
+    {
+      "path": "docs/submission/assets/fonts/IBMPlexSans-SemiBold.ttf",
+      "bytes": 202632,
+      "sha256": "a20caf8286023a6a7a85e40b1d2a4ae9fc3e3b1f9eda8f4c542dd4986af67bb1"
+    },
+    {
+      "path": "docs/submission/assets/fonts/Newsreader-400.ttf",
+      "bytes": 118616,
+      "sha256": "012f84c3ff34204dac975188ce2b24785d2b5f60b4777ca558179ab73ac989f5"
+    },
+    {
+      "path": "docs/submission/assets/fonts/Newsreader-600.ttf",
+      "bytes": 118872,
+      "sha256": "27e11bbfc3493994d0ec3c6a34a2dadd3017c9c15906a2b2e6a226d7c1ecd40a"
+    },
+    {
+      "path": "docs/submission/assets/fonts/Newsreader-OFL.txt",
+      "bytes": 4394,
+      "sha256": "fdfad38143ec470553cae82a1e45320bdd1b9ec70415d37bd0171051d8a4ded8"
+    },
+    {
+      "path": "docs/submission/assets/fonts/Newsreader-Variable.ttf",
+      "bytes": 451664,
+      "sha256": "8a08d13f8a6c0d51be379a60af84f945f65369a67e509ee3c3bdcc421254d7c1"
+    },
+    {
+      "path": "docs/submission/assets/fonts/README.md",
+      "bytes": 667,
+      "sha256": "7f53f0a25f9ff69210001b8e1ab75157892816b6eb2e58f19c067fcd9b3aa6c3"
+    },
+    {
+      "path": "docs/submission/assets/pipeline.png",
+      "bytes": 60652,
+      "sha256": "058c64b4212b69a4129e00920aaae71eccfa69edba0fc40527081388348dec5b"
+    },
+    {
+      "path": "docs/submission/assets/pipeline.svg",
+      "bytes": 34816,
+      "sha256": "db5a5e34fcf3d6e4c844536762a23e6783a7c8a03acb30f8474af9dce6bd7cc7"
+    },
+    {
+      "path": "docs/submission/assets/results.json",
+      "bytes": 26267,
+      "sha256": "1609897d9757734a4f71f7c47df470dddbb96795c863a38a49db182efefa17e1"
+    },
+    {
+      "path": "docs/submission/assets/speedup_squad.png",
+      "bytes": 120891,
+      "sha256": "9c2985d775aa9a8a20b89d3c186461394f6c70c6a7c10abe1ebc643c1c3e9118"
+    },
+    {
+      "path": "docs/submission/assets/speedup_squad.svg",
+      "bytes": 84589,
+      "sha256": "03e7b395a78005ec21acedaa31e9547391872702a9d262165cb664e7af74cf54"
+    },
+    {
+      "path": "docs/submission/assets/speedup_trec-covid.png",
+      "bytes": 124140,
+      "sha256": "e4a33357e4ffee007174bdf551cb016938f0eefaafe6b5d496401177ea75d7ab"
+    },
+    {
+      "path": "docs/submission/assets/speedup_trec-covid.svg",
+      "bytes": 85214,
+      "sha256": "98eef055238e5afe457711b79d0f0a27f36ba9cd55780eddd1b36e1cf9ea7b1d"
+    },
+    {
+      "path": "docs/submission/conditional_retrieval_paper.pdf",
+      "bytes": 702389,
+      "sha256": "94a1b5c4338c8c8c8629a9c3ec560731c7760c9bfb870615fb197bf02ae0fa5c"
+    },
+    {
+      "path": "docs/submission/presentation_notes.md",
+      "bytes": 13984,
+      "sha256": "b6aefb0cdf4f861fe17897c5b2ba77f775dfe831b9e4a1d311c00505f4a7f192"
+    },
+    {
+      "path": "docs/submission/README.md",
+      "bytes": 5088,
+      "sha256": "1cc8f0cb041d5603f476dd19b3934862446e37673cca8a69070fde1984502f82"
+    },
+    {
+      "path": "docs/submission/research_presentation.pdf",
+      "bytes": 1136205,
+      "sha256": "b59611667f32dd1d2203d562e842805ad4d7d32406e5e93592fefb5946f418db"
+    },
+    {
+      "path": "docs/submission/research_presentation.pptx",
+      "bytes": 100032,
+      "sha256": "9e68b4508e22c9dd2434a309e57df0e3ec5024473c77c444ee3524334eadb857"
+    },
+    {
+      "path": "docs/submission/research_showcase.html",
+      "bytes": 1157979,
+      "sha256": "29af565daf33447964ad4be912e81d0d4a012d2970fb702101eb021785ce8c38"
+    },
+    {
+      "path": "docs/submission/research_showcase.pdf",
+      "bytes": 253496,
+      "sha256": "d2cb79489e9a5d5070e56d242bba11be2cbbc5f2c4bf43bc7ebe8c64a4d53aea"
+    },
+    {
+      "path": "tokens.css",
+      "bytes": 1117,
+      "sha256": "2f0b56d9eae1c7bd38c6529c4a23b9ca7151a63ad6b4c0dd55f157b7b16d6fb6"
+    },
+    {
+      "path": "tools/build_publication_figures.py",
+      "bytes": 4829,
+      "sha256": "256567b20ac3a93aae4eb362a964d646b6449d818b43c4a397004a0de059ea45"
+    },
+    {
+      "path": "tools/build_research_materials.py",
+      "bytes": 13422,
+      "sha256": "da96f5ee521b475aa398f5e62afea39ace10f961e963a3c63cc84291d7f25697"
+    },
+    {
+      "path": "tools/build_research_presentation.mjs",
+      "bytes": 29337,
+      "sha256": "40a39fa7929159fd34bda6d7edac31921cab22c11b48bd3e90c5b814d0b13b1e"
+    },
+    {
+      "path": "tools/export_presentation_pdf.py",
+      "bytes": 783,
+      "sha256": "a2fbcc3011e9f6c0b73a1ed4b6450c138f0c887d8dc708efa5be4bba7c2850d6"
+    },
+    {
+      "path": "tools/render_showcase.mjs",
+      "bytes": 3210,
+      "sha256": "95a6423502096a81ef41c369487510c746d12e6d8eee40c5ac911e075194c0f9"
+    },
+    {
+      "path": "tools/showcase.template.html",
+      "bytes": 23252,
+      "sha256": "426f0c767628f6162a6e3e249447c2c308df11d388024513bb9953007d2a79b0"
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "archive_sha256": "769e02d83978b0d3f116e48fcc99ea93f52633a0990f85f245f582ab8014a3df",
+  "dataset": "trec-covid",
+  "records": 400,
+  "query_timings": 1200,
+  "frozen_assets_sources_and_protocol_match": true,
+  "saved_recall_timings_calls_and_conditional_rankings_match": true,
+  "timing_sessions": 1,
+  "scope": "Artifact consistency checks. Raw relevance grades are absent; nDCG/MAP and timing instrumentation are not independently rerun."
+}

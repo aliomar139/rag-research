@@ -1,0 +1,26 @@
+{
+  "status": "shortened_for_runtime_before_quality_scoring",
+  "planned_timing_repeats": 3,
+  "scored_timing_repeats": 1,
+  "completed_query_counts_by_repeat": {
+    "0": 10570,
+    "1": 4649
+  },
+  "reason": "Preserve the completed full-query quality pass and move to indexed execution without spending additional hours on slow repeated timings. Selected before inspecting quality outcomes.",
+  "additional_repetitions_preserved": true,
+  "rankings_changed_in_observed_additional_repetitions": {
+    "static_rrf": 0,
+    "bm25": 0,
+    "dense": 0,
+    "splade": 0,
+    "ridge11_r90": 0,
+    "ridge11_r92": 0,
+    "ridge11_r95": 0,
+    "ridge11_r99": 0
+  },
+  "ignored_incomplete_last_checkpoint_line": false,
+  "original_checkpoint_sha256": "7afba775d2f58b62303ef12d82ad4cde1d1719393f1c5abe2917fb1a4a0fe0f0",
+  "original_runner_sha256": "ca2443a62d95867fc5ad3ab0f5f2e416d6648762eeadf936883c768f443c013c",
+  "finalizer_sha256": "5a140a2f92edae36fab3e781f9c591483b45b8f9a8d2e583b8276989c5719128",
+  "scope": "All questions scored from first-pass rankings. Latency has one complete pass; bootstrap intervals reflect queries, not repeated-run stability. Later partial timings are supplemental, not pooled into headline means."
+}

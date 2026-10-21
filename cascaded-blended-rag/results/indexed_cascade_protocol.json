@@ -1,0 +1,58 @@
+{
+  "schema": 1,
+  "prepared_date_client": "2026-10-21",
+  "experiment": "Indexed-BM25 execution follow-up on inspected datasets",
+  "datasets": [
+    "trec-covid",
+    "squad"
+  ],
+  "default_run": "squad",
+  "timing_repeats": 3,
+  "default_query_limit": 256,
+  "query_selection": "Sort query IDs by SHA256(dataset + NUL + query_id), take first limit. 0 means all queries. Full document corpus retained.",
+  "training_dataset": "BEIR NFCorpus train",
+  "families": [
+    "ridge11"
+  ],
+  "targets": [
+    0.9,
+    0.92,
+    0.95,
+    0.99
+  ],
+  "primary_candidate_target": 0.99,
+  "primary_policy": "ridge11_r99",
+  "required_retention": 0.9,
+  "primary_selection_reason": "Existing conservative threshold chosen using inspected NFCorpus/SCIDOCS/TREC-COVID evidence before the indexed follow-up or current full SQuAD outcomes are inspected. Calibration label 99% is distinct from the required 90% floor. Earlier experiments retain their original primary policies.",
+  "frozen_routers_sha256": "3efd7382cd91cfc43bd7ae5d4eaf27571ae92657dec97e3eaf85fbb36131a5d1",
+  "source_sha256": {
+    "experiments/12_calibrate_nfcorpus_train_check_dev.py": "ec9c8c209b6f9e8102664308b0236cf361097e545dce0ff6dcdb9cecd1daf665",
+    "experiments/25_benchmark_indexed_cascade.py": "ddb7b5656ed20e0ab20cb2199f544137e3679c161b99cb935c5f14919e44a104",
+    "src/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/bm25_retriever.py": "91d58e2a26c068a1011b24f3001f89d943aaff64ca46816a9eb92fd224d7c160",
+    "src/dense_retriever.py": "65f559fd791c586cf3db6f1f499f857d5715b52917ae54fad71c2dbfffdb356e",
+    "src/splade_retriever.py": "74f68b433dc8dcb76268ad591a0adb9f90a4228cb363025d1306fd12e6ce71c1",
+    "src/cache_utils.py": "6e07356c78f41fbb3cf1f755bd18f8793bde4007c2bd745450de3be24df5b792",
+    "src/bm25_coverage_features.py": "fffe6c5956b3e91fdd37978ff1acb666d903a543e60b47f0715d870cf79ca84e",
+    "src/retention_tradeoff.py": "8b7b2b5302a1c1feb039554ee7c194968199253b7f24284c8a41493e2c20121f",
+    "src/tradeoff_analysis.py": "5260b2f7e066262baefad456f55db1e5ee136f2c817d080980c15d35dae8b626",
+    "src/router_diagnostics.py": "a622b5da9ce26282523cc00fbacf90c1b6553c175d0c63fe252f1d9414aaaaed",
+    "src/query_self_exclusion.py": "1458ac6432c214342397f1129a3453b63afd26850080a66511c17fa48c3510c3",
+    "src/paper_datasets.py": "842ce64ff1c92dbae57317bec992457ca67650e7dc79f1b779eb222db00ec14f",
+    "src/indexed_bm25.py": "33ce9636fcf36cc2dc0e57b661c04c0e557af9092a965179e8e0778caf0327e9"
+  },
+  "model_revisions": {
+    "dense": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+    "splade": "49cf4c7b0db5b870a401ddf5e2669993ef3699c7"
+  },
+  "change": "Precompute the existing BM25 field term contributions into postings. No scorer formula, gate, neural model or threshold changes.",
+  "reproduction_scope": "Our MiniLM/SPLADE/RRF adaptation, not exact original-paper Elasticsearch/ELSER reproduction",
+  "outcome_rules": [
+    "Measure optimized static fusion, optimized standalone BM25 and every cascade with the same scorer, plus Dense and SPLADE.",
+    "Report actual sampled query count and all available query count. Do not label sampled quality as full-query quality.",
+    "No threshold tuning on the sample. Primary frozen r99 is assessed against a 90% floor; keep its original 99% calibration-label verdict too. Report every secondary policy.",
+    "Compare prior BM25 top100 IDs and scores after timing; do not serve old rankings as timed inference results.",
+    "Report quality, latency, branch counts and uncertainty. No end-to-end speedup is inferred from local BM25 microbenchmarks.",
+    "Retain all earlier unfavorable results and standalone baselines. Engineering optimization does not establish new-method priority."
+  ]
+}

@@ -1,0 +1,744 @@
+{
+  "release_date": "2026-10-21",
+  "datasets": {
+    "trec-covid": {
+      "queries": 50,
+      "all_available_queries": 50,
+      "documents": 171332,
+      "repeats": 3,
+      "methods": {
+        "static_rrf": {
+          "metrics": {
+            "recall@100": 0.12250379771406618,
+            "ndcg@10": 0.7632302701080981,
+            "map@10": 0.01860520079137317
+          },
+          "recall_retention": 1.0,
+          "latency_ms": {
+            "mean": 91.28116104021804,
+            "p50": 91.09025950056093,
+            "p95": 97.65683589921537,
+            "p99": 99.80041642018476
+          },
+          "mean_speedup_factor": 1.0000000000000002,
+          "mean_latency_reduction": 1.1102230246251565e-16,
+          "paper_retrieval_metrics": {
+            "hit@10": 1.0,
+            "hit@20": 1.0,
+            "recall@10": 0.02046985864825863
+          },
+          "early_exit_count": 0,
+          "early_exit_rate": 0.0,
+          "neural_calls_across_timed_repeats": {
+            "dense": 150,
+            "splade": 150
+          },
+          "rankings_changed_on_later_repeats": 0,
+          "recall_retention_95_interval": [
+            1.0,
+            1.0
+          ],
+          "mean_latency_reduction_95_interval": [
+            0.0,
+            0.0
+          ],
+          "bootstrap_resamples": 1000,
+          "dominated_in_mean_latency_and_recall_by": [
+            "splade"
+          ],
+          "dominators_all_quality_metrics_and_mean_latency": [],
+          "speedup_vs_original_fusion": 16.358579968201468,
+          "original_fusion_same_queries_ms": 1493.2301724666831
+        },
+        "bm25": {
+          "metrics": {
+            "recall@100": 0.08743926180314512,
+            "ndcg@10": 0.5496902353877124,
+            "map@10": 0.01144903283162699
+          },
+          "recall_retention": 0.7137677642225873,
+          "latency_ms": {
+            "mean": 8.114560833419091,
+            "p50": 7.684176500333706,
+            "p95": 13.633773399305932,
+            "p99": 16.024250031077816
+          },
+          "mean_speedup_factor": 11.249057455368968,
+          "mean_latency_reduction": 0.9111036632208933,
+          "paper_retrieval_metrics": {
+            "hit@10": 0.98,
+            "hit@20": 1.0,
+            "recall@10": 0.01391498495000364
+          },
+          "early_exit_count": 0,
+          "early_exit_rate": 0.0,
+          "neural_calls_across_timed_repeats": {
+            "dense": 0,
+            "splade": 0
+          },
+          "rankings_changed_on_later_repeats": 0,
+          "recall_retention_95_interval": [
+            0.6549067817273025,
+            0.7786706484149857
+          ],
+          "mean_latency_reduction_95_interval": [
+            0.9036728680261069,
+            0.9182943030038184
+          ],
+          "bootstrap_resamples": 1000,
+          "dominated_in_mean_latency_and_recall_by": [],
+          "dominators_all_quality_metrics_and_mean_latency": [],
+          "speedup_vs_original_fusion": 184.01860595054615,
+          "original_fusion_same_queries_ms": 1493.2301724666831
+        },
+        "dense": {
+          "metrics": {
+            "recall@100": 0.08551749768487699,
+            "ndcg@10": 0.4725358848707596,
+            "map@10": 0.010544708731052144
+          },
+          "recall_retention": 0.698080380205696,
+          "latency_ms": {
+            "mean": 30.411182359966915,
+            "p50": 30.291458999272436,
+            "p95": 31.649125500734954,
+            "p99": 32.635266939760186
+          },
+          "mean_speedup_factor": 3.00156567277634,
+          "mean_latency_reduction": 0.6668405395657939,
+          "paper_retrieval_metrics": {
+            "hit@10": 0.92,
+            "hit@20": 0.96,
+            "recall@10": 0.012836078700997905
+          },
+          "early_exit_count": 0,
+          "early_exit_rate": 0.0,
+          "neural_calls_across_timed_repeats": {
+            "dense": 150,
+            "splade": 0
+          },
+          "rankings_changed_on_later_repeats": 0,
+          "recall_retention_95_interval": [
+            0.6242550531545843,
+            0.7604070849783833
+          ],
+          "mean_latency_reduction_95_interval": [
+            0.6636928746252508,
+            0.6699556615382534
+          ],
+          "bootstrap_resamples": 1000,
+          "dominated_in_mean_latency_and_recall_by": [
+            "bm25"
+          ],
+          "dominators_all_quality_metrics_and_mean_latency": [
+            "bm25"
+          ],
+          "speedup_vs_original_fusion": 49.10135208792019,
+          "original_fusion_same_queries_ms": 1493.2301724666831
+        },
+        "splade": {
+          "metrics": {
+            "recall@100": 0.12824918552685155,
+            "ndcg@10": 0.7289882991880643,
+            "map@10": 0.016622086132625218
+          },
+          "recall_retention": 1.0468996710305718,
+          "latency_ms": {
+            "mean": 52.77394425330082,
+            "p50": 52.40248700101802,
+            "p95": 55.27048634903622,
+            "p99": 60.38965334813837
+          },
+          "mean_speedup_factor": 1.7296634225801446,
+          "mean_latency_reduction": 0.42185283741024215,
+          "paper_retrieval_metrics": {
+            "hit@10": 1.0,
+            "hit@20": 1.0,
+            "recall@10": 0.0192923235180509
+          },
+          "early_exit_count": 0,
+          "early_exit_rate": 0.0,
+          "neural_calls_across_timed_repeats": {
+            "dense": 0,
+            "splade": 150
+          },
+          "rankings_changed_on_later_repeats": 0,
+          "recall_retention_95_interval": [
+            0.9774887410345293,
+            1.1286949860237878
+          ],
+          "mean_latency_reduction_95_interval": [
+            0.4157449831431613,
+            0.4279489906536214
+          ],
+          "bootstrap_resamples": 1000,
+          "dominated_in_mean_latency_and_recall_by": [],
+          "dominators_all_quality_metrics_and_mean_latency": [],
+          "speedup_vs_original_fusion": 28.294837416350344,
+          "original_fusion_same_queries_ms": 1493.2301724666831
+        },
+        "ridge11_r90": {
+          "family": "ridge11",
+          "target": 0.9,
+          "threshold": 0.08476735882156501,
+          "metrics": {
+            "recall@100": 0.1035531129372889,
+            "ndcg@10": 0.6511526236618479,
+            "map@10": 0.014989941912411008
+          },
+          "recall_retention": 0.8453053282396217,
+          "latency_ms": {
+            "mean": 40.405415006680414,
+            "p50": 10.389476499767625,
+            "p95": 95.81243989941868,
+            "p99": 99.60135655888733
+          },
+          "mean_speedup_factor": 2.259131876881505,
+          "mean_latency_reduction": 0.5573520916448688,
+          "paper_retrieval_metrics": {
+            "hit@10": 1.0,
+            "hit@20": 1.0,
+            "recall@10": 0.016990033681628217
+          },
+          "early_exit_count": 31,
+          "early_exit_rate": 0.62,
+          "neural_calls_across_timed_repeats": {
+            "dense": 57,
+            "splade": 57
+          },
+          "rankings_changed_on_later_repeats": 0,
+          "recall_retention_95_interval": [
+            0.7833212031287299,
+            0.9010159777323746
+          ],
+          "mean_latency_reduction_95_interval": [
+            0.43030717052984263,
+            0.6745109185478407
+          ],
+          "bootstrap_resamples": 1000,
+          "observed_target_met": false,
+          "dominated_in_mean_latency_and_recall_by": [],
+          "dominators_all_quality_metrics_and_mean_latency": [],
+          "speedup_vs_original_fusion": 36.95618946667917,
+          "original_fusion_same_queries_ms": 1493.2301724666831
+        },
+        "ridge11_r92": {
+          "family": "ridge11",
+          "target": 0.92,
+          "threshold": 0.08109377362417783,
+          "metrics": {
+            "recall@100": 0.1035531129372889,
+            "ndcg@10": 0.653145685997749,
+            "map@10": 0.014989941912411008
+          },
+          "recall_retention": 0.8453053282396217,
+          "latency_ms": {
+            "mean": 41.9923571934487,
+            "p50": 10.897183998167748,
+            "p95": 95.08484695088555,
+            "p99": 98.98360080947894
+          },
+          "mean_speedup_factor": 2.1737565390699,
+          "mean_latency_reduction": 0.5399668812829073,
+          "paper_retrieval_metrics": {
+            "hit@10": 1.0,
+            "hit@20": 1.0,
+            "recall@10": 0.016990033681628217
+          },
+          "early_exit_count": 30,
+          "early_exit_rate": 0.6,
+          "neural_calls_across_timed_repeats": {
+            "dense": 60,
+            "splade": 60
+          },
+          "rankings_changed_on_later_repeats": 0,
+          "recall_retention_95_interval": [
+            0.7833212031287299,
+            0.9010159777323746
+          ],
+          "mean_latency_reduction_95_interval": [
+            0.4116752796735717,
+            0.6686555719429417
+          ],
+          "bootstrap_resamples": 1000,
+          "observed_target_met": false,
+          "dominated_in_mean_latency_and_recall_by": [
+            "ridge11_r90"
+          ],
+          "dominators_all_quality_metrics_and_mean_latency": [],
+          "speedup_vs_original_fusion": 35.55957017577581,
+          "original_fusion_same_queries_ms": 1493.2301724666831
+        },
+        "ridge11_r95": {
+          "family": "ridge11",
+          "target": 0.95,
+          "threshold": 0.07566573718136592,
+          "metrics": {
+            "recall@100": 0.11264629870035021,
+            "ndcg@10": 0.7056057727508249,
+            "map@10": 0.017423374764666513
+          },
+          "recall_retention": 0.9195331149102484,
+          "latency_ms": {
+            "mean": 55.66270542653607,
+            "p50": 89.0191064991086,
+            "p95": 97.27627940119419,
+            "p99": 102.30282394084495
+          },
+          "mean_speedup_factor": 1.6398980311995688,
+          "mean_latency_reduction": 0.390205987826871,
+          "paper_retrieval_metrics": {
+            "hit@10": 1.0,
+            "hit@20": 1.0,
+            "recall@10": 0.01918786053055051
+          },
+          "early_exit_count": 22,
+          "early_exit_rate": 0.44,
+          "neural_calls_across_timed_repeats": {
+            "dense": 84,
+            "splade": 84
+          },
+          "rankings_changed_on_later_repeats": 0,
+          "recall_retention_95_interval": [
+            0.8687684280306568,
+            0.9576135537448401
+          ],
+          "mean_latency_reduction_95_interval": [
+            0.2654401377285824,
+            0.5194179344264032
+          ],
+          "bootstrap_resamples": 1000,
+          "observed_target_met": false,
+          "dominated_in_mean_latency_and_recall_by": [
+            "splade"
+          ],
+          "dominators_all_quality_metrics_and_mean_latency": [],
+          "speedup_vs_original_fusion": 26.826403083074286,
+          "original_fusion_same_queries_ms": 1493.2301724666831
+        },
+        "ridge11_r99": {
+          "family": "ridge11",
+          "target": 0.99,
+          "threshold": 0.0629950754686053,
+          "metrics": {
+            "recall@100": 0.11843687455557683,
+            "ndcg@10": 0.7228052785989337,
+            "map@10": 0.017691278010060808
+          },
+          "recall_retention": 0.9668016564843005,
+          "latency_ms": {
+            "mean": 73.90373393332993,
+            "p50": 90.30203399925085,
+            "p95": 99.41358204923743,
+            "p99": 107.938682277927
+          },
+          "mean_speedup_factor": 1.2351359827443178,
+          "mean_latency_reduction": 0.1903725468525943,
+          "paper_retrieval_metrics": {
+            "hit@10": 1.0,
+            "hit@20": 1.0,
+            "recall@10": 0.01967387538602227
+          },
+          "early_exit_count": 11,
+          "early_exit_rate": 0.22,
+          "neural_calls_across_timed_repeats": {
+            "dense": 117,
+            "splade": 117
+          },
+          "rankings_changed_on_later_repeats": 0,
+          "recall_retention_95_interval": [
+            0.9357843955235893,
+            0.987534189389527
+          ],
+          "mean_latency_reduction_95_interval": [
+            0.0947417038367654,
+            0.3011271711613293
+          ],
+          "bootstrap_resamples": 1000,
+          "observed_target_met": false,
+          "dominated_in_mean_latency_and_recall_by": [
+            "splade"
+          ],
+          "dominators_all_quality_metrics_and_mean_latency": [],
+          "speedup_vs_original_fusion": 20.20507074532603,
+          "original_fusion_same_queries_ms": 1493.2301724666831
+        }
+      },
+      "source": "cascaded-blended-rag/results/indexed_trec-covid_q0/indexed_cascade_benchmark.json"
+    },
+    "squad": {
+      "queries": 256,
+      "all_available_queries": 10570,
+      "documents": 20958,
+      "repeats": 3,
+      "methods": {
+        "static_rrf": {
+          "metrics": {
+            "recall@100": 1.0,
+            "ndcg@10": 0.8093149759746084,
+            "map@10": 0.7705868675595238
+          },
+          "recall_retention": 1.0,
+          "latency_ms": {
+            "mean": 29.5466739387867,
+            "p50": 29.427204501189408,
+            "p95": 31.374244600374368,
+            "p99": 34.03631058037718
+          },
+          "mean_speedup_factor": 1.0000000000000002,
+          "mean_latency_reduction": 1.1102230246251565e-16,
+          "paper_retrieval_metrics": {
+            "hit@10": 0.9296875,
+            "hit@20": 0.96484375,
+            "recall@10": 0.9296875
+          },
+          "early_exit_count": 0,
+          "early_exit_rate": 0.0,
+          "neural_calls_across_timed_repeats": {
+            "dense": 768,
+            "splade": 768
+          },
+          "rankings_changed_on_later_repeats": 0,
+          "recall_retention_95_interval": [
+            1.0,
+            1.0
+          ],
+          "mean_latency_reduction_95_interval": [
+            0.0,
+            0.0
+          ],
+          "bootstrap_resamples": 1000,
+          "dominated_in_mean_latency_and_recall_by": [
+            "ridge11_r92",
+            "ridge11_r95",
+            "ridge11_r99"
+          ],
+          "dominators_all_quality_metrics_and_mean_latency": [
+            "ridge11_r99"
+          ],
+          "speedup_vs_original_fusion": 4.975641583633393,
+          "original_fusion_same_queries_ms": 147.01365950788414
+        },
+        "bm25": {
+          "metrics": {
+            "recall@100": 0.95703125,
+            "ndcg@10": 0.7786915890859247,
+            "map@10": 0.7503766741071428
+          },
+          "recall_retention": 0.95703125,
+          "latency_ms": {
+            "mean": 1.033511932272783,
+            "p50": 0.9916290000546724,
+            "p95": 1.5558884997517453,
+            "p99": 1.9336264000230585
+          },
+          "mean_speedup_factor": 28.5886142347781,
+          "mean_latency_reduction": 0.9650210397822117,
+          "paper_retrieval_metrics": {
+            "hit@10": 0.8671875,
+            "hit@20": 0.90234375,
+            "recall@10": 0.8671875
+          },
+          "early_exit_count": 0,
+          "early_exit_rate": 0.0,
+          "neural_calls_across_timed_repeats": {
+            "dense": 0,
+            "splade": 0
+          },
+          "rankings_changed_on_later_repeats": 0,
+          "recall_retention_95_interval": [
+            0.9296875,
+            0.98046875
+          ],
+          "mean_latency_reduction_95_interval": [
+            0.9638427157959636,
+            0.9660632847228338
+          ],
+          "bootstrap_resamples": 1000,
+          "dominated_in_mean_latency_and_recall_by": [],
+          "dominators_all_quality_metrics_and_mean_latency": [],
+          "speedup_vs_original_fusion": 142.24669780501543,
+          "original_fusion_same_queries_ms": 147.01365950788414
+        },
+        "dense": {
+          "metrics": {
+            "recall@100": 0.95703125,
+            "ndcg@10": 0.6877779358253184,
+            "map@10": 0.6303989955357143
+          },
+          "recall_retention": 0.95703125,
+          "latency_ms": {
+            "mean": 10.822482574184278,
+            "p50": 10.734511000919156,
+            "p95": 11.75838965064031,
+            "p99": 12.62595307911397
+          },
+          "mean_speedup_factor": 2.730119797953449,
+          "mean_latency_reduction": 0.6337157069995172,
+          "paper_retrieval_metrics": {
+            "hit@10": 0.8671875,
+            "hit@20": 0.90625,
+            "recall@10": 0.8671875
+          },
+          "early_exit_count": 0,
+          "early_exit_rate": 0.0,
+          "neural_calls_across_timed_repeats": {
+            "dense": 768,
+            "splade": 0
+          },
+          "rankings_changed_on_later_repeats": 0,
+          "recall_retention_95_interval": [
+            0.92958984375,
+            0.98046875
+          ],
+          "mean_latency_reduction_95_interval": [
+            0.632283701291918,
+            0.6352442906027831
+          ],
+          "bootstrap_resamples": 1000,
+          "dominated_in_mean_latency_and_recall_by": [
+            "bm25"
+          ],
+          "dominators_all_quality_metrics_and_mean_latency": [
+            "bm25"
+          ],
+          "speedup_vs_original_fusion": 13.584097594997974,
+          "original_fusion_same_queries_ms": 147.01365950788414
+        },
+        "splade": {
+          "metrics": {
+            "recall@100": 0.98828125,
+            "ndcg@10": 0.854397884281105,
+            "map@10": 0.8283094618055555
+          },
+          "recall_retention": 0.98828125,
+          "latency_ms": {
+            "mean": 16.957841524828154,
+            "p50": 16.77265900070779,
+            "p95": 18.477464350144146,
+            "p99": 20.69053669092694
+          },
+          "mean_speedup_factor": 1.7423605413181333,
+          "mean_latency_reduction": 0.4260659741275601,
+          "paper_retrieval_metrics": {
+            "hit@10": 0.93359375,
+            "hit@20": 0.96484375,
+            "recall@10": 0.93359375
+          },
+          "early_exit_count": 0,
+          "early_exit_rate": 0.0,
+          "neural_calls_across_timed_repeats": {
+            "dense": 0,
+            "splade": 768
+          },
+          "rankings_changed_on_later_repeats": 0,
+          "recall_retention_95_interval": [
+            0.97265625,
+            1.0
+          ],
+          "mean_latency_reduction_95_interval": [
+            0.42313742767701584,
+            0.42889097270592624
+          ],
+          "bootstrap_resamples": 1000,
+          "dominated_in_mean_latency_and_recall_by": [],
+          "dominators_all_quality_metrics_and_mean_latency": [],
+          "speedup_vs_original_fusion": 8.669361563064491,
+          "original_fusion_same_queries_ms": 147.01365950788414
+        },
+        "ridge11_r90": {
+          "family": "ridge11",
+          "target": 0.9,
+          "threshold": 0.08476735882156501,
+          "metrics": {
+            "recall@100": 0.9921875,
+            "ndcg@10": 0.8009156345421264,
+            "map@10": 0.7675688244047618
+          },
+          "recall_retention": 0.9921875,
+          "latency_ms": {
+            "mean": 18.589377339845708,
+            "p50": 28.871742499177344,
+            "p95": 31.476797849609284,
+            "p99": 33.180840070490376
+          },
+          "mean_speedup_factor": 1.5894386024137774,
+          "mean_latency_reduction": 0.37084704091031584,
+          "paper_retrieval_metrics": {
+            "hit@10": 0.90625,
+            "hit@20": 0.9453125,
+            "recall@10": 0.90625
+          },
+          "early_exit_count": 102,
+          "early_exit_rate": 0.3984375,
+          "neural_calls_across_timed_repeats": {
+            "dense": 462,
+            "splade": 462
+          },
+          "rankings_changed_on_later_repeats": 0,
+          "recall_retention_95_interval": [
+            0.98046875,
+            1.0
+          ],
+          "mean_latency_reduction_95_interval": [
+            0.3157740669787627,
+            0.4269013998887454
+          ],
+          "bootstrap_resamples": 1000,
+          "observed_target_met": true,
+          "dominated_in_mean_latency_and_recall_by": [],
+          "dominators_all_quality_metrics_and_mean_latency": [],
+          "speedup_vs_original_fusion": 7.908476804802132,
+          "original_fusion_same_queries_ms": 147.01365950788414
+        },
+        "ridge11_r92": {
+          "family": "ridge11",
+          "target": 0.92,
+          "threshold": 0.08109377362417783,
+          "metrics": {
+            "recall@100": 1.0,
+            "ndcg@10": 0.8028687595421263,
+            "map@10": 0.7675688244047618
+          },
+          "recall_retention": 1.0,
+          "latency_ms": {
+            "mean": 21.305826169291702,
+            "p50": 29.154296000342583,
+            "p95": 31.6400509513187,
+            "p99": 37.22913298133797
+          },
+          "mean_speedup_factor": 1.3867884635880778,
+          "mean_latency_reduction": 0.27890949033952084,
+          "paper_retrieval_metrics": {
+            "hit@10": 0.9140625,
+            "hit@20": 0.953125,
+            "recall@10": 0.9140625
+          },
+          "early_exit_count": 78,
+          "early_exit_rate": 0.3046875,
+          "neural_calls_across_timed_repeats": {
+            "dense": 534,
+            "splade": 534
+          },
+          "rankings_changed_on_later_repeats": 0,
+          "recall_retention_95_interval": [
+            1.0,
+            1.0
+          ],
+          "mean_latency_reduction_95_interval": [
+            0.22913903249365072,
+            0.33035487455149726
+          ],
+          "bootstrap_resamples": 1000,
+          "observed_target_met": true,
+          "dominated_in_mean_latency_and_recall_by": [],
+          "dominators_all_quality_metrics_and_mean_latency": [],
+          "speedup_vs_original_fusion": 6.900162347131903,
+          "original_fusion_same_queries_ms": 147.01365950788414
+        },
+        "ridge11_r95": {
+          "family": "ridge11",
+          "target": 0.95,
+          "threshold": 0.07566573718136592,
+          "metrics": {
+            "recall@100": 1.0,
+            "ndcg@10": 0.8027731857185875,
+            "map@10": 0.7646391369047618
+          },
+          "recall_retention": 1.0,
+          "latency_ms": {
+            "mean": 24.821848864585643,
+            "p50": 29.476245001205825,
+            "p95": 31.699499501155515,
+            "p99": 34.45029291855465
+          },
+          "mean_speedup_factor": 1.1903494417348646,
+          "mean_latency_reduction": 0.1599105565651725,
+          "paper_retrieval_metrics": {
+            "hit@10": 0.921875,
+            "hit@20": 0.95703125,
+            "recall@10": 0.921875
+          },
+          "early_exit_count": 46,
+          "early_exit_rate": 0.1796875,
+          "neural_calls_across_timed_repeats": {
+            "dense": 630,
+            "splade": 630
+          },
+          "rankings_changed_on_later_repeats": 0,
+          "recall_retention_95_interval": [
+            1.0,
+            1.0
+          ],
+          "mean_latency_reduction_95_interval": [
+            0.1178634013951881,
+            0.20581888042694088
+          ],
+          "bootstrap_resamples": 1000,
+          "observed_target_met": true,
+          "dominated_in_mean_latency_and_recall_by": [
+            "ridge11_r92"
+          ],
+          "dominators_all_quality_metrics_and_mean_latency": [
+            "ridge11_r92"
+          ],
+          "speedup_vs_original_fusion": 5.922752181350786,
+          "original_fusion_same_queries_ms": 147.01365950788414
+        },
+        "ridge11_r99": {
+          "family": "ridge11",
+          "target": 0.99,
+          "threshold": 0.0629950754686053,
+          "metrics": {
+            "recall@100": 1.0,
+            "ndcg@10": 0.8102033658878911,
+            "map@10": 0.7708193824404762
+          },
+          "recall_retention": 1.0,
+          "latency_ms": {
+            "mean": 28.3085704075224,
+            "p50": 29.651897501025815,
+            "p95": 31.71235709760367,
+            "p99": 33.247800708450086
+          },
+          "mean_speedup_factor": 1.043735996323407,
+          "mean_latency_reduction": 0.04190331317255347,
+          "paper_retrieval_metrics": {
+            "hit@10": 0.93359375,
+            "hit@20": 0.96875,
+            "recall@10": 0.93359375
+          },
+          "early_exit_count": 14,
+          "early_exit_rate": 0.0546875,
+          "neural_calls_across_timed_repeats": {
+            "dense": 726,
+            "splade": 726
+          },
+          "rankings_changed_on_later_repeats": 0,
+          "recall_retention_95_interval": [
+            1.0,
+            1.0
+          ],
+          "mean_latency_reduction_95_interval": [
+            0.018955927732409412,
+            0.070366474619835
+          ],
+          "bootstrap_resamples": 1000,
+          "observed_target_met": true,
+          "dominated_in_mean_latency_and_recall_by": [
+            "ridge11_r92",
+            "ridge11_r95"
+          ],
+          "dominators_all_quality_metrics_and_mean_latency": [],
+          "speedup_vs_original_fusion": 5.193256225641772,
+          "original_fusion_same_queries_ms": 147.01365950788414
+        }
+      },
+      "source": "cascaded-blended-rag/results/indexed_squad_q256/indexed_cascade_benchmark.json"
+    }
+  },
+  "source_sha256": {
+    "cascaded-blended-rag/results/indexed_trec-covid_q0/indexed_cascade_benchmark.json": "89671cfe7b46d6f532922b8fbbc723d7c1a813574342801720cb739e5cbea5ba",
+    "cascaded-blended-rag/results/indexed_squad_q256/indexed_cascade_benchmark.json": "d5e44c9391d0ea9fc9746433776a84eb40277032ed571e59259f9eb62c554799"
+  }
+}

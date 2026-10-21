@@ -1,0 +1,11 @@
+numpy
+torch
+ranx
+scikit-learn
+rank-bm25
+sentence-transformers
+faiss-cpu
+transformers
+scipy
+tqdm
+matplotlib

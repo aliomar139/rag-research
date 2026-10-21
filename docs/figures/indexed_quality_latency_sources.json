@@ -1,0 +1,7 @@
+{
+  "source_sha256": {
+    "trec-covid": "89671cfe7b46d6f532922b8fbbc723d7c1a813574342801720cb739e5cbea5ba",
+    "squad": "d5e44c9391d0ea9fc9746433776a84eb40277032ed571e59259f9eb62c554799"
+  },
+  "scope": "Exports saved measurements only. No new inference, scoring, timing or policy selection."
+}

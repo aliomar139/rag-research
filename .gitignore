@@ -1,68 +1,84 @@
-# ==============================================================================
-# Git Ignore - Cascaded Adaptive Blended RAG Research Repository
-# Target: https://github.com/aliomar139/rag-research
-# ==============================================================================
-
-# --- Python Virtual Environments ---
+# Local Python environments, compiled files and tool caches
 venv/
 .venv/
 env/
 ENV/
-*/venv/
-**/venv/
-
-# --- Byte-compiled / Optimized Python Files ---
 __pycache__/
-**/__pycache__/
 *.py[cod]
-*$py.class
-*.so
 *.pyd
+*.so
 *.dll
-
-# --- Distribution / Packaging ---
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
 build/
 dist/
 *.egg-info/
 .eggs/
-
-# --- Jupyter Notebook Artifacts ---
 .ipynb_checkpoints/
-**/.ipynb_checkpoints/
 
-# --- Large Downloaded Datasets (>100MB GitHub limit & Raw Corpora) ---
-# TREC-COVID full corpus is ~221MB (exceeds GitHub's 100MB hard limit)
-cascaded-blended-rag/data/raw/trec-covid/corpus.jsonl
-cascaded-blended-rag/data/raw/trec-covid.zip
-cascaded-blended-rag/data/raw/scifact.zip
-cascaded-blended-rag/data/raw/*.zip
-cascaded-blended-rag/data/raw/*.tar.gz
+# Local evidence, source bundles, submission ZIPs and working notes.
+# artifacts/README.md is shared; each generated child directory is local only.
+/artifacts/downloads/
+/artifacts/source_bundles/
+/artifacts/source_snapshots/
+/artifacts/legacy_exports/
+/artifacts/submission/
+/artifacts/working_notes/
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+/PROJECT_ANCHOR.md
+/.local/
 
-# --- Generated Index Caches & Dense/Sparse Embeddings ---
-cascaded-blended-rag/data/processed/
-cascaded-blended-rag/data/processed_squad/
-cascaded-blended-rag/data/processed_trec_covid/
+# Downloaded corpora, annotations and neural indexes are restored separately.
+/cascaded-blended-rag/data/raw/**
+!/cascaded-blended-rag/data/raw/README.md
+/cascaded-blended-rag/data/processed*/
 *.npy
 *.npz
-
-# --- Large Score Caches and Colab Dumps ---
-cascaded-blended-rag/results/*_cache.json
-cascaded-blended-rag/results/squad_top5_for_colab.json
-
-# --- Literature Downloader & PDF Cache ---
-# 106 research PDFs (~184MB). Use Similar-Papers/download_all_papers.py to re-download.
-Similar-Papers/downloaded_papers/
-Similar-Papers/*.pkl
+*.pt
+*.pth
+*.safetensors
+*.bin
 *.pkl
 *.pickle
 
-# --- Operating System & Editor Files ---
+# Large per-query evidence stays on disk. Compact reports and checksums are shared.
+/cascaded-blended-rag/results/**/retrieval_first_pass.jsonl
+/cascaded-blended-rag/results/**/additional_repetitions.jsonl
+/cascaded-blended-rag/results/*_cache.json
+/cascaded-blended-rag/results/squad_top5_for_colab.json
+/cascaded-blended-rag/results/nfcorpus_train_coverage_features.jsonl
+/cascaded-blended-rag/results/nfcorpus_retention_train_predictions.jsonl
+/cascaded-blended-rag/results/router_training_scifact.jsonl
+
+# Historical scripts can restore these compatibility inputs locally.
+/*_outputs.zip
+/nfcorpus_corpus_for_features.jsonl
+/router_training_scifact.jsonl
+
+# Downloaded third-party papers and generated bibliography caches
+/Similar-Papers/downloaded_papers/
+/Similar-Papers/local/
+
+# Credentials, local editor settings and operating-system files
+.env
+.env.*
+!.env.example
+kaggle.json
+credentials.json
+*.pem
+*.key
+.vscode/
+.idea/
 .DS_Store
 Thumbs.db
 ehthumbs.db
 desktop.ini
-.vscode/
-.idea/
 *.swp
 *.swo
 *~

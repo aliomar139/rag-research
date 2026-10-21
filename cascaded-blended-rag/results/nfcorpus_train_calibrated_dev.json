@@ -1,0 +1,1357 @@
+{
+  "dataset": "BEIR NFCorpus",
+  "calibration_split": "official train",
+  "evaluation_split": "official dev",
+  "corpus_documents": 3633,
+  "train_queries": 2590,
+  "dev_queries": 324,
+  "corpus_source": "official full BEIR corpus; no qrel-based document selection",
+  "test_split_opened": false,
+  "calibration": {
+    "source": "NFCorpus official train split only",
+    "queries": 2590,
+    "router": "StandardScaler + Ridge(alpha=10)",
+    "cv_folds": 5,
+    "cv_seed": 42,
+    "target_fraction_of_static_recall": 0.99,
+    "oof_static_recall@100": 0.31777556345680197,
+    "oof_target_recall@100": 0.31459780782223395,
+    "threshold": 0.06299507546860514,
+    "oof_exit_rate": 0.06447876447876448,
+    "oof_policy_recall@100": 0.31494723914073774,
+    "oof_policy_recall_ratio": 0.9910996167065291,
+    "oof_aggregate_recall_loss": 0.00315090210832338
+  },
+  "static_rrf": {
+    "metrics": {
+      "recall@100": 0.3033665914254037,
+      "ndcg@10": 0.31872262666311596,
+      "map@10": 0.1012940118001782
+    },
+    "latency_ms": {
+      "mean": 25.33908692592631,
+      "p50": 23.33995999998706,
+      "p95": 35.27724545000978,
+      "p99": 42.72276870995707
+    }
+  },
+  "cascade": {
+    "metrics": {
+      "recall@100": 0.30115585355575103,
+      "ndcg@10": 0.31567965021022865,
+      "map@10": 0.09983831203474906
+    },
+    "early_exit_rate": 0.040123456790123455,
+    "dense_calls_skipped_per_pass": 13,
+    "splade_calls_skipped_per_pass": 13,
+    "latency_ms": {
+      "mean": 25.22340574999953,
+      "p50": 23.509687999990092,
+      "p95": 36.20189499997082,
+      "p99": 41.92956245998627
+    },
+    "per_query_first_pass": {
+      "PLAIN-1": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.08080432352067535
+      },
+      "PLAIN-11": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.09947478252904118
+      },
+      "PLAIN-22": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.1012646104417697
+      },
+      "PLAIN-32": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.10424077307683391
+      },
+      "PLAIN-43": {
+        "route": "EARLY_EXIT",
+        "predicted_gain": 0.05222128669603648
+      },
+      "PLAIN-55": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.0691956667082715
+      },
+      "PLAIN-67": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.11449826797485319
+      },
+      "PLAIN-77": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.0778364170006682
+      },
+      "PLAIN-90": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.09690029279797314
+      },
+      "PLAIN-101": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.08648683451722006
+      },
+      "PLAIN-111": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.11755266215863898
+      },
+      "PLAIN-122": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.07076492427901834
+      },
+      "PLAIN-132": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.10690556528600184
+      },
+      "PLAIN-142": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.11411820023670918
+      },
+      "PLAIN-152": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.08630894902266542
+      },
+      "PLAIN-164": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.08389051418786798
+      },
+      "PLAIN-174": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.06808099718168223
+      },
+      "PLAIN-185": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.0826647559295733
+      },
+      "PLAIN-195": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.08386256853823607
+      },
+      "PLAIN-206": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.09328614012437231
+      },
+      "PLAIN-216": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.06662264322211225
+      },
+      "PLAIN-226": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.11685408054644923
+      },
+      "PLAIN-237": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.11896850411466314
+      },
+      "PLAIN-247": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.12851811310238134
+      },
+      "PLAIN-258": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.10676088611447163
+      },
+      "PLAIN-269": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.0703705428672012
+      },
+      "PLAIN-279": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.15150325027396497
+      },
+      "PLAIN-290": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.09782265383427927
+      },
+      "PLAIN-304": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.16121864199417796
+      },
+      "PLAIN-319": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.08821428394067994
+      },
+      "PLAIN-331": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.07906957944662446
+      },
+      "PLAIN-343": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.10480097435977148
+      },
+      "PLAIN-357": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.09545046287574155
+      },
+      "PLAIN-370": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.11885842439096041
+      },
+      "PLAIN-382": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.08927202600232738
+      },
+      "PLAIN-394": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.1227288288579472
+      },
+      "PLAIN-406": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.10704352193916467
+      },
+      "PLAIN-417": {
+        "route": "EARLY_EXIT",
+        "predicted_gain": 0.058680200859254635
+      },
+      "PLAIN-428": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.09924845768325852
+      },
+      "PLAIN-440": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.07452850403546242
+      },
+      "PLAIN-456": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.12564895543040622
+      },
+      "PLAIN-467": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.11798997451187714
+      },
+      "PLAIN-477": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.1453900486684751
+      },
+      "PLAIN-487": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.08811738147958327
+      },
+      "PLAIN-498": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.07201933403757667
+      },
+      "PLAIN-508": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.0951608137525035
+      },
+      "PLAIN-519": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.08599611272112563
+      },
+      "PLAIN-530": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.0811826491568445
+      },
+      "PLAIN-540": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.06636799967999665
+      },
+      "PLAIN-550": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.09252455741704463
+      },
+      "PLAIN-560": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.10954975596309775
+      },
+      "PLAIN-570": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.06724837021923423
+      },
+      "PLAIN-582": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.10878139449980015
+      },
+      "PLAIN-592": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.1453900486684751
+      },
+      "PLAIN-602": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.1453900486684751
+      },
+      "PLAIN-612": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.09380102776708696
+      },
+      "PLAIN-622": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.1453900486684751
+      },
+      "PLAIN-633": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.07422469503758529
+      },
+      "PLAIN-644": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.09394850158101833
+      },
+      "PLAIN-656": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.07728586789520683
+      },
+      "PLAIN-670": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.10249126448286666
+      },
+      "PLAIN-680": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.08174578775308292
+      },
+      "PLAIN-690": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.10230064502703642
+      },
+      "PLAIN-700": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.07491269497190242
+      },
+      "PLAIN-710": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.07025965666447517
+      },
+      "PLAIN-720": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.1218797542072653
+      },
+      "PLAIN-730": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.0691438578745752
+      },
+      "PLAIN-740": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.09802295120090591
+      },
+      "PLAIN-750": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.08121982188254462
+      },
+      "PLAIN-760": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.06844630265314953
+      },
+      "PLAIN-770": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.1453900486684751
+      },
+      "PLAIN-781": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.1453900486684751
+      },
+      "PLAIN-791": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.0872466768684796
+      },
+      "PLAIN-805": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.12988387194216822
+      },
+      "PLAIN-816": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.09622921789844098
+      },
+      "PLAIN-826": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.1133692705063672
+      },
+      "PLAIN-837": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.07830057558567699
+      },
+      "PLAIN-848": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.10093323289643027
+      },
+      "PLAIN-859": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.09347755411548146
+      },
+      "PLAIN-871": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.10243949253259732
+      },
+      "PLAIN-881": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.087680100780094
+      },
+      "PLAIN-891": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.13094690908178847
+      },
+      "PLAIN-901": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.1453900486684751
+      },
+      "PLAIN-912": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.10207119399002568
+      },
+      "PLAIN-923": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.06595074490892884
+      },
+      "PLAIN-933": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.07303510187038413
+      },
+      "PLAIN-945": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.07104474978424555
+      },
+      "PLAIN-955": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.09697891652736257
+      },
+      "PLAIN-965": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.11065504931727686
+      },
+      "PLAIN-976": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.11793127067610364
+      },
+      "PLAIN-986": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.1453900486684751
+      },
+      "PLAIN-996": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.12537988439825365
+      },
+      "PLAIN-1007": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.09361187224214144
+      },
+      "PLAIN-1017": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.09891078158218533
+      },
+      "PLAIN-1027": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.06766557990122236
+      },
+      "PLAIN-1038": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.09188626784607756
+      },
+      "PLAIN-1049": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.11230238957183156
+      },
+      "PLAIN-1065": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.10467844673828573
+      },
+      "PLAIN-1077": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.1453900486684751
+      },
+      "PLAIN-1087": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.09085800361131768
+      },
+      "PLAIN-1097": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.1453900486684751
+      },
+      "PLAIN-1108": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.1453900486684751
+      },
+      "PLAIN-1118": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.07107914318220399
+      },
+      "PLAIN-1129": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.06816173353103036
+      },
+      "PLAIN-1140": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.0814975315179633
+      },
+      "PLAIN-1150": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.09221422331986599
+      },
+      "PLAIN-1160": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.06557754364467526
+      },
+      "PLAIN-1171": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.1453900486684751
+      },
+      "PLAIN-1181": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.09805586510825864
+      },
+      "PLAIN-1192": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.08874611894942395
+      },
+      "PLAIN-1202": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.0804194900233679
+      },
+      "PLAIN-1213": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.09900157994598875
+      },
+      "PLAIN-1224": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.12126599553387378
+      },
+      "PLAIN-1235": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.10139489008402174
+      },
+      "PLAIN-1245": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.08099658860343502
+      },
+      "PLAIN-1261": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.09826886135600696
+      },
+      "PLAIN-1273": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.1263754866774978
+      },
+      "PLAIN-1287": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.0656511227522702
+      },
+      "PLAIN-1298": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.11075991837011641
+      },
+      "PLAIN-1308": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.07958968965710601
+      },
+      "PLAIN-1319": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.09927264064402935
+      },
+      "PLAIN-1330": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.07571376312761419
+      },
+      "PLAIN-1341": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.06922780612447163
+      },
+      "PLAIN-1352": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.08388295806825061
+      },
+      "PLAIN-1362": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.1195431804614708
+      },
+      "PLAIN-1373": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.09879561054745556
+      },
+      "PLAIN-1386": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.09672145494230175
+      },
+      "PLAIN-1397": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.08662593994049592
+      },
+      "PLAIN-1408": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.0851508550304968
+      },
+      "PLAIN-1418": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.0984433268073783
+      },
+      "PLAIN-1428": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.08284817531588866
+      },
+      "PLAIN-1440": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.09956401923120853
+      },
+      "PLAIN-1451": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.07716747786572567
+      },
+      "PLAIN-1462": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.07908019534156252
+      },
+      "PLAIN-1472": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.07110537384238029
+      },
+      "PLAIN-1484": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.0921771652276955
+      },
+      "PLAIN-1495": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.10960374146036572
+      },
+      "PLAIN-1505": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.09740372135914935
+      },
+      "PLAIN-1515": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.1453900486684751
+      },
+      "PLAIN-1526": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.06861885814321961
+      },
+      "PLAIN-1536": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.12520892753081428
+      },
+      "PLAIN-1546": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.08602124380546461
+      },
+      "PLAIN-1556": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.1453900486684751
+      },
+      "PLAIN-1567": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.07293674617389334
+      },
+      "PLAIN-1578": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.10394687135476055
+      },
+      "PLAIN-1589": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.06988394581167001
+      },
+      "PLAIN-1600": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.1453900486684751
+      },
+      "PLAIN-1610": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.10113086056039305
+      },
+      "PLAIN-1620": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.07944168655468001
+      },
+      "PLAIN-1634": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.09345812800007744
+      },
+      "PLAIN-1644": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.09210242694128756
+      },
+      "PLAIN-1655": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.07441458334601843
+      },
+      "PLAIN-1666": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.06829377994899893
+      },
+      "PLAIN-1678": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.1453900486684751
+      },
+      "PLAIN-1689": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.08294521959710005
+      },
+      "PLAIN-1699": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.08908739937383993
+      },
+      "PLAIN-1709": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.11060696225696887
+      },
+      "PLAIN-1720": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.1453900486684751
+      },
+      "PLAIN-1740": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.0768162132854408
+      },
+      "PLAIN-1750": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.0823913308763396
+      },
+      "PLAIN-1761": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.06858672159324668
+      },
+      "PLAIN-1771": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.10068285442460029
+      },
+      "PLAIN-1783": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.118172703464486
+      },
+      "PLAIN-1793": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.06953462952478981
+      },
+      "PLAIN-1804": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.09663848599604336
+      },
+      "PLAIN-1816": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.10944733777555282
+      },
+      "PLAIN-1826": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.0821041350653527
+      },
+      "PLAIN-1836": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.07295182324968312
+      },
+      "PLAIN-1846": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.08488549719506576
+      },
+      "PLAIN-1856": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.10826401174327144
+      },
+      "PLAIN-1866": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.08516873039962641
+      },
+      "PLAIN-1876": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.06909968531991634
+      },
+      "PLAIN-1886": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.1453900486684751
+      },
+      "PLAIN-1896": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.07796554208323106
+      },
+      "PLAIN-1907": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.07980856543075676
+      },
+      "PLAIN-1918": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.07534994470978101
+      },
+      "PLAIN-1928": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.06979029388298136
+      },
+      "PLAIN-1939": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.07420796552838896
+      },
+      "PLAIN-1949": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.1453900486684751
+      },
+      "PLAIN-1961": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.08642052668226738
+      },
+      "PLAIN-1971": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.1453900486684751
+      },
+      "PLAIN-1982": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.07973254567409103
+      },
+      "PLAIN-1994": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.09491807503151072
+      },
+      "PLAIN-2007": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.08770397334054027
+      },
+      "PLAIN-2018": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.13471606939222908
+      },
+      "PLAIN-2029": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.1453900486684751
+      },
+      "PLAIN-2039": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.08661922477730197
+      },
+      "PLAIN-2050": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.09457562224599758
+      },
+      "PLAIN-2060": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.08345920568322271
+      },
+      "PLAIN-2070": {
+        "route": "EARLY_EXIT",
+        "predicted_gain": 0.052192864679658696
+      },
+      "PLAIN-2080": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.09469238571180058
+      },
+      "PLAIN-2091": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.12478701961528105
+      },
+      "PLAIN-2101": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.07377400076616146
+      },
+      "PLAIN-2112": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.0731842778489889
+      },
+      "PLAIN-2123": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.09841086931914997
+      },
+      "PLAIN-2133": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.09835575471711505
+      },
+      "PLAIN-2144": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.0828131308598709
+      },
+      "PLAIN-2155": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.08662356327996368
+      },
+      "PLAIN-2166": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.0772329544210203
+      },
+      "PLAIN-2176": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.08166045934849478
+      },
+      "PLAIN-2186": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.0775009469749505
+      },
+      "PLAIN-2196": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.06916690738484438
+      },
+      "PLAIN-2208": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.1453900486684751
+      },
+      "PLAIN-2219": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.08829050539548307
+      },
+      "PLAIN-2229": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.1453900486684751
+      },
+      "PLAIN-2239": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.07932567736712884
+      },
+      "PLAIN-2249": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.08042221935401253
+      },
+      "PLAIN-2260": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.06572564875714584
+      },
+      "PLAIN-2270": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.09507105131475388
+      },
+      "PLAIN-2280": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.08062101029843377
+      },
+      "PLAIN-2290": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.07501017838933322
+      },
+      "PLAIN-2300": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.0720545692995349
+      },
+      "PLAIN-2310": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.1453900486684751
+      },
+      "PLAIN-2320": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.11146359939262261
+      },
+      "PLAIN-2331": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.11825343945373241
+      },
+      "PLAIN-2342": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.06612937337818478
+      },
+      "PLAIN-2353": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.086185444199516
+      },
+      "PLAIN-2363": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.10707639228542626
+      },
+      "PLAIN-2374": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.10632968167674096
+      },
+      "PLAIN-2385": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.07192916351576785
+      },
+      "PLAIN-2395": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.11538244624986388
+      },
+      "PLAIN-2407": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.09246582811422832
+      },
+      "PLAIN-2429": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.12025770529237705
+      },
+      "PLAIN-2439": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.11292633876089167
+      },
+      "PLAIN-2449": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.09373031618883264
+      },
+      "PLAIN-2459": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.06392822131520394
+      },
+      "PLAIN-2469": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.08222765754808109
+      },
+      "PLAIN-2479": {
+        "route": "EARLY_EXIT",
+        "predicted_gain": 0.06210034583268574
+      },
+      "PLAIN-2489": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.10503031407314617
+      },
+      "PLAIN-2499": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.10147023309024997
+      },
+      "PLAIN-2509": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.08565368348883418
+      },
+      "PLAIN-2519": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.08058510747147793
+      },
+      "PLAIN-2529": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.12306174122552845
+      },
+      "PLAIN-2539": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.09115252789472637
+      },
+      "PLAIN-2549": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.08938272906035588
+      },
+      "PLAIN-2559": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.08405773400539161
+      },
+      "PLAIN-2569": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.09944419740855966
+      },
+      "PLAIN-2579": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.13882786781375495
+      },
+      "PLAIN-2589": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.11145709904146361
+      },
+      "PLAIN-2599": {
+        "route": "EARLY_EXIT",
+        "predicted_gain": 0.041630967645718414
+      },
+      "PLAIN-2609": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.0849791691109443
+      },
+      "PLAIN-2619": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.13433003864240586
+      },
+      "PLAIN-2629": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.08529327476901283
+      },
+      "PLAIN-2639": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.11249362850730903
+      },
+      "PLAIN-2649": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.07259387091438417
+      },
+      "PLAIN-2659": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.07758513993961712
+      },
+      "PLAIN-2669": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.06608564414030743
+      },
+      "PLAIN-2679": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.10778933986856078
+      },
+      "PLAIN-2689": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.1304084923778432
+      },
+      "PLAIN-2699": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.1276086897522966
+      },
+      "PLAIN-2709": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.10587885940752174
+      },
+      "PLAIN-2719": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.0739042004660972
+      },
+      "PLAIN-2729": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.08245681491644188
+      },
+      "PLAIN-2739": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.1152019881145614
+      },
+      "PLAIN-2749": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.10199158454843729
+      },
+      "PLAIN-2759": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.06770960353331221
+      },
+      "PLAIN-2769": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.10118028410935968
+      },
+      "PLAIN-2779": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.08894029966399672
+      },
+      "PLAIN-2789": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.0732320978628415
+      },
+      "PLAIN-2799": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.09222615099626946
+      },
+      "PLAIN-2809": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.09978785782291544
+      },
+      "PLAIN-2819": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.06668714104822576
+      },
+      "PLAIN-2829": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.10846942913277025
+      },
+      "PLAIN-2839": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.11013615777196348
+      },
+      "PLAIN-2849": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.06343024351043397
+      },
+      "PLAIN-2859": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.11896850411466314
+      },
+      "PLAIN-2869": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.11157900839280012
+      },
+      "PLAIN-2879": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.08470282014007129
+      },
+      "PLAIN-2889": {
+        "route": "EARLY_EXIT",
+        "predicted_gain": 0.0530951506318021
+      },
+      "PLAIN-2899": {
+        "route": "EARLY_EXIT",
+        "predicted_gain": 0.05245027172811306
+      },
+      "PLAIN-2909": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.09380437039057782
+      },
+      "PLAIN-2919": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.07925241439860939
+      },
+      "PLAIN-2929": {
+        "route": "EARLY_EXIT",
+        "predicted_gain": 0.05376061567136568
+      },
+      "PLAIN-2939": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.14723945024821114
+      },
+      "PLAIN-2949": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.07223196322952581
+      },
+      "PLAIN-2959": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.10757953679123206
+      },
+      "PLAIN-2969": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.1366170228448139
+      },
+      "PLAIN-2979": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.10885969143564134
+      },
+      "PLAIN-2990": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.09069930182356081
+      },
+      "PLAIN-3000": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.0726261366795224
+      },
+      "PLAIN-3013": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.07464496123102339
+      },
+      "PLAIN-3025": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.1253285286911363
+      },
+      "PLAIN-3036": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.14974151615797604
+      },
+      "PLAIN-3052": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.127764096598958
+      },
+      "PLAIN-3062": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.10998773156368344
+      },
+      "PLAIN-3073": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.10263618186149803
+      },
+      "PLAIN-3084": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.11431978896324341
+      },
+      "PLAIN-3096": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.07997137895803699
+      },
+      "PLAIN-3114": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.10038206799005701
+      },
+      "PLAIN-3130": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.08801084513412072
+      },
+      "PLAIN-3140": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.10059185707424204
+      },
+      "PLAIN-3150": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.11729836356191863
+      },
+      "PLAIN-3160": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.06829924457103967
+      },
+      "PLAIN-3170": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.06971258458116109
+      },
+      "PLAIN-3180": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.10958302468226808
+      },
+      "PLAIN-3190": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.07548954755530163
+      },
+      "PLAIN-3200": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.07398047117155095
+      },
+      "PLAIN-3210": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.06562749207893329
+      },
+      "PLAIN-3220": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.08599885996294622
+      },
+      "PLAIN-3230": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.1053238867880274
+      },
+      "PLAIN-3240": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.08443782380145018
+      },
+      "PLAIN-3250": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.08310542913947777
+      },
+      "PLAIN-3260": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.07153128400361598
+      },
+      "PLAIN-3270": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.11043779711636433
+      },
+      "PLAIN-3280": {
+        "route": "EARLY_EXIT",
+        "predicted_gain": 0.061474551213060884
+      },
+      "PLAIN-3291": {
+        "route": "EARLY_EXIT",
+        "predicted_gain": 0.055721691598025286
+      },
+      "PLAIN-3301": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.0865243346414326
+      },
+      "PLAIN-3311": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.09728257852343208
+      },
+      "PLAIN-3321": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.07866639617988971
+      },
+      "PLAIN-3331": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.13079813473559776
+      },
+      "PLAIN-3341": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.09413495807954757
+      },
+      "PLAIN-3351": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.0671533252551373
+      },
+      "PLAIN-3361": {
+        "route": "EARLY_EXIT",
+        "predicted_gain": 0.05976948143623282
+      },
+      "PLAIN-3371": {
+        "route": "EARLY_EXIT",
+        "predicted_gain": 0.05802153568155066
+      },
+      "PLAIN-3381": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.08223390716766836
+      },
+      "PLAIN-3391": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.08226010896239987
+      },
+      "PLAIN-3401": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.13525790604236546
+      },
+      "PLAIN-3411": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.07172506369177176
+      },
+      "PLAIN-3421": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.06907608383530381
+      },
+      "PLAIN-3431": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.09460787084303718
+      },
+      "PLAIN-3441": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.10148247153123216
+      },
+      "PLAIN-3451": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.07808791882376376
+      },
+      "PLAIN-3461": {
+        "route": "EARLY_EXIT",
+        "predicted_gain": 0.05594345595191105
+      },
+      "PLAIN-3471": {
+        "route": "ESCALATE",
+        "predicted_gain": 0.11668213336582398
+      }
+    }
+  },
+  "hardware": {
+    "cuda_available": true,
+    "cuda_device": "Tesla T4"
+  },
+  "protocol_note": "Router and threshold are selected using NFCorpus train only. Dev relevance grades are opened after dev routes and rankings are fixed. test.tsv is never read."
+}

@@ -1,0 +1,7 @@
+{
+  "original_report_sha256": {
+    "trec-covid": "583be6343ee58ecd60c6db189c641aa7f2443a0fed3de1f26e7fe968e27e9250",
+    "squad": "0dbcb1b29d8787f172eb5ffba60a1149954d473f7c502a81a6b4f32fb1f36047"
+  },
+  "scope": "Ratios of saved same-query means; no new retrieval or timing."
+}

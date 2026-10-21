@@ -1,0 +1,3619 @@
+{
+  "dataset": "BEIR NFCorpus",
+  "evaluation_split": "official test",
+  "corpus_documents": 3633,
+  "test_queries": 323,
+  "corpus_source": "official full BEIR NFCorpus corpus; no qrel-based sampling",
+  "router_training_source": "/kaggle/working/nfcorpus_ridge_transfer_069a972c/cascaded-blended-rag/results/router_training_scifact.jsonl",
+  "router": "SciFact-trained StandardScaler + Ridge(alpha=10)",
+  "threshold_calibration": {
+    "source": "BEIR SciFact train examples only",
+    "queries": 809,
+    "model": "StandardScaler + Ridge(alpha=10), predicts nonnegative Recall@100 escalation gain",
+    "folds": 5,
+    "fold_seed": 42,
+    "target_fraction_of_static_recall": 0.99,
+    "static_recall@100": 0.9583848372476307,
+    "target_recall@100": 0.9488009888751544,
+    "threshold": 0.06379238292740377,
+    "oof_exit_rate": 0.5525339925834364,
+    "oof_policy_recall@100": 0.9522661722290894,
+    "oof_policy_recall_ratio": 0.9936156491831472,
+    "oof_aggregate_recall_loss": 0.008590852904820766
+  },
+  "nfc_test_relevance_grades_read_before_routing": false,
+  "test_query_ids_read_from_official_qrels_to_select_the_test_split": true,
+  "latency_repeats_after_warmup": 2,
+  "static_rrf": {
+    "metrics": {
+      "recall@100": 0.3146960330931855,
+      "ndcg@10": 0.3452103315472166,
+      "map@10": 0.13037497889274846
+    },
+    "latency_ms": {
+      "mean": 25.043248905577084,
+      "p50": 23.43639800000119,
+      "p95": 35.01867100001732,
+      "p99": 38.540392850018144
+    }
+  },
+  "cascade": {
+    "metrics": {
+      "recall@100": 0.26811145213363097,
+      "ndcg@10": 0.32033161549172984,
+      "map@10": 0.1235326944893215
+    },
+    "early_exit_rate": 0.6811145510835913,
+    "queries_exiting_per_pass": 220,
+    "dense_calls_skipped_per_pass": 220,
+    "splade_calls_skipped_per_pass": 220,
+    "dense_calls_skipped_across_timed_repeats": 440,
+    "splade_calls_skipped_across_timed_repeats": 440,
+    "latency_ms": {
+      "mean": 13.562684784831344,
+      "p50": 8.894419999933234,
+      "p95": 33.22808399994415,
+      "p99": 38.04532404998889
+    },
+    "per_query_first_pass": {
+      "PLAIN-2": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.06726080163493901,
+        "timings_first_pass_ms": {
+          "bm25_ms": 13.689057999954457,
+          "router_ms": 0.8361459999832732,
+          "dense_ms": 6.888201000037952,
+          "splade_ms": 11.37511300009919,
+          "fusion_ms": 0.1634220000141795
+        }
+      },
+      "PLAIN-12": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.08257286219793777,
+        "timings_first_pass_ms": {
+          "bm25_ms": 10.793841000008797,
+          "router_ms": 0.7020939999620168,
+          "dense_ms": 6.4972810000654135,
+          "splade_ms": 10.461913000085588,
+          "fusion_ms": 0.21217200003320613
+        }
+      },
+      "PLAIN-23": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.10348582485196278,
+        "timings_first_pass_ms": {
+          "bm25_ms": 17.818199000089407,
+          "router_ms": 0.6360050000466799,
+          "dense_ms": 6.534780999913892,
+          "splade_ms": 11.311142000067775,
+          "fusion_ms": 0.17167800001516298
+        }
+      },
+      "PLAIN-33": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.10540552602326922,
+        "timings_first_pass_ms": {
+          "bm25_ms": 13.176247000046715,
+          "router_ms": 0.6405469999890556,
+          "dense_ms": 6.398249999961081,
+          "splade_ms": 11.098077000042395,
+          "fusion_ms": 0.19640299990442145
+        }
+      },
+      "PLAIN-44": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.07315743953927989,
+        "timings_first_pass_ms": {
+          "bm25_ms": 12.36376199994993,
+          "router_ms": 0.611069999990832,
+          "dense_ms": 6.245724999985214,
+          "splade_ms": 11.494329000015568,
+          "fusion_ms": 0.15954200000578567
+        }
+      },
+      "PLAIN-56": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.019295299979236964,
+        "timings_first_pass_ms": {
+          "bm25_ms": 7.89836399997057,
+          "router_ms": 0.584994999940136,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-68": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.023781830734062984,
+        "timings_first_pass_ms": {
+          "bm25_ms": 12.436616000059075,
+          "router_ms": 0.5749470000182555,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-78": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.11003555358093842,
+        "timings_first_pass_ms": {
+          "bm25_ms": 16.220764999957282,
+          "router_ms": 0.5424170000196682,
+          "dense_ms": 6.38345099991966,
+          "splade_ms": 10.7027610000614,
+          "fusion_ms": 0.14885000007325289
+        }
+      },
+      "PLAIN-91": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.06264317896844128,
+        "timings_first_pass_ms": {
+          "bm25_ms": 9.582458000068073,
+          "router_ms": 0.6034190000718809,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-102": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.07199580909936192,
+        "timings_first_pass_ms": {
+          "bm25_ms": 10.108937999916634,
+          "router_ms": 0.5672219999723893,
+          "dense_ms": 6.585997999991378,
+          "splade_ms": 10.15610900003594,
+          "fusion_ms": 0.13518599996587
+        }
+      },
+      "PLAIN-112": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0,
+        "timings_first_pass_ms": {
+          "bm25_ms": 8.557010000004084,
+          "router_ms": 0.529749000065749,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-123": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.11133163784667552,
+        "timings_first_pass_ms": {
+          "bm25_ms": 13.591654000038034,
+          "router_ms": 0.5428440000514456,
+          "dense_ms": 6.409886000028564,
+          "splade_ms": 10.842623000030471,
+          "fusion_ms": 0.16278299995065026
+        }
+      },
+      "PLAIN-133": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.1000268757969025,
+        "timings_first_pass_ms": {
+          "bm25_ms": 12.06200000001445,
+          "router_ms": 0.5612490000430626,
+          "dense_ms": 6.71673399995143,
+          "splade_ms": 10.795678000022235,
+          "fusion_ms": 0.2182810000022073
+        }
+      },
+      "PLAIN-143": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.01168800037257775,
+        "timings_first_pass_ms": {
+          "bm25_ms": 10.23553700008506,
+          "router_ms": 0.6409009999970294,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-153": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.052482325942901864,
+        "timings_first_pass_ms": {
+          "bm25_ms": 9.19245599993701,
+          "router_ms": 0.5679999999301799,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-165": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.07253100530599571,
+        "timings_first_pass_ms": {
+          "bm25_ms": 12.948456999993141,
+          "router_ms": 0.5655930000330045,
+          "dense_ms": 6.609306999962428,
+          "splade_ms": 10.323869999979252,
+          "fusion_ms": 0.1276899999993475
+        }
+      },
+      "PLAIN-175": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0,
+        "timings_first_pass_ms": {
+          "bm25_ms": 7.546848999936628,
+          "router_ms": 0.5359580000003916,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-186": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.044811818491531284,
+        "timings_first_pass_ms": {
+          "bm25_ms": 8.791112000039902,
+          "router_ms": 0.5301599999256723,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-196": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.054117398743046906,
+        "timings_first_pass_ms": {
+          "bm25_ms": 9.9449840000716,
+          "router_ms": 0.5075279999573468,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-207": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.047483553574638404,
+        "timings_first_pass_ms": {
+          "bm25_ms": 7.6238350000039645,
+          "router_ms": 0.513283000032061,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-217": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.06172067043175926,
+        "timings_first_pass_ms": {
+          "bm25_ms": 10.283898000011504,
+          "router_ms": 0.5043649999834088,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-227": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.06517368392420883,
+        "timings_first_pass_ms": {
+          "bm25_ms": 10.354086000006646,
+          "router_ms": 0.5748669999547928,
+          "dense_ms": 7.060909000074389,
+          "splade_ms": 10.05558499991821,
+          "fusion_ms": 0.1428189999614915
+        }
+      },
+      "PLAIN-238": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.09457503973922954,
+        "timings_first_pass_ms": {
+          "bm25_ms": 9.807032000026084,
+          "router_ms": 0.6127320000359759,
+          "dense_ms": 6.397371999923962,
+          "splade_ms": 10.430542999984027,
+          "fusion_ms": 0.20645699999022327
+        }
+      },
+      "PLAIN-248": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.11103489026449681,
+        "timings_first_pass_ms": {
+          "bm25_ms": 11.85274700003447,
+          "router_ms": 0.5408460000353443,
+          "dense_ms": 6.466465000016797,
+          "splade_ms": 10.867261000043982,
+          "fusion_ms": 0.16260400002465758
+        }
+      },
+      "PLAIN-259": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.0673593478407383,
+        "timings_first_pass_ms": {
+          "bm25_ms": 10.316375999991578,
+          "router_ms": 0.564665999945646,
+          "dense_ms": 6.4481739999564525,
+          "splade_ms": 10.093689999962407,
+          "fusion_ms": 0.1859379999586963
+        }
+      },
+      "PLAIN-270": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.10324284703401226,
+        "timings_first_pass_ms": {
+          "bm25_ms": 10.325488999910704,
+          "router_ms": 0.580942000055984,
+          "dense_ms": 8.150967999995373,
+          "splade_ms": 11.011520000010933,
+          "fusion_ms": 0.1353940000399234
+        }
+      },
+      "PLAIN-280": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.05395125241076086,
+        "timings_first_pass_ms": {
+          "bm25_ms": 11.018607999972119,
+          "router_ms": 0.62955900000361,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-291": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.06560320212871489,
+        "timings_first_pass_ms": {
+          "bm25_ms": 12.967773000013949,
+          "router_ms": 0.5771290000211593,
+          "dense_ms": 6.826611999940724,
+          "splade_ms": 11.251057999970726,
+          "fusion_ms": 0.1485509999383794
+        }
+      },
+      "PLAIN-307": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.08858221494428306,
+        "timings_first_pass_ms": {
+          "bm25_ms": 17.396888999996918,
+          "router_ms": 0.708763000034196,
+          "dense_ms": 6.648739999945974,
+          "splade_ms": 11.018785000032949,
+          "fusion_ms": 0.1475230000096417
+        }
+      },
+      "PLAIN-320": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.03484201344417301,
+        "timings_first_pass_ms": {
+          "bm25_ms": 9.297216000049957,
+          "router_ms": 0.6380199999966862,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-332": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.06322691756639673,
+        "timings_first_pass_ms": {
+          "bm25_ms": 21.527620000028946,
+          "router_ms": 0.587950999943132,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-344": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.11102400003780996,
+        "timings_first_pass_ms": {
+          "bm25_ms": 18.03826000002573,
+          "router_ms": 0.5547529999603285,
+          "dense_ms": 6.740994000097089,
+          "splade_ms": 11.330240999996022,
+          "fusion_ms": 0.17561499998919317
+        }
+      },
+      "PLAIN-358": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.12053391096750476,
+        "timings_first_pass_ms": {
+          "bm25_ms": 20.567756999980702,
+          "router_ms": 0.58145900004547,
+          "dense_ms": 6.952193999950396,
+          "splade_ms": 10.624776999975438,
+          "fusion_ms": 0.19050900004913274
+        }
+      },
+      "PLAIN-371": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.11453423399359995,
+        "timings_first_pass_ms": {
+          "bm25_ms": 17.150479999941126,
+          "router_ms": 0.5777259999604212,
+          "dense_ms": 6.37418099995557,
+          "splade_ms": 10.597217000054115,
+          "fusion_ms": 0.210508000009213
+        }
+      },
+      "PLAIN-383": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.13004299835835859,
+        "timings_first_pass_ms": {
+          "bm25_ms": 18.87843100007558,
+          "router_ms": 0.559927999915999,
+          "dense_ms": 6.538279000096736,
+          "splade_ms": 10.865986999988309,
+          "fusion_ms": 0.18373000000337925
+        }
+      },
+      "PLAIN-395": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.11286649195156473,
+        "timings_first_pass_ms": {
+          "bm25_ms": 15.127357000096708,
+          "router_ms": 0.6466800000453077,
+          "dense_ms": 6.321713000033924,
+          "splade_ms": 10.73298899996189,
+          "fusion_ms": 0.142218999940269
+        }
+      },
+      "PLAIN-407": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 5.450770003197908e-05,
+        "timings_first_pass_ms": {
+          "bm25_ms": 10.467523999977857,
+          "router_ms": 0.5658070000436055,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-418": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.06307117170682214,
+        "timings_first_pass_ms": {
+          "bm25_ms": 12.545743999908154,
+          "router_ms": 0.5352270000003045,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-430": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.02836828849889857,
+        "timings_first_pass_ms": {
+          "bm25_ms": 15.971595999985766,
+          "router_ms": 0.583405000043058,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-441": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0,
+        "timings_first_pass_ms": {
+          "bm25_ms": 12.977374999991298,
+          "router_ms": 0.5273880000231657,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-457": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.08500048157642551,
+        "timings_first_pass_ms": {
+          "bm25_ms": 14.551437000022815,
+          "router_ms": 0.5750970000235611,
+          "dense_ms": 7.029539999962253,
+          "splade_ms": 10.642558999961693,
+          "fusion_ms": 0.15474500003165303
+        }
+      },
+      "PLAIN-468": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0,
+        "timings_first_pass_ms": {
+          "bm25_ms": 15.01025799996114,
+          "router_ms": 0.5563110000821325,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-478": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0,
+        "timings_first_pass_ms": {
+          "bm25_ms": 2.7186749999827953,
+          "router_ms": 0.5024920000096245,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-488": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0,
+        "timings_first_pass_ms": {
+          "bm25_ms": 4.6389359999921,
+          "router_ms": 0.5056930000364446,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-499": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0,
+        "timings_first_pass_ms": {
+          "bm25_ms": 4.3439810000336365,
+          "router_ms": 0.5042430000230524,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-510": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.1833743917309543,
+        "timings_first_pass_ms": {
+          "bm25_ms": 4.165912999951615,
+          "router_ms": 0.5040439999675073,
+          "dense_ms": 6.4737820000573265,
+          "splade_ms": 10.00031000000945,
+          "fusion_ms": 0.1758710000103747
+        }
+      },
+      "PLAIN-520": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.17771599732458576,
+        "timings_first_pass_ms": {
+          "bm25_ms": 2.7797259999715607,
+          "router_ms": 0.5040350000626859,
+          "dense_ms": 6.449266999993597,
+          "splade_ms": 10.30906000005416,
+          "fusion_ms": 0.1610009999239992
+        }
+      },
+      "PLAIN-531": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.02624008672800377,
+        "timings_first_pass_ms": {
+          "bm25_ms": 4.697438999983206,
+          "router_ms": 0.523765000025378,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-541": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.041204716363397176,
+        "timings_first_pass_ms": {
+          "bm25_ms": 6.259862000092653,
+          "router_ms": 0.5451880000464371,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-551": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.17771599732458576,
+        "timings_first_pass_ms": {
+          "bm25_ms": 2.8151770000022225,
+          "router_ms": 0.49134300002151576,
+          "dense_ms": 6.4505139999937455,
+          "splade_ms": 10.35831700005474,
+          "fusion_ms": 0.1972569999679763
+        }
+      },
+      "PLAIN-561": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0,
+        "timings_first_pass_ms": {
+          "bm25_ms": 3.099861000009696,
+          "router_ms": 0.5134030000135681,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-571": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0,
+        "timings_first_pass_ms": {
+          "bm25_ms": 2.7599029999691993,
+          "router_ms": 0.5125970000108282,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-583": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.17771599732458576,
+        "timings_first_pass_ms": {
+          "bm25_ms": 2.823278999926515,
+          "router_ms": 0.6944780000139872,
+          "dense_ms": 6.321615999922869,
+          "splade_ms": 10.67497999997613,
+          "fusion_ms": 0.16717599999083177
+        }
+      },
+      "PLAIN-593": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0,
+        "timings_first_pass_ms": {
+          "bm25_ms": 2.8668939999079157,
+          "router_ms": 0.5154530000481827,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-603": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0,
+        "timings_first_pass_ms": {
+          "bm25_ms": 3.0712039999798435,
+          "router_ms": 0.4878960000951338,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-613": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0,
+        "timings_first_pass_ms": {
+          "bm25_ms": 4.838831999904869,
+          "router_ms": 0.5036469999595283,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-623": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.01978880727831439,
+        "timings_first_pass_ms": {
+          "bm25_ms": 5.43967699991299,
+          "router_ms": 0.5045339999014686,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-634": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0,
+        "timings_first_pass_ms": {
+          "bm25_ms": 3.1572120000191717,
+          "router_ms": 0.49443499995049933,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-645": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.17771599732458576,
+        "timings_first_pass_ms": {
+          "bm25_ms": 3.093498999987787,
+          "router_ms": 0.47559199992974754,
+          "dense_ms": 6.453458999999384,
+          "splade_ms": 9.896422999986498,
+          "fusion_ms": 0.16819799998302187
+        }
+      },
+      "PLAIN-660": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0,
+        "timings_first_pass_ms": {
+          "bm25_ms": 3.256041999975423,
+          "router_ms": 0.527089000001979,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-671": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0,
+        "timings_first_pass_ms": {
+          "bm25_ms": 2.7472850000549442,
+          "router_ms": 0.5071489999863843,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-681": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0,
+        "timings_first_pass_ms": {
+          "bm25_ms": 4.47797900005753,
+          "router_ms": 0.5041519999622324,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-691": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0,
+        "timings_first_pass_ms": {
+          "bm25_ms": 3.094783000051393,
+          "router_ms": 0.5030129999568089,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-701": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0,
+        "timings_first_pass_ms": {
+          "bm25_ms": 4.598132000069199,
+          "router_ms": 0.5129170000373051,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-711": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.04920496922629438,
+        "timings_first_pass_ms": {
+          "bm25_ms": 4.985259000022779,
+          "router_ms": 0.4947639999954845,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-721": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0,
+        "timings_first_pass_ms": {
+          "bm25_ms": 2.982125000016822,
+          "router_ms": 0.5559310000080586,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-731": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0,
+        "timings_first_pass_ms": {
+          "bm25_ms": 4.593185000089761,
+          "router_ms": 0.5031919999964884,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-741": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0,
+        "timings_first_pass_ms": {
+          "bm25_ms": 2.8306830000701666,
+          "router_ms": 0.4943279999451988,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-751": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.07682756448423435,
+        "timings_first_pass_ms": {
+          "bm25_ms": 4.516109999940454,
+          "router_ms": 0.4960750000009284,
+          "dense_ms": 6.689104999964002,
+          "splade_ms": 10.059002000048167,
+          "fusion_ms": 0.13355399994452455
+        }
+      },
+      "PLAIN-761": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0,
+        "timings_first_pass_ms": {
+          "bm25_ms": 4.604727000014464,
+          "router_ms": 0.5801480000400261,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-771": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0,
+        "timings_first_pass_ms": {
+          "bm25_ms": 4.380652999998347,
+          "router_ms": 0.5433899999616187,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-782": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.04750995146634096,
+        "timings_first_pass_ms": {
+          "bm25_ms": 5.068480999966596,
+          "router_ms": 1.565051000056883,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-792": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0,
+        "timings_first_pass_ms": {
+          "bm25_ms": 3.037817999938852,
+          "router_ms": 0.5203900000196882,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-806": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0,
+        "timings_first_pass_ms": {
+          "bm25_ms": 4.70125200001803,
+          "router_ms": 0.551792999999634,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-817": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.1833743917309543,
+        "timings_first_pass_ms": {
+          "bm25_ms": 4.71748799998295,
+          "router_ms": 0.5276159999993979,
+          "dense_ms": 6.5095600000404374,
+          "splade_ms": 10.279160999971282,
+          "fusion_ms": 0.18017799993685912
+        }
+      },
+      "PLAIN-827": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0,
+        "timings_first_pass_ms": {
+          "bm25_ms": 2.9942819999178028,
+          "router_ms": 0.537142999974094,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-838": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0,
+        "timings_first_pass_ms": {
+          "bm25_ms": 2.6816140000391897,
+          "router_ms": 0.5013100000041959,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-850": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0,
+        "timings_first_pass_ms": {
+          "bm25_ms": 2.800772999989931,
+          "router_ms": 0.5514399999810848,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-872": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0,
+        "timings_first_pass_ms": {
+          "bm25_ms": 4.275402999951439,
+          "router_ms": 0.552913999968041,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-882": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0,
+        "timings_first_pass_ms": {
+          "bm25_ms": 2.902651999988848,
+          "router_ms": 0.472649000016645,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-892": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.012585187532179597,
+        "timings_first_pass_ms": {
+          "bm25_ms": 2.9759590000821845,
+          "router_ms": 0.6188490000340607,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-902": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0,
+        "timings_first_pass_ms": {
+          "bm25_ms": 3.214809999917634,
+          "router_ms": 0.5450419999988299,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-913": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0,
+        "timings_first_pass_ms": {
+          "bm25_ms": 3.001402999984748,
+          "router_ms": 0.5477400000017951,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-924": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0,
+        "timings_first_pass_ms": {
+          "bm25_ms": 2.814513999965129,
+          "router_ms": 0.4805250000572414,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-934": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0,
+        "timings_first_pass_ms": {
+          "bm25_ms": 2.8230739999344223,
+          "router_ms": 0.49510400003782706,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-946": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0,
+        "timings_first_pass_ms": {
+          "bm25_ms": 2.9073260000131995,
+          "router_ms": 0.546982999935608,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-956": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0,
+        "timings_first_pass_ms": {
+          "bm25_ms": 5.09445600005165,
+          "router_ms": 0.50479499998346,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-966": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0,
+        "timings_first_pass_ms": {
+          "bm25_ms": 2.7938480000102572,
+          "router_ms": 0.5340049999631447,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-977": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.09769392417494283,
+        "timings_first_pass_ms": {
+          "bm25_ms": 4.471867000006569,
+          "router_ms": 0.49186400008238707,
+          "dense_ms": 6.629336999935731,
+          "splade_ms": 11.49027400003888,
+          "fusion_ms": 0.2798560000201178
+        }
+      },
+      "PLAIN-987": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0,
+        "timings_first_pass_ms": {
+          "bm25_ms": 2.8642679999393295,
+          "router_ms": 0.5546359999470951,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-997": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.17771599732458576,
+        "timings_first_pass_ms": {
+          "bm25_ms": 2.7476599999545215,
+          "router_ms": 0.488049999944451,
+          "dense_ms": 6.699207999986356,
+          "splade_ms": 10.322665999979108,
+          "fusion_ms": 0.17143399998076347
+        }
+      },
+      "PLAIN-1008": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.17771599732458576,
+        "timings_first_pass_ms": {
+          "bm25_ms": 2.883287000031487,
+          "router_ms": 0.5015680000042266,
+          "dense_ms": 6.152840000027027,
+          "splade_ms": 10.352725000075225,
+          "fusion_ms": 0.18393999994259502
+        }
+      },
+      "PLAIN-1018": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0,
+        "timings_first_pass_ms": {
+          "bm25_ms": 2.9006110000864282,
+          "router_ms": 0.5113110000820598,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-1028": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.05227618306495372,
+        "timings_first_pass_ms": {
+          "bm25_ms": 5.508286000008411,
+          "router_ms": 0.5161450000059631,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-1039": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0,
+        "timings_first_pass_ms": {
+          "bm25_ms": 4.812477999962539,
+          "router_ms": 0.5035709999674509,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-1050": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.07939726989723289,
+        "timings_first_pass_ms": {
+          "bm25_ms": 5.779710999945564,
+          "router_ms": 0.5044209999596205,
+          "dense_ms": 6.289970000011635,
+          "splade_ms": 9.988824000060958,
+          "fusion_ms": 0.14708900005189207
+        }
+      },
+      "PLAIN-1066": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.07712793595039846,
+        "timings_first_pass_ms": {
+          "bm25_ms": 5.91509900004894,
+          "router_ms": 0.5782200000794546,
+          "dense_ms": 6.82678600003328,
+          "splade_ms": 10.02289899997777,
+          "fusion_ms": 0.16280499994536513
+        }
+      },
+      "PLAIN-1088": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0,
+        "timings_first_pass_ms": {
+          "bm25_ms": 3.0026809999981197,
+          "router_ms": 0.520419000054062,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-1098": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.17771599732458576,
+        "timings_first_pass_ms": {
+          "bm25_ms": 2.9636760000357754,
+          "router_ms": 0.4823599999781436,
+          "dense_ms": 6.168081999931019,
+          "splade_ms": 10.160247000044365,
+          "fusion_ms": 0.14262100000905775
+        }
+      },
+      "PLAIN-1109": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0,
+        "timings_first_pass_ms": {
+          "bm25_ms": 4.91519500008053,
+          "router_ms": 0.5604030000085913,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-1119": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.011683694514326132,
+        "timings_first_pass_ms": {
+          "bm25_ms": 5.636993999928563,
+          "router_ms": 0.5741639999996551,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-1130": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0,
+        "timings_first_pass_ms": {
+          "bm25_ms": 2.9810579999320908,
+          "router_ms": 0.6263830000534654,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-1141": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0,
+        "timings_first_pass_ms": {
+          "bm25_ms": 6.787722000012764,
+          "router_ms": 0.5740010000181428,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-1151": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.04659201743383455,
+        "timings_first_pass_ms": {
+          "bm25_ms": 6.257191999907263,
+          "router_ms": 0.5379819999689062,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-1161": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.06668908821201196,
+        "timings_first_pass_ms": {
+          "bm25_ms": 4.483686999947167,
+          "router_ms": 0.5439180000621491,
+          "dense_ms": 6.511414999977205,
+          "splade_ms": 10.112177000110023,
+          "fusion_ms": 0.17639499992583296
+        }
+      },
+      "PLAIN-1172": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0,
+        "timings_first_pass_ms": {
+          "bm25_ms": 2.9238380000151665,
+          "router_ms": 0.5043010000918002,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-1183": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0,
+        "timings_first_pass_ms": {
+          "bm25_ms": 2.7639600000384235,
+          "router_ms": 0.4868140000553467,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-1193": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0,
+        "timings_first_pass_ms": {
+          "bm25_ms": 4.542773000025591,
+          "router_ms": 0.523086999919542,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-1203": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0,
+        "timings_first_pass_ms": {
+          "bm25_ms": 4.966780000017934,
+          "router_ms": 0.49250899996877706,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-1214": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.17771599732458576,
+        "timings_first_pass_ms": {
+          "bm25_ms": 2.8507869999430113,
+          "router_ms": 0.6982769999694938,
+          "dense_ms": 6.382878999943387,
+          "splade_ms": 10.65287200003695,
+          "fusion_ms": 0.1837229999637202
+        }
+      },
+      "PLAIN-1225": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0,
+        "timings_first_pass_ms": {
+          "bm25_ms": 3.2070390000171756,
+          "router_ms": 0.5259309999701145,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-1236": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0,
+        "timings_first_pass_ms": {
+          "bm25_ms": 2.720394999983,
+          "router_ms": 0.49719699995876,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-1249": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.05556019319473108,
+        "timings_first_pass_ms": {
+          "bm25_ms": 4.83312799997293,
+          "router_ms": 0.49974800003838027,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-1262": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.03309695409187993,
+        "timings_first_pass_ms": {
+          "bm25_ms": 11.046492999980728,
+          "router_ms": 0.5099600000448845,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-1275": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0,
+        "timings_first_pass_ms": {
+          "bm25_ms": 4.459398999983932,
+          "router_ms": 0.48955299996578105,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-1288": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0,
+        "timings_first_pass_ms": {
+          "bm25_ms": 2.9884140000149273,
+          "router_ms": 0.5123830000002272,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-1299": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.04503895734614782,
+        "timings_first_pass_ms": {
+          "bm25_ms": 6.00044300006175,
+          "router_ms": 0.5232060000253114,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-1309": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.17771599732458576,
+        "timings_first_pass_ms": {
+          "bm25_ms": 2.8259259999003916,
+          "router_ms": 0.49640700001418736,
+          "dense_ms": 6.53154999997696,
+          "splade_ms": 10.277635999955237,
+          "fusion_ms": 0.17310400005499105
+        }
+      },
+      "PLAIN-1320": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.07709726708057038,
+        "timings_first_pass_ms": {
+          "bm25_ms": 8.802605000028052,
+          "router_ms": 0.5805569999211002,
+          "dense_ms": 6.7219969999996465,
+          "splade_ms": 10.443649999956506,
+          "fusion_ms": 0.16065500005879585
+        }
+      },
+      "PLAIN-1331": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0,
+        "timings_first_pass_ms": {
+          "bm25_ms": 3.1601789999058383,
+          "router_ms": 0.51550299997416,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-1342": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0,
+        "timings_first_pass_ms": {
+          "bm25_ms": 4.4774689999940165,
+          "router_ms": 0.5060739999862562,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-1353": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0,
+        "timings_first_pass_ms": {
+          "bm25_ms": 2.7836809999826073,
+          "router_ms": 0.48278999997819483,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-1363": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.02027158396580582,
+        "timings_first_pass_ms": {
+          "bm25_ms": 2.8249179999875196,
+          "router_ms": 0.491226999997707,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-1374": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.04902734665909319,
+        "timings_first_pass_ms": {
+          "bm25_ms": 4.508276000024125,
+          "router_ms": 0.5196959999693718,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-1387": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0,
+        "timings_first_pass_ms": {
+          "bm25_ms": 2.9601590000538636,
+          "router_ms": 0.49636500000360684,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-1398": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.013157257401125735,
+        "timings_first_pass_ms": {
+          "bm25_ms": 5.5149089999986245,
+          "router_ms": 0.6992339999669639,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-1409": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.04353280960442547,
+        "timings_first_pass_ms": {
+          "bm25_ms": 4.776027000048089,
+          "router_ms": 0.4964629999903991,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-1419": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0,
+        "timings_first_pass_ms": {
+          "bm25_ms": 3.001359999984743,
+          "router_ms": 0.5006359999697452,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-1429": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.08852321485243536,
+        "timings_first_pass_ms": {
+          "bm25_ms": 10.120147999941764,
+          "router_ms": 0.6719280000879735,
+          "dense_ms": 6.364376999954402,
+          "splade_ms": 11.025456999959715,
+          "fusion_ms": 0.1624310000352125
+        }
+      },
+      "PLAIN-1441": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0,
+        "timings_first_pass_ms": {
+          "bm25_ms": 2.9918380000708567,
+          "router_ms": 0.6344749999698251,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-1453": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.05305786316588532,
+        "timings_first_pass_ms": {
+          "bm25_ms": 4.986308000070494,
+          "router_ms": 0.5071310000630547,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-1463": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0,
+        "timings_first_pass_ms": {
+          "bm25_ms": 4.29316400004609,
+          "router_ms": 0.489391999963118,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-1473": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0,
+        "timings_first_pass_ms": {
+          "bm25_ms": 2.690283999982057,
+          "router_ms": 0.48602499998651183,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-1485": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0,
+        "timings_first_pass_ms": {
+          "bm25_ms": 2.8376200000366225,
+          "router_ms": 0.48821400002907467,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-1496": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.17771599732458576,
+        "timings_first_pass_ms": {
+          "bm25_ms": 3.0522769999379307,
+          "router_ms": 0.4784430000199791,
+          "dense_ms": 6.276109999930668,
+          "splade_ms": 10.11708600003658,
+          "fusion_ms": 0.15144500002861605
+        }
+      },
+      "PLAIN-1506": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0,
+        "timings_first_pass_ms": {
+          "bm25_ms": 2.950691999899391,
+          "router_ms": 0.5706489999965925,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-1516": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0,
+        "timings_first_pass_ms": {
+          "bm25_ms": 3.542582000022776,
+          "router_ms": 0.5010860000993489,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-1527": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0252636207653776,
+        "timings_first_pass_ms": {
+          "bm25_ms": 5.101272999922912,
+          "router_ms": 0.548740999988695,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-1537": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0,
+        "timings_first_pass_ms": {
+          "bm25_ms": 6.32805499992628,
+          "router_ms": 0.5820139999741514,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-1547": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0,
+        "timings_first_pass_ms": {
+          "bm25_ms": 5.205868999951235,
+          "router_ms": 0.6907330000558431,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-1557": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0,
+        "timings_first_pass_ms": {
+          "bm25_ms": 2.972506999981306,
+          "router_ms": 0.5918379999911849,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-1568": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0,
+        "timings_first_pass_ms": {
+          "bm25_ms": 4.46038799998405,
+          "router_ms": 0.5128029999923456,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-1579": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0,
+        "timings_first_pass_ms": {
+          "bm25_ms": 2.94794000001275,
+          "router_ms": 0.5317149999655157,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-1590": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0,
+        "timings_first_pass_ms": {
+          "bm25_ms": 4.530310999939502,
+          "router_ms": 0.5423770001016237,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-1601": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0,
+        "timings_first_pass_ms": {
+          "bm25_ms": 2.961580000032882,
+          "router_ms": 0.5482960000335879,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-1611": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.17771599732458576,
+        "timings_first_pass_ms": {
+          "bm25_ms": 3.0173030000923973,
+          "router_ms": 0.510966999968332,
+          "dense_ms": 6.560207999996237,
+          "splade_ms": 10.1012750000109,
+          "fusion_ms": 0.3383829999847876
+        }
+      },
+      "PLAIN-1621": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.17771599732458576,
+        "timings_first_pass_ms": {
+          "bm25_ms": 2.710761999992428,
+          "router_ms": 0.5037040000388515,
+          "dense_ms": 6.174118999979328,
+          "splade_ms": 10.10943899996164,
+          "fusion_ms": 0.1867749999746593
+        }
+      },
+      "PLAIN-1635": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0,
+        "timings_first_pass_ms": {
+          "bm25_ms": 3.124139000078685,
+          "router_ms": 0.5113060000212499,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-1645": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0,
+        "timings_first_pass_ms": {
+          "bm25_ms": 2.8763080000544505,
+          "router_ms": 0.5008809999935693,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-1656": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.041314081328947316,
+        "timings_first_pass_ms": {
+          "bm25_ms": 4.903474999991886,
+          "router_ms": 0.5023250000704138,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-1667": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.033423079960062135,
+        "timings_first_pass_ms": {
+          "bm25_ms": 5.241603000058603,
+          "router_ms": 0.5186789999243047,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-1679": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.17771599732458576,
+        "timings_first_pass_ms": {
+          "bm25_ms": 2.8116439999621434,
+          "router_ms": 0.47896000000946515,
+          "dense_ms": 6.291884000006576,
+          "splade_ms": 9.974760999966747,
+          "fusion_ms": 0.18778799994834117
+        }
+      },
+      "PLAIN-1690": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.03258695121424372,
+        "timings_first_pass_ms": {
+          "bm25_ms": 8.540906999996878,
+          "router_ms": 0.5512019999969198,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-1700": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0,
+        "timings_first_pass_ms": {
+          "bm25_ms": 4.255742000054852,
+          "router_ms": 0.5334069999207713,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-1710": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0,
+        "timings_first_pass_ms": {
+          "bm25_ms": 2.82522500003779,
+          "router_ms": 0.5255180000176551,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-1721": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.028644167030940634,
+        "timings_first_pass_ms": {
+          "bm25_ms": 6.961466999996446,
+          "router_ms": 0.5150070001036511,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-1731": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0,
+        "timings_first_pass_ms": {
+          "bm25_ms": 2.8003940000189687,
+          "router_ms": 0.5051109999385517,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-1741": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0,
+        "timings_first_pass_ms": {
+          "bm25_ms": 2.813504000073408,
+          "router_ms": 0.536252999950193,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-1752": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.17771599732458576,
+        "timings_first_pass_ms": {
+          "bm25_ms": 2.7826850000565173,
+          "router_ms": 0.4910110000082568,
+          "dense_ms": 6.30233300000782,
+          "splade_ms": 9.881701999916004,
+          "fusion_ms": 0.16066900002442708
+        }
+      },
+      "PLAIN-1762": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0009822751169965838,
+        "timings_first_pass_ms": {
+          "bm25_ms": 6.013274999986606,
+          "router_ms": 0.6260840000322787,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-1772": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0,
+        "timings_first_pass_ms": {
+          "bm25_ms": 2.9332950000480196,
+          "router_ms": 0.5386770000086472,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-1784": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.10226077622219562,
+        "timings_first_pass_ms": {
+          "bm25_ms": 5.155705000106536,
+          "router_ms": 0.5267679999860775,
+          "dense_ms": 6.674189000023034,
+          "splade_ms": 10.675046000073962,
+          "fusion_ms": 0.1725289999967572
+        }
+      },
+      "PLAIN-1794": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0,
+        "timings_first_pass_ms": {
+          "bm25_ms": 2.859178999983669,
+          "router_ms": 0.5439779999960592,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-1805": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.018677971592225576,
+        "timings_first_pass_ms": {
+          "bm25_ms": 6.7993129999877056,
+          "router_ms": 0.5321139999523439,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-1817": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0,
+        "timings_first_pass_ms": {
+          "bm25_ms": 4.258698999933586,
+          "router_ms": 0.5035599999700935,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-1827": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.17771599732458576,
+        "timings_first_pass_ms": {
+          "bm25_ms": 2.909574000000248,
+          "router_ms": 0.48662899996543274,
+          "dense_ms": 6.162556999925073,
+          "splade_ms": 9.879970000042704,
+          "fusion_ms": 0.3701370000044335
+        }
+      },
+      "PLAIN-1837": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0,
+        "timings_first_pass_ms": {
+          "bm25_ms": 3.1217470000228786,
+          "router_ms": 0.5187500000829459,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-1847": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0,
+        "timings_first_pass_ms": {
+          "bm25_ms": 2.789425000059964,
+          "router_ms": 0.5005389999723775,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-1857": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0,
+        "timings_first_pass_ms": {
+          "bm25_ms": 4.879242000015438,
+          "router_ms": 0.5465990000175225,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-1867": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.17771599732458576,
+        "timings_first_pass_ms": {
+          "bm25_ms": 2.7805800000351155,
+          "router_ms": 0.464921000002505,
+          "dense_ms": 6.177584999932151,
+          "splade_ms": 10.50660800001424,
+          "fusion_ms": 0.18346599995311408
+        }
+      },
+      "PLAIN-1877": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0335861579919006,
+        "timings_first_pass_ms": {
+          "bm25_ms": 7.0267469999407695,
+          "router_ms": 0.5411800000274525,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-1887": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.07220459003936361,
+        "timings_first_pass_ms": {
+          "bm25_ms": 4.547173999981169,
+          "router_ms": 0.5144909999899028,
+          "dense_ms": 6.189978999941559,
+          "splade_ms": 12.391217999947912,
+          "fusion_ms": 0.18253500002174405
+        }
+      },
+      "PLAIN-1897": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.05001099765197293,
+        "timings_first_pass_ms": {
+          "bm25_ms": 5.009772999983397,
+          "router_ms": 0.5807769999819357,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-1909": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0,
+        "timings_first_pass_ms": {
+          "bm25_ms": 3.028074999974706,
+          "router_ms": 0.5387509999081885,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-1919": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0,
+        "timings_first_pass_ms": {
+          "bm25_ms": 4.464267999992444,
+          "router_ms": 0.5128430000240769,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-1929": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.03336546354061333,
+        "timings_first_pass_ms": {
+          "bm25_ms": 4.51693099989825,
+          "router_ms": 0.5360760000030496,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-1940": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0,
+        "timings_first_pass_ms": {
+          "bm25_ms": 2.7959379999629164,
+          "router_ms": 0.5472930000678389,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-1950": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0,
+        "timings_first_pass_ms": {
+          "bm25_ms": 3.0184720000079324,
+          "router_ms": 0.5114479999974719,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-1962": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0,
+        "timings_first_pass_ms": {
+          "bm25_ms": 2.791895999962435,
+          "router_ms": 0.5047670000521975,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-1972": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0,
+        "timings_first_pass_ms": {
+          "bm25_ms": 2.6143570000840555,
+          "router_ms": 0.5463420000069164,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-1983": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0,
+        "timings_first_pass_ms": {
+          "bm25_ms": 2.9293970000026093,
+          "router_ms": 0.5241839999143849,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-1995": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.029131242725143922,
+        "timings_first_pass_ms": {
+          "bm25_ms": 4.614464000042062,
+          "router_ms": 0.4995540000436449,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-2009": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0,
+        "timings_first_pass_ms": {
+          "bm25_ms": 2.7595420000352533,
+          "router_ms": 0.49285499994766724,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-2019": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0002810938745992572,
+        "timings_first_pass_ms": {
+          "bm25_ms": 2.966644999901291,
+          "router_ms": 0.5526170000393904,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-2030": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0024545355614579573,
+        "timings_first_pass_ms": {
+          "bm25_ms": 2.8832069999680243,
+          "router_ms": 0.4791520000253513,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-2040": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0,
+        "timings_first_pass_ms": {
+          "bm25_ms": 2.990425000007235,
+          "router_ms": 0.6140279999726772,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-2051": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0,
+        "timings_first_pass_ms": {
+          "bm25_ms": 5.225851999966835,
+          "router_ms": 0.5550180000000182,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-2061": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0,
+        "timings_first_pass_ms": {
+          "bm25_ms": 3.3483490000207894,
+          "router_ms": 0.5594659999133,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-2071": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0,
+        "timings_first_pass_ms": {
+          "bm25_ms": 3.242808999971203,
+          "router_ms": 0.5719089999729476,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-2081": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0,
+        "timings_first_pass_ms": {
+          "bm25_ms": 4.706711000039832,
+          "router_ms": 0.5027170000175829,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-2092": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0,
+        "timings_first_pass_ms": {
+          "bm25_ms": 2.810721000059857,
+          "router_ms": 0.5345289999922898,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-2102": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0,
+        "timings_first_pass_ms": {
+          "bm25_ms": 3.1782730000031734,
+          "router_ms": 0.5392150000034235,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-2113": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.01392060648204476,
+        "timings_first_pass_ms": {
+          "bm25_ms": 5.563680000022941,
+          "router_ms": 0.5023090000122465,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-2124": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0,
+        "timings_first_pass_ms": {
+          "bm25_ms": 2.6073239999959696,
+          "router_ms": 0.5523529999891252,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-2134": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.17771599732458576,
+        "timings_first_pass_ms": {
+          "bm25_ms": 3.1731349999972736,
+          "router_ms": 0.5584799999951429,
+          "dense_ms": 7.254858000010245,
+          "splade_ms": 10.761709999997038,
+          "fusion_ms": 0.19713000006049697
+        }
+      },
+      "PLAIN-2145": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0,
+        "timings_first_pass_ms": {
+          "bm25_ms": 8.035564000010709,
+          "router_ms": 0.5250560000149562,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-2156": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0,
+        "timings_first_pass_ms": {
+          "bm25_ms": 2.804118999961247,
+          "router_ms": 0.4785569999512518,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-2167": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0,
+        "timings_first_pass_ms": {
+          "bm25_ms": 2.71632299995872,
+          "router_ms": 0.49453899998752604,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-2177": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0,
+        "timings_first_pass_ms": {
+          "bm25_ms": 2.7896430000282635,
+          "router_ms": 0.48055299998850387,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-2187": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0,
+        "timings_first_pass_ms": {
+          "bm25_ms": 2.6378129999784505,
+          "router_ms": 0.4975169999852369,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-2197": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0,
+        "timings_first_pass_ms": {
+          "bm25_ms": 3.0437909999818658,
+          "router_ms": 0.5025080000677917,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-2209": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.17771599732458576,
+        "timings_first_pass_ms": {
+          "bm25_ms": 2.7412880000383666,
+          "router_ms": 0.47682100000656646,
+          "dense_ms": 6.399340000029952,
+          "splade_ms": 9.727993999945284,
+          "fusion_ms": 0.18158900002163136
+        }
+      },
+      "PLAIN-2220": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0,
+        "timings_first_pass_ms": {
+          "bm25_ms": 2.7983160000530916,
+          "router_ms": 0.5099690000633927,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-2230": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.00807103551962405,
+        "timings_first_pass_ms": {
+          "bm25_ms": 2.8050079999957234,
+          "router_ms": 0.5157360000112021,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-2240": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0,
+        "timings_first_pass_ms": {
+          "bm25_ms": 4.794367000044986,
+          "router_ms": 0.6315720000884539,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-2250": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.07555485562709122,
+        "timings_first_pass_ms": {
+          "bm25_ms": 4.565673999991304,
+          "router_ms": 0.5169780000642277,
+          "dense_ms": 6.46662600001946,
+          "splade_ms": 10.1829389999466,
+          "fusion_ms": 0.15481100001579762
+        }
+      },
+      "PLAIN-2261": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0,
+        "timings_first_pass_ms": {
+          "bm25_ms": 4.798917000016445,
+          "router_ms": 0.5487479999146672,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-2271": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.17771599732458576,
+        "timings_first_pass_ms": {
+          "bm25_ms": 2.7070909999338255,
+          "router_ms": 0.4757479999852876,
+          "dense_ms": 6.80699999998069,
+          "splade_ms": 10.355954000033307,
+          "fusion_ms": 0.17085100000713282
+        }
+      },
+      "PLAIN-2281": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.17771599732458576,
+        "timings_first_pass_ms": {
+          "bm25_ms": 3.249599000014314,
+          "router_ms": 0.504244000012477,
+          "dense_ms": 6.292724999980237,
+          "splade_ms": 9.758626999996522,
+          "fusion_ms": 0.15940399998726207
+        }
+      },
+      "PLAIN-2291": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.06023340094010485,
+        "timings_first_pass_ms": {
+          "bm25_ms": 6.707222999921214,
+          "router_ms": 0.6466170000294369,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-2301": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.04311449195750147,
+        "timings_first_pass_ms": {
+          "bm25_ms": 5.057597000018177,
+          "router_ms": 0.5065079999440059,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-2311": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0,
+        "timings_first_pass_ms": {
+          "bm25_ms": 2.9455500000494794,
+          "router_ms": 0.5530050000288611,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-2321": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0628765776525962,
+        "timings_first_pass_ms": {
+          "bm25_ms": 4.685389999963263,
+          "router_ms": 0.5511040000101275,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-2332": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0,
+        "timings_first_pass_ms": {
+          "bm25_ms": 4.5164649999378526,
+          "router_ms": 0.5092099999046695,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-2343": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0,
+        "timings_first_pass_ms": {
+          "bm25_ms": 4.497972999956801,
+          "router_ms": 0.5623479999030678,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-2354": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0,
+        "timings_first_pass_ms": {
+          "bm25_ms": 5.287366000061411,
+          "router_ms": 0.6578580000677903,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-2364": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0,
+        "timings_first_pass_ms": {
+          "bm25_ms": 5.034493999914957,
+          "router_ms": 0.5475000000387809,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-2375": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.17771599732458576,
+        "timings_first_pass_ms": {
+          "bm25_ms": 2.862410000034288,
+          "router_ms": 0.5255490000308782,
+          "dense_ms": 6.209569000020565,
+          "splade_ms": 10.483473000022059,
+          "fusion_ms": 0.17517900005259435
+        }
+      },
+      "PLAIN-2386": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0,
+        "timings_first_pass_ms": {
+          "bm25_ms": 3.1952799999999115,
+          "router_ms": 0.5194880000090052,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-2396": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.17771599732458576,
+        "timings_first_pass_ms": {
+          "bm25_ms": 2.8325709999990067,
+          "router_ms": 0.48888399999214016,
+          "dense_ms": 6.198101999984829,
+          "splade_ms": 9.730302999969354,
+          "fusion_ms": 0.1779120000264811
+        }
+      },
+      "PLAIN-2408": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.17771599732458576,
+        "timings_first_pass_ms": {
+          "bm25_ms": 2.9480370000101175,
+          "router_ms": 0.504427000009855,
+          "dense_ms": 6.076860999996825,
+          "splade_ms": 10.571663999940029,
+          "fusion_ms": 0.229009000008773
+        }
+      },
+      "PLAIN-2430": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.04555383727535846,
+        "timings_first_pass_ms": {
+          "bm25_ms": 11.939153999946939,
+          "router_ms": 0.5365519999713797,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-2440": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.1084927863596746,
+        "timings_first_pass_ms": {
+          "bm25_ms": 15.723412999932407,
+          "router_ms": 0.5459440000095128,
+          "dense_ms": 6.328810999889356,
+          "splade_ms": 10.687693000022591,
+          "fusion_ms": 0.3430990000197198
+        }
+      },
+      "PLAIN-2450": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.007561750493970884,
+        "timings_first_pass_ms": {
+          "bm25_ms": 8.880684000018846,
+          "router_ms": 0.6101730000409589,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-2460": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.06680384967407677,
+        "timings_first_pass_ms": {
+          "bm25_ms": 14.604999999960455,
+          "router_ms": 0.5544659999259238,
+          "dense_ms": 6.554457999982333,
+          "splade_ms": 9.740940000028786,
+          "fusion_ms": 0.15443999996023194
+        }
+      },
+      "PLAIN-2470": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.08048838153994556,
+        "timings_first_pass_ms": {
+          "bm25_ms": 12.316122000015639,
+          "router_ms": 0.5638789999693472,
+          "dense_ms": 6.748242000071514,
+          "splade_ms": 9.873270999946726,
+          "fusion_ms": 0.17939999997906853
+        }
+      },
+      "PLAIN-2480": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0323544679725089,
+        "timings_first_pass_ms": {
+          "bm25_ms": 10.46439599997484,
+          "router_ms": 0.6020910000188451,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-2490": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.044217153382339856,
+        "timings_first_pass_ms": {
+          "bm25_ms": 13.785749000021497,
+          "router_ms": 0.5406200000379613,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-2500": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.09249174444601924,
+        "timings_first_pass_ms": {
+          "bm25_ms": 15.415593000057015,
+          "router_ms": 0.5317200000263256,
+          "dense_ms": 6.391828000005262,
+          "splade_ms": 11.288389000014831,
+          "fusion_ms": 0.14076599995860306
+        }
+      },
+      "PLAIN-2510": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.01593512568165384,
+        "timings_first_pass_ms": {
+          "bm25_ms": 9.665481999945769,
+          "router_ms": 1.0152769999649536,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-2520": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.03725424843737487,
+        "timings_first_pass_ms": {
+          "bm25_ms": 11.634795999952985,
+          "router_ms": 0.5659450000621291,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-2530": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.018431643328008604,
+        "timings_first_pass_ms": {
+          "bm25_ms": 11.49007599997276,
+          "router_ms": 0.5216240000436301,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-2540": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.04994568074374249,
+        "timings_first_pass_ms": {
+          "bm25_ms": 7.735076000017216,
+          "router_ms": 0.5203330000540518,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-2550": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.07031079610490333,
+        "timings_first_pass_ms": {
+          "bm25_ms": 10.206681999989087,
+          "router_ms": 0.5138499999475243,
+          "dense_ms": 6.6691639999589825,
+          "splade_ms": 10.350781999932224,
+          "fusion_ms": 0.17314000001533714
+        }
+      },
+      "PLAIN-2560": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0020260615413779173,
+        "timings_first_pass_ms": {
+          "bm25_ms": 11.358662000020558,
+          "router_ms": 0.5515210000339721,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-2570": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.07431030902143676,
+        "timings_first_pass_ms": {
+          "bm25_ms": 9.413827999992463,
+          "router_ms": 0.5224689999749899,
+          "dense_ms": 6.351926999968782,
+          "splade_ms": 10.078572999987045,
+          "fusion_ms": 0.15964600004281237
+        }
+      },
+      "PLAIN-2580": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.021480715176839353,
+        "timings_first_pass_ms": {
+          "bm25_ms": 14.242597000020396,
+          "router_ms": 0.5958430000418957,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-2590": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.08197978974760908,
+        "timings_first_pass_ms": {
+          "bm25_ms": 9.37436800006708,
+          "router_ms": 0.5205009999826871,
+          "dense_ms": 6.407820000049469,
+          "splade_ms": 9.893922000060229,
+          "fusion_ms": 0.14378499997746985
+        }
+      },
+      "PLAIN-2600": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0406084750570791,
+        "timings_first_pass_ms": {
+          "bm25_ms": 8.044072999950913,
+          "router_ms": 0.6185870000763316,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-2610": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.06741605312625518,
+        "timings_first_pass_ms": {
+          "bm25_ms": 11.775610999961827,
+          "router_ms": 0.7398750000220389,
+          "dense_ms": 7.320216000039181,
+          "splade_ms": 10.064429999943059,
+          "fusion_ms": 0.19019199999092962
+        }
+      },
+      "PLAIN-2620": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.07287087453478489,
+        "timings_first_pass_ms": {
+          "bm25_ms": 12.051377999910073,
+          "router_ms": 0.5498079999597394,
+          "dense_ms": 6.1962959999846134,
+          "splade_ms": 9.853544000065995,
+          "fusion_ms": 0.14069600001676008
+        }
+      },
+      "PLAIN-2630": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.04187643661964292,
+        "timings_first_pass_ms": {
+          "bm25_ms": 9.563033999938853,
+          "router_ms": 0.5891040000278736,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-2640": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.07260817272524321,
+        "timings_first_pass_ms": {
+          "bm25_ms": 13.00148600000739,
+          "router_ms": 0.5844889999480074,
+          "dense_ms": 6.649600999935501,
+          "splade_ms": 10.222036999948614,
+          "fusion_ms": 0.15825500008759263
+        }
+      },
+      "PLAIN-2650": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0,
+        "timings_first_pass_ms": {
+          "bm25_ms": 8.609296000031463,
+          "router_ms": 0.551405999999588,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-2660": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.1077444258555805,
+        "timings_first_pass_ms": {
+          "bm25_ms": 14.738463000071533,
+          "router_ms": 0.5292690000260336,
+          "dense_ms": 6.604081999967093,
+          "splade_ms": 10.665751000033197,
+          "fusion_ms": 0.13088399998650857
+        }
+      },
+      "PLAIN-2670": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.06047475931721531,
+        "timings_first_pass_ms": {
+          "bm25_ms": 8.752389000051153,
+          "router_ms": 0.6085150000672002,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-2680": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.06999929374673265,
+        "timings_first_pass_ms": {
+          "bm25_ms": 14.159108999933778,
+          "router_ms": 0.7116309999446457,
+          "dense_ms": 6.848478999927465,
+          "splade_ms": 11.017385000059221,
+          "fusion_ms": 0.14033200000085344
+        }
+      },
+      "PLAIN-2690": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.09855492836302779,
+        "timings_first_pass_ms": {
+          "bm25_ms": 9.939907999978459,
+          "router_ms": 0.5961959999467581,
+          "dense_ms": 6.762891999983367,
+          "splade_ms": 9.789795999950002,
+          "fusion_ms": 0.19371999997019884
+        }
+      },
+      "PLAIN-2700": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.09079607972573818,
+        "timings_first_pass_ms": {
+          "bm25_ms": 10.976835000064966,
+          "router_ms": 0.5515970000260495,
+          "dense_ms": 6.302103999928477,
+          "splade_ms": 10.425189999978102,
+          "fusion_ms": 0.19992799991541688
+        }
+      },
+      "PLAIN-2710": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0,
+        "timings_first_pass_ms": {
+          "bm25_ms": 10.246798000025592,
+          "router_ms": 0.54573900001742,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-2720": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.10533908402002987,
+        "timings_first_pass_ms": {
+          "bm25_ms": 11.840167999935147,
+          "router_ms": 0.5336420000503495,
+          "dense_ms": 6.340722999993886,
+          "splade_ms": 10.815325000066878,
+          "fusion_ms": 0.1665140000568499
+        }
+      },
+      "PLAIN-2730": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.0939287700753257,
+        "timings_first_pass_ms": {
+          "bm25_ms": 12.306821000038326,
+          "router_ms": 0.5494119999411851,
+          "dense_ms": 6.2632839999423595,
+          "splade_ms": 11.20344200001,
+          "fusion_ms": 0.1956730000074458
+        }
+      },
+      "PLAIN-2740": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0,
+        "timings_first_pass_ms": {
+          "bm25_ms": 12.69869899999776,
+          "router_ms": 0.5495400000654627,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-2750": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.022401814092639954,
+        "timings_first_pass_ms": {
+          "bm25_ms": 11.6582880000351,
+          "router_ms": 0.5465109999249762,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-2760": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.08393334010301776,
+        "timings_first_pass_ms": {
+          "bm25_ms": 9.988937999992231,
+          "router_ms": 0.5177289999664936,
+          "dense_ms": 6.349968999984412,
+          "splade_ms": 10.806048000063129,
+          "fusion_ms": 0.18612199994549883
+        }
+      },
+      "PLAIN-2770": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.0748645041266698,
+        "timings_first_pass_ms": {
+          "bm25_ms": 11.657149000029676,
+          "router_ms": 0.6418460000077175,
+          "dense_ms": 7.012827000039579,
+          "splade_ms": 11.340471000039543,
+          "fusion_ms": 0.15633100008471956
+        }
+      },
+      "PLAIN-2780": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.023207415917533704,
+        "timings_first_pass_ms": {
+          "bm25_ms": 13.425313999960053,
+          "router_ms": 0.6748899999138303,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-2790": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.014471628519186729,
+        "timings_first_pass_ms": {
+          "bm25_ms": 11.44593599997279,
+          "router_ms": 0.6062869999823306,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-2800": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.0954594387968554,
+        "timings_first_pass_ms": {
+          "bm25_ms": 11.618902999998681,
+          "router_ms": 0.5323330000237547,
+          "dense_ms": 7.630170999959773,
+          "splade_ms": 10.494383000036578,
+          "fusion_ms": 0.1346210000292558
+        }
+      },
+      "PLAIN-2810": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.08752056632220348,
+        "timings_first_pass_ms": {
+          "bm25_ms": 14.828606000037325,
+          "router_ms": 0.6342180000729059,
+          "dense_ms": 7.133360000011635,
+          "splade_ms": 10.590489999913189,
+          "fusion_ms": 0.19730400003936666
+        }
+      },
+      "PLAIN-2820": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.05403105455681094,
+        "timings_first_pass_ms": {
+          "bm25_ms": 9.188321000010546,
+          "router_ms": 0.5512860000180808,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-2830": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0,
+        "timings_first_pass_ms": {
+          "bm25_ms": 8.891631000096822,
+          "router_ms": 0.5258080000203336,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-2840": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.040506964431444026,
+        "timings_first_pass_ms": {
+          "bm25_ms": 8.723411000005399,
+          "router_ms": 0.5218999999669904,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-2850": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.06061527529126301,
+        "timings_first_pass_ms": {
+          "bm25_ms": 15.097013999934461,
+          "router_ms": 0.5266160000019227,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-2860": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0,
+        "timings_first_pass_ms": {
+          "bm25_ms": 11.667289999991226,
+          "router_ms": 0.5334090000133074,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-2870": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.05891682653190126,
+        "timings_first_pass_ms": {
+          "bm25_ms": 7.9912769999737066,
+          "router_ms": 0.5496320000020205,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-2880": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.07190581537327581,
+        "timings_first_pass_ms": {
+          "bm25_ms": 13.34880800004612,
+          "router_ms": 0.5994539999392146,
+          "dense_ms": 6.737566000083461,
+          "splade_ms": 9.982720999914818,
+          "fusion_ms": 0.17958500006898248
+        }
+      },
+      "PLAIN-2890": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0,
+        "timings_first_pass_ms": {
+          "bm25_ms": 12.319118000050366,
+          "router_ms": 0.6517509999639515,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-2900": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.08195092750389563,
+        "timings_first_pass_ms": {
+          "bm25_ms": 15.369623999959003,
+          "router_ms": 0.5531819999760046,
+          "dense_ms": 6.918495000036273,
+          "splade_ms": 10.782460999962495,
+          "fusion_ms": 0.16561699999328994
+        }
+      },
+      "PLAIN-2910": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.04664620345830097,
+        "timings_first_pass_ms": {
+          "bm25_ms": 6.148473999928683,
+          "router_ms": 0.5207919999747901,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-2920": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0519520450917044,
+        "timings_first_pass_ms": {
+          "bm25_ms": 8.788691999939147,
+          "router_ms": 0.524282000014864,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-2930": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.003240259792200953,
+        "timings_first_pass_ms": {
+          "bm25_ms": 9.902346999979272,
+          "router_ms": 0.5126099999870348,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-2940": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.03872690065376174,
+        "timings_first_pass_ms": {
+          "bm25_ms": 11.967018999939683,
+          "router_ms": 0.6174349999810147,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-2950": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.08993445898011102,
+        "timings_first_pass_ms": {
+          "bm25_ms": 8.217291000050864,
+          "router_ms": 0.5167210000536215,
+          "dense_ms": 6.424670000001242,
+          "splade_ms": 10.622832000080962,
+          "fusion_ms": 0.17572199999449367
+        }
+      },
+      "PLAIN-2960": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.08561122018173985,
+        "timings_first_pass_ms": {
+          "bm25_ms": 16.85175500006153,
+          "router_ms": 0.5572960000108651,
+          "dense_ms": 6.776099000035174,
+          "splade_ms": 11.016547000053833,
+          "fusion_ms": 0.21643999991738383
+        }
+      },
+      "PLAIN-2970": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.10274984789386599,
+        "timings_first_pass_ms": {
+          "bm25_ms": 8.80050500006746,
+          "router_ms": 0.5468330000439892,
+          "dense_ms": 6.259365000005346,
+          "splade_ms": 10.814664999998058,
+          "fusion_ms": 0.15117700002065249
+        }
+      },
+      "PLAIN-2981": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0,
+        "timings_first_pass_ms": {
+          "bm25_ms": 9.711811000101989,
+          "router_ms": 0.7269490000680889,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-2991": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0,
+        "timings_first_pass_ms": {
+          "bm25_ms": 10.261006999940037,
+          "router_ms": 0.5640809999931662,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-3001": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.009660489603630681,
+        "timings_first_pass_ms": {
+          "bm25_ms": 9.069124999996347,
+          "router_ms": 0.570197999991251,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-3014": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.10192916107762624,
+        "timings_first_pass_ms": {
+          "bm25_ms": 12.45533099995555,
+          "router_ms": 0.6317539999827204,
+          "dense_ms": 6.8677440000328716,
+          "splade_ms": 11.771249000048556,
+          "fusion_ms": 0.36198700001932593
+        }
+      },
+      "PLAIN-3026": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.06845455343373458,
+        "timings_first_pass_ms": {
+          "bm25_ms": 7.84639200003312,
+          "router_ms": 0.5333420000397382,
+          "dense_ms": 6.32305700003144,
+          "splade_ms": 10.659835999945244,
+          "fusion_ms": 0.15207900003133545
+        }
+      },
+      "PLAIN-3037": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.07479739586293141,
+        "timings_first_pass_ms": {
+          "bm25_ms": 15.424431999917942,
+          "router_ms": 0.5853779999824837,
+          "dense_ms": 6.6247969999722045,
+          "splade_ms": 10.25818599998729,
+          "fusion_ms": 0.18672900000638037
+        }
+      },
+      "PLAIN-3053": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.009674331109413785,
+        "timings_first_pass_ms": {
+          "bm25_ms": 6.77711299999828,
+          "router_ms": 0.5779809999921781,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-3063": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.05110346387085197,
+        "timings_first_pass_ms": {
+          "bm25_ms": 8.307591999937358,
+          "router_ms": 0.5329060001031394,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-3074": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.09227437684014574,
+        "timings_first_pass_ms": {
+          "bm25_ms": 12.985690999926192,
+          "router_ms": 0.532382999949732,
+          "dense_ms": 6.401014999937615,
+          "splade_ms": 11.029044999986581,
+          "fusion_ms": 0.1470720000043002
+        }
+      },
+      "PLAIN-3085": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.09803144166675756,
+        "timings_first_pass_ms": {
+          "bm25_ms": 16.006941999989976,
+          "router_ms": 0.6150630000547608,
+          "dense_ms": 6.654314999991584,
+          "splade_ms": 9.743704000015896,
+          "fusion_ms": 0.1613169999927777
+        }
+      },
+      "PLAIN-3097": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0,
+        "timings_first_pass_ms": {
+          "bm25_ms": 8.545518999994783,
+          "router_ms": 0.6112470000516623,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-3116": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.0917277794887694,
+        "timings_first_pass_ms": {
+          "bm25_ms": 11.98047899993071,
+          "router_ms": 0.5745720000049914,
+          "dense_ms": 6.676480999999512,
+          "splade_ms": 10.061048000011397,
+          "fusion_ms": 0.17340499994134007
+        }
+      },
+      "PLAIN-3131": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.0822432508624956,
+        "timings_first_pass_ms": {
+          "bm25_ms": 10.866556999985733,
+          "router_ms": 0.5436449999933757,
+          "dense_ms": 6.422629000098823,
+          "splade_ms": 10.309955000025184,
+          "fusion_ms": 0.18370499992670375
+        }
+      },
+      "PLAIN-3141": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.09276469364493196,
+        "timings_first_pass_ms": {
+          "bm25_ms": 10.524352999937037,
+          "router_ms": 0.5494899999121117,
+          "dense_ms": 6.518409000022984,
+          "splade_ms": 9.943541999973604,
+          "fusion_ms": 0.176041000031546
+        }
+      },
+      "PLAIN-3151": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.048478266108564164,
+        "timings_first_pass_ms": {
+          "bm25_ms": 17.770646000030865,
+          "router_ms": 0.5726350000259117,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-3161": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.03185885429487574,
+        "timings_first_pass_ms": {
+          "bm25_ms": 11.270222999996804,
+          "router_ms": 0.5612520000113363,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-3171": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.05308689165377373,
+        "timings_first_pass_ms": {
+          "bm25_ms": 7.166709999978593,
+          "router_ms": 0.5071179999731612,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-3181": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.08127997742794248,
+        "timings_first_pass_ms": {
+          "bm25_ms": 11.47915700005342,
+          "router_ms": 0.5219930000066597,
+          "dense_ms": 6.366932999981145,
+          "splade_ms": 10.29289499990682,
+          "fusion_ms": 0.15725999992355355
+        }
+      },
+      "PLAIN-3191": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.07667893337522882,
+        "timings_first_pass_ms": {
+          "bm25_ms": 11.404223999988972,
+          "router_ms": 0.5383850000271195,
+          "dense_ms": 6.3835210000888765,
+          "splade_ms": 10.436903000027087,
+          "fusion_ms": 0.15571699998417898
+        }
+      },
+      "PLAIN-3201": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.043611943573990106,
+        "timings_first_pass_ms": {
+          "bm25_ms": 6.636335000052895,
+          "router_ms": 0.5380920000561673,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-3211": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.032428139776475656,
+        "timings_first_pass_ms": {
+          "bm25_ms": 7.125417999986894,
+          "router_ms": 0.5267919999596415,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-3221": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.06753894881557451,
+        "timings_first_pass_ms": {
+          "bm25_ms": 10.274682999920515,
+          "router_ms": 0.569486000017605,
+          "dense_ms": 6.682513999976436,
+          "splade_ms": 10.928090999982487,
+          "fusion_ms": 0.1551259999814647
+        }
+      },
+      "PLAIN-3231": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.009140136005413094,
+        "timings_first_pass_ms": {
+          "bm25_ms": 6.225352000001294,
+          "router_ms": 0.5736109999361361,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-3241": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.10487327664938628,
+        "timings_first_pass_ms": {
+          "bm25_ms": 7.730736000098659,
+          "router_ms": 0.5152560000851736,
+          "dense_ms": 6.5181080000229485,
+          "splade_ms": 11.92095600003995,
+          "fusion_ms": 0.19186199995147035
+        }
+      },
+      "PLAIN-3251": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.04267459439940081,
+        "timings_first_pass_ms": {
+          "bm25_ms": 6.6202919999795995,
+          "router_ms": 0.5892330000278889,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-3261": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.03925610566210286,
+        "timings_first_pass_ms": {
+          "bm25_ms": 7.592290999923534,
+          "router_ms": 0.5616010000721872,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-3271": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0567479755214611,
+        "timings_first_pass_ms": {
+          "bm25_ms": 8.153810999942834,
+          "router_ms": 0.5155090000243945,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-3281": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.06299334336328244,
+        "timings_first_pass_ms": {
+          "bm25_ms": 10.403340000038952,
+          "router_ms": 0.5306189999600974,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-3292": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.07546310524844407,
+        "timings_first_pass_ms": {
+          "bm25_ms": 10.04141599992181,
+          "router_ms": 0.5211659999986296,
+          "dense_ms": 6.7956040001035944,
+          "splade_ms": 9.764268000026277,
+          "fusion_ms": 0.18077300001095864
+        }
+      },
+      "PLAIN-3302": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.10222512926373367,
+        "timings_first_pass_ms": {
+          "bm25_ms": 4.681124000057935,
+          "router_ms": 0.5137229999263582,
+          "dense_ms": 6.308599000021786,
+          "splade_ms": 10.146667999947567,
+          "fusion_ms": 0.13477900006364507
+        }
+      },
+      "PLAIN-3312": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.047278734631863634,
+        "timings_first_pass_ms": {
+          "bm25_ms": 8.365026999967995,
+          "router_ms": 0.5793919999632635,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-3322": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.10050625988587034,
+        "timings_first_pass_ms": {
+          "bm25_ms": 6.625701999951161,
+          "router_ms": 0.5584970000427347,
+          "dense_ms": 6.822289999945497,
+          "splade_ms": 11.04039200004081,
+          "fusion_ms": 0.16191400004572643
+        }
+      },
+      "PLAIN-3332": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.051133847839636454,
+        "timings_first_pass_ms": {
+          "bm25_ms": 7.881548999989718,
+          "router_ms": 0.5434979999563438,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-3342": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.052359842634462354,
+        "timings_first_pass_ms": {
+          "bm25_ms": 12.227121000023544,
+          "router_ms": 0.5317410000316158,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-3352": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.08400835890433131,
+        "timings_first_pass_ms": {
+          "bm25_ms": 8.201118999977552,
+          "router_ms": 0.5134470000029978,
+          "dense_ms": 6.355955999993057,
+          "splade_ms": 10.90424799997436,
+          "fusion_ms": 0.1578280000558152
+        }
+      },
+      "PLAIN-3362": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.059990213637986706,
+        "timings_first_pass_ms": {
+          "bm25_ms": 6.083515999989686,
+          "router_ms": 0.5525820000684689,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-3372": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.04322437124421079,
+        "timings_first_pass_ms": {
+          "bm25_ms": 7.379628999956367,
+          "router_ms": 0.5660030000171901,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-3382": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.09037419633738297,
+        "timings_first_pass_ms": {
+          "bm25_ms": 12.658541999940098,
+          "router_ms": 0.5776499999683438,
+          "dense_ms": 6.909409000058986,
+          "splade_ms": 10.516516000052434,
+          "fusion_ms": 0.2001399999471687
+        }
+      },
+      "PLAIN-3392": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.1101281504595677,
+        "timings_first_pass_ms": {
+          "bm25_ms": 6.401419999974678,
+          "router_ms": 0.5352519999632932,
+          "dense_ms": 6.260649000068952,
+          "splade_ms": 10.256044000016118,
+          "fusion_ms": 0.1408750000564396
+        }
+      },
+      "PLAIN-3402": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0467570854374028,
+        "timings_first_pass_ms": {
+          "bm25_ms": 10.932257000035861,
+          "router_ms": 0.674500999934935,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-3412": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.04311806948146709,
+        "timings_first_pass_ms": {
+          "bm25_ms": 8.267356000033033,
+          "router_ms": 0.5239999999275824,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-3422": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.049267787621360075,
+        "timings_first_pass_ms": {
+          "bm25_ms": 7.96420799997577,
+          "router_ms": 0.5261290000362351,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-3432": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.07552618377356779,
+        "timings_first_pass_ms": {
+          "bm25_ms": 6.193601000063609,
+          "router_ms": 0.5590639999581981,
+          "dense_ms": 6.981560999975045,
+          "splade_ms": 10.581562999959715,
+          "fusion_ms": 0.13542799990773347
+        }
+      },
+      "PLAIN-3442": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.05891712194878622,
+        "timings_first_pass_ms": {
+          "bm25_ms": 7.364718000076209,
+          "router_ms": 0.5937600000152088,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-3452": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0,
+        "timings_first_pass_ms": {
+          "bm25_ms": 6.2583579999682115,
+          "router_ms": 0.5827969999927518,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-3462": {
+        "route": "EARLY_EXIT",
+        "predicted_recall_gain": 0.0,
+        "timings_first_pass_ms": {
+          "bm25_ms": 10.073206000015489,
+          "router_ms": 0.5124159999922995,
+          "dense_ms": 0.0,
+          "splade_ms": 0.0,
+          "fusion_ms": 0.0
+        }
+      },
+      "PLAIN-3472": {
+        "route": "ESCALATE",
+        "predicted_recall_gain": 0.10007550770041007,
+        "timings_first_pass_ms": {
+          "bm25_ms": 15.586763999976938,
+          "router_ms": 0.5374149999397559,
+          "dense_ms": 6.61557000000812,
+          "splade_ms": 9.871272999930625,
+          "fusion_ms": 0.14648199999101053
+        }
+      }
+    }
+  },
+  "hardware": {
+    "cuda_available": true,
+    "cuda_device": "Tesla T4"
+  },
+  "protocol_note": "Router and threshold were frozen from SciFact train-only data before NFCorpus test scoring. This measures cross-dataset transfer; it does not recalibrate on NFCorpus."
+}

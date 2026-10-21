@@ -1,0 +1,12 @@
+{
+  "archive_sha256": "12f926600e0da66729f3778b5dd8632bcc19a7220e25f0adf79f615211a39eac",
+  "dataset": "squad",
+  "records": 84560,
+  "query_timings": 84560,
+  "scored_timing_repeats": 1,
+  "runtime_amendment": true,
+  "frozen_assets_sources_and_protocol_match": true,
+  "saved_recall_timings_calls_and_conditional_rankings_match": true,
+  "timing_sessions": 1,
+  "scope": "Artifact consistency checks. Raw relevance grades are absent; nDCG/MAP and timing instrumentation are not independently rerun."
+}

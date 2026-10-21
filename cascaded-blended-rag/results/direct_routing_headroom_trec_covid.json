@@ -1,0 +1,20 @@
+{
+  "status": "HINDSIGHT DIAGNOSTIC ONLY; not a deployable or evaluated router",
+  "dataset": "inspected TREC-COVID test",
+  "queries": 50,
+  "source_report_sha256": "583be6343ee58ecd60c6db189c641aa7f2443a0fed3de1f26e7fe968e27e9250",
+  "selection": "Sort queries by known clipped recall loss of substituting Dense for SPLADE; maximize substitution count within a 10% clipped-loss budget. Not a latency-optimal selection.",
+  "dense_choices": 30,
+  "splade_choices": 20,
+  "hindsight_recall_retention_vs_splade": 0.932695486709034,
+  "estimated_direct_choice_mean_ms": 39.18580084003528,
+  "estimated_dense_then_conditional_splade_mean_ms": 51.40756753336366,
+  "measured_standalone_splade_mean_ms": 52.97572438001225,
+  "estimated_direct_mean_reduction": 0.26030646492074994,
+  "limitations": [
+    "Relevance labels choose every route retrospectively. This is not held-out evidence for a learned policy.",
+    "Latency estimates sum separately measured standalone query times; classifier overhead, execution-order effects and a real routed run are absent.",
+    "Only Recall@100 is constrained; nDCG/MAP and generated answers are not evaluated for this diagnostic.",
+    "Any classifier needs separate training/validation and independent evaluation; this inspected test cannot validate its fitted decisions."
+  ]
+}

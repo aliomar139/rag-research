@@ -1,0 +1,6076 @@
+{
+  "dataset": "BEIR SciFact",
+  "corpus_documents": 5183,
+  "train_queries": 809,
+  "test_queries": 300,
+  "bm25_variant": "Best Fields: max(title BM25, abstract BM25)",
+  "dense_model": "sentence-transformers/all-MiniLM-L6-v2",
+  "sparse_model": "naver/splade-cocondenser-ensembledistil",
+  "rrf_k": 60,
+  "train_recall_constraint_fraction": 0.98,
+  "selection": {
+    "thresholds": null,
+    "train_recall@100": 0.9583848372476309,
+    "train_static_recall@100": 0.9583848372476309,
+    "train_estimated_latency_ms": null,
+    "selection": "static_fallback_no_threshold_met_constraint"
+  },
+  "test_static": {
+    "metrics": {
+      "recall@100": 0.9610000000000001,
+      "ndcg@10": 0.6984106746290535,
+      "map@10": 0.6537900132275132
+    },
+    "latency_ms": {
+      "mean": 53.626610806671806,
+      "p50": 51.21242450007912,
+      "p95": 82.38325185002964,
+      "p99": 89.34641382003973
+    }
+  },
+  "test_single_retrievers": {
+    "bm25_best_fields": {
+      "recall@100": 0.8705555555555554,
+      "ndcg@10": 0.6369455818501196,
+      "map@10": 0.5907566137566137
+    },
+    "dense": {
+      "recall@100": 0.925,
+      "ndcg@10": 0.6450816521455774,
+      "map@10": 0.5959314814814816
+    },
+    "splade": {
+      "recall@100": 0.932,
+      "ndcg@10": 0.7024466040656876,
+      "map@10": 0.6589623015873015
+    }
+  },
+  "test_cascade": {
+    "metrics": {
+      "recall@100": 0.9610000000000001,
+      "ndcg@10": 0.6984106746290535,
+      "map@10": 0.6537900132275132
+    },
+    "early_exit_rate": 0.0,
+    "queries_with_neural_branches_skipped": 0,
+    "dense_query_invocations_skipped": 0,
+    "splade_query_invocations_skipped": 0,
+    "neural_model_invocations_skipped": 0,
+    "dense_query_invocations": 300,
+    "splade_query_invocations": 300,
+    "latency_ms": {
+      "mean": 53.68870588666482,
+      "p50": 51.21465649995116,
+      "p95": 80.0175368500277,
+      "p99": 90.38805291998413
+    },
+    "per_query": {
+      "1": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 16.58090200010065,
+          "router_ms": 0.0009200000476994319,
+          "dense_ms": 6.9144899999855625,
+          "splade_ms": 11.186443000042345,
+          "fusion_ms": 0.19900799998140428,
+          "total_ms": 34.953177000033975
+        }
+      },
+      "3": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 51.50908000007348,
+          "router_ms": 0.0009369999816044583,
+          "dense_ms": 7.427509999956783,
+          "splade_ms": 11.189910999974018,
+          "fusion_ms": 0.13582999997652223,
+          "total_ms": 70.3615649999847
+        }
+      },
+      "5": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 22.665500000016436,
+          "router_ms": 0.0008659999366500415,
+          "dense_ms": 6.874949000007291,
+          "splade_ms": 11.087003000056939,
+          "fusion_ms": 0.14603300007820508,
+          "total_ms": 40.84362200001124
+        }
+      },
+      "13": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 27.954180000051565,
+          "router_ms": 0.0007479999339921051,
+          "dense_ms": 7.045803999972122,
+          "splade_ms": 11.437754999974459,
+          "fusion_ms": 0.21095899990086764,
+          "total_ms": 46.73159099991153
+        }
+      },
+      "36": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 26.876166999954876,
+          "router_ms": 0.0008409999736613827,
+          "dense_ms": 7.060630999944806,
+          "splade_ms": 10.880048999979408,
+          "fusion_ms": 0.156779999997525,
+          "total_ms": 45.05709900001875
+        }
+      },
+      "42": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 39.340927000012016,
+          "router_ms": 0.0008189999789465219,
+          "dense_ms": 7.275730999936059,
+          "splade_ms": 13.085565000096722,
+          "fusion_ms": 0.19794199999978446,
+          "total_ms": 59.980605999953696
+        }
+      },
+      "48": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 37.832855000033305,
+          "router_ms": 0.0008809998917058692,
+          "dense_ms": 6.981548999988263,
+          "splade_ms": 10.813506999966194,
+          "fusion_ms": 0.1757320000024265,
+          "total_ms": 55.88108500000999
+        }
+      },
+      "49": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 21.229976000086026,
+          "router_ms": 0.0008829999842419056,
+          "dense_ms": 6.8734209999092855,
+          "splade_ms": 10.609129999920697,
+          "fusion_ms": 0.17584600004738604,
+          "total_ms": 38.96582599998055
+        }
+      },
+      "50": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 20.38295099998777,
+          "router_ms": 0.0007570000661871745,
+          "dense_ms": 7.0202740000695485,
+          "splade_ms": 10.102380000034827,
+          "fusion_ms": 0.16270599996914825,
+          "total_ms": 37.74400000008882
+        }
+      },
+      "51": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 24.472719000073084,
+          "router_ms": 0.000737999926059274,
+          "dense_ms": 6.595556999968721,
+          "splade_ms": 11.598853999998937,
+          "fusion_ms": 0.14291200000116078,
+          "total_ms": 42.88733299995329
+        }
+      },
+      "53": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 27.271084999938466,
+          "router_ms": 0.0007799999366397969,
+          "dense_ms": 6.850064999980532,
+          "splade_ms": 11.57287199998791,
+          "fusion_ms": 0.1981689999865921,
+          "total_ms": 45.97186600005898
+        }
+      },
+      "54": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 38.15619299996342,
+          "router_ms": 0.0013720000424655154,
+          "dense_ms": 7.785143999967659,
+          "splade_ms": 11.658247000013944,
+          "fusion_ms": 0.14357600002767867,
+          "total_ms": 57.82951200001207
+        }
+      },
+      "56": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 48.267631000044275,
+          "router_ms": 0.0009890000001178123,
+          "dense_ms": 7.672654999964834,
+          "splade_ms": 11.290361999954257,
+          "fusion_ms": 0.33359299993662717,
+          "total_ms": 67.66686800006028
+        }
+      },
+      "57": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 42.540871999904084,
+          "router_ms": 0.0008749999551582732,
+          "dense_ms": 8.302302999936728,
+          "splade_ms": 13.425815999994484,
+          "fusion_ms": 0.16095000000859727,
+          "total_ms": 64.50583800005916
+        }
+      },
+      "70": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 18.798173999925893,
+          "router_ms": 0.0009599999657439184,
+          "dense_ms": 7.857351999973616,
+          "splade_ms": 13.312509000002137,
+          "fusion_ms": 0.16415699997196498,
+          "total_ms": 40.21829499993146
+        }
+      },
+      "72": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 22.80114399991362,
+          "router_ms": 0.00078699997629883,
+          "dense_ms": 6.846735999943121,
+          "splade_ms": 10.99662100000387,
+          "fusion_ms": 0.2028730000347423,
+          "total_ms": 40.92814900002395
+        }
+      },
+      "75": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 38.596901000005346,
+          "router_ms": 0.0008499999921696144,
+          "dense_ms": 6.986746999928073,
+          "splade_ms": 10.896419000005153,
+          "fusion_ms": 0.15935099997932411,
+          "total_ms": 56.7182340000727
+        }
+      },
+      "94": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 20.446719000005942,
+          "router_ms": 0.0007939999022710253,
+          "dense_ms": 6.821386000069651,
+          "splade_ms": 11.59414200003539,
+          "fusion_ms": 0.16530999994301965,
+          "total_ms": 39.11241399998744
+        }
+      },
+      "99": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 30.52760799994303,
+          "router_ms": 0.000943000031838892,
+          "dense_ms": 7.035073999986707,
+          "splade_ms": 11.71728899998925,
+          "fusion_ms": 0.1731659999677504,
+          "total_ms": 49.53392700008408
+        }
+      },
+      "100": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 23.56262799992237,
+          "router_ms": 0.0012720000768240425,
+          "dense_ms": 7.326613000032012,
+          "splade_ms": 11.076065999986895,
+          "fusion_ms": 0.1409169999533333,
+          "total_ms": 42.18783800001802
+        }
+      },
+      "113": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 35.254592999990564,
+          "router_ms": 0.0007720000212430023,
+          "dense_ms": 7.497059000002082,
+          "splade_ms": 10.947977999990144,
+          "fusion_ms": 0.17307300004176795,
+          "total_ms": 53.95617500005301
+        }
+      },
+      "115": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 29.845410999996602,
+          "router_ms": 0.0007920000371086644,
+          "dense_ms": 6.798814000035236,
+          "splade_ms": 11.45790800001123,
+          "fusion_ms": 0.2009830000133661,
+          "total_ms": 48.38777100007974
+        }
+      },
+      "118": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 31.93352400001004,
+          "router_ms": 0.0008829999842419056,
+          "dense_ms": 6.977259999985108,
+          "splade_ms": 11.035725999931856,
+          "fusion_ms": 0.13981199992940674,
+          "total_ms": 50.16497700000855
+        }
+      },
+      "124": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 32.90905599999405,
+          "router_ms": 0.0007429999868691084,
+          "dense_ms": 6.872803999954158,
+          "splade_ms": 11.15982199996779,
+          "fusion_ms": 0.185055999963879,
+          "total_ms": 51.21575499993014
+        }
+      },
+      "127": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 29.24046599991925,
+          "router_ms": 0.000885000076777942,
+          "dense_ms": 7.4241410000013275,
+          "splade_ms": 11.27285099994424,
+          "fusion_ms": 0.19276500006526476,
+          "total_ms": 48.21507400004066
+        }
+      },
+      "128": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 22.311880999950517,
+          "router_ms": 0.0009589999763193191,
+          "dense_ms": 6.971240999973816,
+          "splade_ms": 11.191079000013815,
+          "fusion_ms": 0.2000019999286451,
+          "total_ms": 40.77240299989171
+        }
+      },
+      "129": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 39.461815999970895,
+          "router_ms": 0.0008299999763039523,
+          "dense_ms": 7.163988000002064,
+          "splade_ms": 11.017818000027546,
+          "fusion_ms": 0.18836399999599962,
+          "total_ms": 57.91531299996677
+        }
+      },
+      "130": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 37.91185900001892,
+          "router_ms": 0.0008979999392977334,
+          "dense_ms": 7.267181999964123,
+          "splade_ms": 11.199164999993627,
+          "fusion_ms": 0.16720999997232866,
+          "total_ms": 56.63488100003633
+        }
+      },
+      "132": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 18.33205400009774,
+          "router_ms": 0.0007670000741200056,
+          "dense_ms": 6.592275000002701,
+          "splade_ms": 11.50375699990036,
+          "fusion_ms": 0.1873479999403571,
+          "total_ms": 36.69357000001128
+        }
+      },
+      "133": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 57.11164899992127,
+          "router_ms": 0.0010169999313802691,
+          "dense_ms": 8.775388999993083,
+          "splade_ms": 14.463821000049393,
+          "fusion_ms": 0.22874800004046847,
+          "total_ms": 80.67506700001559
+        }
+      },
+      "137": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 38.65796499997032,
+          "router_ms": 0.0009070000714928028,
+          "dense_ms": 8.84871400000975,
+          "splade_ms": 13.337884999941707,
+          "fusion_ms": 0.2194070000314241,
+          "total_ms": 61.17230999996082
+        }
+      },
+      "141": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 33.88557400000991,
+          "router_ms": 0.00088800004505174,
+          "dense_ms": 7.391873999949894,
+          "splade_ms": 11.500161999947522,
+          "fusion_ms": 0.2009869999710645,
+          "total_ms": 53.07080000000042
+        }
+      },
+      "142": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 54.514421000021684,
+          "router_ms": 0.0008769999340074719,
+          "dense_ms": 7.851758000015252,
+          "splade_ms": 13.16703299994515,
+          "fusion_ms": 0.18490499996914878,
+          "total_ms": 75.80788199993549
+        }
+      },
+      "143": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 44.861953000008725,
+          "router_ms": 0.0008680000291860779,
+          "dense_ms": 7.19133999996302,
+          "splade_ms": 13.195274000054269,
+          "fusion_ms": 0.1475500000651664,
+          "total_ms": 65.47332500008451
+        }
+      },
+      "146": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 46.932117000096696,
+          "router_ms": 0.0008960000741353724,
+          "dense_ms": 7.275913000057699,
+          "splade_ms": 13.21152099990286,
+          "fusion_ms": 0.1480519999859098,
+          "total_ms": 67.64259099998071
+        }
+      },
+      "148": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 15.488194999988991,
+          "router_ms": 0.0008209999577957205,
+          "dense_ms": 6.744564999962677,
+          "splade_ms": 10.815764999961175,
+          "fusion_ms": 0.14279599997735204,
+          "total_ms": 33.267770000065866
+        }
+      },
+      "163": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 25.168986999915433,
+          "router_ms": 0.0007820000291758333,
+          "dense_ms": 7.3410719999174034,
+          "splade_ms": 11.09987600000295,
+          "fusion_ms": 0.15829100004793872,
+          "total_ms": 43.84488599998804
+        }
+      },
+      "171": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 28.86351899996953,
+          "router_ms": 0.0007819999154889956,
+          "dense_ms": 6.769416999986788,
+          "splade_ms": 11.102889999961008,
+          "fusion_ms": 0.18050500000299508,
+          "total_ms": 46.99457300000631
+        }
+      },
+      "179": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 22.85718899997846,
+          "router_ms": 0.0009069999578059651,
+          "dense_ms": 6.82778700002018,
+          "splade_ms": 11.236863000021913,
+          "fusion_ms": 0.1477139999224164,
+          "total_ms": 41.15310800000316
+        }
+      },
+      "180": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 55.84643299994241,
+          "router_ms": 0.0010599999313853914,
+          "dense_ms": 7.231786000033935,
+          "splade_ms": 13.11345200008418,
+          "fusion_ms": 0.20634199995583913,
+          "total_ms": 76.49720299991714
+        }
+      },
+      "183": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 24.026172000048973,
+          "router_ms": 0.0008729999763090746,
+          "dense_ms": 7.58071600000676,
+          "splade_ms": 10.986911000031796,
+          "fusion_ms": 0.14958699989620072,
+          "total_ms": 42.823151999982656
+        }
+      },
+      "185": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 25.46223199999531,
+          "router_ms": 0.0008009999419300584,
+          "dense_ms": 7.243437000056474,
+          "splade_ms": 10.978535000049305,
+          "fusion_ms": 0.1397989999532001,
+          "total_ms": 43.90187900003184
+        }
+      },
+      "198": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 14.653468000005887,
+          "router_ms": 0.0009789999921849812,
+          "dense_ms": 6.910851000043294,
+          "splade_ms": 10.526751000043078,
+          "fusion_ms": 0.2214299998968272,
+          "total_ms": 32.40395900002113
+        }
+      },
+      "208": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 22.933036000040374,
+          "router_ms": 0.0008499999921696144,
+          "dense_ms": 7.3824439999725655,
+          "splade_ms": 11.216838999985157,
+          "fusion_ms": 0.14934399996491265,
+          "total_ms": 41.772560000026715
+        }
+      },
+      "212": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 22.773997000058444,
+          "router_ms": 0.0008580000212532468,
+          "dense_ms": 8.587886999976035,
+          "splade_ms": 11.231609999981629,
+          "fusion_ms": 0.1708040000494293,
+          "total_ms": 42.843085999948016
+        }
+      },
+      "213": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 37.36347000005935,
+          "router_ms": 0.000941999928727455,
+          "dense_ms": 7.0688260000224545,
+          "splade_ms": 12.161798000079216,
+          "fusion_ms": 0.1571669999975711,
+          "total_ms": 56.8305550000332
+        }
+      },
+      "216": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 25.255277000042042,
+          "router_ms": 0.000836000026538386,
+          "dense_ms": 6.875169999943864,
+          "splade_ms": 10.613967000040248,
+          "fusion_ms": 0.14593100002002757,
+          "total_ms": 42.967028000020946
+        }
+      },
+      "217": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 25.160347999985788,
+          "router_ms": 0.0008619999789516442,
+          "dense_ms": 6.97749300002215,
+          "splade_ms": 11.278544999981932,
+          "fusion_ms": 0.149602999954368,
+          "total_ms": 43.63621099992088
+        }
+      },
+      "218": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 21.728309999957673,
+          "router_ms": 0.0008050000133152935,
+          "dense_ms": 6.8627990000322825,
+          "splade_ms": 11.357670999927905,
+          "fusion_ms": 0.13258700005280843,
+          "total_ms": 40.16894200003662
+        }
+      },
+      "219": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 27.562318000036612,
+          "router_ms": 0.0011180000001331791,
+          "dense_ms": 11.48312599991641,
+          "splade_ms": 18.913560999976653,
+          "fusion_ms": 0.2969020000591627,
+          "total_ms": 58.38744000004681
+        }
+      },
+      "230": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 48.38777499992375,
+          "router_ms": 0.0009959999260900076,
+          "dense_ms": 7.906022000042867,
+          "splade_ms": 10.76661900003728,
+          "fusion_ms": 0.1823990000957565,
+          "total_ms": 67.34822699991128
+        }
+      },
+      "232": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 33.91686099996605,
+          "router_ms": 0.0009479999789618887,
+          "dense_ms": 7.388034999962656,
+          "splade_ms": 11.416736000001038,
+          "fusion_ms": 0.18778300000121817,
+          "total_ms": 53.00003500008188
+        }
+      },
+      "233": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 30.92450299993743,
+          "router_ms": 0.0010859999974854873,
+          "dense_ms": 7.028626999954213,
+          "splade_ms": 11.304055999971752,
+          "fusion_ms": 0.18210600001111743,
+          "total_ms": 49.52076899996882
+        }
+      },
+      "236": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 26.57005699995807,
+          "router_ms": 0.0009120000186157995,
+          "dense_ms": 7.09219399993799,
+          "splade_ms": 10.764335999965624,
+          "fusion_ms": 0.15480600006867462,
+          "total_ms": 44.656700000018645
+        }
+      },
+      "237": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 30.98925799997687,
+          "router_ms": 0.000789999944572628,
+          "dense_ms": 6.922956999915186,
+          "splade_ms": 10.887346999993497,
+          "fusion_ms": 0.18202400008249242,
+          "total_ms": 49.05991699990864
+        }
+      },
+      "238": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 19.25733100006255,
+          "router_ms": 0.0009269999736716272,
+          "dense_ms": 7.001509000019723,
+          "splade_ms": 11.258300000008603,
+          "fusion_ms": 0.15411300000778283,
+          "total_ms": 37.75163000000248
+        }
+      },
+      "239": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 22.70455400002902,
+          "router_ms": 0.0008690000186106772,
+          "dense_ms": 6.73841299999367,
+          "splade_ms": 10.276488000044992,
+          "fusion_ms": 0.1695680000466382,
+          "total_ms": 39.96607600004154
+        }
+      },
+      "248": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 23.099967999996807,
+          "router_ms": 0.0008260000186055549,
+          "dense_ms": 6.772948000048018,
+          "splade_ms": 11.26430400006484,
+          "fusion_ms": 0.17894600000545324,
+          "total_ms": 41.40292199997475
+        }
+      },
+      "249": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 20.180447000029744,
+          "router_ms": 0.000841999963085982,
+          "dense_ms": 6.768569000087155,
+          "splade_ms": 10.892947000002096,
+          "fusion_ms": 0.14521700006753235,
+          "total_ms": 38.05808899994645
+        }
+      },
+      "261": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 30.993189000014354,
+          "router_ms": 0.0008450000450466177,
+          "dense_ms": 6.908001000056174,
+          "splade_ms": 11.02717499998107,
+          "fusion_ms": 0.15914400000838214,
+          "total_ms": 49.163630000066405
+        }
+      },
+      "268": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 13.771206999990682,
+          "router_ms": 0.0008399999842367833,
+          "dense_ms": 6.763709000097151,
+          "splade_ms": 11.481478000064271,
+          "fusion_ms": 0.1934179999807384,
+          "total_ms": 32.2931300000846
+        }
+      },
+      "269": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 13.252370999907725,
+          "router_ms": 0.0007959999948070617,
+          "dense_ms": 6.822021999937533,
+          "splade_ms": 11.312219000046753,
+          "fusion_ms": 0.14872199994897528,
+          "total_ms": 31.607666000013523
+        }
+      },
+      "274": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 54.873402999987775,
+          "router_ms": 0.0014490000239675283,
+          "dense_ms": 7.789847000026384,
+          "splade_ms": 13.446825000073659,
+          "fusion_ms": 0.21721200005231367,
+          "total_ms": 76.41863300000296
+        }
+      },
+      "275": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 41.37381199996071,
+          "router_ms": 0.0012399999604895129,
+          "dense_ms": 7.1504210000057356,
+          "splade_ms": 10.716762000015478,
+          "fusion_ms": 0.13427999999748863,
+          "total_ms": 59.45375699991473
+        }
+      },
+      "279": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 29.32351699996616,
+          "router_ms": 0.001055999973686994,
+          "dense_ms": 7.3874130000604055,
+          "splade_ms": 10.995087999958741,
+          "fusion_ms": 0.18288600006144407,
+          "total_ms": 47.9721059999747
+        }
+      },
+      "294": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 31.8024329999389,
+          "router_ms": 0.0007900000582594657,
+          "dense_ms": 7.005986999956804,
+          "splade_ms": 11.09262599993599,
+          "fusion_ms": 0.1595210000004954,
+          "total_ms": 50.1434990000007
+        }
+      },
+      "295": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 45.146219999992354,
+          "router_ms": 0.0008950000847107731,
+          "dense_ms": 7.218774999955713,
+          "splade_ms": 13.085816000057093,
+          "fusion_ms": 0.13290100002905092,
+          "total_ms": 65.66102600004342
+        }
+      },
+      "298": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 33.45338400004039,
+          "router_ms": 0.0008800000159681076,
+          "dense_ms": 6.98450300001241,
+          "splade_ms": 11.321436000002905,
+          "fusion_ms": 0.14612600000418752,
+          "total_ms": 51.9814150000002
+        }
+      },
+      "300": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 65.10652899999059,
+          "router_ms": 0.0009379999710290576,
+          "dense_ms": 7.291170000030434,
+          "splade_ms": 13.438697999959004,
+          "fusion_ms": 0.16870900003596034,
+          "total_ms": 86.08471399998052
+        }
+      },
+      "303": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 36.648986000045625,
+          "router_ms": 0.0010290000318491366,
+          "dense_ms": 7.028716000036184,
+          "splade_ms": 11.027200000057746,
+          "fusion_ms": 0.3680540000914334,
+          "total_ms": 55.1641730000938
+        }
+      },
+      "312": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 36.37106600001516,
+          "router_ms": 0.0009100000397666008,
+          "dense_ms": 7.221615000048587,
+          "splade_ms": 10.721536999994896,
+          "fusion_ms": 0.16029199991862697,
+          "total_ms": 54.571118000012575
+        }
+      },
+      "314": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 57.157523000000765,
+          "router_ms": 0.0009970000292014447,
+          "dense_ms": 7.252528999970309,
+          "splade_ms": 13.068526999973074,
+          "fusion_ms": 0.18512799999825802,
+          "total_ms": 77.74489099995208
+        }
+      },
+      "324": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 16.155331000049955,
+          "router_ms": 0.0007979999736562604,
+          "dense_ms": 6.785473000036291,
+          "splade_ms": 11.441288000014538,
+          "fusion_ms": 0.1831800000218209,
+          "total_ms": 34.64296300001024
+        }
+      },
+      "327": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 28.137339000068096,
+          "router_ms": 0.0008230000503317569,
+          "dense_ms": 6.889354999998432,
+          "splade_ms": 10.805887999936203,
+          "fusion_ms": 0.17032300002028933,
+          "total_ms": 46.10571799992158
+        }
+      },
+      "338": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 17.11279000005561,
+          "router_ms": 0.0007789999472151976,
+          "dense_ms": 6.8044240000517675,
+          "splade_ms": 10.953312999959053,
+          "fusion_ms": 0.18983900008606724,
+          "total_ms": 35.14022700005626
+        }
+      },
+      "343": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 43.87527799997315,
+          "router_ms": 0.0007630000027347705,
+          "dense_ms": 6.990828000084548,
+          "splade_ms": 10.782582000047114,
+          "fusion_ms": 0.14421299999867188,
+          "total_ms": 61.86691300001712
+        }
+      },
+      "350": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 36.49764499994035,
+          "router_ms": 0.0009210000371240312,
+          "dense_ms": 7.088671000019531,
+          "splade_ms": 11.405503999981192,
+          "fusion_ms": 0.17823500002123183,
+          "total_ms": 55.261532000031366
+        }
+      },
+      "354": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 29.489610000041466,
+          "router_ms": 0.0009320000344814616,
+          "dense_ms": 6.828313000028174,
+          "splade_ms": 11.443783999993684,
+          "fusion_ms": 0.18266300003233482,
+          "total_ms": 48.02589100006571
+        }
+      },
+      "362": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 61.74163299999691,
+          "router_ms": 0.0008719999868844752,
+          "dense_ms": 8.81619199992656,
+          "splade_ms": 13.117159999978867,
+          "fusion_ms": 0.17426600004455395,
+          "total_ms": 83.93572099998892
+        }
+      },
+      "380": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 32.950744000004306,
+          "router_ms": 0.0007879999657234293,
+          "dense_ms": 7.389367999962815,
+          "splade_ms": 10.591615999942405,
+          "fusion_ms": 0.19626399989647325,
+          "total_ms": 51.21355799997218
+        }
+      },
+      "384": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 35.1869149999402,
+          "router_ms": 0.0008010000556168961,
+          "dense_ms": 7.076268999981039,
+          "splade_ms": 10.971082999958526,
+          "fusion_ms": 0.19062499995925464,
+          "total_ms": 53.520219000006364
+        }
+      },
+      "385": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 32.95296100009182,
+          "router_ms": 0.0008060000027398928,
+          "dense_ms": 6.949431000066397,
+          "splade_ms": 11.588534999987132,
+          "fusion_ms": 0.174217999983739,
+          "total_ms": 51.74416299996665
+        }
+      },
+      "386": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 43.047526000009384,
+          "router_ms": 0.0008470000238958164,
+          "dense_ms": 7.502810999994836,
+          "splade_ms": 11.461634999932357,
+          "fusion_ms": 0.15901300002951757,
+          "total_ms": 62.271720000012465
+        }
+      },
+      "388": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 25.122203000023546,
+          "router_ms": 0.0007930000265332637,
+          "dense_ms": 6.734508000022288,
+          "splade_ms": 11.33695600003648,
+          "fusion_ms": 0.16151899990290985,
+          "total_ms": 43.434979000039675
+        }
+      },
+      "399": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 28.729114999919148,
+          "router_ms": 0.0007620000133101712,
+          "dense_ms": 6.808341999999357,
+          "splade_ms": 11.549225999942792,
+          "fusion_ms": 0.18012099997122277,
+          "total_ms": 47.34627300001648
+        }
+      },
+      "410": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 25.313716000027853,
+          "router_ms": 0.0008450000450466177,
+          "dense_ms": 6.775085999947805,
+          "splade_ms": 11.346616999958314,
+          "fusion_ms": 0.18940399991151935,
+          "total_ms": 43.70593300006931
+        }
+      },
+      "411": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 27.393978999953106,
+          "router_ms": 0.0008529999604434124,
+          "dense_ms": 6.904890999976487,
+          "splade_ms": 11.047930000017914,
+          "fusion_ms": 0.16279500005111913,
+          "total_ms": 45.581686999980775
+        }
+      },
+      "415": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 33.83706800002528,
+          "router_ms": 0.0008199999683711212,
+          "dense_ms": 7.5206340000022465,
+          "splade_ms": 11.506746000009116,
+          "fusion_ms": 0.14977699993323768,
+          "total_ms": 53.0880360000765
+        }
+      },
+      "421": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 34.86434000001282,
+          "router_ms": 0.0008459999207843794,
+          "dense_ms": 6.852170999991358,
+          "splade_ms": 11.449804999983826,
+          "fusion_ms": 0.3384760000244569,
+          "total_ms": 53.58440800000608
+        }
+      },
+      "431": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 34.45067400002699,
+          "router_ms": 0.0008380000053875847,
+          "dense_ms": 7.150124999952823,
+          "splade_ms": 11.925683999947978,
+          "fusion_ms": 0.18471299995326262,
+          "total_ms": 53.79326000002038
+        }
+      },
+      "436": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 36.69089400000303,
+          "router_ms": 0.000933000023906061,
+          "dense_ms": 6.967626999994536,
+          "splade_ms": 11.1535249999406,
+          "fusion_ms": 0.1659850000805818,
+          "total_ms": 55.05724299996473
+        }
+      },
+      "437": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 56.279176999964875,
+          "router_ms": 0.0016510000477865105,
+          "dense_ms": 8.093722000012349,
+          "splade_ms": 11.09191800003373,
+          "fusion_ms": 0.1661969999986468,
+          "total_ms": 75.71928499999103
+        }
+      },
+      "439": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 37.281416000041645,
+          "router_ms": 0.0009179999551633955,
+          "dense_ms": 7.1100929999374785,
+          "splade_ms": 11.392989000000853,
+          "fusion_ms": 0.1901480000014999,
+          "total_ms": 56.06022699998903
+        }
+      },
+      "440": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 37.97609299999749,
+          "router_ms": 0.000885000076777942,
+          "dense_ms": 7.545105000076546,
+          "splade_ms": 11.433775000000423,
+          "fusion_ms": 0.14725100004397973,
+          "total_ms": 57.203197999911026
+        }
+      },
+      "443": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 27.339298000015333,
+          "router_ms": 0.0007930000265332637,
+          "dense_ms": 7.089232999987871,
+          "splade_ms": 10.600344999943445,
+          "fusion_ms": 0.1423269999349941,
+          "total_ms": 45.2533149999681
+        }
+      },
+      "452": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 27.707906000046023,
+          "router_ms": 0.0009610000688553555,
+          "dense_ms": 7.05391500002861,
+          "splade_ms": 11.768726000013885,
+          "fusion_ms": 0.1865240000142876,
+          "total_ms": 46.81261500002165
+        }
+      },
+      "475": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 28.432740999960515,
+          "router_ms": 0.0009259999842470279,
+          "dense_ms": 6.91463600003317,
+          "splade_ms": 11.068697999917276,
+          "fusion_ms": 0.2118080000172995,
+          "total_ms": 46.71046800001477
+        }
+      },
+      "478": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 65.24648599997818,
+          "router_ms": 0.0009159999763141968,
+          "dense_ms": 7.844146000024921,
+          "splade_ms": 13.189945000021908,
+          "fusion_ms": 0.14293200001702644,
+          "total_ms": 86.50914700001522
+        }
+      },
+      "491": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 41.165158000012525,
+          "router_ms": 0.0010610000344968284,
+          "dense_ms": 8.472398000094472,
+          "splade_ms": 11.008637999907478,
+          "fusion_ms": 0.15060400005495467,
+          "total_ms": 60.88447399997676
+        }
+      },
+      "501": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 20.509353999955238,
+          "router_ms": 0.000985000042419415,
+          "dense_ms": 7.170066999947267,
+          "splade_ms": 10.311950000073011,
+          "fusion_ms": 0.14653099992756324,
+          "total_ms": 38.21420599990688
+        }
+      },
+      "502": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 41.89932700001009,
+          "router_ms": 0.0009069999578059651,
+          "dense_ms": 8.256656000071416,
+          "splade_ms": 10.993833999918934,
+          "fusion_ms": 0.2091410000275573,
+          "total_ms": 61.44812399998045
+        }
+      },
+      "507": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 44.54929799999263,
+          "router_ms": 0.0012479999895731453,
+          "dense_ms": 8.143613000015648,
+          "splade_ms": 11.481861999982357,
+          "fusion_ms": 0.15509500008192845,
+          "total_ms": 64.42749300003925
+        }
+      },
+      "508": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 32.71064099999421,
+          "router_ms": 0.000940000063565094,
+          "dense_ms": 7.373258000029637,
+          "splade_ms": 11.227159999975811,
+          "fusion_ms": 0.23117699993235874,
+          "total_ms": 51.63724599992747
+        }
+      },
+      "513": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 19.11016600001858,
+          "router_ms": 0.0008539999498680118,
+          "dense_ms": 8.020863999945504,
+          "splade_ms": 11.767813000005845,
+          "fusion_ms": 0.15184300002601958,
+          "total_ms": 39.136092000035205
+        }
+      },
+      "514": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 56.24850799995329,
+          "router_ms": 0.000891000013325538,
+          "dense_ms": 7.536293999919508,
+          "splade_ms": 13.099212999918564,
+          "fusion_ms": 0.14445400006479758,
+          "total_ms": 77.11036500006685
+        }
+      },
+      "516": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 39.37021600006574,
+          "router_ms": 0.0013850000186721445,
+          "dense_ms": 7.394582000074479,
+          "splade_ms": 12.067541999954301,
+          "fusion_ms": 0.1784700000371231,
+          "total_ms": 59.09605299996201
+        }
+      },
+      "517": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 23.082905000023857,
+          "router_ms": 0.0008829999842419056,
+          "dense_ms": 7.305845000018962,
+          "splade_ms": 12.454244000082326,
+          "fusion_ms": 0.15748999999232183,
+          "total_ms": 43.08739600003264
+        }
+      },
+      "521": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 70.3483459999461,
+          "router_ms": 0.0011280000080660102,
+          "dense_ms": 8.70090600005824,
+          "splade_ms": 13.708715999996457,
+          "fusion_ms": 0.1875809999773992,
+          "total_ms": 93.04264599995804
+        }
+      },
+      "525": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 59.61428299997351,
+          "router_ms": 0.0009269999736716272,
+          "dense_ms": 8.009463999997024,
+          "splade_ms": 10.994697000000997,
+          "fusion_ms": 0.14723499998581246,
+          "total_ms": 78.84996200004935
+        }
+      },
+      "527": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 45.21183800000017,
+          "router_ms": 0.0008539999498680118,
+          "dense_ms": 7.322027999975944,
+          "splade_ms": 13.181039999949462,
+          "fusion_ms": 0.16274000006433198,
+          "total_ms": 65.9601830000156
+        }
+      },
+      "528": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 68.45943299992996,
+          "router_ms": 0.0010139999631064711,
+          "dense_ms": 7.654117000015503,
+          "splade_ms": 13.995242000078179,
+          "fusion_ms": 0.1755209999600993,
+          "total_ms": 90.37663499998416
+        }
+      },
+      "532": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 19.894227999998293,
+          "router_ms": 0.0007759999789413996,
+          "dense_ms": 7.103043999904912,
+          "splade_ms": 11.115431999996872,
+          "fusion_ms": 0.15740800006369682,
+          "total_ms": 38.34800200002064
+        }
+      },
+      "533": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 18.881512000007206,
+          "router_ms": 0.000881000005392707,
+          "dense_ms": 7.1507579999661175,
+          "splade_ms": 11.595399000043471,
+          "fusion_ms": 0.21045899995897344,
+          "total_ms": 37.91825900009371
+        }
+      },
+      "535": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 25.509037000006174,
+          "router_ms": 0.0009059999683813658,
+          "dense_ms": 6.626052999990861,
+          "splade_ms": 11.545133000026908,
+          "fusion_ms": 0.20430699998996715,
+          "total_ms": 43.977901999937785
+        }
+      },
+      "536": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 20.608387999914157,
+          "router_ms": 0.0008019999313546577,
+          "dense_ms": 6.890058000067256,
+          "splade_ms": 12.035028000013881,
+          "fusion_ms": 0.19871799997872586,
+          "total_ms": 39.9025320000419
+        }
+      },
+      "539": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 19.90045500008364,
+          "router_ms": 0.0010249999604639015,
+          "dense_ms": 7.213584000055562,
+          "splade_ms": 11.454420000063692,
+          "fusion_ms": 0.15753599996060075,
+          "total_ms": 38.817894999965574
+        }
+      },
+      "540": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 24.2890570000327,
+          "router_ms": 0.0008719999868844752,
+          "dense_ms": 7.291489999943224,
+          "splade_ms": 10.919813999976213,
+          "fusion_ms": 0.1408450000326411,
+          "total_ms": 42.71904300003371
+        }
+      },
+      "544": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 26.59835099996144,
+          "router_ms": 0.0009030000001075678,
+          "dense_ms": 6.967005999968023,
+          "splade_ms": 10.74313499998425,
+          "fusion_ms": 0.1939350000839113,
+          "total_ms": 44.60492600003363
+        }
+      },
+      "549": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 19.206961999998384,
+          "router_ms": 0.0007950000053824624,
+          "dense_ms": 6.988874999933614,
+          "splade_ms": 11.230857999976251,
+          "fusion_ms": 0.17909300004248507,
+          "total_ms": 37.68733199990493
+        }
+      },
+      "551": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 64.88492599999063,
+          "router_ms": 0.0012869999181930325,
+          "dense_ms": 7.552030999931958,
+          "splade_ms": 13.270002000012937,
+          "fusion_ms": 0.13464300002397067,
+          "total_ms": 85.92427300004601
+        }
+      },
+      "552": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 53.57282599993596,
+          "router_ms": 0.0012030000107188243,
+          "dense_ms": 7.166399999960049,
+          "splade_ms": 13.077434000024368,
+          "fusion_ms": 0.1579429999765125,
+          "total_ms": 74.05023000001165
+        }
+      },
+      "554": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 34.711556000047494,
+          "router_ms": 0.0012909999895782676,
+          "dense_ms": 7.566275999920435,
+          "splade_ms": 11.720292000063637,
+          "fusion_ms": 0.18071699992106005,
+          "total_ms": 54.28945299991028
+        }
+      },
+      "560": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 36.885567000013,
+          "router_ms": 0.0007930000265332637,
+          "dense_ms": 7.24814599993806,
+          "splade_ms": 11.254344999997556,
+          "fusion_ms": 0.17610700001569057,
+          "total_ms": 55.64758399998482
+        }
+      },
+      "569": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 26.936750000004395,
+          "router_ms": 0.0008239999260695186,
+          "dense_ms": 6.821135999985017,
+          "splade_ms": 11.645906000012474,
+          "fusion_ms": 0.17438999998375948,
+          "total_ms": 45.65454500004762
+        }
+      },
+      "575": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 33.145770999908564,
+          "router_ms": 0.0011269999049545731,
+          "dense_ms": 7.778223999935108,
+          "splade_ms": 11.352582999961669,
+          "fusion_ms": 0.18800400005147822,
+          "total_ms": 52.564147999987654
+        }
+      },
+      "577": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 58.815274999915346,
+          "router_ms": 0.0009239998917109915,
+          "dense_ms": 7.463744000006045,
+          "splade_ms": 13.047314999994342,
+          "fusion_ms": 0.15882499997132982,
+          "total_ms": 79.56242000000202
+        }
+      },
+      "578": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 31.637616000011803,
+          "router_ms": 0.0007710000318184029,
+          "dense_ms": 6.988993000049959,
+          "splade_ms": 11.046484999951645,
+          "fusion_ms": 0.1771419999840873,
+          "total_ms": 50.11296099996798
+        }
+      },
+      "587": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 70.17027300003065,
+          "router_ms": 0.0008279999974547536,
+          "dense_ms": 7.617553000045518,
+          "splade_ms": 13.470443999949566,
+          "fusion_ms": 0.17042700005731604,
+          "total_ms": 91.5184269999827
+        }
+      },
+      "589": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 54.023572000005515,
+          "router_ms": 0.0008730000899959123,
+          "dense_ms": 7.152721000011297,
+          "splade_ms": 11.581806999970468,
+          "fusion_ms": 0.1566729999922245,
+          "total_ms": 72.99355299994659
+        }
+      },
+      "593": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 29.16722900010882,
+          "router_ms": 0.0007669999604331679,
+          "dense_ms": 6.880561999992096,
+          "splade_ms": 11.721486999931585,
+          "fusion_ms": 0.15557299991542095,
+          "total_ms": 48.00123600000461
+        }
+      },
+      "597": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 20.022969000024204,
+          "router_ms": 0.0009539999155094847,
+          "dense_ms": 6.711648999953468,
+          "splade_ms": 11.01262300005601,
+          "fusion_ms": 0.1709450000362267,
+          "total_ms": 37.99949999995533
+        }
+      },
+      "598": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 51.00022600004195,
+          "router_ms": 0.0009109999155043624,
+          "dense_ms": 7.088775999932295,
+          "splade_ms": 11.357001999954264,
+          "fusion_ms": 0.1598300000296149,
+          "total_ms": 69.68648500003383
+        }
+      },
+      "613": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 29.300157999955445,
+          "router_ms": 0.0008209999577957205,
+          "dense_ms": 7.397694000019328,
+          "splade_ms": 11.710063999998965,
+          "fusion_ms": 0.18222599999262457,
+          "total_ms": 48.67258199999469
+        }
+      },
+      "619": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 41.31141300001673,
+          "router_ms": 0.0009510000609225244,
+          "dense_ms": 7.6180480000402895,
+          "splade_ms": 11.182250999922871,
+          "fusion_ms": 0.1896279999300532,
+          "total_ms": 60.41392600002382
+        }
+      },
+      "623": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 33.53222500004449,
+          "router_ms": 0.0008140000318235252,
+          "dense_ms": 7.015940000087539,
+          "splade_ms": 11.447708999980932,
+          "fusion_ms": 0.14845800001239695,
+          "total_ms": 52.224586999955136
+        }
+      },
+      "628": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 44.07476000005772,
+          "router_ms": 0.0008199999683711212,
+          "dense_ms": 7.279352999944422,
+          "splade_ms": 11.282133000008798,
+          "fusion_ms": 0.2310780000698287,
+          "total_ms": 62.95865300000969
+        }
+      },
+      "636": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 36.75079699996786,
+          "router_ms": 0.001134000058300444,
+          "dense_ms": 7.355188000019552,
+          "splade_ms": 13.087102999975286,
+          "fusion_ms": 0.16329900006439857,
+          "total_ms": 57.43492600004174
+        }
+      },
+      "637": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 33.54816900002788,
+          "router_ms": 0.0009120000186157995,
+          "dense_ms": 6.960314000025392,
+          "splade_ms": 10.605905999909737,
+          "fusion_ms": 0.17253900000469002,
+          "total_ms": 51.36624700003267
+        }
+      },
+      "641": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 24.28486899998461,
+          "router_ms": 0.0008559999287172104,
+          "dense_ms": 6.716374000006908,
+          "splade_ms": 10.984321000023556,
+          "fusion_ms": 0.15901599999779137,
+          "total_ms": 42.220368000016606
+        }
+      },
+      "644": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 19.877021000070272,
+          "router_ms": 0.0008100000741251279,
+          "dense_ms": 6.66715700003806,
+          "splade_ms": 10.320917000058216,
+          "fusion_ms": 0.15584499999476975,
+          "total_ms": 37.09684800003288
+        }
+      },
+      "649": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 38.43989799997871,
+          "router_ms": 0.0008329999445777503,
+          "dense_ms": 6.950959000050716,
+          "splade_ms": 11.602110000012544,
+          "fusion_ms": 0.1632859999745051,
+          "total_ms": 57.230583999967166
+        }
+      },
+      "659": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 19.921825999972498,
+          "router_ms": 0.0008459999207843794,
+          "dense_ms": 7.528818000082538,
+          "splade_ms": 11.676577000002908,
+          "fusion_ms": 0.1843370000642608,
+          "total_ms": 39.38765499992769
+        }
+      },
+      "660": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 18.410182000025088,
+          "router_ms": 0.0007790000609020353,
+          "dense_ms": 8.114111000054436,
+          "splade_ms": 11.830878999944616,
+          "fusion_ms": 0.1692900000307418,
+          "total_ms": 38.6178190000237
+        }
+      },
+      "674": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 31.550170000059552,
+          "router_ms": 0.0008729999763090746,
+          "dense_ms": 6.932696000035321,
+          "splade_ms": 11.440097999980026,
+          "fusion_ms": 0.1647609999508859,
+          "total_ms": 50.19514600007824
+        }
+      },
+      "684": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 31.705747000046358,
+          "router_ms": 0.0007900000582594657,
+          "dense_ms": 6.890128999998524,
+          "splade_ms": 11.715399999957299,
+          "fusion_ms": 0.15552900003967807,
+          "total_ms": 50.54039899994223
+        }
+      },
+      "690": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 54.73006199997599,
+          "router_ms": 0.0009149999868895975,
+          "dense_ms": 7.295716999919932,
+          "splade_ms": 13.165693000019019,
+          "fusion_ms": 0.16597700005149818,
+          "total_ms": 75.43807399997604
+        }
+      },
+      "691": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 35.635234999972454,
+          "router_ms": 0.0008079999815890915,
+          "dense_ms": 7.269661999998789,
+          "splade_ms": 11.188033999928848,
+          "fusion_ms": 0.20610499996109866,
+          "total_ms": 54.379946999915774
+        }
+      },
+      "692": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 29.25743200000852,
+          "router_ms": 0.0009129998943535611,
+          "dense_ms": 6.814497999926061,
+          "splade_ms": 10.560683999983667,
+          "fusion_ms": 0.1619099999743412,
+          "total_ms": 46.869689000004655
+        }
+      },
+      "693": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 27.113373000020147,
+          "router_ms": 0.0007630000027347705,
+          "dense_ms": 6.730867999976908,
+          "splade_ms": 10.694182000065666,
+          "fusion_ms": 0.15552499996829283,
+          "total_ms": 44.76497400003154
+        }
+      },
+      "700": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 29.380969000044388,
+          "router_ms": 0.0010129999736818718,
+          "dense_ms": 6.9866709999359955,
+          "splade_ms": 11.115224000036505,
+          "fusion_ms": 0.16405099995608907,
+          "total_ms": 47.72397199997158
+        }
+      },
+      "702": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 31.271714000013162,
+          "router_ms": 0.0010070000371342758,
+          "dense_ms": 7.894255999985944,
+          "splade_ms": 13.943033000032301,
+          "fusion_ms": 0.18007500000294385,
+          "total_ms": 53.383801999984826
+        }
+      },
+      "715": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 38.84254900003725,
+          "router_ms": 0.0010229999816147028,
+          "dense_ms": 6.9624669999939215,
+          "splade_ms": 10.758750000036343,
+          "fusion_ms": 0.16427100001692452,
+          "total_ms": 56.821214000024156
+        }
+      },
+      "716": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 26.401884000051723,
+          "router_ms": 0.0009760000239111832,
+          "dense_ms": 7.209934999991674,
+          "splade_ms": 11.18182799996248,
+          "fusion_ms": 0.14920399996753986,
+          "total_ms": 45.02263599999878
+        }
+      },
+      "718": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 28.15470699999878,
+          "router_ms": 0.0009309999313700246,
+          "dense_ms": 7.071614999972553,
+          "splade_ms": 10.88211199999023,
+          "fusion_ms": 0.1595239999687692,
+          "total_ms": 46.364437999955044
+        }
+      },
+      "721": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 35.34779900007834,
+          "router_ms": 0.0008140000318235252,
+          "dense_ms": 7.059774000026664,
+          "splade_ms": 11.822040999959427,
+          "fusion_ms": 0.18798400003561255,
+          "total_ms": 54.50692700003401
+        }
+      },
+      "723": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 41.24646600007509,
+          "router_ms": 0.0009590000900061568,
+          "dense_ms": 7.3478979999208605,
+          "splade_ms": 11.1609350000208,
+          "fusion_ms": 0.16691000007540424,
+          "total_ms": 60.01046200003657
+        }
+      },
+      "727": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 36.681111999996574,
+          "router_ms": 0.0008119999392874888,
+          "dense_ms": 7.005021000054512,
+          "splade_ms": 11.359624000078838,
+          "fusion_ms": 0.15488600001845043,
+          "total_ms": 55.28180299995711
+        }
+      },
+      "728": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 30.379921000076138,
+          "router_ms": 0.0009260000979338656,
+          "dense_ms": 6.969465999986824,
+          "splade_ms": 10.987110999963079,
+          "fusion_ms": 0.15651100000013685,
+          "total_ms": 48.58446299999741
+        }
+      },
+      "729": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 32.39979700003914,
+          "router_ms": 0.0009200000476994319,
+          "dense_ms": 7.086318999995456,
+          "splade_ms": 11.15499299999101,
+          "fusion_ms": 0.1685180000094988,
+          "total_ms": 50.9036369999194
+        }
+      },
+      "742": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 21.31002700002682,
+          "router_ms": 0.0009249999948224286,
+          "dense_ms": 7.071575000054509,
+          "splade_ms": 10.649184000044443,
+          "fusion_ms": 0.14445099998283695,
+          "total_ms": 39.25063500003034
+        }
+      },
+      "743": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 12.876980999976695,
+          "router_ms": 0.0008819999948173063,
+          "dense_ms": 6.806254000025547,
+          "splade_ms": 11.359282999933384,
+          "fusion_ms": 0.14393599997220008,
+          "total_ms": 31.255651000037687
+        }
+      },
+      "744": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 43.12541199999487,
+          "router_ms": 0.0008440000556220184,
+          "dense_ms": 7.025234000025193,
+          "splade_ms": 11.765657999944779,
+          "fusion_ms": 0.21150200007014064,
+          "total_ms": 62.23473800002921
+        }
+      },
+      "756": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 43.459021999979086,
+          "router_ms": 0.000933000023906061,
+          "dense_ms": 7.71798799996759,
+          "splade_ms": 11.303485999974328,
+          "fusion_ms": 0.14656099995136174,
+          "total_ms": 62.7113499999723
+        }
+      },
+      "759": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 49.71534900005281,
+          "router_ms": 0.000930000055632263,
+          "dense_ms": 7.200666000017009,
+          "splade_ms": 11.203578000049674,
+          "fusion_ms": 0.15155400001276575,
+          "total_ms": 68.35171199998058
+        }
+      },
+      "768": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 29.663392999964344,
+          "router_ms": 0.000893999981599336,
+          "dense_ms": 7.0530790000020716,
+          "splade_ms": 13.260117000072569,
+          "fusion_ms": 0.18863399998281238,
+          "total_ms": 50.25772700003017
+        }
+      },
+      "770": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 67.73024299991448,
+          "router_ms": 0.0008240000397563563,
+          "dense_ms": 7.780220999961784,
+          "splade_ms": 13.34040200003983,
+          "fusion_ms": 0.16148399993198836,
+          "total_ms": 89.09893300005933
+        }
+      },
+      "775": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 42.96727899998132,
+          "router_ms": 0.0008629999683762435,
+          "dense_ms": 8.150640999929237,
+          "splade_ms": 13.35948999997072,
+          "fusion_ms": 0.1980550000553194,
+          "total_ms": 64.77753700005451
+        }
+      },
+      "781": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 42.273678000015025,
+          "router_ms": 0.0012130000186516554,
+          "dense_ms": 7.804979999946227,
+          "splade_ms": 11.142682000013338,
+          "fusion_ms": 0.1420779999534716,
+          "total_ms": 61.44913200000701
+        }
+      },
+      "783": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 41.54268900003899,
+          "router_ms": 0.0009940000609276467,
+          "dense_ms": 7.114649999948597,
+          "splade_ms": 11.031648999960453,
+          "fusion_ms": 0.15824599995539756,
+          "total_ms": 59.92164499991759
+        }
+      },
+      "784": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 41.489964999982476,
+          "router_ms": 0.00088800004505174,
+          "dense_ms": 7.315923000078328,
+          "splade_ms": 11.102546999950391,
+          "fusion_ms": 0.17063399991457118,
+          "total_ms": 60.15710700000909
+        }
+      },
+      "785": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 41.77144400000543,
+          "router_ms": 0.0009729999419505475,
+          "dense_ms": 7.5390650000599635,
+          "splade_ms": 11.13708000002589,
+          "fusion_ms": 0.14612300003591372,
+          "total_ms": 60.67857899995488
+        }
+      },
+      "793": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 17.365975999950933,
+          "router_ms": 0.0008499999921696144,
+          "dense_ms": 7.2424789999558925,
+          "splade_ms": 10.802344000012454,
+          "fusion_ms": 0.13179699999454897,
+          "total_ms": 35.61774100001003
+        }
+      },
+      "800": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 48.598328000025504,
+          "router_ms": 0.0009249999948224286,
+          "dense_ms": 7.503958000029343,
+          "splade_ms": 10.818520000043463,
+          "fusion_ms": 0.17539099997065932,
+          "total_ms": 67.18028700004197
+        }
+      },
+      "805": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 22.558183999990433,
+          "router_ms": 0.0009030000001075678,
+          "dense_ms": 7.148584999981722,
+          "splade_ms": 10.96664800002145,
+          "fusion_ms": 0.15947600002164108,
+          "total_ms": 40.90943200003494
+        }
+      },
+      "808": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 25.347442999986924,
+          "router_ms": 0.0007589999313495355,
+          "dense_ms": 6.733415999974568,
+          "splade_ms": 11.018639999974766,
+          "fusion_ms": 0.176885000087168,
+          "total_ms": 43.353742000022066
+        }
+      },
+      "811": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 39.13730400006443,
+          "router_ms": 0.0008420000767728197,
+          "dense_ms": 6.932557000027373,
+          "splade_ms": 11.404328000025998,
+          "fusion_ms": 0.1608219999980065,
+          "total_ms": 57.713599999942744
+        }
+      },
+      "814": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 64.944680999929,
+          "router_ms": 0.0009539999155094847,
+          "dense_ms": 8.316829000023063,
+          "splade_ms": 13.511353000012605,
+          "fusion_ms": 0.18231600006402005,
+          "total_ms": 87.05176000000847
+        }
+      },
+      "820": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 23.91609599999356,
+          "router_ms": 0.0007669999604331679,
+          "dense_ms": 6.848740999998881,
+          "splade_ms": 11.632389999931547,
+          "fusion_ms": 0.2216629999338693,
+          "total_ms": 42.70983700007491
+        }
+      },
+      "821": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 26.30206599997109,
+          "router_ms": 0.0009230000159732299,
+          "dense_ms": 7.775619999961236,
+          "splade_ms": 12.003474000039205,
+          "fusion_ms": 0.19179799994617497,
+          "total_ms": 46.35510699995393
+        }
+      },
+      "823": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 19.94447399999899,
+          "router_ms": 0.0007549999736511381,
+          "dense_ms": 8.251606000044376,
+          "splade_ms": 10.732795000080841,
+          "fusion_ms": 0.16598199999862118,
+          "total_ms": 39.16857299998355
+        }
+      },
+      "830": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 43.90784400004577,
+          "router_ms": 0.0008889999207895016,
+          "dense_ms": 7.5682740000502235,
+          "splade_ms": 13.178099000015209,
+          "fusion_ms": 0.17733899994709645,
+          "total_ms": 64.9251260000483
+        }
+      },
+      "831": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 31.7625229999976,
+          "router_ms": 0.0009030000001075678,
+          "dense_ms": 7.282926000016232,
+          "splade_ms": 11.52516900003775,
+          "fusion_ms": 0.18493799996122107,
+          "total_ms": 50.841867000031016
+        }
+      },
+      "832": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 19.805711999993036,
+          "router_ms": 0.0007740000000922009,
+          "dense_ms": 7.031624000092052,
+          "splade_ms": 11.478506999992533,
+          "fusion_ms": 0.22251400002915034,
+          "total_ms": 38.623458000074606
+        }
+      },
+      "834": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 29.915746000028776,
+          "router_ms": 0.0008439999419351807,
+          "dense_ms": 7.008584999994127,
+          "splade_ms": 10.837877999961165,
+          "fusion_ms": 0.21098199999869394,
+          "total_ms": 48.053949999939505
+        }
+      },
+      "837": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 23.838886000021375,
+          "router_ms": 0.0008560000424040481,
+          "dense_ms": 7.20062000004873,
+          "splade_ms": 10.658240999987356,
+          "fusion_ms": 0.2047790000005989,
+          "total_ms": 41.98361599992495
+        }
+      },
+      "839": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 36.56551099993521,
+          "router_ms": 0.00083000008999079,
+          "dense_ms": 7.102333999910115,
+          "splade_ms": 10.768432999952893,
+          "fusion_ms": 0.18612799999573326,
+          "total_ms": 54.70092300004126
+        }
+      },
+      "845": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 25.774786000056338,
+          "router_ms": 0.0007639999921593699,
+          "dense_ms": 6.891434999943158,
+          "splade_ms": 11.05450899990501,
+          "fusion_ms": 0.18784300004881516,
+          "total_ms": 44.010483999954886
+        }
+      },
+      "847": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 45.33385100000942,
+          "router_ms": 0.0007990000767676975,
+          "dense_ms": 6.9752869999319955,
+          "splade_ms": 11.562826999920617,
+          "fusion_ms": 0.18600500004595233,
+          "total_ms": 64.14451499995266
+        }
+      },
+      "852": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 40.78016999994816,
+          "router_ms": 0.0008619999789516442,
+          "dense_ms": 7.515635000004295,
+          "splade_ms": 11.219613999969624,
+          "fusion_ms": 0.21617500010506774,
+          "total_ms": 59.82020900000862
+        }
+      },
+      "859": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 23.36248100004923,
+          "router_ms": 0.0009350000027552596,
+          "dense_ms": 7.24756299996443,
+          "splade_ms": 12.135909999983596,
+          "fusion_ms": 0.18155099996874924,
+          "total_ms": 43.016783999973995
+        }
+      },
+      "870": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 12.03549000001658,
+          "router_ms": 0.0007950000053824624,
+          "dense_ms": 6.73310800004856,
+          "splade_ms": 11.092949999920165,
+          "fusion_ms": 0.15264700004991028,
+          "total_ms": 30.109764000030736
+        }
+      },
+      "873": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 22.860254000079294,
+          "router_ms": 0.0009960000397768454,
+          "dense_ms": 7.50786399999015,
+          "splade_ms": 10.416117999966445,
+          "fusion_ms": 0.19259599991983123,
+          "total_ms": 41.06164999996054
+        }
+      },
+      "879": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 29.216521999956058,
+          "router_ms": 0.000927000087358465,
+          "dense_ms": 7.443397999963963,
+          "splade_ms": 11.230646000058186,
+          "fusion_ms": 0.16933300003074692,
+          "total_ms": 48.148165000043264
+        }
+      },
+      "880": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 26.427717999922606,
+          "router_ms": 0.0008619999789516442,
+          "dense_ms": 7.117934000007153,
+          "splade_ms": 10.839260000011564,
+          "fusion_ms": 0.16519500002232235,
+          "total_ms": 44.63202499994168
+        }
+      },
+      "882": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 30.674819000068965,
+          "router_ms": 0.0007139999524952145,
+          "dense_ms": 6.9649299999809955,
+          "splade_ms": 11.172284999929616,
+          "fusion_ms": 0.1619740000933234,
+          "total_ms": 49.05508399997416
+        }
+      },
+      "887": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 34.447481000029256,
+          "router_ms": 0.0010490000477147987,
+          "dense_ms": 7.22686500000691,
+          "splade_ms": 11.312502000009772,
+          "fusion_ms": 0.1502809999465171,
+          "total_ms": 53.26338199995462
+        }
+      },
+      "903": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 29.138970999952107,
+          "router_ms": 0.0008009999419300584,
+          "dense_ms": 6.941965000009986,
+          "splade_ms": 10.758323000004566,
+          "fusion_ms": 0.1576180000029126,
+          "total_ms": 47.07459700000527
+        }
+      },
+      "904": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 54.35150400001021,
+          "router_ms": 0.0007749999895168003,
+          "dense_ms": 7.501203000060741,
+          "splade_ms": 13.321137000048111,
+          "fusion_ms": 0.15675800000281015,
+          "total_ms": 75.41830000002392
+        }
+      },
+      "907": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 45.014646000026914,
+          "router_ms": 0.0008679999154992402,
+          "dense_ms": 7.538937000049373,
+          "splade_ms": 11.484157000040796,
+          "fusion_ms": 0.16892700000425975,
+          "total_ms": 64.3045560000246
+        }
+      },
+      "911": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 40.791526000020895,
+          "router_ms": 0.0011029999313905137,
+          "dense_ms": 7.03837800006113,
+          "splade_ms": 10.783578999962629,
+          "fusion_ms": 0.1599119999582399,
+          "total_ms": 58.85516299997562
+        }
+      },
+      "913": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 19.53888299999562,
+          "router_ms": 0.0009569999974701204,
+          "dense_ms": 7.301179000023694,
+          "splade_ms": 11.104501999966487,
+          "fusion_ms": 0.18241500004023692,
+          "total_ms": 38.206859999945664
+        }
+      },
+      "914": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 22.024308000027304,
+          "router_ms": 0.0009329999102192232,
+          "dense_ms": 7.313654999961727,
+          "splade_ms": 10.763902000007874,
+          "fusion_ms": 0.1604699999688819,
+          "total_ms": 40.342950000081146
+        }
+      },
+      "921": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 29.45281999996041,
+          "router_ms": 0.000878000037118909,
+          "dense_ms": 7.095366000044123,
+          "splade_ms": 11.966344000029494,
+          "fusion_ms": 0.15840699995806062,
+          "total_ms": 48.75254099999893
+        }
+      },
+      "922": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 33.05998200005433,
+          "router_ms": 0.0009159999763141968,
+          "dense_ms": 7.457531000000017,
+          "splade_ms": 10.994691999940187,
+          "fusion_ms": 0.1467490000095495,
+          "total_ms": 51.73470600004748
+        }
+      },
+      "936": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 23.188209999943865,
+          "router_ms": 0.0007959999948070617,
+          "dense_ms": 7.08686299992678,
+          "splade_ms": 11.169840999968983,
+          "fusion_ms": 0.17353099997308163,
+          "total_ms": 41.696506999983285
+        }
+      },
+      "956": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 36.07828100007282,
+          "router_ms": 0.0009290000662076636,
+          "dense_ms": 7.176964999985103,
+          "splade_ms": 11.032828999987032,
+          "fusion_ms": 0.1732670000365033,
+          "total_ms": 54.53734499997154
+        }
+      },
+      "957": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 28.362296000068454,
+          "router_ms": 0.0008229999366449192,
+          "dense_ms": 6.958025000017187,
+          "splade_ms": 12.297515000000203,
+          "fusion_ms": 0.18676399997730186,
+          "total_ms": 47.88124999993215
+        }
+      },
+      "960": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 15.039290999993682,
+          "router_ms": 0.0009120000186157995,
+          "dense_ms": 7.595199999968827,
+          "splade_ms": 10.518839000042135,
+          "fusion_ms": 0.17497199996796553,
+          "total_ms": 33.4088409999822
+        }
+      },
+      "967": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 30.480895999971835,
+          "router_ms": 0.0007600000344609725,
+          "dense_ms": 6.911502000093606,
+          "splade_ms": 10.982595999962541,
+          "fusion_ms": 0.17829299997629278,
+          "total_ms": 48.63210300004539
+        }
+      },
+      "971": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 53.07568000000629,
+          "router_ms": 0.0008879999313649023,
+          "dense_ms": 7.48089900002924,
+          "splade_ms": 11.133639000036055,
+          "fusion_ms": 0.13305200002378115,
+          "total_ms": 71.91995000005136
+        }
+      },
+      "975": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 28.046263999954135,
+          "router_ms": 0.0008619999789516442,
+          "dense_ms": 7.184561000030953,
+          "splade_ms": 11.602267000057509,
+          "fusion_ms": 0.19151300000430638,
+          "total_ms": 47.10441100007756
+        }
+      },
+      "982": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 48.456372999908126,
+          "router_ms": 0.0008019999313546577,
+          "dense_ms": 7.346216999962962,
+          "splade_ms": 11.421019999943383,
+          "fusion_ms": 0.15988999996352504,
+          "total_ms": 67.46742999996513
+        }
+      },
+      "985": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 35.79757199997857,
+          "router_ms": 0.0008410000873482204,
+          "dense_ms": 7.189058999983899,
+          "splade_ms": 11.50098200002958,
+          "fusion_ms": 0.14241300004869117,
+          "total_ms": 54.71025399992868
+        }
+      },
+      "993": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 24.688663999995697,
+          "router_ms": 0.000734999957785476,
+          "dense_ms": 6.890075000001161,
+          "splade_ms": 10.953960999927403,
+          "fusion_ms": 0.20573599999806902,
+          "total_ms": 42.81926199996633
+        }
+      },
+      "1012": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 26.302740000005542,
+          "router_ms": 0.0007809999260643963,
+          "dense_ms": 6.899099000065689,
+          "splade_ms": 10.757434999959514,
+          "fusion_ms": 0.175483000020904,
+          "total_ms": 44.21458000001621
+        }
+      },
+      "1014": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 24.932580000040616,
+          "router_ms": 0.0007589999313495355,
+          "dense_ms": 6.844526000008955,
+          "splade_ms": 10.587954000015998,
+          "fusion_ms": 0.1668280000330924,
+          "total_ms": 42.61730899997929
+        }
+      },
+      "1019": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 24.28151699996306,
+          "router_ms": 0.0008929999921747367,
+          "dense_ms": 6.9124430000329085,
+          "splade_ms": 10.873652999976002,
+          "fusion_ms": 0.22061100003156753,
+          "total_ms": 42.36802299999454
+        }
+      },
+      "1020": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 59.748431999992135,
+          "router_ms": 0.0012609999657797744,
+          "dense_ms": 7.339247000004434,
+          "splade_ms": 11.175970000067537,
+          "fusion_ms": 0.14320000002499,
+          "total_ms": 78.49394699996992
+        }
+      },
+      "1021": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 63.10260800000833,
+          "router_ms": 0.000978000002760382,
+          "dense_ms": 9.356706000062331,
+          "splade_ms": 12.154369999962,
+          "fusion_ms": 0.1800210000055813,
+          "total_ms": 84.87855600003513
+        }
+      },
+      "1024": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 29.250175000015588,
+          "router_ms": 0.0008719999868844752,
+          "dense_ms": 7.0482229999697665,
+          "splade_ms": 10.950062000006255,
+          "fusion_ms": 0.19118199998047203,
+          "total_ms": 47.54346100003204
+        }
+      },
+      "1029": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 55.03292700007023,
+          "router_ms": 0.0008580000212532468,
+          "dense_ms": 7.176187000027312,
+          "splade_ms": 13.262430999930075,
+          "fusion_ms": 0.14858199995160248,
+          "total_ms": 75.69952500000454
+        }
+      },
+      "1041": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 39.54620399997566,
+          "router_ms": 0.0009069999578059651,
+          "dense_ms": 7.056101999978637,
+          "splade_ms": 12.9575759999625,
+          "fusion_ms": 0.15314500001295528,
+          "total_ms": 59.80176799994297
+        }
+      },
+      "1049": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 28.388499000016054,
+          "router_ms": 0.0007620000133101712,
+          "dense_ms": 7.729013000016494,
+          "splade_ms": 10.899508999955287,
+          "fusion_ms": 0.1848310000696074,
+          "total_ms": 47.27496499992867
+        }
+      },
+      "1062": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 17.752735000044595,
+          "router_ms": 0.0008619999789516442,
+          "dense_ms": 6.975284999953146,
+          "splade_ms": 10.932256999922174,
+          "fusion_ms": 0.12825099997826328,
+          "total_ms": 35.85940200002824
+        }
+      },
+      "1086": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 46.25987599990822,
+          "router_ms": 0.0008250000291809556,
+          "dense_ms": 6.977765999977237,
+          "splade_ms": 10.991794999995363,
+          "fusion_ms": 0.14296400001967413,
+          "total_ms": 64.4447009999567
+        }
+      },
+      "1088": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 32.153766999954314,
+          "router_ms": 0.0008870000556271407,
+          "dense_ms": 7.494619999988572,
+          "splade_ms": 11.691399000028468,
+          "fusion_ms": 0.1478789999964647,
+          "total_ms": 51.561908999929074
+        }
+      },
+      "1089": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 36.3774420000027,
+          "router_ms": 0.0008719999868844752,
+          "dense_ms": 6.969533999949817,
+          "splade_ms": 10.64285799998288,
+          "fusion_ms": 0.16358300001684256,
+          "total_ms": 54.22557200006395
+        }
+      },
+      "1099": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 11.518347999981415,
+          "router_ms": 0.0009100000397666008,
+          "dense_ms": 6.651423999983308,
+          "splade_ms": 10.653415999968274,
+          "fusion_ms": 0.1368700000057288,
+          "total_ms": 29.06609900003332
+        }
+      },
+      "1100": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 11.351576000038222,
+          "router_ms": 0.0007090000053722179,
+          "dense_ms": 6.7530750000059925,
+          "splade_ms": 10.907617000043501,
+          "fusion_ms": 0.18950399999084766,
+          "total_ms": 29.28009100003237
+        }
+      },
+      "1104": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 65.27211899992835,
+          "router_ms": 0.0010420000080557656,
+          "dense_ms": 7.751852000069448,
+          "splade_ms": 13.152843000057146,
+          "fusion_ms": 0.15085199993336573,
+          "total_ms": 86.41669099995397
+        }
+      },
+      "1107": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 26.845927000067604,
+          "router_ms": 0.0008150000212481245,
+          "dense_ms": 7.548499999984415,
+          "splade_ms": 11.699789999966015,
+          "fusion_ms": 0.15689700001075835,
+          "total_ms": 46.33201100000406
+        }
+      },
+      "1110": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 25.65070499997546,
+          "router_ms": 0.0010029999657490407,
+          "dense_ms": 8.618329999990237,
+          "splade_ms": 13.134551999996802,
+          "fusion_ms": 0.1948970000285044,
+          "total_ms": 47.71047899998848
+        }
+      },
+      "1121": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 36.16744700002528,
+          "router_ms": 0.000893999981599336,
+          "dense_ms": 7.152152000003298,
+          "splade_ms": 11.444838000102209,
+          "fusion_ms": 0.2547479999748248,
+          "total_ms": 55.12277799994081
+        }
+      },
+      "1130": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 45.37873700007822,
+          "router_ms": 0.0007710000318184029,
+          "dense_ms": 7.128945999966163,
+          "splade_ms": 10.773576000019602,
+          "fusion_ms": 0.13239800000519608,
+          "total_ms": 63.48904300000413
+        }
+      },
+      "1132": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 37.10356800002046,
+          "router_ms": 0.0008429999525105814,
+          "dense_ms": 6.985922000012579,
+          "splade_ms": 11.109475000012026,
+          "fusion_ms": 0.13918000001922337,
+          "total_ms": 55.44351200001074
+        }
+      },
+      "1137": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 20.002924999971583,
+          "router_ms": 0.0009289999525208259,
+          "dense_ms": 6.841925000003357,
+          "splade_ms": 16.692251999984364,
+          "fusion_ms": 0.31298299995796697,
+          "total_ms": 43.94889399998192
+        }
+      },
+      "1140": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 40.728934000071604,
+          "router_ms": 0.0012190000688860891,
+          "dense_ms": 10.44894500000737,
+          "splade_ms": 13.781851999965511,
+          "fusion_ms": 0.16892999997253355,
+          "total_ms": 65.30147099999795
+        }
+      },
+      "1144": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 51.891986999976325,
+          "router_ms": 0.0012970000398127013,
+          "dense_ms": 7.399461999966661,
+          "splade_ms": 11.272447000010288,
+          "fusion_ms": 0.17722099994443852,
+          "total_ms": 70.82818200001384
+        }
+      },
+      "1146": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 28.047275000062655,
+          "router_ms": 0.0008739999657336739,
+          "dense_ms": 7.047517999922093,
+          "splade_ms": 11.235842999894885,
+          "fusion_ms": 0.13510399992355815,
+          "total_ms": 46.54150999999729
+        }
+      },
+      "1150": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 33.8517640000191,
+          "router_ms": 0.0008050000133152935,
+          "dense_ms": 6.960997999954088,
+          "splade_ms": 11.378245999935643,
+          "fusion_ms": 0.20425800005341443,
+          "total_ms": 52.471077000063815
+        }
+      },
+      "1163": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 26.781401999983245,
+          "router_ms": 0.0008680000291860779,
+          "dense_ms": 6.896178000033615,
+          "splade_ms": 10.743858999944678,
+          "fusion_ms": 0.41979900004207593,
+          "total_ms": 44.937112999946294
+        }
+      },
+      "1175": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 24.462501000016346,
+          "router_ms": 0.0008050000133152935,
+          "dense_ms": 6.815353999968465,
+          "splade_ms": 11.475869000037164,
+          "fusion_ms": 0.17483299996001733,
+          "total_ms": 43.007071999909385
+        }
+      },
+      "1179": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 28.899484000021403,
+          "router_ms": 0.0007919999234218267,
+          "dense_ms": 6.915945999935502,
+          "splade_ms": 10.908498000048894,
+          "fusion_ms": 0.2533750000566215,
+          "total_ms": 47.096768999949745
+        }
+      },
+      "1180": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 26.464505000035388,
+          "router_ms": 0.0007499999128413037,
+          "dense_ms": 6.7993610000485205,
+          "splade_ms": 11.06213499997466,
+          "fusion_ms": 0.17188399999668036,
+          "total_ms": 44.5811979999462
+        }
+      },
+      "1185": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 67.79546099994604,
+          "router_ms": 0.0009350000027552596,
+          "dense_ms": 7.312522000006538,
+          "splade_ms": 13.176333000046725,
+          "fusion_ms": 0.18109899997398315,
+          "total_ms": 88.55199399999947
+        }
+      },
+      "1187": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 58.895113999938076,
+          "router_ms": 0.001005000058285077,
+          "dense_ms": 7.301213000005191,
+          "splade_ms": 13.050642999928641,
+          "fusion_ms": 0.18064000005324488,
+          "total_ms": 79.51374499998565
+        }
+      },
+      "1191": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 30.57454500003587,
+          "router_ms": 0.0008700000080352766,
+          "dense_ms": 8.50585399996362,
+          "splade_ms": 13.369541999963985,
+          "fusion_ms": 0.18419100001665356,
+          "total_ms": 52.71898399996644
+        }
+      },
+      "1194": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 52.876812000022255,
+          "router_ms": 0.0009309999313700246,
+          "dense_ms": 7.238321000045289,
+          "splade_ms": 11.605452000026162,
+          "fusion_ms": 0.18844199996692623,
+          "total_ms": 71.9958920000181
+        }
+      },
+      "1196": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 34.12634199992226,
+          "router_ms": 0.000937000095291296,
+          "dense_ms": 7.592108000039843,
+          "splade_ms": 11.352720000104455,
+          "fusion_ms": 0.20905700000639627,
+          "total_ms": 53.38003600002139
+        }
+      },
+      "1197": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 34.84378899997864,
+          "router_ms": 0.0008529999604434124,
+          "dense_ms": 7.353016999900319,
+          "splade_ms": 10.624582999980703,
+          "fusion_ms": 0.1846669999849837,
+          "total_ms": 53.088677999994616
+        }
+      },
+      "1199": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 47.51693399998658,
+          "router_ms": 0.0007940000159578631,
+          "dense_ms": 7.111635000001115,
+          "splade_ms": 11.037585000053696,
+          "fusion_ms": 0.18332299998746748,
+          "total_ms": 65.93098999996982
+        }
+      },
+      "1200": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 54.23759500001779,
+          "router_ms": 0.0008470000238958164,
+          "dense_ms": 7.395450999979403,
+          "splade_ms": 13.203699999962737,
+          "fusion_ms": 0.18603900002744922,
+          "total_ms": 75.1300199999605
+        }
+      },
+      "1202": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 37.09062600000834,
+          "router_ms": 0.0008399999842367833,
+          "dense_ms": 7.002945000067484,
+          "splade_ms": 11.080869000011262,
+          "fusion_ms": 0.16094000000066444,
+          "total_ms": 55.415024000012636
+        }
+      },
+      "1204": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 37.44796600005884,
+          "router_ms": 0.0007699999287069659,
+          "dense_ms": 7.030840999959764,
+          "splade_ms": 11.453420999941955,
+          "fusion_ms": 0.1552930000343622,
+          "total_ms": 56.16592599994874
+        }
+      },
+      "1207": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 54.87896099998579,
+          "router_ms": 0.0007620000133101712,
+          "dense_ms": 7.8158300000268355,
+          "splade_ms": 13.371118000009119,
+          "fusion_ms": 0.16221100008806388,
+          "total_ms": 76.32942800000819
+        }
+      },
+      "1213": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 34.217081999941,
+          "router_ms": 0.0007979999736562604,
+          "dense_ms": 7.143669000015507,
+          "splade_ms": 11.074725999947077,
+          "fusion_ms": 0.1398609999796463,
+          "total_ms": 52.65351700006704
+        }
+      },
+      "1216": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 28.418690999956198,
+          "router_ms": 0.0007019999657131848,
+          "dense_ms": 6.947559999957775,
+          "splade_ms": 10.630994999928589,
+          "fusion_ms": 0.1476580000598915,
+          "total_ms": 46.21647100009341
+        }
+      },
+      "1221": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 39.39777100003994,
+          "router_ms": 0.0006999999868639861,
+          "dense_ms": 6.982036000067637,
+          "splade_ms": 10.776253000017277,
+          "fusion_ms": 0.15096199990694004,
+          "total_ms": 57.39306599991778
+        }
+      },
+      "1225": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 21.815437999975984,
+          "router_ms": 0.0008529999604434124,
+          "dense_ms": 6.7926840000609445,
+          "splade_ms": 10.719895000079305,
+          "fusion_ms": 0.16029800008254824,
+          "total_ms": 39.5708780000632
+        }
+      },
+      "1226": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 40.71433399997204,
+          "router_ms": 0.0008200000820579589,
+          "dense_ms": 7.184504000065317,
+          "splade_ms": 11.441722999961712,
+          "fusion_ms": 0.14637699996455922,
+          "total_ms": 59.5676130000129
+        }
+      },
+      "1232": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 40.74583099998108,
+          "router_ms": 0.0007590000450363732,
+          "dense_ms": 7.192318999955205,
+          "splade_ms": 10.511833000009574,
+          "fusion_ms": 0.18413199995848117,
+          "total_ms": 58.71879699998317
+        }
+      },
+      "1241": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 25.52994299992406,
+          "router_ms": 0.0009010000212583691,
+          "dense_ms": 7.012679000013122,
+          "splade_ms": 10.606950000010329,
+          "fusion_ms": 0.13367500002914312,
+          "total_ms": 43.35938899998837
+        }
+      },
+      "1245": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 28.56057500002862,
+          "router_ms": 0.0007609999101987341,
+          "dense_ms": 6.820694999987609,
+          "splade_ms": 10.880021000048146,
+          "fusion_ms": 0.16084599997157056,
+          "total_ms": 46.50497000000087
+        }
+      },
+      "1259": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 57.9684179999731,
+          "router_ms": 0.001008000026558875,
+          "dense_ms": 7.466181000040706,
+          "splade_ms": 13.055590000021766,
+          "fusion_ms": 0.17690300001049764,
+          "total_ms": 78.75372599994535
+        }
+      },
+      "1262": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 37.279655000020284,
+          "router_ms": 0.0009230000159732299,
+          "dense_ms": 7.132438999974511,
+          "splade_ms": 10.992305000058877,
+          "fusion_ms": 0.11480399996344204,
+          "total_ms": 55.59580300007383
+        }
+      },
+      "1266": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 57.751212999960444,
+          "router_ms": 0.0010830000292116893,
+          "dense_ms": 8.134054000038304,
+          "splade_ms": 13.27112000001307,
+          "fusion_ms": 0.13577000004261208,
+          "total_ms": 79.38007400002789
+        }
+      },
+      "1270": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 39.798140999891984,
+          "router_ms": 0.0009340000133306603,
+          "dense_ms": 7.228327000007084,
+          "splade_ms": 10.879022999915833,
+          "fusion_ms": 0.18175399998199282,
+          "total_ms": 58.16808999998102
+        }
+      },
+      "1271": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 52.196517999959724,
+          "router_ms": 0.0011449999419710366,
+          "dense_ms": 7.22672999995666,
+          "splade_ms": 11.07976299999791,
+          "fusion_ms": 0.1616619999822433,
+          "total_ms": 70.74937300001238
+        }
+      },
+      "1272": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 37.64428600004521,
+          "router_ms": 0.0008000000661922968,
+          "dense_ms": 7.670487000041248,
+          "splade_ms": 11.058633999937229,
+          "fusion_ms": 0.1570890000266445,
+          "total_ms": 56.605610000019624
+        }
+      },
+      "1273": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 29.334181999956854,
+          "router_ms": 0.0008719999868844752,
+          "dense_ms": 7.019776999982241,
+          "splade_ms": 11.21915600003831,
+          "fusion_ms": 0.19776300007379177,
+          "total_ms": 47.86959199998364
+        }
+      },
+      "1274": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 59.268624999958774,
+          "router_ms": 0.0008120000529743265,
+          "dense_ms": 7.206282999959512,
+          "splade_ms": 13.221399000030942,
+          "fusion_ms": 0.19592800003920274,
+          "total_ms": 79.98293000002832
+        }
+      },
+      "1278": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 41.59367500005828,
+          "router_ms": 0.0008989999287223327,
+          "dense_ms": 7.230329999970309,
+          "splade_ms": 11.694145999967986,
+          "fusion_ms": 0.157475000037266,
+          "total_ms": 60.75688199996421
+        }
+      },
+      "1279": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 32.09142299999712,
+          "router_ms": 0.0009340000133306603,
+          "dense_ms": 7.03650600007677,
+          "splade_ms": 11.503470999969068,
+          "fusion_ms": 0.18310099994778284,
+          "total_ms": 50.89196400001583
+        }
+      },
+      "1280": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 36.40529999995579,
+          "router_ms": 0.0008520000847056508,
+          "dense_ms": 7.216169000002992,
+          "splade_ms": 13.034036000021842,
+          "fusion_ms": 0.14637399999628542,
+          "total_ms": 56.87903499995173
+        }
+      },
+      "1281": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 25.990414000034434,
+          "router_ms": 0.0007830000186004327,
+          "dense_ms": 6.881638999971074,
+          "splade_ms": 10.951918000046135,
+          "fusion_ms": 0.16104500002711575,
+          "total_ms": 44.05665499996303
+        }
+      },
+      "1282": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 39.70639299996037,
+          "router_ms": 0.0008689999049238395,
+          "dense_ms": 7.215535999989697,
+          "splade_ms": 11.391308000042955,
+          "fusion_ms": 0.17265899998619716,
+          "total_ms": 58.56448999998065
+        }
+      },
+      "1290": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 30.172997000022406,
+          "router_ms": 0.0009130000080403988,
+          "dense_ms": 7.3666040000262,
+          "splade_ms": 11.768673999995372,
+          "fusion_ms": 0.18820299999333656,
+          "total_ms": 49.58254999996825
+        }
+      },
+      "1292": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 28.862161999995806,
+          "router_ms": 0.0008499999921696144,
+          "dense_ms": 7.121191000010185,
+          "splade_ms": 11.691403999975591,
+          "fusion_ms": 0.19266399999651185,
+          "total_ms": 47.95206899996174
+        }
+      },
+      "1298": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 60.62545800000407,
+          "router_ms": 0.0008800000159681076,
+          "dense_ms": 7.330120000005991,
+          "splade_ms": 13.153991999956816,
+          "fusion_ms": 0.16846899995925924,
+          "total_ms": 81.3597829999253
+        }
+      },
+      "1303": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 21.556095000050846,
+          "router_ms": 0.0013080000371701317,
+          "dense_ms": 7.033918000047379,
+          "splade_ms": 11.355982999930347,
+          "fusion_ms": 0.15723500007425173,
+          "total_ms": 40.17782500000067
+        }
+      },
+      "1316": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 28.56107399998109,
+          "router_ms": 0.0008980000529845711,
+          "dense_ms": 7.180089000030421,
+          "splade_ms": 11.178850999954193,
+          "fusion_ms": 0.13513700002931728,
+          "total_ms": 47.14675900004295
+        }
+      },
+      "1319": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 27.505182000027162,
+          "router_ms": 0.0007740000000922009,
+          "dense_ms": 6.934339000054024,
+          "splade_ms": 11.376939000001585,
+          "fusion_ms": 0.1605690000587856,
+          "total_ms": 46.05246599999191
+        }
+      },
+      "1320": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 41.94367200000215,
+          "router_ms": 0.0008770000476943096,
+          "dense_ms": 7.110699000008935,
+          "splade_ms": 13.013879000027373,
+          "fusion_ms": 0.14473400005954318,
+          "total_ms": 62.28957299992999
+        }
+      },
+      "1332": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 56.22619799999029,
+          "router_ms": 0.0010740000107034575,
+          "dense_ms": 7.837320000021464,
+          "splade_ms": 13.61558700000387,
+          "fusion_ms": 0.16509799991126783,
+          "total_ms": 77.95850100001189
+        }
+      },
+      "1335": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 24.356696000040756,
+          "router_ms": 0.0007679999498577672,
+          "dense_ms": 6.926196999984313,
+          "splade_ms": 10.892006000062793,
+          "fusion_ms": 0.15674499991291668,
+          "total_ms": 42.40941800003384
+        }
+      },
+      "1336": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 21.064628999965862,
+          "router_ms": 0.0007999999525054591,
+          "dense_ms": 6.716344999972534,
+          "splade_ms": 11.010282000029292,
+          "fusion_ms": 0.15981299998202303,
+          "total_ms": 39.03550000006817
+        }
+      },
+      "1337": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 29.97508500004642,
+          "router_ms": 0.0009340000133306603,
+          "dense_ms": 7.225116000086018,
+          "splade_ms": 10.938667000004898,
+          "fusion_ms": 0.17572399997334287,
+          "total_ms": 48.392416000069716
+        }
+      },
+      "1339": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 33.991790999948535,
+          "router_ms": 0.0008580000212532468,
+          "dense_ms": 6.89319700006763,
+          "splade_ms": 10.802561999980753,
+          "fusion_ms": 0.1818569999159081,
+          "total_ms": 51.949728999943545
+        }
+      },
+      "1344": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 70.79904700003681,
+          "router_ms": 0.0009350000027552596,
+          "dense_ms": 7.655753999983972,
+          "splade_ms": 13.117841000052977,
+          "fusion_ms": 0.1696460000175648,
+          "total_ms": 91.83908399995744
+        }
+      },
+      "1352": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 33.63486599994303,
+          "router_ms": 0.0010289999181622989,
+          "dense_ms": 7.450816000073246,
+          "splade_ms": 11.74145300001328,
+          "fusion_ms": 0.1581740000347054,
+          "total_ms": 53.06614800008447
+        }
+      },
+      "1359": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 50.83243800004311,
+          "router_ms": 0.0008239999260695186,
+          "dense_ms": 7.350158999997802,
+          "splade_ms": 13.130655000054503,
+          "fusion_ms": 0.15604700001858873,
+          "total_ms": 71.55192699997315
+        }
+      },
+      "1362": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 21.0735759999352,
+          "router_ms": 0.0008270000080301543,
+          "dense_ms": 6.8477759999723276,
+          "splade_ms": 11.465661999977783,
+          "fusion_ms": 0.1615630000060264,
+          "total_ms": 39.62224099996092
+        }
+      },
+      "1363": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 30.81890300006762,
+          "router_ms": 0.0010090000159834744,
+          "dense_ms": 7.599637999987863,
+          "splade_ms": 12.575840999943466,
+          "fusion_ms": 0.22173800005020894,
+          "total_ms": 51.313050999965526
+        }
+      },
+      "1368": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 24.31527700002789,
+          "router_ms": 0.0008229999366449192,
+          "dense_ms": 6.860148999976445,
+          "splade_ms": 10.644438000099399,
+          "fusion_ms": 0.19481000003906956,
+          "total_ms": 42.099795999888556
+        }
+      },
+      "1370": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 22.982550999927298,
+          "router_ms": 0.0008430000661974191,
+          "dense_ms": 6.837509999968461,
+          "splade_ms": 10.384993000002396,
+          "fusion_ms": 0.16545599999062688,
+          "total_ms": 40.445972000043184
+        }
+      },
+      "1379": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 41.823362000059205,
+          "router_ms": 0.0008829999842419056,
+          "dense_ms": 7.073492000017723,
+          "splade_ms": 11.19453599994813,
+          "fusion_ms": 0.16334099996129225,
+          "total_ms": 60.3363159999617
+        }
+      },
+      "1382": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 22.06548800006658,
+          "router_ms": 0.0007950000053824624,
+          "dense_ms": 6.896205999964877,
+          "splade_ms": 11.17364300000645,
+          "fusion_ms": 0.18849600007797562,
+          "total_ms": 40.426023999998506
+        }
+      },
+      "1385": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 15.457298000001174,
+          "router_ms": 0.0008889999207895016,
+          "dense_ms": 6.581654000001436,
+          "splade_ms": 11.209810000082143,
+          "fusion_ms": 0.18531000000621134,
+          "total_ms": 33.51141699999971
+        }
+      },
+      "1389": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 21.721613999943656,
+          "router_ms": 0.0007950000053824624,
+          "dense_ms": 7.184001000041462,
+          "splade_ms": 10.813443999950323,
+          "fusion_ms": 0.1570890000266445,
+          "total_ms": 39.95067799996832
+        }
+      },
+      "1395": {
+        "route": "ESCALATE",
+        "telemetry": {
+          "decision": "static_fallback"
+        },
+        "timings": {
+          "bm25_ms": 55.06189100003667,
+          "router_ms": 0.001002000090011279,
+          "dense_ms": 7.5444000000288725,
+          "splade_ms": 13.152374000014788,
+          "fusion_ms": 0.16112399998746696,
+          "total_ms": 76.01304799993613
+        }
+      }
+    }
+  },
+  "test_static_per_query_latency_ms": [
+    {
+      "bm25_ms": 20.95444700000826,
+      "dense_ms": 8.573806000072182,
+      "splade_ms": 11.393274000056408,
+      "total_ms": 41.26365399997667
+    },
+    {
+      "bm25_ms": 54.047771000000466,
+      "dense_ms": 7.447554999998829,
+      "splade_ms": 11.723836999976811,
+      "total_ms": 73.51954800003568
+    },
+    {
+      "bm25_ms": 23.192657000095096,
+      "dense_ms": 7.482785999968655,
+      "splade_ms": 10.710367999990922,
+      "total_ms": 41.62359099996138
+    },
+    {
+      "bm25_ms": 28.08623800001442,
+      "dense_ms": 7.097042000054898,
+      "splade_ms": 10.872579999954723,
+      "total_ms": 46.25091999992037
+    },
+    {
+      "bm25_ms": 25.62797399991723,
+      "dense_ms": 7.23357100002886,
+      "splade_ms": 10.706929999969361,
+      "total_ms": 43.786809000039284
+    },
+    {
+      "bm25_ms": 38.75525800003743,
+      "dense_ms": 7.193588000063755,
+      "splade_ms": 13.061167000046225,
+      "total_ms": 59.24637399994026
+    },
+    {
+      "bm25_ms": 38.35870000000341,
+      "dense_ms": 7.776306999971894,
+      "splade_ms": 11.334386999919843,
+      "total_ms": 57.78982999993332
+    },
+    {
+      "bm25_ms": 22.30240699998376,
+      "dense_ms": 6.9782140000143045,
+      "splade_ms": 10.891552999964915,
+      "total_ms": 40.40062299998226
+    },
+    {
+      "bm25_ms": 20.215829999983725,
+      "dense_ms": 6.543240999917543,
+      "splade_ms": 10.385347999999794,
+      "total_ms": 37.35791099995822
+    },
+    {
+      "bm25_ms": 25.199552999993102,
+      "dense_ms": 6.582332999983009,
+      "splade_ms": 10.813732999963577,
+      "total_ms": 42.804765000028056
+    },
+    {
+      "bm25_ms": 29.225922000023274,
+      "dense_ms": 7.157318999929885,
+      "splade_ms": 10.740809000026275,
+      "total_ms": 47.55515600004401
+    },
+    {
+      "bm25_ms": 35.298504999900615,
+      "dense_ms": 7.1895949999998265,
+      "splade_ms": 13.099040000042805,
+      "total_ms": 55.83275700007562
+    },
+    {
+      "bm25_ms": 42.59939199994278,
+      "dense_ms": 7.139160000065203,
+      "splade_ms": 11.002845000007255,
+      "total_ms": 61.08415199992123
+    },
+    {
+      "bm25_ms": 41.611717999899156,
+      "dense_ms": 7.163088999959655,
+      "splade_ms": 13.11937000002672,
+      "total_ms": 62.13030699996125
+    },
+    {
+      "bm25_ms": 17.610841999953664,
+      "dense_ms": 6.839228999979241,
+      "splade_ms": 10.727153000061662,
+      "total_ms": 35.39606200001799
+    },
+    {
+      "bm25_ms": 23.498807000009947,
+      "dense_ms": 7.014432999994824,
+      "splade_ms": 11.230531000023802,
+      "total_ms": 41.9769320000114
+    },
+    {
+      "bm25_ms": 38.4837819999575,
+      "dense_ms": 6.964824999954544,
+      "splade_ms": 11.076400999968428,
+      "total_ms": 56.76625800003876
+    },
+    {
+      "bm25_ms": 21.38369600004353,
+      "dense_ms": 6.904148999979043,
+      "splade_ms": 11.566628999958084,
+      "total_ms": 40.08370099995773
+    },
+    {
+      "bm25_ms": 30.117414999949688,
+      "dense_ms": 7.286061999934645,
+      "splade_ms": 11.154067999996187,
+      "total_ms": 48.81766599999082
+    },
+    {
+      "bm25_ms": 23.173702000008234,
+      "dense_ms": 7.435906000068826,
+      "splade_ms": 11.751704999937829,
+      "total_ms": 42.61522399997375
+    },
+    {
+      "bm25_ms": 36.19573800006037,
+      "dense_ms": 7.814638000013474,
+      "splade_ms": 11.232240999902388,
+      "total_ms": 55.49395800005641
+    },
+    {
+      "bm25_ms": 30.31509700008428,
+      "dense_ms": 7.240858000045591,
+      "splade_ms": 10.982137000041803,
+      "total_ms": 48.81108500001119
+    },
+    {
+      "bm25_ms": 31.445748999999523,
+      "dense_ms": 6.9258859999763445,
+      "splade_ms": 11.272255999983827,
+      "total_ms": 49.880789999974695
+    },
+    {
+      "bm25_ms": 35.23824700005207,
+      "dense_ms": 7.306528000071921,
+      "splade_ms": 10.99348299999292,
+      "total_ms": 53.79714400010016
+    },
+    {
+      "bm25_ms": 29.39425499994286,
+      "dense_ms": 7.190307999962897,
+      "splade_ms": 11.579122999933134,
+      "total_ms": 48.504599000011694
+    },
+    {
+      "bm25_ms": 22.300637000057577,
+      "dense_ms": 6.998316000021987,
+      "splade_ms": 12.472121999962837,
+      "total_ms": 41.998651000085374
+    },
+    {
+      "bm25_ms": 42.46287199998733,
+      "dense_ms": 7.1547070000406165,
+      "splade_ms": 11.159375999909571,
+      "total_ms": 61.003397000035875
+    },
+    {
+      "bm25_ms": 38.32363699996222,
+      "dense_ms": 6.897210000033738,
+      "splade_ms": 10.885733999998592,
+      "total_ms": 56.33665200002724
+    },
+    {
+      "bm25_ms": 18.244449999997414,
+      "dense_ms": 6.638416999976471,
+      "splade_ms": 11.055855999984487,
+      "total_ms": 36.209642000017084
+    },
+    {
+      "bm25_ms": 57.403391999969244,
+      "dense_ms": 7.702455999947233,
+      "splade_ms": 14.017326999919533,
+      "total_ms": 79.49082499999349
+    },
+    {
+      "bm25_ms": 40.106369000000086,
+      "dense_ms": 7.963583999980983,
+      "splade_ms": 12.271155999997063,
+      "total_ms": 60.640285000090444
+    },
+    {
+      "bm25_ms": 34.70797199997833,
+      "dense_ms": 7.493461999956708,
+      "splade_ms": 11.858303000053638,
+      "total_ms": 54.33398900004249
+    },
+    {
+      "bm25_ms": 54.811304000054406,
+      "dense_ms": 7.285714999966331,
+      "splade_ms": 13.31160400002318,
+      "total_ms": 75.63428800006022
+    },
+    {
+      "bm25_ms": 43.68211299993163,
+      "dense_ms": 7.838024999955451,
+      "splade_ms": 13.493936999907419,
+      "total_ms": 65.29463200001828
+    },
+    {
+      "bm25_ms": 49.67418599994744,
+      "dense_ms": 7.228182999938326,
+      "splade_ms": 13.073620000000119,
+      "total_ms": 70.28229399998054
+    },
+    {
+      "bm25_ms": 15.22713899998962,
+      "dense_ms": 8.171663999974044,
+      "splade_ms": 11.068851000004543,
+      "total_ms": 34.69095900004504
+    },
+    {
+      "bm25_ms": 24.568746999989344,
+      "dense_ms": 6.663683999931891,
+      "splade_ms": 11.482846000035352,
+      "total_ms": 42.92990999999802
+    },
+    {
+      "bm25_ms": 28.86002900004314,
+      "dense_ms": 6.82056100004047,
+      "splade_ms": 11.029401999962829,
+      "total_ms": 46.9284250000328
+    },
+    {
+      "bm25_ms": 23.21437600005538,
+      "dense_ms": 6.575330000032409,
+      "splade_ms": 11.606496000013067,
+      "total_ms": 41.585304000022916
+    },
+    {
+      "bm25_ms": 54.408115999990514,
+      "dense_ms": 7.538951000015004,
+      "splade_ms": 13.25094399999216,
+      "total_ms": 75.60581300003832
+    },
+    {
+      "bm25_ms": 21.9258350000473,
+      "dense_ms": 6.59776600002715,
+      "splade_ms": 10.980154999970182,
+      "total_ms": 39.724552999928164
+    },
+    {
+      "bm25_ms": 24.49187100000927,
+      "dense_ms": 6.638982000026772,
+      "splade_ms": 11.577992999946218,
+      "total_ms": 42.91366500001459
+    },
+    {
+      "bm25_ms": 16.266707999989194,
+      "dense_ms": 6.629940000038914,
+      "splade_ms": 10.23180799995771,
+      "total_ms": 33.34361800000352
+    },
+    {
+      "bm25_ms": 20.721471000001657,
+      "dense_ms": 6.684608999989905,
+      "splade_ms": 10.92431500001112,
+      "total_ms": 38.53146400001606
+    },
+    {
+      "bm25_ms": 19.93994700001167,
+      "dense_ms": 6.62912799998594,
+      "splade_ms": 10.941617000071346,
+      "total_ms": 37.861045999989074
+    },
+    {
+      "bm25_ms": 38.08341699993889,
+      "dense_ms": 7.3234989999946265,
+      "splade_ms": 10.859268999979577,
+      "total_ms": 56.49092700002711
+    },
+    {
+      "bm25_ms": 25.7254410000769,
+      "dense_ms": 7.188476000010269,
+      "splade_ms": 11.380001000020457,
+      "total_ms": 44.51187600000139
+    },
+    {
+      "bm25_ms": 24.183557000014844,
+      "dense_ms": 6.905222000000322,
+      "splade_ms": 10.962417999962781,
+      "total_ms": 42.28912799999307
+    },
+    {
+      "bm25_ms": 21.655680999970173,
+      "dense_ms": 6.750084999907813,
+      "splade_ms": 10.69912299999487,
+      "total_ms": 39.319453000075555
+    },
+    {
+      "bm25_ms": 21.628975999988143,
+      "dense_ms": 7.1464789999708955,
+      "splade_ms": 10.603371000001971,
+      "total_ms": 39.72972900010063
+    },
+    {
+      "bm25_ms": 35.553680000020904,
+      "dense_ms": 7.305036000047949,
+      "splade_ms": 10.58761499996308,
+      "total_ms": 53.66335700000491
+    },
+    {
+      "bm25_ms": 34.499265000022206,
+      "dense_ms": 7.480659000066225,
+      "splade_ms": 13.069782000002306,
+      "total_ms": 55.298860999982935
+    },
+    {
+      "bm25_ms": 32.07541599999786,
+      "dense_ms": 6.986852999943949,
+      "splade_ms": 10.760595999954603,
+      "total_ms": 50.08084600001439
+    },
+    {
+      "bm25_ms": 25.847243999919556,
+      "dense_ms": 7.2281340000017735,
+      "splade_ms": 10.777578999977777,
+      "total_ms": 44.08929700002773
+    },
+    {
+      "bm25_ms": 30.762361999904897,
+      "dense_ms": 6.754108999984965,
+      "splade_ms": 10.82091799992213,
+      "total_ms": 48.65935099996932
+    },
+    {
+      "bm25_ms": 18.923399000073005,
+      "dense_ms": 7.172264000018913,
+      "splade_ms": 11.498157000005449,
+      "total_ms": 37.827142999958596
+    },
+    {
+      "bm25_ms": 23.99787500007733,
+      "dense_ms": 6.735199999980068,
+      "splade_ms": 10.760499000070922,
+      "total_ms": 41.74130799992781
+    },
+    {
+      "bm25_ms": 21.017719000042234,
+      "dense_ms": 6.735164000019722,
+      "splade_ms": 11.429609000060736,
+      "total_ms": 39.44828700002745
+    },
+    {
+      "bm25_ms": 20.841651999944588,
+      "dense_ms": 6.692084999940562,
+      "splade_ms": 11.15906300003644,
+      "total_ms": 38.93446799997946
+    },
+    {
+      "bm25_ms": 31.214637000061884,
+      "dense_ms": 6.845684999916557,
+      "splade_ms": 10.895942999923136,
+      "total_ms": 50.13538200000767
+    },
+    {
+      "bm25_ms": 13.278083000045626,
+      "dense_ms": 6.948405000002822,
+      "splade_ms": 11.247782999930678,
+      "total_ms": 31.709648000060042
+    },
+    {
+      "bm25_ms": 13.386493999973936,
+      "dense_ms": 6.584765000070547,
+      "splade_ms": 10.997731000088606,
+      "total_ms": 31.204544000047463
+    },
+    {
+      "bm25_ms": 55.3132979999873,
+      "dense_ms": 7.233577999954832,
+      "splade_ms": 13.209684999992533,
+      "total_ms": 76.07514400001492
+    },
+    {
+      "bm25_ms": 40.08376900003441,
+      "dense_ms": 6.924499999968248,
+      "splade_ms": 10.97713499996189,
+      "total_ms": 58.17897599990829
+    },
+    {
+      "bm25_ms": 29.034641000066586,
+      "dense_ms": 7.430483000007371,
+      "splade_ms": 11.226973000020735,
+      "total_ms": 47.935081999980866
+    },
+    {
+      "bm25_ms": 32.22106900000199,
+      "dense_ms": 7.19994400003543,
+      "splade_ms": 11.168428000019048,
+      "total_ms": 50.84094200003619
+    },
+    {
+      "bm25_ms": 48.10795399998824,
+      "dense_ms": 7.4746459999914805,
+      "splade_ms": 13.05764400001408,
+      "total_ms": 68.88207899999088
+    },
+    {
+      "bm25_ms": 34.256906999985404,
+      "dense_ms": 7.0445310000195605,
+      "splade_ms": 11.743864999971265,
+      "total_ms": 53.293736000000536
+    },
+    {
+      "bm25_ms": 65.85979700003008,
+      "dense_ms": 7.24288499998238,
+      "splade_ms": 13.255271999923934,
+      "total_ms": 86.57127100002526
+    },
+    {
+      "bm25_ms": 36.75572800000282,
+      "dense_ms": 7.5238089999629665,
+      "splade_ms": 12.594129000035537,
+      "total_ms": 57.14974299996811
+    },
+    {
+      "bm25_ms": 37.8069889999324,
+      "dense_ms": 7.512193000025036,
+      "splade_ms": 11.630599000000075,
+      "total_ms": 57.2268810000196
+    },
+    {
+      "bm25_ms": 62.106534999998075,
+      "dense_ms": 7.457394999960343,
+      "splade_ms": 13.148708000016995,
+      "total_ms": 82.95275500006483
+    },
+    {
+      "bm25_ms": 16.20176899996295,
+      "dense_ms": 6.7010210000262305,
+      "splade_ms": 11.261509999940245,
+      "total_ms": 34.38793500004067
+    },
+    {
+      "bm25_ms": 29.61418400002458,
+      "dense_ms": 6.8993200000022625,
+      "splade_ms": 11.082125000029919,
+      "total_ms": 47.962515999984134
+    },
+    {
+      "bm25_ms": 17.319213999940075,
+      "dense_ms": 6.707481000034932,
+      "splade_ms": 11.598289000062323,
+      "total_ms": 35.84171700003935
+    },
+    {
+      "bm25_ms": 45.642866999969556,
+      "dense_ms": 7.373088000008465,
+      "splade_ms": 11.217743000088376,
+      "total_ms": 64.44048799994562
+    },
+    {
+      "bm25_ms": 37.47180899995328,
+      "dense_ms": 7.076485999959914,
+      "splade_ms": 11.345850999987306,
+      "total_ms": 56.0947290000513
+    },
+    {
+      "bm25_ms": 30.72533299996394,
+      "dense_ms": 7.223473999943053,
+      "splade_ms": 11.135608000017783,
+      "total_ms": 49.34326699992653
+    },
+    {
+      "bm25_ms": 62.07860699998946,
+      "dense_ms": 7.73936699999922,
+      "splade_ms": 13.264687999935632,
+      "total_ms": 83.44715099997302
+    },
+    {
+      "bm25_ms": 32.403182999928504,
+      "dense_ms": 7.229299000073297,
+      "splade_ms": 11.795075999998517,
+      "total_ms": 51.63885100000698
+    },
+    {
+      "bm25_ms": 35.51335099996322,
+      "dense_ms": 7.433144000060565,
+      "splade_ms": 11.381639999967774,
+      "total_ms": 54.55182000002878
+    },
+    {
+      "bm25_ms": 33.6645380000391,
+      "dense_ms": 7.293813000046612,
+      "splade_ms": 11.274183999944398,
+      "total_ms": 52.4951529999953
+    },
+    {
+      "bm25_ms": 43.152609000003395,
+      "dense_ms": 7.444977999966795,
+      "splade_ms": 11.229662999994616,
+      "total_ms": 62.04776300000958
+    },
+    {
+      "bm25_ms": 26.25938699998187,
+      "dense_ms": 6.781907999993564,
+      "splade_ms": 11.582776000068407,
+      "total_ms": 44.99917800001185
+    },
+    {
+      "bm25_ms": 29.43466500005343,
+      "dense_ms": 6.971963999944819,
+      "splade_ms": 11.432580000018788,
+      "total_ms": 48.10057899999265
+    },
+    {
+      "bm25_ms": 26.249871999993957,
+      "dense_ms": 7.058320999931311,
+      "splade_ms": 11.345565000056013,
+      "total_ms": 44.87946599999759
+    },
+    {
+      "bm25_ms": 25.012715000002572,
+      "dense_ms": 6.792384999926071,
+      "splade_ms": 11.135184000067966,
+      "total_ms": 43.13855700002023
+    },
+    {
+      "bm25_ms": 34.64854899993952,
+      "dense_ms": 7.154871000011553,
+      "splade_ms": 11.384522999946967,
+      "total_ms": 53.40954200005399
+    },
+    {
+      "bm25_ms": 35.941742999966664,
+      "dense_ms": 7.309523999992962,
+      "splade_ms": 11.650318999954834,
+      "total_ms": 55.39418199998636
+    },
+    {
+      "bm25_ms": 33.19775900001787,
+      "dense_ms": 6.980105000025105,
+      "splade_ms": 10.945015999936913,
+      "total_ms": 51.36587300000883
+    },
+    {
+      "bm25_ms": 38.51470600000084,
+      "dense_ms": 7.094323999922381,
+      "splade_ms": 11.416763000056562,
+      "total_ms": 57.28869200004283
+    },
+    {
+      "bm25_ms": 57.00983099995938,
+      "dense_ms": 8.137594000004356,
+      "splade_ms": 12.254462999976568,
+      "total_ms": 77.65147899999647
+    },
+    {
+      "bm25_ms": 44.24531400002252,
+      "dense_ms": 8.11591399997269,
+      "splade_ms": 12.419712999985677,
+      "total_ms": 65.06221100005405
+    },
+    {
+      "bm25_ms": 43.765989999997146,
+      "dense_ms": 7.682874000010997,
+      "splade_ms": 11.193796000043221,
+      "total_ms": 62.985546999925646
+    },
+    {
+      "bm25_ms": 28.832053999963136,
+      "dense_ms": 7.163219000062782,
+      "splade_ms": 11.241602000040984,
+      "total_ms": 47.44859200002338
+    },
+    {
+      "bm25_ms": 27.85446799998681,
+      "dense_ms": 6.907481999974152,
+      "splade_ms": 11.30622800008041,
+      "total_ms": 46.31901899995228
+    },
+    {
+      "bm25_ms": 28.75294600005418,
+      "dense_ms": 6.977260999974533,
+      "splade_ms": 11.235080999995262,
+      "total_ms": 47.186142999976255
+    },
+    {
+      "bm25_ms": 64.39500499993756,
+      "dense_ms": 7.397449999984929,
+      "splade_ms": 13.309502999959477,
+      "total_ms": 85.34132400006911
+    },
+    {
+      "bm25_ms": 36.49159899998722,
+      "dense_ms": 7.060413000090193,
+      "splade_ms": 10.987977000013416,
+      "total_ms": 54.84828400005881
+    },
+    {
+      "bm25_ms": 19.705102999978408,
+      "dense_ms": 6.640242000003127,
+      "splade_ms": 10.88102500000332,
+      "total_ms": 37.418128000012985
+    },
+    {
+      "bm25_ms": 41.139618999977756,
+      "dense_ms": 6.9924240000318605,
+      "splade_ms": 10.708797999996023,
+      "total_ms": 59.0493189999961
+    },
+    {
+      "bm25_ms": 40.92782099996839,
+      "dense_ms": 7.0959810000204016,
+      "splade_ms": 11.44606700006534,
+      "total_ms": 59.73216600000342
+    },
+    {
+      "bm25_ms": 30.73427900005754,
+      "dense_ms": 7.027962000051957,
+      "splade_ms": 11.29959799993685,
+      "total_ms": 49.30596299993795
+    },
+    {
+      "bm25_ms": 18.984671999987768,
+      "dense_ms": 6.763428999988719,
+      "splade_ms": 11.138813999991726,
+      "total_ms": 37.18694200006212
+    },
+    {
+      "bm25_ms": 54.10611499996776,
+      "dense_ms": 7.1886760000552385,
+      "splade_ms": 12.988585000016428,
+      "total_ms": 74.48839699998189
+    },
+    {
+      "bm25_ms": 39.548953000007714,
+      "dense_ms": 6.949056000053133,
+      "splade_ms": 11.482324000098743,
+      "total_ms": 58.19815899997138
+    },
+    {
+      "bm25_ms": 22.10944599994491,
+      "dense_ms": 6.894737000038731,
+      "splade_ms": 11.877501000071788,
+      "total_ms": 41.119990999959555
+    },
+    {
+      "bm25_ms": 65.84582700008923,
+      "dense_ms": 7.899783000084426,
+      "splade_ms": 13.351940000006834,
+      "total_ms": 87.31445199998689
+    },
+    {
+      "bm25_ms": 52.922946999956366,
+      "dense_ms": 7.280267000055574,
+      "splade_ms": 11.379117999922528,
+      "total_ms": 71.92296400000942
+    },
+    {
+      "bm25_ms": 45.06251299994801,
+      "dense_ms": 7.53626199991686,
+      "splade_ms": 13.315673999954925,
+      "total_ms": 66.13718500000232
+    },
+    {
+      "bm25_ms": 67.77883799998108,
+      "dense_ms": 7.979157999898234,
+      "splade_ms": 14.19648600005985,
+      "total_ms": 90.17489900008968
+    },
+    {
+      "bm25_ms": 20.358494000106475,
+      "dense_ms": 6.973453000000518,
+      "splade_ms": 10.761473999991722,
+      "total_ms": 38.326269999970464
+    },
+    {
+      "bm25_ms": 18.211084999961713,
+      "dense_ms": 6.966231000092193,
+      "splade_ms": 10.75615500008098,
+      "total_ms": 36.16933600005723
+    },
+    {
+      "bm25_ms": 25.2181070000006,
+      "dense_ms": 6.828865000102269,
+      "splade_ms": 10.84774000003108,
+      "total_ms": 43.23556900010317
+    },
+    {
+      "bm25_ms": 19.935348999979396,
+      "dense_ms": 6.6296339999780685,
+      "splade_ms": 11.092331999975613,
+      "total_ms": 37.85944399999153
+    },
+    {
+      "bm25_ms": 17.391648000057103,
+      "dense_ms": 6.503801000008025,
+      "splade_ms": 10.649403999991591,
+      "total_ms": 34.7302769999942
+    },
+    {
+      "bm25_ms": 22.18486499998562,
+      "dense_ms": 6.706198000074437,
+      "splade_ms": 10.548715000027187,
+      "total_ms": 39.662452000015946
+    },
+    {
+      "bm25_ms": 26.826699000025656,
+      "dense_ms": 7.022200000051271,
+      "splade_ms": 11.176381000041147,
+      "total_ms": 45.26540300003035
+    },
+    {
+      "bm25_ms": 19.23804900002324,
+      "dense_ms": 7.200427000043419,
+      "splade_ms": 11.64370300000428,
+      "total_ms": 38.87388700002248
+    },
+    {
+      "bm25_ms": 67.18221400001312,
+      "dense_ms": 7.5682620000634415,
+      "splade_ms": 13.279970999974466,
+      "total_ms": 88.24499000002106
+    },
+    {
+      "bm25_ms": 54.712698000003,
+      "dense_ms": 7.660733999955482,
+      "splade_ms": 13.172198000006574,
+      "total_ms": 75.78803900003095
+    },
+    {
+      "bm25_ms": 34.090868000021146,
+      "dense_ms": 7.059343000037188,
+      "splade_ms": 11.063465000006545,
+      "total_ms": 52.408011000011356
+    },
+    {
+      "bm25_ms": 36.16907099990385,
+      "dense_ms": 7.398652000006223,
+      "splade_ms": 11.036923000006027,
+      "total_ms": 54.811336000057054
+    },
+    {
+      "bm25_ms": 25.94378699996014,
+      "dense_ms": 6.809878000012759,
+      "splade_ms": 11.43424800000048,
+      "total_ms": 44.510080999998536
+    },
+    {
+      "bm25_ms": 31.638907999990806,
+      "dense_ms": 6.916224999940823,
+      "splade_ms": 10.968853000008494,
+      "total_ms": 49.7539070000812
+    },
+    {
+      "bm25_ms": 65.19111499994779,
+      "dense_ms": 7.949903000053382,
+      "splade_ms": 13.354921999962244,
+      "total_ms": 86.72749300001215
+    },
+    {
+      "bm25_ms": 33.99357099999634,
+      "dense_ms": 7.654885999954786,
+      "splade_ms": 11.687579000067672,
+      "total_ms": 53.61112899993259
+    },
+    {
+      "bm25_ms": 71.00893099993755,
+      "dense_ms": 7.592861000034645,
+      "splade_ms": 13.192760000038106,
+      "total_ms": 92.03248400001485
+    },
+    {
+      "bm25_ms": 52.83007599996381,
+      "dense_ms": 7.234605000007832,
+      "splade_ms": 11.117891000026248,
+      "total_ms": 71.48661599990191
+    },
+    {
+      "bm25_ms": 29.73880399997597,
+      "dense_ms": 7.217722999939724,
+      "splade_ms": 11.075871000002735,
+      "total_ms": 48.247300999946674
+    },
+    {
+      "bm25_ms": 19.876841999916905,
+      "dense_ms": 6.749606000084896,
+      "splade_ms": 10.802994999949078,
+      "total_ms": 37.65755500000978
+    },
+    {
+      "bm25_ms": 52.14254600002732,
+      "dense_ms": 7.076925999967898,
+      "splade_ms": 11.544727000000421,
+      "total_ms": 70.9656389999509
+    },
+    {
+      "bm25_ms": 31.835580999995727,
+      "dense_ms": 7.395143999929132,
+      "splade_ms": 10.985663000042223,
+      "total_ms": 50.41944100003093
+    },
+    {
+      "bm25_ms": 38.36225700001705,
+      "dense_ms": 6.962253000097007,
+      "splade_ms": 11.536816999978328,
+      "total_ms": 57.203368000045884
+    },
+    {
+      "bm25_ms": 34.097251000048345,
+      "dense_ms": 7.040212999982032,
+      "splade_ms": 11.245843999972749,
+      "total_ms": 52.639856999917356
+    },
+    {
+      "bm25_ms": 45.25004599997828,
+      "dense_ms": 6.98412899998857,
+      "splade_ms": 11.190428999952928,
+      "total_ms": 63.70154499995806
+    },
+    {
+      "bm25_ms": 36.78474399998777,
+      "dense_ms": 7.442901999979767,
+      "splade_ms": 13.430365999965943,
+      "total_ms": 57.901887999946666
+    },
+    {
+      "bm25_ms": 35.05281999991894,
+      "dense_ms": 7.091053999943142,
+      "splade_ms": 11.084913999980017,
+      "total_ms": 53.43265499993777
+    },
+    {
+      "bm25_ms": 24.699650999991718,
+      "dense_ms": 6.940244000020357,
+      "splade_ms": 11.027078999973128,
+      "total_ms": 42.9648609999731
+    },
+    {
+      "bm25_ms": 20.29781599992475,
+      "dense_ms": 6.591872000058174,
+      "splade_ms": 10.518692999994528,
+      "total_ms": 37.62372100004541
+    },
+    {
+      "bm25_ms": 37.961162999977205,
+      "dense_ms": 6.8885840000803,
+      "splade_ms": 11.894231000042055,
+      "total_ms": 57.00442700003805
+    },
+    {
+      "bm25_ms": 22.726766999994652,
+      "dense_ms": 9.15676900001472,
+      "splade_ms": 13.817605999975058,
+      "total_ms": 46.0104850000107
+    },
+    {
+      "bm25_ms": 20.93266200006383,
+      "dense_ms": 7.849739999983285,
+      "splade_ms": 12.258215000088057,
+      "total_ms": 41.30442899997888
+    },
+    {
+      "bm25_ms": 32.45879700000387,
+      "dense_ms": 7.053761999941344,
+      "splade_ms": 13.844769000002088,
+      "total_ms": 53.69086000007428
+    },
+    {
+      "bm25_ms": 32.423558999994384,
+      "dense_ms": 6.964209000102528,
+      "splade_ms": 11.168869000016457,
+      "total_ms": 50.824716000079206
+    },
+    {
+      "bm25_ms": 54.63876699991488,
+      "dense_ms": 7.205279999993763,
+      "splade_ms": 13.21798099991156,
+      "total_ms": 75.26631099995029
+    },
+    {
+      "bm25_ms": 35.593769000001885,
+      "dense_ms": 6.979858000022432,
+      "splade_ms": 10.879884000019047,
+      "total_ms": 53.663589000052525
+    },
+    {
+      "bm25_ms": 28.457023999976627,
+      "dense_ms": 6.861046999915743,
+      "splade_ms": 10.343111999986832,
+      "total_ms": 45.8628779999799
+    },
+    {
+      "bm25_ms": 27.1978929999932,
+      "dense_ms": 7.382542999948782,
+      "splade_ms": 11.295635999999831,
+      "total_ms": 46.228228000018134
+    },
+    {
+      "bm25_ms": 30.972771999927318,
+      "dense_ms": 7.611186999952224,
+      "splade_ms": 11.857095999971534,
+      "total_ms": 50.685741000052076
+    },
+    {
+      "bm25_ms": 31.509672999959548,
+      "dense_ms": 7.06611599991902,
+      "splade_ms": 11.148438000077476,
+      "total_ms": 49.96275999997124
+    },
+    {
+      "bm25_ms": 38.37540799997896,
+      "dense_ms": 6.931904999987637,
+      "splade_ms": 11.247894999996788,
+      "total_ms": 56.79995200000576
+    },
+    {
+      "bm25_ms": 27.000077000025158,
+      "dense_ms": 6.936848000009377,
+      "splade_ms": 10.912901000097008,
+      "total_ms": 45.056505000047764
+    },
+    {
+      "bm25_ms": 26.894053999967582,
+      "dense_ms": 7.158901000025253,
+      "splade_ms": 10.988822000058462,
+      "total_ms": 45.37627100000918
+    },
+    {
+      "bm25_ms": 37.17899200000829,
+      "dense_ms": 7.042755999918882,
+      "splade_ms": 11.550766999903317,
+      "total_ms": 56.08578600003966
+    },
+    {
+      "bm25_ms": 41.775931999950444,
+      "dense_ms": 7.424969999988207,
+      "splade_ms": 11.393332000011469,
+      "total_ms": 60.88456700001643
+    },
+    {
+      "bm25_ms": 39.28575999998429,
+      "dense_ms": 7.394842000053359,
+      "splade_ms": 11.240159999942989,
+      "total_ms": 58.15601400001924
+    },
+    {
+      "bm25_ms": 34.68178599996463,
+      "dense_ms": 8.357702000012068,
+      "splade_ms": 11.770393999995576,
+      "total_ms": 55.056082999954015
+    },
+    {
+      "bm25_ms": 34.462572000052205,
+      "dense_ms": 7.0871780000061335,
+      "splade_ms": 12.827344000015728,
+      "total_ms": 54.713504999995166
+    },
+    {
+      "bm25_ms": 21.205503000032877,
+      "dense_ms": 6.9092249999584965,
+      "splade_ms": 10.727170000109254,
+      "total_ms": 39.06959400001142
+    },
+    {
+      "bm25_ms": 13.199334999967505,
+      "dense_ms": 6.882659999973839,
+      "splade_ms": 11.405826999975943,
+      "total_ms": 31.67613000005076
+    },
+    {
+      "bm25_ms": 41.96447700007866,
+      "dense_ms": 7.090709000067363,
+      "splade_ms": 11.068467999962195,
+      "total_ms": 60.36467799992806
+    },
+    {
+      "bm25_ms": 50.97348599997531,
+      "dense_ms": 10.820276000004014,
+      "splade_ms": 15.58277900005578,
+      "total_ms": 77.67904599995745
+    },
+    {
+      "bm25_ms": 57.53048899998703,
+      "dense_ms": 7.556015000091065,
+      "splade_ms": 11.247968000020592,
+      "total_ms": 76.52659899997616
+    },
+    {
+      "bm25_ms": 31.70171700003266,
+      "dense_ms": 7.380869000030543,
+      "splade_ms": 13.09409999998934,
+      "total_ms": 52.451801999950476
+    },
+    {
+      "bm25_ms": 66.19080500001928,
+      "dense_ms": 7.261000999960743,
+      "splade_ms": 13.168257999950583,
+      "total_ms": 86.82621499997367
+    },
+    {
+      "bm25_ms": 40.276082999980645,
+      "dense_ms": 7.650048999948922,
+      "splade_ms": 13.169890999961353,
+      "total_ms": 61.34295599997586
+    },
+    {
+      "bm25_ms": 38.73902700001963,
+      "dense_ms": 7.110699000008935,
+      "splade_ms": 11.64984000001823,
+      "total_ms": 57.7285120000397
+    },
+    {
+      "bm25_ms": 40.91987499998595,
+      "dense_ms": 7.073359999935747,
+      "splade_ms": 11.559611999928165,
+      "total_ms": 59.88843000000088
+    },
+    {
+      "bm25_ms": 41.655062000018006,
+      "dense_ms": 7.066281999982493,
+      "splade_ms": 10.940834000052746,
+      "total_ms": 59.872799000004306
+    },
+    {
+      "bm25_ms": 40.65328700005466,
+      "dense_ms": 7.026884999959293,
+      "splade_ms": 11.097603999928651,
+      "total_ms": 59.03416700004982
+    },
+    {
+      "bm25_ms": 15.479116000051363,
+      "dense_ms": 7.039787000053366,
+      "splade_ms": 11.384973999952308,
+      "total_ms": 34.11176899999191
+    },
+    {
+      "bm25_ms": 49.56210800003191,
+      "dense_ms": 7.1812709999221624,
+      "splade_ms": 11.857058000032339,
+      "total_ms": 68.80835000004026
+    },
+    {
+      "bm25_ms": 22.640271999989636,
+      "dense_ms": 7.154657999990377,
+      "splade_ms": 11.406626999928449,
+      "total_ms": 41.52755999996316
+    },
+    {
+      "bm25_ms": 25.24342100002741,
+      "dense_ms": 6.749115999923561,
+      "splade_ms": 11.245195999890711,
+      "total_ms": 43.45598700001574
+    },
+    {
+      "bm25_ms": 40.199968000024455,
+      "dense_ms": 7.140754000033667,
+      "splade_ms": 11.833330999934333,
+      "total_ms": 59.40382699998281
+    },
+    {
+      "bm25_ms": 64.47423800000252,
+      "dense_ms": 7.716631999983292,
+      "splade_ms": 13.20743900009802,
+      "total_ms": 85.59837899997547
+    },
+    {
+      "bm25_ms": 23.177108999902885,
+      "dense_ms": 6.728231000010965,
+      "splade_ms": 11.397911000017302,
+      "total_ms": 41.53000799999518
+    },
+    {
+      "bm25_ms": 23.118617000022823,
+      "dense_ms": 6.648571000027914,
+      "splade_ms": 11.063226000032955,
+      "total_ms": 41.697483000007196
+    },
+    {
+      "bm25_ms": 19.957537000095726,
+      "dense_ms": 7.079135999902064,
+      "splade_ms": 10.972827000045982,
+      "total_ms": 38.22648000004847
+    },
+    {
+      "bm25_ms": 45.38371399996777,
+      "dense_ms": 7.137734000025375,
+      "splade_ms": 13.161760000002687,
+      "total_ms": 65.91921899996578
+    },
+    {
+      "bm25_ms": 30.51931900006366,
+      "dense_ms": 6.862744000045495,
+      "splade_ms": 10.883552999985113,
+      "total_ms": 48.47897699994519
+    },
+    {
+      "bm25_ms": 18.378808999955254,
+      "dense_ms": 6.778782000083083,
+      "splade_ms": 10.62723800009735,
+      "total_ms": 35.992378000059944
+    },
+    {
+      "bm25_ms": 29.842938000001595,
+      "dense_ms": 6.8171620000612165,
+      "splade_ms": 10.831277000079353,
+      "total_ms": 47.832464999942204
+    },
+    {
+      "bm25_ms": 22.491162999926928,
+      "dense_ms": 6.745944000044801,
+      "splade_ms": 12.568482999995467,
+      "total_ms": 42.09437399993021
+    },
+    {
+      "bm25_ms": 36.331173000007766,
+      "dense_ms": 6.923360999962824,
+      "splade_ms": 10.723914999971385,
+      "total_ms": 54.20508500003507
+    },
+    {
+      "bm25_ms": 27.002177999975174,
+      "dense_ms": 7.122422999941591,
+      "splade_ms": 10.737486000039098,
+      "total_ms": 45.05361899998661
+    },
+    {
+      "bm25_ms": 45.61456999999791,
+      "dense_ms": 7.016842000098222,
+      "splade_ms": 10.722929000053227,
+      "total_ms": 63.5569310001074
+    },
+    {
+      "bm25_ms": 38.759541999979774,
+      "dense_ms": 6.922231999965334,
+      "splade_ms": 11.571692000075018,
+      "total_ms": 57.62480299995332
+    },
+    {
+      "bm25_ms": 22.10719300001074,
+      "dense_ms": 6.549863000032019,
+      "splade_ms": 10.914242000012564,
+      "total_ms": 39.7939970000607
+    },
+    {
+      "bm25_ms": 11.317960999917887,
+      "dense_ms": 6.437754999979006,
+      "splade_ms": 11.530627999945864,
+      "total_ms": 29.47825900002954
+    },
+    {
+      "bm25_ms": 20.70938200006367,
+      "dense_ms": 6.5563370000063514,
+      "splade_ms": 10.611110000013468,
+      "total_ms": 38.129109999999855
+    },
+    {
+      "bm25_ms": 27.627390999896306,
+      "dense_ms": 6.921744999999646,
+      "splade_ms": 10.50240400002167,
+      "total_ms": 45.28334700000869
+    },
+    {
+      "bm25_ms": 24.561628000014935,
+      "dense_ms": 6.780665999940538,
+      "splade_ms": 10.73421099999905,
+      "total_ms": 42.43508000001839
+    },
+    {
+      "bm25_ms": 30.858222000006208,
+      "dense_ms": 7.1631470000284025,
+      "splade_ms": 11.746207999976832,
+      "total_ms": 49.96629600009328
+    },
+    {
+      "bm25_ms": 35.522590000027776,
+      "dense_ms": 7.1461109999972905,
+      "splade_ms": 11.094952000007652,
+      "total_ms": 53.973319000078845
+    },
+    {
+      "bm25_ms": 33.295489000011,
+      "dense_ms": 8.576339000001099,
+      "splade_ms": 11.175454000067475,
+      "total_ms": 53.25294400006442
+    },
+    {
+      "bm25_ms": 55.919402999961676,
+      "dense_ms": 7.807777000039096,
+      "splade_ms": 13.339929999915512,
+      "total_ms": 77.3493149999922
+    },
+    {
+      "bm25_ms": 43.62482900000941,
+      "dense_ms": 7.669463999945947,
+      "splade_ms": 10.760096000012709,
+      "total_ms": 62.416697000003296
+    },
+    {
+      "bm25_ms": 40.0795460000154,
+      "dense_ms": 7.036202999984198,
+      "splade_ms": 10.568648999992547,
+      "total_ms": 57.93534400004319
+    },
+    {
+      "bm25_ms": 20.982024999966598,
+      "dense_ms": 7.051229000012427,
+      "splade_ms": 10.570852999990166,
+      "total_ms": 38.86347500008469
+    },
+    {
+      "bm25_ms": 21.30676800004494,
+      "dense_ms": 6.742287000065517,
+      "splade_ms": 10.808289000010518,
+      "total_ms": 39.055469999993875
+    },
+    {
+      "bm25_ms": 26.93208499999855,
+      "dense_ms": 6.594896000024164,
+      "splade_ms": 10.946700999966197,
+      "total_ms": 44.6866190000037
+    },
+    {
+      "bm25_ms": 32.184102999963216,
+      "dense_ms": 7.03239000006306,
+      "splade_ms": 10.841348999974798,
+      "total_ms": 50.241153999991184
+    },
+    {
+      "bm25_ms": 24.26522100006423,
+      "dense_ms": 7.0674649999773465,
+      "splade_ms": 10.8149240001012,
+      "total_ms": 42.371955000021444
+    },
+    {
+      "bm25_ms": 36.48155999997016,
+      "dense_ms": 6.944134000036684,
+      "splade_ms": 11.45488099996328,
+      "total_ms": 55.15118200003144
+    },
+    {
+      "bm25_ms": 29.29837600004248,
+      "dense_ms": 7.037342999979046,
+      "splade_ms": 11.088652000012189,
+      "total_ms": 47.62624099998902
+    },
+    {
+      "bm25_ms": 15.009159000101135,
+      "dense_ms": 6.714786000088679,
+      "splade_ms": 10.138425999912215,
+      "total_ms": 32.10673000000952
+    },
+    {
+      "bm25_ms": 29.97664400004396,
+      "dense_ms": 6.934624999985317,
+      "splade_ms": 11.24740299997029,
+      "total_ms": 48.54600799990294
+    },
+    {
+      "bm25_ms": 52.16667399997732,
+      "dense_ms": 7.056496000018342,
+      "splade_ms": 11.579444000062722,
+      "total_ms": 71.03930900007072
+    },
+    {
+      "bm25_ms": 27.928453999948033,
+      "dense_ms": 6.909201999974357,
+      "splade_ms": 11.518926000007923,
+      "total_ms": 46.55046000004859
+    },
+    {
+      "bm25_ms": 45.89884199992866,
+      "dense_ms": 7.352899000011348,
+      "splade_ms": 11.274139999954969,
+      "total_ms": 64.77093000000878
+    },
+    {
+      "bm25_ms": 35.963594000008925,
+      "dense_ms": 7.234585999981391,
+      "splade_ms": 11.254042000018671,
+      "total_ms": 54.682234999972934
+    },
+    {
+      "bm25_ms": 25.1747099999875,
+      "dense_ms": 7.008367000025828,
+      "splade_ms": 11.54575099997146,
+      "total_ms": 44.11140600007002
+    },
+    {
+      "bm25_ms": 27.385569999978543,
+      "dense_ms": 6.913626000027762,
+      "splade_ms": 11.273145000018303,
+      "total_ms": 45.80967599997621
+    },
+    {
+      "bm25_ms": 25.938488000065263,
+      "dense_ms": 7.514166999953886,
+      "splade_ms": 11.857999999961066,
+      "total_ms": 45.55984299997817
+    },
+    {
+      "bm25_ms": 25.232527999946797,
+      "dense_ms": 7.376808000003621,
+      "splade_ms": 11.065924999911658,
+      "total_ms": 43.88834700000643
+    },
+    {
+      "bm25_ms": 58.85734299999967,
+      "dense_ms": 7.095018999962122,
+      "splade_ms": 11.437477999947987,
+      "total_ms": 77.6280659999884
+    },
+    {
+      "bm25_ms": 58.757580000019516,
+      "dense_ms": 7.288173999995706,
+      "splade_ms": 11.526551000088148,
+      "total_ms": 77.84016099992641
+    },
+    {
+      "bm25_ms": 30.722772999979497,
+      "dense_ms": 9.039627999982258,
+      "splade_ms": 11.617602999990595,
+      "total_ms": 51.641092000068056
+    },
+    {
+      "bm25_ms": 59.6700429999828,
+      "dense_ms": 7.579897000027813,
+      "splade_ms": 13.171732000046177,
+      "total_ms": 80.66754300000412
+    },
+    {
+      "bm25_ms": 40.95902900007786,
+      "dense_ms": 7.112251999956243,
+      "splade_ms": 13.147086000003583,
+      "total_ms": 61.47687999998652
+    },
+    {
+      "bm25_ms": 28.86131100001421,
+      "dense_ms": 6.931597000061629,
+      "splade_ms": 10.920374000079391,
+      "total_ms": 46.98373099995479
+    },
+    {
+      "bm25_ms": 17.68325000000459,
+      "dense_ms": 7.075041999996756,
+      "splade_ms": 10.834389000024203,
+      "total_ms": 35.801682000055735
+    },
+    {
+      "bm25_ms": 47.742184000071575,
+      "dense_ms": 7.090039999980036,
+      "splade_ms": 10.803480999925341,
+      "total_ms": 65.83721499998774
+    },
+    {
+      "bm25_ms": 33.244988000092235,
+      "dense_ms": 7.242170999916198,
+      "splade_ms": 11.62191100002019,
+      "total_ms": 52.38056600001073
+    },
+    {
+      "bm25_ms": 38.41227299994898,
+      "dense_ms": 7.270324999922195,
+      "splade_ms": 11.390178999931777,
+      "total_ms": 57.291491999990285
+    },
+    {
+      "bm25_ms": 12.250835000031657,
+      "dense_ms": 6.684274999997797,
+      "splade_ms": 10.146279999958097,
+      "total_ms": 29.268282999964867
+    },
+    {
+      "bm25_ms": 11.560010000039256,
+      "dense_ms": 6.466029999955936,
+      "splade_ms": 10.507662999998502,
+      "total_ms": 28.82418600006531
+    },
+    {
+      "bm25_ms": 62.76154200008932,
+      "dense_ms": 7.337661999940792,
+      "splade_ms": 13.142380999966008,
+      "total_ms": 83.4542989999818
+    },
+    {
+      "bm25_ms": 25.440341000035005,
+      "dense_ms": 6.942671000047085,
+      "splade_ms": 11.207400999978745,
+      "total_ms": 43.80196199997499
+    },
+    {
+      "bm25_ms": 23.4503469999936,
+      "dense_ms": 6.756775999974707,
+      "splade_ms": 10.874421000039547,
+      "total_ms": 41.327586000079464
+    },
+    {
+      "bm25_ms": 34.73373100007393,
+      "dense_ms": 7.554083999934846,
+      "splade_ms": 10.897138000018458,
+      "total_ms": 53.39746900006048
+    },
+    {
+      "bm25_ms": 45.870599999943806,
+      "dense_ms": 7.404990000054568,
+      "splade_ms": 11.134498000046733,
+      "total_ms": 64.8099090000187
+    },
+    {
+      "bm25_ms": 38.32156499993289,
+      "dense_ms": 6.949782999981835,
+      "splade_ms": 11.068969999996625,
+      "total_ms": 56.54944399998385
+    },
+    {
+      "bm25_ms": 20.35568600001625,
+      "dense_ms": 6.854418000102669,
+      "splade_ms": 10.890346999985923,
+      "total_ms": 38.34009899992452
+    },
+    {
+      "bm25_ms": 29.300043000034748,
+      "dense_ms": 7.052143999999316,
+      "splade_ms": 10.879580000050737,
+      "total_ms": 47.44165699992209
+    },
+    {
+      "bm25_ms": 46.43512400002692,
+      "dense_ms": 7.455259000039405,
+      "splade_ms": 11.278414999992492,
+      "total_ms": 65.37821099993835
+    },
+    {
+      "bm25_ms": 29.857616999947822,
+      "dense_ms": 8.869113999935507,
+      "splade_ms": 11.55509299996993,
+      "total_ms": 51.15281100006541
+    },
+    {
+      "bm25_ms": 35.470574999976634,
+      "dense_ms": 7.010928999989119,
+      "splade_ms": 11.037097999974321,
+      "total_ms": 53.72977699994408
+    },
+    {
+      "bm25_ms": 26.740479999944,
+      "dense_ms": 6.962091999980657,
+      "splade_ms": 10.694327999999587,
+      "total_ms": 44.60186500000418
+    },
+    {
+      "bm25_ms": 24.310640000066996,
+      "dense_ms": 7.0188839999900665,
+      "splade_ms": 10.96639000002142,
+      "total_ms": 42.507941999929244
+    },
+    {
+      "bm25_ms": 28.4638980000409,
+      "dense_ms": 6.917656999917199,
+      "splade_ms": 10.742948999904911,
+      "total_ms": 46.34719800003495
+    },
+    {
+      "bm25_ms": 26.283130000024357,
+      "dense_ms": 6.740433999993911,
+      "splade_ms": 11.193255999955909,
+      "total_ms": 44.56822000008742
+    },
+    {
+      "bm25_ms": 68.2185489999938,
+      "dense_ms": 7.701957999984188,
+      "splade_ms": 13.211965999971653,
+      "total_ms": 89.3411780000406
+    },
+    {
+      "bm25_ms": 59.958241999993334,
+      "dense_ms": 7.972848000008526,
+      "splade_ms": 13.514497000073789,
+      "total_ms": 81.66829099991446
+    },
+    {
+      "bm25_ms": 30.196544000091308,
+      "dense_ms": 7.0237810000435275,
+      "splade_ms": 11.89474699992843,
+      "total_ms": 49.33237400007329
+    },
+    {
+      "bm25_ms": 52.13289899995743,
+      "dense_ms": 7.188176999989082,
+      "splade_ms": 11.01041599997643,
+      "total_ms": 70.59327700005724
+    },
+    {
+      "bm25_ms": 32.72214300000087,
+      "dense_ms": 7.016856000063854,
+      "splade_ms": 11.180207000052178,
+      "total_ms": 51.33511799999724
+    },
+    {
+      "bm25_ms": 33.35050999999112,
+      "dense_ms": 6.983468000044013,
+      "splade_ms": 10.665270999993481,
+      "total_ms": 51.272038000092834
+    },
+    {
+      "bm25_ms": 48.87816500001918,
+      "dense_ms": 7.7961430000641485,
+      "splade_ms": 12.758160999965185,
+      "total_ms": 69.75894800007154
+    },
+    {
+      "bm25_ms": 61.787617999925715,
+      "dense_ms": 8.485337000024629,
+      "splade_ms": 14.019178000012289,
+      "total_ms": 84.60462100003951
+    },
+    {
+      "bm25_ms": 39.481948000002376,
+      "dense_ms": 7.924241000068832,
+      "splade_ms": 11.990962000027139,
+      "total_ms": 59.64491099996394
+    },
+    {
+      "bm25_ms": 38.4305709999353,
+      "dense_ms": 7.325263000097948,
+      "splade_ms": 11.327097999924263,
+      "total_ms": 57.38925599996492
+    },
+    {
+      "bm25_ms": 54.15775799997391,
+      "dense_ms": 7.743312000002334,
+      "splade_ms": 13.551258999996207,
+      "total_ms": 75.7635190000201
+    },
+    {
+      "bm25_ms": 36.1732580000762,
+      "dense_ms": 7.132097999942744,
+      "splade_ms": 11.389597000061258,
+      "total_ms": 54.91438299998208
+    },
+    {
+      "bm25_ms": 30.098775000055866,
+      "dense_ms": 6.955132000030062,
+      "splade_ms": 11.794789999953537,
+      "total_ms": 49.07400599995526
+    },
+    {
+      "bm25_ms": 39.619003999973756,
+      "dense_ms": 6.900687999973343,
+      "splade_ms": 11.34704799994779,
+      "total_ms": 58.084855000061
+    },
+    {
+      "bm25_ms": 22.66360999999506,
+      "dense_ms": 7.042066999929375,
+      "splade_ms": 11.854018999997606,
+      "total_ms": 41.90712399997665
+    },
+    {
+      "bm25_ms": 42.7772030000142,
+      "dense_ms": 7.133350999993127,
+      "splade_ms": 10.952262000046176,
+      "total_ms": 61.122318999991876
+    },
+    {
+      "bm25_ms": 42.070556999988185,
+      "dense_ms": 7.000531000016963,
+      "splade_ms": 10.571149000043079,
+      "total_ms": 59.85647499994684
+    },
+    {
+      "bm25_ms": 25.905061000003116,
+      "dense_ms": 7.700173999978688,
+      "splade_ms": 11.203867999938666,
+      "total_ms": 45.01057699997091
+    },
+    {
+      "bm25_ms": 29.592378999950597,
+      "dense_ms": 6.99494099990261,
+      "splade_ms": 11.06770499995946,
+      "total_ms": 47.88070600000083
+    },
+    {
+      "bm25_ms": 58.622461000027215,
+      "dense_ms": 7.258836000005431,
+      "splade_ms": 13.28326299994842,
+      "total_ms": 79.47419699996772
+    },
+    {
+      "bm25_ms": 35.55410100000245,
+      "dense_ms": 7.244529999979932,
+      "splade_ms": 11.098700000047756,
+      "total_ms": 54.125717000033546
+    },
+    {
+      "bm25_ms": 59.28989799997453,
+      "dense_ms": 7.849498000041422,
+      "splade_ms": 13.851627000008193,
+      "total_ms": 81.1979860000065
+    },
+    {
+      "bm25_ms": 37.16720799991435,
+      "dense_ms": 7.651291999991372,
+      "splade_ms": 12.26327400001992,
+      "total_ms": 57.324091999930715
+    },
+    {
+      "bm25_ms": 53.940831999966576,
+      "dense_ms": 7.395317000032264,
+      "splade_ms": 11.723652999990009,
+      "total_ms": 73.30090899995412
+    },
+    {
+      "bm25_ms": 38.686052000002746,
+      "dense_ms": 7.064944999910949,
+      "splade_ms": 10.898331000021244,
+      "total_ms": 56.980025000029855
+    },
+    {
+      "bm25_ms": 30.0623309999537,
+      "dense_ms": 7.346142000073996,
+      "splade_ms": 10.936075999893546,
+      "total_ms": 48.538025999960155
+    },
+    {
+      "bm25_ms": 56.57660600002146,
+      "dense_ms": 7.632196000031399,
+      "splade_ms": 13.351665999948636,
+      "total_ms": 77.7515869999661
+    },
+    {
+      "bm25_ms": 40.57567899997139,
+      "dense_ms": 7.256432000076529,
+      "splade_ms": 11.262667999972109,
+      "total_ms": 59.35922499998014
+    },
+    {
+      "bm25_ms": 35.31071300005806,
+      "dense_ms": 7.122223999999733,
+      "splade_ms": 11.04718299995966,
+      "total_ms": 53.69168400000035
+    },
+    {
+      "bm25_ms": 34.03149799999028,
+      "dense_ms": 7.082911999987118,
+      "splade_ms": 13.086581000038677,
+      "total_ms": 54.500705000009475
+    },
+    {
+      "bm25_ms": 25.694454000017686,
+      "dense_ms": 6.886563000080059,
+      "splade_ms": 11.124522999921282,
+      "total_ms": 43.906017000040265
+    },
+    {
+      "bm25_ms": 38.7134130000959,
+      "dense_ms": 6.993330000000242,
+      "splade_ms": 11.056071999973938,
+      "total_ms": 56.9933059999812
+    },
+    {
+      "bm25_ms": 30.797979999988456,
+      "dense_ms": 7.865006999963953,
+      "splade_ms": 11.854931000016222,
+      "total_ms": 50.772556999959306
+    },
+    {
+      "bm25_ms": 30.758765000086896,
+      "dense_ms": 7.528288999992583,
+      "splade_ms": 10.737028999983522,
+      "total_ms": 49.28859300002841
+    },
+    {
+      "bm25_ms": 60.750205999966056,
+      "dense_ms": 8.077388000060637,
+      "splade_ms": 13.099173000000519,
+      "total_ms": 82.35327800002779
+    },
+    {
+      "bm25_ms": 22.312713000019357,
+      "dense_ms": 7.428829999980735,
+      "splade_ms": 11.604289000047174,
+      "total_ms": 41.55435799998486
+    },
+    {
+      "bm25_ms": 27.928653999993003,
+      "dense_ms": 6.980591000001368,
+      "splade_ms": 11.119453999981488,
+      "total_ms": 46.219973000006576
+    },
+    {
+      "bm25_ms": 26.197980999995707,
+      "dense_ms": 6.812996999997267,
+      "splade_ms": 11.376390999998875,
+      "total_ms": 44.60905999997067
+    },
+    {
+      "bm25_ms": 40.72527599998921,
+      "dense_ms": 7.2697010000410955,
+      "splade_ms": 11.613934000024528,
+      "total_ms": 59.8084859999517
+    },
+    {
+      "bm25_ms": 54.56053900002189,
+      "dense_ms": 7.32825500006129,
+      "splade_ms": 13.283765999972275,
+      "total_ms": 75.36567700003616
+    },
+    {
+      "bm25_ms": 25.034001999983957,
+      "dense_ms": 7.271673999980521,
+      "splade_ms": 11.059484999918823,
+      "total_ms": 43.54812799999763
+    },
+    {
+      "bm25_ms": 20.562537999921915,
+      "dense_ms": 6.715122000059637,
+      "splade_ms": 10.887230999969688,
+      "total_ms": 38.378178000016305
+    },
+    {
+      "bm25_ms": 30.114160000039192,
+      "dense_ms": 6.897612999978264,
+      "splade_ms": 11.017485000024863,
+      "total_ms": 48.246635000054994
+    },
+    {
+      "bm25_ms": 33.75093099998594,
+      "dense_ms": 6.82378500005143,
+      "splade_ms": 11.009148999960416,
+      "total_ms": 51.81016599999566
+    },
+    {
+      "bm25_ms": 68.8098660000378,
+      "dense_ms": 7.467921000056776,
+      "splade_ms": 13.261564999993425,
+      "total_ms": 89.86475999995491
+    },
+    {
+      "bm25_ms": 31.345136000027196,
+      "dense_ms": 6.951931000003242,
+      "splade_ms": 11.01508500005366,
+      "total_ms": 49.57791000003908
+    },
+    {
+      "bm25_ms": 52.00203100002909,
+      "dense_ms": 7.3185059999332225,
+      "splade_ms": 13.132236999922497,
+      "total_ms": 72.65329599999859
+    },
+    {
+      "bm25_ms": 21.34309799998846,
+      "dense_ms": 6.786520999980894,
+      "splade_ms": 11.175701999945886,
+      "total_ms": 39.59149999991496
+    },
+    {
+      "bm25_ms": 28.47477699992851,
+      "dense_ms": 6.966274999967936,
+      "splade_ms": 11.168939000071987,
+      "total_ms": 46.88759700002265
+    },
+    {
+      "bm25_ms": 23.981868000078066,
+      "dense_ms": 7.005798000022878,
+      "splade_ms": 10.677211000029274,
+      "total_ms": 42.05523399991762
+    },
+    {
+      "bm25_ms": 23.357577999945534,
+      "dense_ms": 6.94671099995503,
+      "splade_ms": 10.218410999982552,
+      "total_ms": 40.754092000042874
+    },
+    {
+      "bm25_ms": 41.776195000011285,
+      "dense_ms": 7.311325000046054,
+      "splade_ms": 11.036966000006032,
+      "total_ms": 60.36629900006574
+    },
+    {
+      "bm25_ms": 21.48493699996834,
+      "dense_ms": 7.1700959999816405,
+      "splade_ms": 11.000545000001694,
+      "total_ms": 39.85929500004204
+    },
+    {
+      "bm25_ms": 15.654248999908305,
+      "dense_ms": 6.637177000015981,
+      "splade_ms": 10.952739999993355,
+      "total_ms": 33.463207000067996
+    },
+    {
+      "bm25_ms": 22.22265000000334,
+      "dense_ms": 6.947437000007994,
+      "splade_ms": 11.585374999981468,
+      "total_ms": 41.553350999947725
+    },
+    {
+      "bm25_ms": 56.01119900006779,
+      "dense_ms": 7.654298000034032,
+      "splade_ms": 13.119330999984413,
+      "total_ms": 77.0257170000832
+    }
+  ],
+  "hardware": {
+    "cuda_available": true,
+    "cuda_device": "Tesla T4"
+  }
+}

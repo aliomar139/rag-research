@@ -1,0 +1,167 @@
+{
+  "inventory_date": "2026-10-21",
+  "scope": "Original local downloads, source bundles, superseded binary report exports and reference paper. These files are not distributed in Git or the submission ZIP. Obtain matching result exports separately for record-level revalidation. Paths are relative to the repository root.",
+  "entries": [
+    {
+      "path": "artifacts/downloads/nfcorpus_corpus_for_features.jsonl",
+      "kind": "original_download",
+      "bytes": 6219364,
+      "sha256": "10cc83ef1826b1425e6a87090b5140b39b27755d5a27e48215a88611c899991f",
+      "included_in_submission": false
+    },
+    {
+      "path": "artifacts/downloads/nfcorpus_retention_benchmark_outputs.zip",
+      "kind": "original_download",
+      "bytes": 3985383,
+      "sha256": "dcecca5e7e0dd8d75190fcfc961210a8724b9c976d3fe17580b3e245b7a4bd79",
+      "included_in_submission": false
+    },
+    {
+      "path": "artifacts/downloads/nfcorpus_train_diagnostics_outputs.zip",
+      "kind": "original_download",
+      "bytes": 1788123,
+      "sha256": "129d3dd1a05e5bd770197c6bb6f601aa5aca6fcdacbd243856f5f1f7b7e72386",
+      "included_in_submission": false
+    },
+    {
+      "path": "artifacts/downloads/scidocs_confirmation_outputs.zip",
+      "kind": "original_download",
+      "bytes": 27174141,
+      "sha256": "89159cc3b733c61f885df765ac414c2a1d4b685041336df78381f9c28c4b1870",
+      "included_in_submission": false
+    },
+    {
+      "path": "artifacts/downloads/squad_indexed_cascade_outputs.zip",
+      "kind": "original_download",
+      "bytes": 9976117,
+      "sha256": "e1a07593ce7d16eb7660b95c975f8d241a925918e0a567942792d2101dfe0bfd",
+      "included_in_submission": false
+    },
+    {
+      "path": "artifacts/downloads/squad_one_pass_outputs.zip",
+      "kind": "original_download",
+      "bytes": 357768875,
+      "sha256": "12f926600e0da66729f3778b5dd8632bcc19a7220e25f0adf79f615211a39eac",
+      "included_in_submission": false
+    },
+    {
+      "path": "artifacts/downloads/trec_covid_indexed_cascade_outputs.zip",
+      "kind": "original_download",
+      "bytes": 697499,
+      "sha256": "92857af16ed9944a90494c79ddabef3286cff3f0f1c49a274ba2f1dfbd882529",
+      "included_in_submission": false
+    },
+    {
+      "path": "artifacts/downloads/trec_covid_paper_benchmark_outputs.zip",
+      "kind": "original_download",
+      "bytes": 693171,
+      "sha256": "769e02d83978b0d3f116e48fcc99ea93f52633a0990f85f245f582ab8014a3df",
+      "included_in_submission": false
+    },
+    {
+      "path": "artifacts/source_bundles/cascade_source_bundle.zip",
+      "kind": "original_source_bundle",
+      "bytes": 94942,
+      "sha256": "44a7bccb8f4e6276c003cfbcdbe3537f634e4faef29166e5c6ab82cc52186164",
+      "included_in_submission": false
+    },
+    {
+      "path": "artifacts/source_bundles/cascade_source_bundle_nfcorpus_ridge_v1.zip",
+      "kind": "original_source_bundle",
+      "bytes": 89030,
+      "sha256": "394a4cf8525548dec3ce9e1200836a4ee009c08778cd5ab29df291c079553f2e",
+      "included_in_submission": false
+    },
+    {
+      "path": "artifacts/source_bundles/cascade_source_bundle_nfcorpus_train_dev_v1.zip",
+      "kind": "original_source_bundle",
+      "bytes": 11417,
+      "sha256": "9b9320ac80fa05da4043eaa397b38b9c4216d359caebd320dad5e7747d21a7f7",
+      "included_in_submission": false
+    },
+    {
+      "path": "artifacts/source_bundles/kaggle_fast_finish_v1/fast_finish_indexed_20261021_d4a9_v1.zip",
+      "kind": "original_source_bundle",
+      "bytes": 60583,
+      "sha256": "60044caccd4115fe0d18a9f33b4e296bd9065ad73d0675021a7af8a29571ba75",
+      "included_in_submission": false
+    },
+    {
+      "path": "artifacts/source_bundles/kaggle_indexed_cascade_v1/indexed_cascade_source_20261021_b8e6_v1.zip",
+      "kind": "original_source_bundle",
+      "bytes": 57146,
+      "sha256": "59d428417c20a8f8aeb9970a01260d2f58b5f252822098d510faca5606dcf840",
+      "included_in_submission": false
+    },
+    {
+      "path": "artifacts/source_bundles/kaggle_nfcorpus_train_dev_v2/cascade_source_bundle_nfcorpus_train_dev_v1.zip",
+      "kind": "original_source_bundle",
+      "bytes": 11417,
+      "sha256": "9b9320ac80fa05da4043eaa397b38b9c4216d359caebd320dad5e7747d21a7f7",
+      "included_in_submission": false
+    },
+    {
+      "path": "artifacts/source_bundles/kaggle_nfcorpus_train_diagnostics_v1/nfcorpus_train_diagnostics_source_v1.zip",
+      "kind": "original_source_bundle",
+      "bytes": 15813,
+      "sha256": "aaa3b5f83bafaeebc2a777f90caed25c762aa30d400bcbed14535ba1447bb990",
+      "included_in_submission": false
+    },
+    {
+      "path": "artifacts/source_bundles/kaggle_paper_datasets_v1/paper_datasets_frozen_source_20261020_a7c4_v1.zip",
+      "kind": "original_source_bundle",
+      "bytes": 53431,
+      "sha256": "c712079558607fd6a560981411cdee5ff4f4b5566360104daedaba559680c563",
+      "included_in_submission": false
+    },
+    {
+      "path": "artifacts/source_bundles/kaggle_retention_tradeoff_v1/nfcorpus_retention_tradeoff_source_v1.zip",
+      "kind": "original_source_bundle",
+      "bytes": 48182,
+      "sha256": "38a46f141d69355db364412803a69b62a90b7ccbd984f87bbaa637d24fe3a6f9",
+      "included_in_submission": false
+    },
+    {
+      "path": "artifacts/source_bundles/kaggle_scidocs_confirmation_v1/scidocs_frozen_confirmation_source_v1.zip",
+      "kind": "original_source_bundle",
+      "bytes": 48196,
+      "sha256": "35077dcdc138e4f91234b81c7acd947a22f46e0088a52a7b679e785e9a5547c9",
+      "included_in_submission": false
+    },
+    {
+      "path": "artifacts/legacy_exports/cascaded_blended_rag_report.html",
+      "kind": "superseded_report_export",
+      "bytes": 19115,
+      "sha256": "5cb3433657dc1afb64928f1f37adf950b4c216097be299619ead290cfc679328",
+      "included_in_submission": false
+    },
+    {
+      "path": "artifacts/legacy_exports/cascaded_blended_rag_report.pdf",
+      "kind": "superseded_report_export",
+      "bytes": 401834,
+      "sha256": "1fe6c4abb0fdd4534cbcc60e50a8e356061c25d5ea8ecda6fba87c4881d847cf",
+      "included_in_submission": false
+    },
+    {
+      "path": "artifacts/legacy_exports/Cascaded_Blended_RAG_Research_Report.docx",
+      "kind": "superseded_report_export",
+      "bytes": 44347,
+      "sha256": "13e164b3abdb3d9a8e95e56f732bb6b185032d42667273be30e28ecb6729cbf7",
+      "included_in_submission": false
+    },
+    {
+      "path": "artifacts/legacy_exports/proposal_brief.pdf",
+      "kind": "superseded_report_export",
+      "bytes": 671695,
+      "sha256": "716edc786d847947d27f8837dbab2275dd2f42a922398a58824c35447c86d5d3",
+      "included_in_submission": false
+    },
+    {
+      "path": "Similar-Papers/local/Blended-Rag.pdf",
+      "kind": "local_reference_paper",
+      "bytes": 3148204,
+      "sha256": "08f9596ffb7067ac5d04c85d45bc7ee82e8dd4396cc6a10b69186e7cec7ac7c6",
+      "included_in_submission": false
+    }
+  ]
+}

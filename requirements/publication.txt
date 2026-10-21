@@ -1,0 +1,6 @@
+# Offline paper / showcase generation from saved project reports.
+-r analysis.txt
+reportlab>=4.0
+Pillow>=10.0
+fonttools>=4.0
+# JavaScript deck/render tools use the bundled Codex primary runtime.

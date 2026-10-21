@@ -1,0 +1,112 @@
+{
+  "raw_dev_sha256": "95aa6a52d5d6a735563366753ca50492a658031da74f301ac5238b03966972c9",
+  "rebuilt_qrels_sha256": "75e26c40fc8389017381b89939bfc4bc74da6681c9aff3e648398b4e723f0bbc",
+  "qrels_match_exactly": true,
+  "scope": "Independent parent-label scoring in stored ranking order. Score-tie order can differ from the original evaluator.",
+  "methods": {
+    "static_rrf": {
+      "independent_metrics": {
+        "recall@100": 0.9924314096499527,
+        "ndcg@10": 0.8289660418967078,
+        "map@10": 0.7928357060263399
+      },
+      "difference_from_report": {
+        "recall@100": 0.0,
+        "ndcg@10": -2.220446049250313e-16,
+        "map@10": 0.0
+      },
+      "matches_within_1e_10": true
+    },
+    "bm25": {
+      "independent_metrics": {
+        "recall@100": 0.9637653736991485,
+        "ndcg@10": 0.7883128081896096,
+        "map@10": 0.7554019311919028
+      },
+      "difference_from_report": {
+        "recall@100": 0.0,
+        "ndcg@10": 0.0,
+        "map@10": 0.0
+      },
+      "matches_within_1e_10": true
+    },
+    "dense": {
+      "independent_metrics": {
+        "recall@100": 0.9539262062440871,
+        "ndcg@10": 0.6824658139443346,
+        "map@10": 0.6333870568094787
+      },
+      "difference_from_report": {
+        "recall@100": 0.0,
+        "ndcg@10": -1.1102230246251565e-16,
+        "map@10": 0.0
+      },
+      "matches_within_1e_10": true
+    },
+    "splade": {
+      "independent_metrics": {
+        "recall@100": 0.9859981078524125,
+        "ndcg@10": 0.8536693901389079,
+        "map@10": 0.8242523764472677
+      },
+      "difference_from_report": {
+        "recall@100": 0.0,
+        "ndcg@10": -2.220446049250313e-16,
+        "map@10": 0.0
+      },
+      "matches_within_1e_10": true
+    },
+    "ridge11_r90": {
+      "independent_metrics": {
+        "recall@100": 0.9862819299905392,
+        "ndcg@10": 0.8189568826502224,
+        "map@10": 0.7833465107897464
+      },
+      "difference_from_report": {
+        "recall@100": 0.0,
+        "ndcg@10": 0.0,
+        "map@10": 0.0
+      },
+      "matches_within_1e_10": true
+    },
+    "ridge11_r92": {
+      "independent_metrics": {
+        "recall@100": 0.9875118259224219,
+        "ndcg@10": 0.8222293656864456,
+        "map@10": 0.7865497589764383
+      },
+      "difference_from_report": {
+        "recall@100": 0.0,
+        "ndcg@10": -1.1102230246251565e-16,
+        "map@10": 1.1102230246251565e-16
+      },
+      "matches_within_1e_10": true
+    },
+    "ridge11_r95": {
+      "independent_metrics": {
+        "recall@100": 0.9894985808893094,
+        "ndcg@10": 0.8253869448729068,
+        "map@10": 0.7895319562703669
+      },
+      "difference_from_report": {
+        "recall@100": 0.0,
+        "ndcg@10": 0.0,
+        "map@10": 0.0
+      },
+      "matches_within_1e_10": true
+    },
+    "ridge11_r99": {
+      "independent_metrics": {
+        "recall@100": 0.9919583727530747,
+        "ndcg@10": 0.8282092735721995,
+        "map@10": 0.7921379766034449
+      },
+      "difference_from_report": {
+        "recall@100": 0.0,
+        "ndcg@10": 0.0,
+        "map@10": 0.0
+      },
+      "matches_within_1e_10": true
+    }
+  }
+}

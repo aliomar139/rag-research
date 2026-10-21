@@ -1,0 +1,95 @@
+{
+  "dataset": "BEIR NFCorpus",
+  "split": "train",
+  "queries": 2590,
+  "dev_qrels_opened": false,
+  "test_qrels_opened": false,
+  "target_recall_fraction": 0.99,
+  "static_recall@100": 0.31777556345680197,
+  "bm25_recall@100": 0.22909261850554083,
+  "total_clipped_loss_budget": 8.23038709353118,
+  "ridge_oof": {
+    "exits": 167,
+    "exit_rate": 0.06447876447876448,
+    "recall@100": 0.31494723914073774,
+    "recall_ratio": 0.9910996167065291,
+    "mean_clipped_loss": 0.00315090210832338,
+    "mean_signed_loss": 0.0028283243160642235,
+    "threshold": 0.06299507546860514,
+    "folds": 5,
+    "seed": 42,
+    "alpha": 10.0
+  },
+  "oracle_same_clipped_budget": {
+    "exits": 1421,
+    "exit_rate": 0.5486486486486486,
+    "recall@100": 0.318257401296395,
+    "recall_ratio": 1.0015162834874765,
+    "mean_clipped_loss": 0.003161878979373247,
+    "mean_signed_loss": -0.0004818378395930467
+  },
+  "oracle_net_recall_budget": {
+    "exits": 1595,
+    "exit_rate": 0.6158301158301158,
+    "recall@100": 0.3146030670741001,
+    "recall_ratio": 0.9900165502086092,
+    "mean_clipped_loss": 0.006816213201668215,
+    "mean_signed_loss": 0.003172496382701895
+  },
+  "opportunities": {
+    "bm25_not_worse_than_static_queries": 1123,
+    "non_damaging_queries_escalated_by_ridge": 1041,
+    "recall_harming_ridge_exits": 85,
+    "oracle_minus_ridge_exit_rate": 0.4841698841698841
+  },
+  "prediction_quantiles": {
+    "0": 0.012783574364006497,
+    "0.1": 0.0672301253272147,
+    "0.25": 0.07644197515113067,
+    "0.5": 0.08930316971461619,
+    "0.75": 0.10392686880772276,
+    "0.9": 0.12661979381978092,
+    "1": 0.1880129738578992
+  },
+  "limits": [
+    "Oracles use train relevance labels and are retrospective equal-query-weight upper bounds, not deployable routers.",
+    "Primary oracle uses the same clipped loss budget as the previous Ridge gate. Secondary net-recall oracle credits BM25 wins.",
+    "Ridge predictions are out-of-fold; its threshold is selected on all train labels. This is a development diagnostic, not an independent held-out estimate.",
+    "No end-to-end latency or attainable speedup is inferred from oracle exit rates."
+  ],
+  "provenance": {
+    "schema": 1,
+    "dataset": "BEIR NFCorpus",
+    "split": "train",
+    "corpus_sha256": "10cc83ef1826b1425e6a87090b5140b39b27755d5a27e48215a88611c899991f",
+    "queries_sha256": "d024e6621b84925d485ae473d316a0c3af31c62c8068a59fb29d22f7613aef2a",
+    "train_qrels_sha256": "6336b80f9bffc4f063f3aa450047ad35c0b7c534efe4a6ba35e16dbace047f6a",
+    "retrieval_code_sha256": {
+      "12_calibrate_nfcorpus_train_check_dev.py": "ec9c8c209b6f9e8102664308b0236cf361097e545dce0ff6dcdb9cecd1daf665",
+      "13_diagnose_nfcorpus_train_router.py": "725b80d83b903e05e8886acf255debf57d85719f33c8d2ff2138ab0b5c5725dc",
+      "bm25_retriever.py": "91d58e2a26c068a1011b24f3001f89d943aaff64ca46816a9eb92fd224d7c160",
+      "dense_retriever.py": "65f559fd791c586cf3db6f1f499f857d5715b52917ae54fad71c2dbfffdb356e",
+      "splade_retriever.py": "74f68b433dc8dcb76268ad591a0adb9f90a4228cb363025d1306fd12e6ce71c1",
+      "cache_utils.py": "6e07356c78f41fbb3cf1f755bd18f8793bde4007c2bd745450de3be24df5b792"
+    },
+    "feature_names": [
+      "query_token_count",
+      "query_unique_token_count",
+      "bm25_top1",
+      "bm25_top2",
+      "bm25_gap12",
+      "bm25_top10_mean",
+      "bm25_top10_std",
+      "bm25_top1_per_query_token",
+      "max_idf",
+      "mean_idf",
+      "idf_std"
+    ],
+    "top_k": 100,
+    "rrf_k": 60,
+    "corpus_documents": 3633,
+    "queries": 2590,
+    "dense_model": "sentence-transformers/all-MiniLM-L6-v2",
+    "splade_model": "naver/splade-cocondenser-ensembledistil"
+  }
+}

@@ -1,0 +1,555 @@
+{
+  "dataset": "BEIR NFCorpus",
+  "split": "train",
+  "queries": 2590,
+  "targets": [
+    0.9,
+    0.92,
+    0.95,
+    0.99
+  ],
+  "nested_curves": {
+    "ridge11": {
+      "90": {
+        "target": 0.9,
+        "exits": 1112,
+        "exit_rate": 0.42934362934362935,
+        "recall@100": 0.28683644071106784,
+        "recall_ratio": 0.9026384457974851,
+        "mean_clipped_loss": 0.033022860473992735,
+        "mean_signed_loss": 0.030939122745734127,
+        "folds": [
+          {
+            "fold": 1,
+            "threshold": 0.08470893185668502,
+            "exits": 225,
+            "exit_rate": 0.4343629343629344,
+            "recall@100": 0.2816277039287968,
+            "recall_ratio": 0.8888153062771048,
+            "mean_clipped_loss": 0.036521085397956086,
+            "mean_signed_loss": 0.03522969258524805
+          },
+          {
+            "fold": 2,
+            "threshold": 0.08371305655500703,
+            "exits": 218,
+            "exit_rate": 0.42084942084942084,
+            "recall@100": 0.29368113727243883,
+            "recall_ratio": 0.9027904619194337,
+            "mean_clipped_loss": 0.03283186751706557,
+            "mean_signed_loss": 0.031622628839622025
+          },
+          {
+            "fold": 3,
+            "threshold": 0.08783275822560287,
+            "exits": 220,
+            "exit_rate": 0.4247104247104247,
+            "recall@100": 0.2778229927829654,
+            "recall_ratio": 0.9151140301563299,
+            "mean_clipped_loss": 0.028714504152617983,
+            "mean_signed_loss": 0.025770858505168193
+          },
+          {
+            "fold": 4,
+            "threshold": 0.08472149436449093,
+            "exits": 230,
+            "exit_rate": 0.444015444015444,
+            "recall@100": 0.2856120862994853,
+            "recall_ratio": 0.8980744358414801,
+            "mean_clipped_loss": 0.035505118430002036,
+            "mean_signed_loss": 0.032415100424599275
+          },
+          {
+            "fold": 5,
+            "threshold": 0.08384115597356814,
+            "exits": 219,
+            "exit_rate": 0.42277992277992277,
+            "recall@100": 0.2954382832716528,
+            "recall_ratio": 0.908773505837958,
+            "mean_clipped_loss": 0.031541726872322,
+            "mean_signed_loss": 0.02965733337403309
+          }
+        ],
+        "folds_meeting_target": 3
+      },
+      "92": {
+        "target": 0.92,
+        "exits": 935,
+        "exit_rate": 0.361003861003861,
+        "recall@100": 0.2929495372314716,
+        "recall_ratio": 0.921875596866953,
+        "mean_clipped_loss": 0.026827201756071856,
+        "mean_signed_loss": 0.024826026225330367,
+        "folds": [
+          {
+            "fold": 1,
+            "threshold": 0.08161480874126252,
+            "exits": 197,
+            "exit_rate": 0.3803088803088803,
+            "recall@100": 0.28721173026314484,
+            "recall_ratio": 0.9064384591395014,
+            "mean_clipped_loss": 0.030845130400250838,
+            "mean_signed_loss": 0.029645666250900038
+          },
+          {
+            "fold": 2,
+            "threshold": 0.08044014724918729,
+            "exits": 183,
+            "exit_rate": 0.3532818532818533,
+            "recall@100": 0.29910561445710787,
+            "recall_ratio": 0.919465575304996,
+            "mean_clipped_loss": 0.02716314743245442,
+            "mean_signed_loss": 0.026198151654952984
+          },
+          {
+            "fold": 3,
+            "threshold": 0.08337062216242942,
+            "exits": 173,
+            "exit_rate": 0.333976833976834,
+            "recall@100": 0.28438542978565273,
+            "recall_ratio": 0.9367298730821442,
+            "mean_clipped_loss": 0.0220837848768589,
+            "mean_signed_loss": 0.019208421502480866
+          },
+          {
+            "fold": 4,
+            "threshold": 0.08127239892439984,
+            "exits": 198,
+            "exit_rate": 0.38223938223938225,
+            "recall@100": 0.29043520501948644,
+            "recall_ratio": 0.9132401792789605,
+            "mean_clipped_loss": 0.03068199971000086,
+            "mean_signed_loss": 0.027591981704598145
+          },
+          {
+            "fold": 5,
+            "threshold": 0.08053636663176097,
+            "exits": 184,
+            "exit_rate": 0.3552123552123552,
+            "recall@100": 0.3036097066319662,
+            "recall_ratio": 0.9339089519710853,
+            "mean_clipped_loss": 0.02336194636079426,
+            "mean_signed_loss": 0.02148591001371969
+          }
+        ],
+        "folds_meeting_target": 2
+      },
+      "95": {
+        "target": 0.95,
+        "exits": 623,
+        "exit_rate": 0.24054054054054055,
+        "recall@100": 0.3032508808279496,
+        "recall_ratio": 0.9542926382669231,
+        "mean_clipped_loss": 0.015968058273960414,
+        "mean_signed_loss": 0.01452468262885237,
+        "folds": [
+          {
+            "fold": 1,
+            "threshold": 0.07536182424527728,
+            "exits": 144,
+            "exit_rate": 0.277992277992278,
+            "recall@100": 0.2990464071477974,
+            "recall_ratio": 0.9437886268012116,
+            "mean_clipped_loss": 0.01865073265898294,
+            "mean_signed_loss": 0.017810989366247476
+          },
+          {
+            "fold": 2,
+            "threshold": 0.07488654868351828,
+            "exits": 119,
+            "exit_rate": 0.22972972972972974,
+            "recall@100": 0.3080812648080251,
+            "recall_ratio": 0.9470571721014047,
+            "mean_clipped_loss": 0.017783422209377262,
+            "mean_signed_loss": 0.017222501304035742
+          },
+          {
+            "fold": 3,
+            "threshold": 0.0767528623183294,
+            "exits": 118,
+            "exit_rate": 0.2277992277992278,
+            "recall@100": 0.2902294668079449,
+            "recall_ratio": 0.9559793967384904,
+            "mean_clipped_loss": 0.01500681600068703,
+            "mean_signed_loss": 0.013364384480188674
+          },
+          {
+            "fold": 4,
+            "threshold": 0.07548209117351573,
+            "exits": 128,
+            "exit_rate": 0.2471042471042471,
+            "recall@100": 0.30387343185821103,
+            "recall_ratio": 0.9554951417466295,
+            "mean_clipped_loss": 0.01681187587787086,
+            "mean_signed_loss": 0.014153754865873558
+          },
+          {
+            "fold": 5,
+            "threshold": 0.0750276145152653,
+            "exits": 114,
+            "exit_rate": 0.22007722007722008,
+            "recall@100": 0.3150238335177694,
+            "recall_ratio": 0.9690190128312512,
+            "mean_clipped_loss": 0.01158744462288397,
+            "mean_signed_loss": 0.010071783127916456
+          }
+        ],
+        "folds_meeting_target": 3
+      },
+      "99": {
+        "target": 0.99,
+        "exits": 112,
+        "exit_rate": 0.043243243243243246,
+        "recall@100": 0.3159475752847928,
+        "recall_ratio": 0.9942475495846058,
+        "mean_clipped_loss": 0.002130496956972208,
+        "mean_signed_loss": 0.0018279881720091873,
+        "folds": [
+          {
+            "fold": 1,
+            "threshold": 0.0625900576786699,
+            "exits": 31,
+            "exit_rate": 0.059845559845559844,
+            "recall@100": 0.3146332110542992,
+            "recall_ratio": 0.9929804843307577,
+            "mean_clipped_loss": 0.0024356279006099335,
+            "mean_signed_loss": 0.0022241854597456756
+          },
+          {
+            "fold": 2,
+            "threshold": 0.061180292915699014,
+            "exits": 26,
+            "exit_rate": 0.05019305019305019,
+            "recall@100": 0.3216628950393808,
+            "recall_ratio": 0.9888077807515273,
+            "mean_clipped_loss": 0.003690371122180128,
+            "mean_signed_loss": 0.003640871072680074
+          },
+          {
+            "fold": 3,
+            "threshold": 0.06087987619378564,
+            "exits": 18,
+            "exit_rate": 0.03474903474903475,
+            "recall@100": 0.3017634140322762,
+            "recall_ratio": 0.9939707696710887,
+            "mean_clipped_loss": 0.0019108748362950045,
+            "mean_signed_loss": 0.001830437255857409
+          },
+          {
+            "fold": 4,
+            "threshold": 0.06341695790402423,
+            "exits": 20,
+            "exit_rate": 0.03861003861003861,
+            "recall@100": 0.3173986956489888,
+            "recall_ratio": 0.9980237819238987,
+            "mean_clipped_loss": 0.001754617201221938,
+            "mean_signed_loss": 0.0006284910750957717
+          },
+          {
+            "fold": 5,
+            "threshold": 0.062380909519700864,
+            "exits": 17,
+            "exit_rate": 0.032818532818532815,
+            "recall@100": 0.3242796606490188,
+            "recall_ratio": 0.9974901045880408,
+            "mean_clipped_loss": 0.0008609937245540362,
+            "mean_signed_loss": 0.0008159559966670615
+          }
+        ],
+        "folds_meeting_target": 4
+      }
+    },
+    "ridge69": {
+      "90": {
+        "target": 0.9,
+        "exits": 1113,
+        "exit_rate": 0.4297297297297297,
+        "recall@100": 0.28881084827809445,
+        "recall_ratio": 0.9088516597575164,
+        "mean_clipped_loss": 0.031064745377081638,
+        "mean_signed_loss": 0.028964715178707523,
+        "folds": [
+          {
+            "fold": 1,
+            "threshold": 0.08879663308742503,
+            "exits": 226,
+            "exit_rate": 0.4362934362934363,
+            "recall@100": 0.283554401090161,
+            "recall_ratio": 0.8948959507012559,
+            "mean_clipped_loss": 0.03477157578964755,
+            "mean_signed_loss": 0.033302995423883874
+          },
+          {
+            "fold": 2,
+            "threshold": 0.08507768076410824,
+            "exits": 197,
+            "exit_rate": 0.3803088803088803,
+            "recall@100": 0.2989138430155216,
+            "recall_ratio": 0.918876060329875,
+            "mean_clipped_loss": 0.027219830719992132,
+            "mean_signed_loss": 0.02638992309653926
+          },
+          {
+            "fold": 3,
+            "threshold": 0.08925681861885001,
+            "exits": 220,
+            "exit_rate": 0.4247104247104247,
+            "recall@100": 0.2787694925145855,
+            "recall_ratio": 0.9182316813459179,
+            "mean_clipped_loss": 0.027865713878503874,
+            "mean_signed_loss": 0.024824358773548105
+          },
+          {
+            "fold": 4,
+            "threshold": 0.08604517536412488,
+            "exits": 227,
+            "exit_rate": 0.43822393822393824,
+            "recall@100": 0.294246946643805,
+            "recall_ratio": 0.9252257634787967,
+            "mean_clipped_loss": 0.027136657791420226,
+            "mean_signed_loss": 0.02378024008027957
+          },
+          {
+            "fold": 5,
+            "threshold": 0.08673543913646178,
+            "exits": 243,
+            "exit_rate": 0.4691119691119691,
+            "recall@100": 0.28856955812639906,
+            "recall_ratio": 0.8876451829890536,
+            "mean_clipped_loss": 0.0383299487058444,
+            "mean_signed_loss": 0.03652605851928681
+          }
+        ],
+        "folds_meeting_target": 3
+      },
+      "92": {
+        "target": 0.92,
+        "exits": 939,
+        "exit_rate": 0.36254826254826256,
+        "recall@100": 0.2957708290583873,
+        "recall_ratio": 0.9307538497956092,
+        "mean_clipped_loss": 0.023991254604971007,
+        "mean_signed_loss": 0.02200473439841466,
+        "folds": [
+          {
+            "fold": 1,
+            "threshold": 0.08335173729287122,
+            "exits": 190,
+            "exit_rate": 0.3667953667953668,
+            "recall@100": 0.293272581749418,
+            "recall_ratio": 0.9255664692568366,
+            "mean_clipped_loss": 0.024982329918480234,
+            "mean_signed_loss": 0.02358481476462687
+          },
+          {
+            "fold": 2,
+            "threshold": 0.08035627467055104,
+            "exits": 176,
+            "exit_rate": 0.33976833976833976,
+            "recall@100": 0.3013414204219132,
+            "recall_ratio": 0.9263385543409507,
+            "mean_clipped_loss": 0.02457567862894072,
+            "mean_signed_loss": 0.023962345690147657
+          },
+          {
+            "fold": 3,
+            "threshold": 0.084170866628202,
+            "exits": 186,
+            "exit_rate": 0.3590733590733591,
+            "recall@100": 0.2838738889917507,
+            "recall_ratio": 0.9350449219814166,
+            "mean_clipped_loss": 0.022516507373919952,
+            "mean_signed_loss": 0.019719962296382898
+          },
+          {
+            "fold": 4,
+            "threshold": 0.07935746929948914,
+            "exits": 189,
+            "exit_rate": 0.36486486486486486,
+            "recall@100": 0.3014012323165219,
+            "recall_ratio": 0.9477215939340836,
+            "mean_clipped_loss": 0.019982372118703372,
+            "mean_signed_loss": 0.016625954407562704
+          },
+          {
+            "fold": 5,
+            "threshold": 0.08007684300086747,
+            "exits": 198,
+            "exit_rate": 0.38223938223938225,
+            "recall@100": 0.29896502181233264,
+            "recall_ratio": 0.9196218174118529,
+            "mean_clipped_loss": 0.027899384984810753,
+            "mean_signed_loss": 0.026130594833353227
+          }
+        ],
+        "folds_meeting_target": 4
+      },
+      "95": {
+        "target": 0.95,
+        "exits": 668,
+        "exit_rate": 0.2579150579150579,
+        "recall@100": 0.30407058834458917,
+        "recall_ratio": 0.9568721554196038,
+        "mean_clipped_loss": 0.01512694829634072,
+        "mean_signed_loss": 0.013704975112212803,
+        "folds": [
+          {
+            "fold": 1,
+            "threshold": 0.06964658391007222,
+            "exits": 140,
+            "exit_rate": 0.2702702702702703,
+            "recall@100": 0.30044707034680834,
+            "recall_ratio": 0.948209111266528,
+            "mean_clipped_loss": 0.01725285130368819,
+            "mean_signed_loss": 0.016410326167236533
+          },
+          {
+            "fold": 2,
+            "threshold": 0.06759769131337964,
+            "exits": 122,
+            "exit_rate": 0.23552123552123552,
+            "recall@100": 0.31112703883231346,
+            "recall_ratio": 0.9564200333454984,
+            "mean_clipped_loss": 0.014657057046023571,
+            "mean_signed_loss": 0.014176727279747392
+          },
+          {
+            "fold": 3,
+            "threshold": 0.07446591136186534,
+            "exits": 133,
+            "exit_rate": 0.25675675675675674,
+            "recall@100": 0.29023369235615915,
+            "recall_ratio": 0.9559933151633738,
+            "mean_clipped_loss": 0.014658760579335017,
+            "mean_signed_loss": 0.013360158931974453
+          },
+          {
+            "fold": 4,
+            "threshold": 0.06806463166291718,
+            "exits": 130,
+            "exit_rate": 0.25096525096525096,
+            "recall@100": 0.3097341323810738,
+            "recall_ratio": 0.9739234421168976,
+            "mean_clipped_loss": 0.011098250790538847,
+            "mean_signed_loss": 0.008293054343010808
+          },
+          {
+            "fold": 5,
+            "threshold": 0.06906863164320075,
+            "exits": 143,
+            "exit_rate": 0.27606177606177607,
+            "recall@100": 0.30881100780659104,
+            "recall_ratio": 0.9499082485112587,
+            "mean_clipped_loss": 0.017967821762117968,
+            "mean_signed_loss": 0.016284608839094827
+          }
+        ],
+        "folds_meeting_target": 3
+      },
+      "99": {
+        "target": 0.99,
+        "exits": 178,
+        "exit_rate": 0.06872586872586872,
+        "recall@100": 0.31563919723120776,
+        "recall_ratio": 0.9932771223741859,
+        "mean_clipped_loss": 0.002486490324771154,
+        "mean_signed_loss": 0.0021363662255942106,
+        "folds": [
+          {
+            "fold": 1,
+            "threshold": 0.033185463610062374,
+            "exits": 40,
+            "exit_rate": 0.07722007722007722,
+            "recall@100": 0.31348706954477695,
+            "recall_ratio": 0.9893632687563961,
+            "mean_clipped_loss": 0.003581769410132194,
+            "mean_signed_loss": 0.0033703269692679227
+          },
+          {
+            "fold": 2,
+            "threshold": 0.03244282974028057,
+            "exits": 20,
+            "exit_rate": 0.03861003861003861,
+            "recall@100": 0.32406150042014836,
+            "recall_ratio": 0.9961812133109933,
+            "mean_clipped_loss": 0.0012422656919124906,
+            "mean_signed_loss": 0.001242265691912492
+          },
+          {
+            "fold": 3,
+            "threshold": 0.04051132645533118,
+            "exits": 41,
+            "exit_rate": 0.07915057915057915,
+            "recall@100": 0.3007805942293773,
+            "recall_ratio": 0.9907334847302744,
+            "mean_clipped_loss": 0.0034245425453609275,
+            "mean_signed_loss": 0.002813257058756291
+          },
+          {
+            "fold": 4,
+            "threshold": 0.036456702656792156,
+            "exits": 39,
+            "exit_rate": 0.07528957528957529,
+            "recall@100": 0.31649292840235776,
+            "recall_ratio": 0.995175700739516,
+            "mean_clipped_loss": 0.0022972241555956514,
+            "mean_signed_loss": 0.0015342583217268224
+          },
+          {
+            "fold": 5,
+            "threshold": 0.034685658786372954,
+            "exits": 38,
+            "exit_rate": 0.07335907335907337,
+            "recall@100": 0.3233738935593783,
+            "recall_ratio": 0.9947039486287997,
+            "mean_clipped_loss": 0.001886649820854507,
+            "mean_signed_loss": 0.0017217230863075805
+          }
+        ],
+        "folds_meeting_target": 4
+      }
+    }
+  },
+  "provenance": {
+    "input_zip_sha256": "129d3dd1a05e5bd770197c6bb6f601aa5aca6fcdacbd243856f5f1f7b7e72386",
+    "examples_sha256": "f0269a1cda95e3b972aa2a5f15fde1a244b15a8943c546381781d83313c53365",
+    "retrieval_manifest": {
+      "schema": 1,
+      "dataset": "BEIR NFCorpus",
+      "split": "train",
+      "corpus_sha256": "10cc83ef1826b1425e6a87090b5140b39b27755d5a27e48215a88611c899991f",
+      "queries_sha256": "d024e6621b84925d485ae473d316a0c3af31c62c8068a59fb29d22f7613aef2a",
+      "train_qrels_sha256": "6336b80f9bffc4f063f3aa450047ad35c0b7c534efe4a6ba35e16dbace047f6a",
+      "retrieval_code_sha256": {
+        "12_calibrate_nfcorpus_train_check_dev.py": "ec9c8c209b6f9e8102664308b0236cf361097e545dce0ff6dcdb9cecd1daf665",
+        "13_diagnose_nfcorpus_train_router.py": "725b80d83b903e05e8886acf255debf57d85719f33c8d2ff2138ab0b5c5725dc",
+        "bm25_retriever.py": "91d58e2a26c068a1011b24f3001f89d943aaff64ca46816a9eb92fd224d7c160",
+        "dense_retriever.py": "65f559fd791c586cf3db6f1f499f857d5715b52917ae54fad71c2dbfffdb356e",
+        "splade_retriever.py": "74f68b433dc8dcb76268ad591a0adb9f90a4228cb363025d1306fd12e6ce71c1",
+        "cache_utils.py": "6e07356c78f41fbb3cf1f755bd18f8793bde4007c2bd745450de3be24df5b792"
+      },
+      "feature_names": [
+        "query_token_count",
+        "query_unique_token_count",
+        "bm25_top1",
+        "bm25_top2",
+        "bm25_gap12",
+        "bm25_top10_mean",
+        "bm25_top10_std",
+        "bm25_top1_per_query_token",
+        "max_idf",
+        "mean_idf",
+        "idf_std"
+      ],
+      "top_k": 100,
+      "rrf_k": 60,
+      "corpus_documents": 3633,
+      "queries": 2590,
+      "dense_model": "sentence-transformers/all-MiniLM-L6-v2",
+      "splade_model": "naver/splade-cocondenser-ensembledistil"
+    }
+  },
+  "frozen_routers_sha256": "3efd7382cd91cfc43bd7ae5d4eaf27571ae92657dec97e3eaf85fbb36131a5d1",
+  "protocol": "Same five outer/four inner folds as prior CPU comparisons (seed 17). Each inner threshold is frozen before outer scoring.",
+  "limits": "Iterative train-only development; no unseen-data quality guarantee and no latency estimate."
+}

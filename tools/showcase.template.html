@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="A measured study of conditional hybrid retrieval, compatible BM25 indexing and explicit recall budgets.">
+<title>Conditional Hybrid Retrieval — Research Showcase</title>
+<style>
+/* Hallmark · macrostructure: Long Document · tone: editorial research · anchor hue: 35 */
+/* Hallmark · pre-emit critique: P5 H4 E4 S5 R5 V4 */
+/* genre: editorial · theme: Newsprint · nav: N6 Newspaper masthead · footer: Ft4 Dense typographic colophon */
+/* Audience: research examiners. Purpose: read the evidence. Enrichment: none. Motion: cut. */
+@import url('../../tokens.css');
+$tokens
+$fonts
+*{box-sizing:border-box}
+html,body{overflow-x:clip}
+html{scroll-behavior:auto;background:var(--color-paper);color:var(--color-ink)}
+body{margin:0;font-family:var(--font-body);font-size:var(--text-base);line-height:1.65}
+a{color:var(--color-accent);text-decoration-thickness:var(--rule-hair);text-underline-offset:.22em;transition:color var(--dur-hover) var(--ease-out)}
+a:hover{color:var(--color-good)}
+a:active{color:var(--color-ink)}
+a[aria-disabled="true"]{opacity:.55;cursor:not-allowed;pointer-events:none}
+a:focus-visible{outline:3px solid var(--color-focus);outline-offset:4px}
+.skip{position:absolute;left:var(--space-md);top:-8rem;background:var(--color-paper);padding:var(--space-sm);z-index:2}
+.skip:focus{top:var(--space-md)}
+.masthead{max-width:1120px;margin:auto;padding:var(--space-xl) clamp(1rem,4vw,3rem) 0;text-align:center}
+.edition{font-size:var(--text-xs);letter-spacing:.12em;text-transform:uppercase;color:var(--color-muted);margin:0}
+.mast-name{font-family:var(--font-display);font-size:2rem;line-height:1.15;font-weight:600;margin:var(--space-md) 0}
+.masthead nav{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:0 var(--space-lg);border-top:var(--rule-hair) solid var(--color-rule);border-bottom:3px double var(--color-rule);padding:var(--space-xs) 0}
+.masthead nav a{min-height:44px;display:inline-flex;align-items:center;line-height:1;font-size:var(--text-sm);white-space:nowrap;text-decoration:none;color:var(--color-ink)}
+.masthead nav a:hover{color:var(--color-accent)}
+main{max-width:1120px;margin:auto;padding:0 clamp(1rem,4vw,3rem)}
+h1,h2,h3,h4{font-style:normal;overflow-wrap:anywhere;min-width:0}
+h1,h2{font-family:var(--font-display);font-weight:400;letter-spacing:-.025em}
+h1{font-size:var(--text-display);line-height:1.03;max-width:15ch;margin:var(--space-xl) 0 var(--space-lg)}
+h2{font-size:clamp(2rem,4vw,3.15rem);line-height:1.12;margin:var(--space-sm) 0 var(--space-lg)}
+h3{font-size:var(--text-lg);font-weight:600;line-height:1.3;margin:var(--space-xl) 0 var(--space-sm)}
+p{max-width:68ch;margin:0 0 var(--space-md)}
+.lead{font-size:var(--text-lg);line-height:1.5;max-width:58ch;color:var(--color-muted)}
+.cover{padding:var(--space-3xl) 0 var(--space-4xl)}
+.eyebrow{font-size:var(--text-xs);letter-spacing:.1em;text-transform:uppercase;color:var(--color-muted);font-weight:600}
+.cover .eyebrow{color:var(--color-accent)}
+.primary-number{font-family:var(--font-display);font-size:clamp(3rem,6vw,4.8rem);line-height:1.1;display:block;color:var(--color-good)}
+.finding{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:var(--space-2xl);margin:var(--space-2xl) 0;padding:var(--space-lg) 0;border-block:var(--rule-hair) solid var(--color-rule)}
+.finding p{font-size:var(--text-sm);max-width:48ch;margin:var(--space-sm) 0}
+.downloads{display:flex;align-items:center;gap:var(--space-lg);flex-wrap:wrap;margin-top:var(--space-xl)}
+.downloads a,.colophon a{display:inline-flex;align-items:center;min-height:44px;white-space:nowrap;font-size:var(--text-sm)}
+.chapter{padding:var(--space-3xl) 0;border-top:var(--rule-hair) solid var(--color-rule)}
+.chapter-head{max-width:760px}
+.two-col{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:var(--space-2xl);margin:var(--space-xl) 0}
+.two-col p{max-width:58ch}
+.pull{font-family:var(--font-display);font-size:var(--text-2xl);line-height:1.2;color:var(--color-good);max-width:23ch;margin:var(--space-xl) 0}
+.caption,.note{font-size:var(--text-sm);color:var(--color-muted);line-height:1.55;max-width:90ch}
+.note strong{color:var(--color-ink)}
+.formula{font-family:var(--font-display);font-size:var(--text-xl);line-height:1.4;padding:var(--space-lg) 0;color:var(--color-good);max-width:100%;overflow-wrap:anywhere}
+table{width:100%;border-collapse:collapse;margin:var(--space-lg) 0 var(--space-lg);font-size:var(--text-sm);line-height:1.45;font-variant-numeric:tabular-nums}
+thead{border-block:var(--rule-hair) solid var(--color-rule)}
+th,td{text-align:right;padding:var(--space-sm);vertical-align:top}
+th:first-child,td:first-child{text-align:left}
+th{font-weight:600}
+tbody{border-bottom:var(--rule-hair) solid var(--color-rule)}
+tbody tr.primary{background:var(--color-paper-2)}
+tbody tr.primary th{color:var(--color-good)}
+tbody tr.fails th::after{content:' *';color:var(--color-fail)}
+figure{margin:var(--space-xl) 0}
+figure img{display:block;width:100%;height:auto;max-width:100%}
+figcaption{font-size:var(--text-xs);line-height:1.5;color:var(--color-muted);margin-top:var(--space-sm);max-width:90ch}
+.result-page{padding-top:var(--space-2xl)}
+.result-page:first-of-type{padding-top:0}
+.result-page+.result-page{margin-top:var(--space-2xl)}
+.bottleneck{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:var(--space-lg);margin:var(--space-2xl) 0}
+.bottleneck p{font-size:var(--text-sm)}
+.bottleneck strong{display:block;font-family:var(--font-display);font-size:2.7rem;font-weight:400;line-height:1.2}
+.implementation{margin:var(--space-xl) 0;border-top:var(--rule-hair) solid var(--color-rule)}
+.implementation div{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:var(--space-xl);padding:var(--space-md) 0;border-bottom:var(--rule-hair) solid var(--color-rule)}
+.implementation dt{font-weight:600;overflow-wrap:anywhere}
+.implementation dd{margin:0;color:var(--color-muted);font-size:var(--text-sm)}
+code{font-family:var(--font-code);font-size:.9em;overflow-wrap:anywhere}
+.colophon{font-size:var(--text-sm);color:var(--color-muted);padding:var(--space-xl) 0 var(--space-3xl);border-top:var(--rule-hair) solid var(--color-rule)}
+.colophon p{max-width:90ch}
+.references{font-size:var(--text-sm);line-height:1.55;padding-left:1.2rem;max-width:85ch}
+.references li{margin-bottom:var(--space-sm)}
+.references a{overflow-wrap:anywhere}
+@media(max-width:40rem){
+ body{font-size:1rem;line-height:1.65}
+ .masthead{padding-top:var(--space-lg)}
+ .mast-name{font-size:1.6rem}
+ .masthead nav{gap:0 var(--space-md)}
+ .cover{padding-top:var(--space-2xl)}
+ .finding,.two-col,.bottleneck{grid-template-columns:minmax(0,1fr);gap:var(--space-lg)}
+ .chapter{padding:var(--space-2xl) 0}
+ .implementation div{grid-template-columns:minmax(0,1fr);gap:var(--space-xs)}
+ table{font-size:var(--text-sm)}
+ thead{display:none}
+ tbody{border:0}
+ tbody tr{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);padding:var(--space-sm) 0;border-block-end:var(--rule-hair) solid var(--color-rule)}
+ tbody th{grid-column:1/-1;text-align:left;padding:var(--space-sm)}
+ tbody td{text-align:left;padding:var(--space-sm);min-width:0;overflow-wrap:anywhere}
+ tbody td::before{content:attr(data-label);display:block;font-size:var(--text-xs);color:var(--color-muted)}
+ .downloads{gap:0 var(--space-lg)}
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+@media print{
+ @page{size:A4;margin:16mm 17mm 19mm}
+ html,body{background:var(--color-paper);font-size:10pt;line-height:1.5;overflow:visible}
+ .masthead{padding:0;max-width:none}
+ .masthead nav,.skip,.downloads{display:none}
+ .mast-name{font-size:21pt;margin:8pt 0}
+ .edition{font-size:8pt}
+ main{padding:0;max-width:none}
+ .cover{padding:21mm 0 0;break-after:page}
+ h1{font-size:48pt;max-width:15ch;margin-top:14pt}
+ h2{font-size:30pt}
+ h3{font-size:14pt;margin-top:13pt}
+ .lead{font-size:14pt;max-width:54ch}
+ .eyebrow{font-size:8pt}
+ .chapter{padding:0;border:0;break-before:page}
+ .finding{margin:18pt 0;gap:20pt;padding:12pt 0}
+ .primary-number{font-size:44pt}
+ .finding p,.caption,.note{font-size:9pt}
+ .two-col{gap:20pt;margin:14pt 0}
+ .pull{font-size:25pt;margin:20pt 0}
+ .formula{font-size:19pt;padding:10pt 0}
+ .bottleneck{margin:18pt 0}
+ .bottleneck strong{font-size:33pt}
+ .result-page{padding:0;break-before:page}
+ .result-page+.result-page{margin:0}
+ figure{margin:12pt 0}
+ figcaption{font-size:8pt}
+ table{font-size:8.6pt;margin:12pt 0;break-inside:avoid}
+ th,td{padding:7pt 5pt}
+ thead{display:table-header-group}
+ tbody tr{break-inside:avoid}
+ .implementation{margin:13pt 0}
+ .implementation div{padding:9pt 0;gap:16pt}
+ .implementation dd{font-size:9pt}
+ .references{font-size:8.7pt}
+ .colophon{padding:10pt 0 0;margin-top:15pt;font-size:8pt;break-inside:avoid}
+ .colophon a{min-height:0}
+ p{orphans:3;widows:3}
+ h2,h3,figcaption{break-after:avoid}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to research</a>
+<header class="masthead">
+ <p class="edition">Research report · 21 October 2026 · Completed experimental scope</p>
+ <p class="mast-name">Conditional Retrieval</p>
+ <nav aria-label="Research sections"><a href="#original">Original paper</a><a href="#motive">Motive</a><a href="#adaptation">Adaptation</a><a href="#results">Results</a><a href="#implementation">Implementation</a></nav>
+</header>
+<main id="main">
+<section class="cover" aria-labelledby="title">
+ <p class="eyebrow">Execution cost and recall budgets</p>
+ <h1 id="title">Conditional hybrid retrieval</h1>
+ <p class="lead">A BM25-first cascade decides when neural retrieval is worth its query cost. This study measures the gains after fixing an expensive lexical first stage.</p>
+ <div class="finding">
+  <div><span class="primary-number">1.24×</span><p><strong>Additional speedup over equally indexed fusion.</strong> The preselected TREC-COVID primary retains 96.68% of fusion Recall@100.</p></div>
+  <div><span class="primary-number">1.59×</span><p><strong>Fastest cascade on the fixed SQuAD sample.</strong> The secondary r90 setting retains 99.22%, evaluated on 256 questions.</p></div>
+ </div>
+ <p class="note">These are retrieval and mean-latency results. Strong standalone retrievers remain faster alternatives in the measured quality range. Generated-answer EM/F1 is outside the completed study.</p>
+ <div class="downloads"><a href="conditional_retrieval_paper.pdf">Research paper</a><a href="research_showcase.pdf">Print PDF</a><a href="research_presentation.pptx">Slide deck</a></div>
+</section>
+
+<section class="chapter" id="original" aria-labelledby="original-title">
+ <div class="chapter-head"><p class="eyebrow">01 / Original paper</p><h2 id="original-title">The Blended RAG starting point</h2></div>
+ <p><a href="https://arxiv.org/html/2404.07220v2">Sawarkar, Mangal and Solanki (2024)</a> study keyword, dense and learned-sparse retrieval with hybrid field queries, including Elasticsearch and ELSER. Their work motivates combining complementary signals to supply better context.</p>
+ <p>The paper reports retrieval quality and generated-answer quality. Our extension investigates the query-time cost of running every retrieval branch.</p>
+ <div class="two-col"><div><h3>Published reference values</h3><p>TREC-COVID nDCG@10: <strong>0.87</strong>.<br>SQuAD answer EM / F1: <strong>57.63 / 68.40</strong>.</p><p class="note">These values belong to the original paper. They are contextual references, not quality scores reproduced by our pipeline.</p></div><div><h3>Our completed overlap</h3><p>All 50 TREC-COVID queries and a declared SQuAD retrieval setup. NFCorpus supplies training/development evidence, while SCIDOCS supplies frozen transfer evidence.</p></div></div>
+ <p class="pull">The research question becomes whether every query needs all retrievers.</p>
+ <p class="caption">Source: Blended RAG, arXiv:2404.07220v2, sections IV–VI. The paper also discusses NQ, HotpotQA and metadata-poor CoQA; our current release does not claim completed evaluations on those datasets.</p>
+</section>
+
+<section class="chapter" id="motive" aria-labelledby="motive-title">
+ <div class="chapter-head"><p class="eyebrow">02 / Motive</p><h2 id="motive-title">Skipped calls must save actual time</h2></div>
+ <p>A gate can return BM25 results for some queries and reserve Dense plus SPLADE for harder ones. But the gate pays for lexical retrieval before it can skip anything.</p>
+ <div class="bottleneck"><div><strong>1410.14 ms</strong><p>Original TREC BM25 mean query time.</p></div><div><strong>1493.23 ms</strong><p>Original TREC three-branch fusion mean query time.</p></div></div>
+ <p>With nearly all query time already spent in BM25, skipping neural work yields little acceleration. The execution bottleneck must change before the same frozen gate becomes useful.</p>
+ <h3>The implemented change</h3><p>Compatible postings move reusable term contributions into the lexical index. We apply this backend equally to fusion, standalone BM25 and every cascade policy. Saved retrieval outputs remain identical.</p>
+ <p class="pull">Indexed BM25 takes 8.11 ms in the TREC follow-up.</p>
+ <p class="note">The original/indexed comparison spans separate runs and includes session variation. Query-dependent strategy selection and eager sparse scoring have prior work. The contribution here is measured engineering and an analysis of quality/cost limits.</p>
+</section>
+
+<section class="chapter" id="adaptation" aria-labelledby="adaptation-title">
+ <div class="chapter-head"><p class="eyebrow">03 / Reproduction and metric differences</p><h2 id="adaptation-title">A declared adaptation</h2></div>
+ <p>We implement Best Fields BM25, Dense MiniLM and SPLADE with reciprocal rank fusion in Python. Models, engine, corpus construction and evaluation scope differ from the original paper.</p>
+ <div class="two-col"><div><h3>Original setting</h3><p>Elasticsearch / ELSER, field-query combinations, top-k retrieval accuracy, nDCG and generated-answer EM/F1.</p></div><div><h3>Current setting</h3><p>MiniLM / SPLADE / RRF, a frozen Ridge gate, Recall@100, recall retention, nDCG@10, MAP@10 and measured query latency.</p></div></div>
+ <h3>What “96.68% retained” means</h3>
+ <p class="formula">Recall retained = mean method Recall@100 ÷ mean fusion Recall@100</p>
+ <p>It is a relative quality ratio. For TREC, fusion recall is 0.12250 and primary cascade recall is 0.11844. Their ratio is 96.68%. It does not mean recovering 96.68% of every query’s relevant documents or matching that fraction of fusion’s document IDs.</p>
+ <h3>Why published and project numbers differ</h3>
+ <p>Hit accuracy asks whether at least one relevant document appears. Recall counts the fraction recovered. nDCG assesses the ordering and relevance of the top results. EM/F1 scores generated answers. Different models and relevance-label constructions add further comparison limits; this study does not isolate their individual causal effects.</p>
+ <p class="note">Our SQuAD corpus contains 20,958 unique title/paragraph pairs from official train and dev data. The annotated parent paragraph is relevant for each dev question. Other answer-bearing paragraphs remain unjudged.</p>
+</section>
+
+<section class="chapter" id="results" aria-labelledby="results-title">
+ <div class="result-page">
+  <p class="eyebrow">04 / Results</p><h2 id="results-title">TREC-COVID: the complete progression</h2>
+  <p class="note"><strong>All 50 queries, 171,332 documents, three warmed T4 passes.</strong> All four policies keep their frozen NFCorpus-trained weights and thresholds.</p>
+  <figure><img src="$trec_chart" alt="TREC cascade speedups increase from 1.24 to 2.26 times indexed fusion, while recall retained falls from 96.68 to 84.53 percent."><figcaption>Both speedup references appear. The indexing-only row precedes every gate. Hatched bars fail the 90% recall floor. Row order describes policy settings, not corpus-size scaling.</figcaption></figure>
+  $trec_table
+  <p class="note"><strong>Primary r99:</strong> 96.68% retention, 95% interval 93.58–98.75%. Mean time saved: 19.04%, interval 9.47–30.11%. It meets the requested 90% floor in this setting while missing its nominal 99% calibration target.</p>
+  <p class="note"><strong>Secondary r95:</strong> 1.64× at 91.95% retention. Its interval, 86.88–95.76%, crosses below 90%. The maximum r90 point, 2.26× / 36.96×, retains only 84.53% and fails that floor. Asterisks mark failed points.</p>
+ </div>
+ <div class="result-page">
+  <p class="eyebrow">04 / Results continued</p><h2>SQuAD: a declared query sample</h2>
+  <p class="note"><strong>256 fixed-hash questions, full 20,958-document corpus, three T4 passes.</strong> Original implementation evidence also covers all 10,570 dev questions with one complete timing pass.</p>
+  <figure><img src="$squad_chart" alt="On the SQuAD sample, cascade speedup increases from 1.04 to 1.59 times indexed fusion while retaining 100 to 99.22 percent recall."><figcaption>Cross-run ratios use exactly the same 256 questions. Original sample timing comes from one complete pass, indexed timing from three. Sample quality and runtime do not establish full-query indexed performance.</figcaption></figure>
+  $squad_table
+  <p class="note"><strong>Fastest cascade, r90:</strong> 99.22% recall retained and 37.08% less mean time than indexed fusion. Its retention interval is 98.05–100.00%. Zero observed loss at the other settings is not a guarantee on unmeasured questions.</p>
+  <p class="note">Mean gains do not ensure lower tail latency. SQuAD r90 p95 is 31.48 ms versus fusion’s 31.37 ms. On TREC, primary p95 is 99.41 ms versus fusion’s 97.66 ms.</p>
+ </div>
+ <div class="result-page">
+  <p class="eyebrow">04 / Strong alternatives and transfer</p><h2>The cascade is not always the best choice</h2>
+  <h3>TREC-COVID standalone methods</h3>
+  $trec_baselines
+  <p class="note">SPLADE retrieves more relevant documents and takes less mean time than the primary cascade. The primary has higher MAP@10, so quality metrics express a trade-off. BM25 alone reaches 184.02× over original fusion but retains only 71.38%, below the 90% floor. This standalone speedup is separate from the cascade progression.</p>
+  <h3>SQuAD standalone methods, same sample</h3>
+  $squad_baselines
+  <p class="note">BM25 alone already exceeds a 90% recall-retention floor at 1.03 ms. SPLADE supplies the strongest sampled nDCG/MAP. Fusion-relative savings do not establish the cascade’s overall superiority.</p>
+  <h3>Earlier evidence remains visible</h3>
+  <p>NFCorpus dev primary r92 retained 94.74% with 23.00% mean savings. SCIDOCS r92 retained 90.01% with 5.53% savings and an interval crossing below 90%. Every nominal calibration target failed on SCIDOCS and TREC-COVID. Those outcomes remain part of the study.</p>
+ </div>
+</section>
+
+<section class="chapter" id="implementation" aria-labelledby="implementation-title">
+ <p class="eyebrow">05 / Implementation</p><h2 id="implementation-title">One live decision after BM25</h2>
+ <figure><img src="$pipeline" alt="A query runs indexed Best Fields BM25. An 11-feature Ridge gate either returns BM25 top 100 or runs Dense and SPLADE and fuses all three rankings."><figcaption>The fallback reuses BM25. Methods do not borrow precomputed neural query rankings from one another.</figcaption></figure>
+ <p>The standardized Ridge regressor predicts the clipped per-query recall gain of fusion over BM25. Five-fold out-of-fold predictions on 2,590 NFCorpus train queries calibrate four thresholds. The deployed model then fits all train queries. No evaluation relevance labels drive the runtime gate.</p>
+ <dl class="implementation">
+  <div><dt>Compatible lexical scoring</dt><dd><code>src/indexed_bm25.py</code> preserves tokenization, IDFs, field scoring, duplicate query-token contributions and the corpus-order tie rule.</dd></div>
+  <div><dt>Frozen execution</dt><dd><code>experiments/25_benchmark_indexed_cascade.py</code> uses the existing 11-feature weights and four thresholds. RRF uses k = 60 and returns 100 documents.</dd></div>
+  <div><dt>Independent scoring</dt><dd>Experiments 29/31 reconstruct raw relevance labels. Experiment 30 checks exact old/new rankings on shared query IDs.</dd></div>
+  <div><dt>Recorded evidence</dt><dd>All 400 TREC and 2,048 sampled SQuAD first-pass rankings, scores, routes and recalls match across backends. Source and weight fingerprints accompany the reports.</dd></div>
+ </dl>
+ <p class="note">The timing window includes query encoding, retrieval and routing, with GPU synchronization. Corpus encoding, index construction, model loading, downloads and answer generation remain outside it. Query-paired bootstrap intervals do not cover all between-session or hardware variation.</p>
+</section>
+
+<section class="chapter" id="scope" aria-labelledby="scope-title">
+ <p class="eyebrow">06 / Conclusion and next study</p><h2 id="scope-title">A completed engineering study</h2>
+ <p>The compatible backend makes conditional neural skipping save more mean time against equally indexed fusion. Frozen policies expose a measurable speed/recall trade-off, alongside transfer failures and stronger constant alternatives.</p>
+ <p class="pull">The defensible headline is 1.24× at 96.68% retained recall on TREC-COVID.</p>
+ <p>The larger 26.83× combined point retains 91.95% and includes indexing plus routing across separate runs. Its interval crosses below 90%. The absolute maximum cascade point, 36.96×, retains 84.53% and fails the requested floor.</p>
+ <h3>Remaining evaluation</h3><p>Full NQ, HotpotQA and CoQA have no completed current evaluation. Earlier NQ work is exploratory. Generated-answer EM/F1, modern adaptive baselines, production concurrency, energy and index memory/update costs remain future work.</p>
+ <p>Further tests can extend this frozen release under a new declared protocol. They should preserve the strongest standalone references and distinguish additional dataset coverage from evidence of a new algorithm.</p>
+ <h3>Selected primary sources</h3>
+ <ol class="references">
+  <li>Sawarkar, Mangal and Solanki (2024). <a href="https://arxiv.org/html/2404.07220v2">Blended RAG</a>, arXiv:2404.07220v2.</li>
+  <li>Arabzadeh, Yan and Clarke (2021). <a href="https://arxiv.org/abs/2109.10739">Dense vs. sparse retrieval strategy selection</a>.</li>
+  <li>Lu (2024). <a href="https://arxiv.org/abs/2407.03618">BM25S: eager sparse scoring</a>.</li>
+  <li>Thakur et al. (2021). <a href="https://arxiv.org/abs/2104.08663">BEIR</a>. Rajpurkar et al. (2016). <a href="https://arxiv.org/abs/1606.05250">SQuAD</a>.</li>
+ </ol>
+</section>
+<footer class="colophon"><p>Completed experimental release, 21 October 2026. The research paper contains full methods, tables, limitations and references. Figures and tables use saved project reports. This showcase works offline with embedded fonts and charts.</p><p><a href="conditional_retrieval_paper.pdf">Read the paper</a> · <a href="research_presentation.pdf">Presentation PDF</a></p></footer>
+</main>
+</body>
+</html>

@@ -1,0 +1,26 @@
+# Frozen experiment fingerprints include exact bytes. Disable newline conversion
+# for code, protocols, reports and captured records, including existing CRLF files.
+*.py -text
+*.json -text
+*.jsonl -text
+*.tsv -text
+*.ipynb -text
+
+# Ordinary prose/configuration can use portable LF endings.
+*.md text eol=lf
+*.txt text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+*.svg text eol=lf
+*.html text eol=lf
+*.css text eol=lf
+*.mjs text eol=lf
+.gitignore text eol=lf
+.gitattributes text eol=lf
+
+*.png binary
+*.pdf binary
+*.docx binary
+*.zip binary
+*.pptx binary
+*.ttf binary

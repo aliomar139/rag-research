@@ -1,0 +1,58 @@
+{
+  "schema": 1,
+  "prepared_date_client": "2026-10-20",
+  "experiment": "Original-paper dataset extension after NFCorpus/SCIDOCS analysis",
+  "paper": "https://arxiv.org/abs/2404.07220",
+  "datasets": [
+    "trec-covid",
+    "squad",
+    "nq",
+    "hotpotqa"
+  ],
+  "default_run": "trec-covid",
+  "training_dataset": "BEIR NFCorpus train",
+  "families": [
+    "ridge11"
+  ],
+  "targets": [
+    0.9,
+    0.92,
+    0.95,
+    0.99
+  ],
+  "primary_candidate_target": 0.9,
+  "timing_repeats": 3,
+  "frozen_routers_sha256": "3efd7382cd91cfc43bd7ae5d4eaf27571ae92657dec97e3eaf85fbb36131a5d1",
+  "source_sha256": {
+    "experiments/12_calibrate_nfcorpus_train_check_dev.py": "ec9c8c209b6f9e8102664308b0236cf361097e545dce0ff6dcdb9cecd1daf665",
+    "experiments/20_benchmark_paper_datasets.py": "ca2443a62d95867fc5ad3ab0f5f2e416d6648762eeadf936883c768f443c013c",
+    "src/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/bm25_retriever.py": "91d58e2a26c068a1011b24f3001f89d943aaff64ca46816a9eb92fd224d7c160",
+    "src/dense_retriever.py": "65f559fd791c586cf3db6f1f499f857d5715b52917ae54fad71c2dbfffdb356e",
+    "src/splade_retriever.py": "74f68b433dc8dcb76268ad591a0adb9f90a4228cb363025d1306fd12e6ce71c1",
+    "src/cache_utils.py": "6e07356c78f41fbb3cf1f755bd18f8793bde4007c2bd745450de3be24df5b792",
+    "src/bm25_coverage_features.py": "fffe6c5956b3e91fdd37978ff1acb666d903a543e60b47f0715d870cf79ca84e",
+    "src/retention_tradeoff.py": "8b7b2b5302a1c1feb039554ee7c194968199253b7f24284c8a41493e2c20121f",
+    "src/tradeoff_analysis.py": "5260b2f7e066262baefad456f55db1e5ee136f2c817d080980c15d35dae8b626",
+    "src/router_diagnostics.py": "a622b5da9ce26282523cc00fbacf90c1b6553c175d0c63fe252f1d9414aaaaed",
+    "src/query_self_exclusion.py": "1458ac6432c214342397f1129a3453b63afd26850080a66511c17fa48c3510c3",
+    "src/paper_datasets.py": "842ce64ff1c92dbae57317bec992457ca67650e7dc79f1b779eb222db00ec14f"
+  },
+  "model_revisions": {
+    "dense": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+    "splade": "49cf4c7b0db5b870a401ddf5e2669993ef3699c7"
+  },
+  "evaluation_scope": "All evaluation queries and full declared corpus per dataset; no qrel-filtered or reduced corpus",
+  "squad_scope": "Official 1.1 train+dev paragraphs, all dev questions; parent-paragraph relevance; retrieval only",
+  "selection_reason": "User requests evaluation on original-paper datasets at a 90% floor; primary chosen before these new outcomes",
+  "prior_inspection": "Earlier exploratory NQ/static TREC-COVID/SQuAD results exist; this is a new frozen controlled evaluation, not a claim that all dataset families were never inspected",
+  "outcome_rules": [
+    "No training or threshold adjustment on evaluation grades.",
+    "Report all four thresholds and every dataset attempted, including failures and resource limits.",
+    "Assess the primary nominal 90% policy separately from secondary policies; do not pick a new primary after outcomes.",
+    "Report recall/nDCG/MAP, top-k hit metrics, real repeated latency, neural branch counts, bootstrap intervals and standalone baselines.",
+    "A point retention of 90% does not imply a confidence bound or per-query guarantee.",
+    "Savings against this full-fusion implementation do not establish a major contribution, original-paper speedup or superiority over single retrievers.",
+    "Keep earlier unfavorable NFCorpus/SCIDOCS findings visible; exact ELSER reproduction and answer quality are not evaluated."
+  ]
+}

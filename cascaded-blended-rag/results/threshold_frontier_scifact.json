@@ -1,0 +1,1364 @@
+{
+  "dataset": "BEIR SciFact",
+  "corpus_documents": 5183,
+  "train_queries": 809,
+  "train_static_recall@100": 0.9583848372476308,
+  "train_quality_target_recall@100": 0.9392171405026781,
+  "train_recall_constraint_fraction": 0.98,
+  "threshold_sweep_train": [
+    {
+      "thresholds": {
+        "tau_high": 18.0,
+        "tau_gap": 2.0,
+        "tau_idf": 2.5
+      },
+      "train_recall@100": 0.9110630407911001,
+      "train_static_recall@100": 0.9583848372476308,
+      "train_recall_ratio": 0.9506233877901978,
+      "train_quality_target_recall@100": 0.9392171405026781,
+      "train_exit_count": 780,
+      "train_exit_rate": 0.9641532756489494,
+      "train_estimated_latency_ms": 35.35750137329963,
+      "meets_quality_constraint": false
+    },
+    {
+      "thresholds": {
+        "tau_high": 18.0,
+        "tau_gap": 2.0,
+        "tau_idf": 3.5
+      },
+      "train_recall@100": 0.9110630407911001,
+      "train_static_recall@100": 0.9583848372476308,
+      "train_recall_ratio": 0.9506233877901978,
+      "train_quality_target_recall@100": 0.9392171405026781,
+      "train_exit_count": 780,
+      "train_exit_rate": 0.9641532756489494,
+      "train_estimated_latency_ms": 35.35563341532304,
+      "meets_quality_constraint": false
+    },
+    {
+      "thresholds": {
+        "tau_high": 18.0,
+        "tau_gap": 2.0,
+        "tau_idf": 4.5
+      },
+      "train_recall@100": 0.9110630407911001,
+      "train_static_recall@100": 0.9583848372476308,
+      "train_recall_ratio": 0.9506233877901978,
+      "train_quality_target_recall@100": 0.9392171405026781,
+      "train_exit_count": 780,
+      "train_exit_rate": 0.9641532756489494,
+      "train_estimated_latency_ms": 35.35376542027752,
+      "meets_quality_constraint": false
+    },
+    {
+      "thresholds": {
+        "tau_high": 18.0,
+        "tau_gap": 3.0,
+        "tau_idf": 2.5
+      },
+      "train_recall@100": 0.9110630407911001,
+      "train_static_recall@100": 0.9583848372476308,
+      "train_recall_ratio": 0.9506233877901978,
+      "train_quality_target_recall@100": 0.9392171405026781,
+      "train_exit_count": 775,
+      "train_exit_rate": 0.957972805933251,
+      "train_estimated_latency_ms": 35.46947144746186,
+      "meets_quality_constraint": false
+    },
+    {
+      "thresholds": {
+        "tau_high": 18.0,
+        "tau_gap": 3.0,
+        "tau_idf": 3.5
+      },
+      "train_recall@100": 0.9110630407911001,
+      "train_static_recall@100": 0.9583848372476308,
+      "train_recall_ratio": 0.9506233877901978,
+      "train_quality_target_recall@100": 0.9392171405026781,
+      "train_exit_count": 775,
+      "train_exit_rate": 0.957972805933251,
+      "train_estimated_latency_ms": 35.46774507292066,
+      "meets_quality_constraint": false
+    },
+    {
+      "thresholds": {
+        "tau_high": 18.0,
+        "tau_gap": 3.0,
+        "tau_idf": 4.5
+      },
+      "train_recall@100": 0.9110630407911001,
+      "train_static_recall@100": 0.9583848372476308,
+      "train_recall_ratio": 0.9506233877901978,
+      "train_quality_target_recall@100": 0.9392171405026781,
+      "train_exit_count": 775,
+      "train_exit_rate": 0.957972805933251,
+      "train_estimated_latency_ms": 35.46766399751968,
+      "meets_quality_constraint": false
+    },
+    {
+      "thresholds": {
+        "tau_high": 18.0,
+        "tau_gap": 4.0,
+        "tau_idf": 2.5
+      },
+      "train_recall@100": 0.9122991347342398,
+      "train_static_recall@100": 0.9583848372476308,
+      "train_recall_ratio": 0.9519131556319863,
+      "train_quality_target_recall@100": 0.9392171405026781,
+      "train_exit_count": 769,
+      "train_exit_rate": 0.9505562422744128,
+      "train_estimated_latency_ms": 35.60776516441139,
+      "meets_quality_constraint": false
+    },
+    {
+      "thresholds": {
+        "tau_high": 18.0,
+        "tau_gap": 4.0,
+        "tau_idf": 3.5
+      },
+      "train_recall@100": 0.9122991347342398,
+      "train_static_recall@100": 0.9583848372476308,
+      "train_recall_ratio": 0.9519131556319863,
+      "train_quality_target_recall@100": 0.9392171405026781,
+      "train_exit_count": 769,
+      "train_exit_rate": 0.9505562422744128,
+      "train_estimated_latency_ms": 35.60816310505935,
+      "meets_quality_constraint": false
+    },
+    {
+      "thresholds": {
+        "tau_high": 18.0,
+        "tau_gap": 4.0,
+        "tau_idf": 4.5
+      },
+      "train_recall@100": 0.9122991347342398,
+      "train_static_recall@100": 0.9583848372476308,
+      "train_recall_ratio": 0.9519131556319863,
+      "train_quality_target_recall@100": 0.9392171405026781,
+      "train_exit_count": 769,
+      "train_exit_rate": 0.9505562422744128,
+      "train_estimated_latency_ms": 35.60783098022033,
+      "meets_quality_constraint": false
+    },
+    {
+      "thresholds": {
+        "tau_high": 18.0,
+        "tau_gap": 5.0,
+        "tau_idf": 2.5
+      },
+      "train_recall@100": 0.9122991347342398,
+      "train_static_recall@100": 0.9583848372476308,
+      "train_recall_ratio": 0.9519131556319863,
+      "train_quality_target_recall@100": 0.9392171405026781,
+      "train_exit_count": 769,
+      "train_exit_rate": 0.9505562422744128,
+      "train_estimated_latency_ms": 35.6077342534099,
+      "meets_quality_constraint": false
+    },
+    {
+      "thresholds": {
+        "tau_high": 18.0,
+        "tau_gap": 5.0,
+        "tau_idf": 3.5
+      },
+      "train_recall@100": 0.9122991347342398,
+      "train_static_recall@100": 0.9583848372476308,
+      "train_recall_ratio": 0.9519131556319863,
+      "train_quality_target_recall@100": 0.9392171405026781,
+      "train_exit_count": 769,
+      "train_exit_rate": 0.9505562422744128,
+      "train_estimated_latency_ms": 35.607543180448204,
+      "meets_quality_constraint": false
+    },
+    {
+      "thresholds": {
+        "tau_high": 18.0,
+        "tau_gap": 5.0,
+        "tau_idf": 4.5
+      },
+      "train_recall@100": 0.9122991347342398,
+      "train_static_recall@100": 0.9583848372476308,
+      "train_recall_ratio": 0.9519131556319863,
+      "train_quality_target_recall@100": 0.9392171405026781,
+      "train_exit_count": 769,
+      "train_exit_rate": 0.9505562422744128,
+      "train_estimated_latency_ms": 35.60774949443206,
+      "meets_quality_constraint": false
+    },
+    {
+      "thresholds": {
+        "tau_high": 18.0,
+        "tau_gap": 6.0,
+        "tau_idf": 2.5
+      },
+      "train_recall@100": 0.9122991347342398,
+      "train_static_recall@100": 0.9583848372476308,
+      "train_recall_ratio": 0.9519131556319863,
+      "train_quality_target_recall@100": 0.9392171405026781,
+      "train_exit_count": 769,
+      "train_exit_rate": 0.9505562422744128,
+      "train_estimated_latency_ms": 35.607857301602955,
+      "meets_quality_constraint": false
+    },
+    {
+      "thresholds": {
+        "tau_high": 18.0,
+        "tau_gap": 6.0,
+        "tau_idf": 3.5
+      },
+      "train_recall@100": 0.9122991347342398,
+      "train_static_recall@100": 0.9583848372476308,
+      "train_recall_ratio": 0.9519131556319863,
+      "train_quality_target_recall@100": 0.9392171405026781,
+      "train_exit_count": 769,
+      "train_exit_rate": 0.9505562422744128,
+      "train_estimated_latency_ms": 35.60748221632077,
+      "meets_quality_constraint": false
+    },
+    {
+      "thresholds": {
+        "tau_high": 18.0,
+        "tau_gap": 6.0,
+        "tau_idf": 4.5
+      },
+      "train_recall@100": 0.9122991347342398,
+      "train_static_recall@100": 0.9583848372476308,
+      "train_recall_ratio": 0.9519131556319863,
+      "train_quality_target_recall@100": 0.9392171405026781,
+      "train_exit_count": 769,
+      "train_exit_rate": 0.9505562422744128,
+      "train_estimated_latency_ms": 35.607206645224295,
+      "meets_quality_constraint": false
+    },
+    {
+      "thresholds": {
+        "tau_high": 20.0,
+        "tau_gap": 2.0,
+        "tau_idf": 2.5
+      },
+      "train_recall@100": 0.9129171817058096,
+      "train_static_recall@100": 0.9583848372476308,
+      "train_recall_ratio": 0.9525580395528804,
+      "train_quality_target_recall@100": 0.9392171405026781,
+      "train_exit_count": 769,
+      "train_exit_rate": 0.9505562422744128,
+      "train_estimated_latency_ms": 35.619062760194026,
+      "meets_quality_constraint": false
+    },
+    {
+      "thresholds": {
+        "tau_high": 20.0,
+        "tau_gap": 2.0,
+        "tau_idf": 3.5
+      },
+      "train_recall@100": 0.9129171817058096,
+      "train_static_recall@100": 0.9583848372476308,
+      "train_recall_ratio": 0.9525580395528804,
+      "train_quality_target_recall@100": 0.9392171405026781,
+      "train_exit_count": 769,
+      "train_exit_rate": 0.9505562422744128,
+      "train_estimated_latency_ms": 35.61917933621986,
+      "meets_quality_constraint": false
+    },
+    {
+      "thresholds": {
+        "tau_high": 20.0,
+        "tau_gap": 2.0,
+        "tau_idf": 4.5
+      },
+      "train_recall@100": 0.9129171817058096,
+      "train_static_recall@100": 0.9583848372476308,
+      "train_recall_ratio": 0.9525580395528804,
+      "train_quality_target_recall@100": 0.9392171405026781,
+      "train_exit_count": 769,
+      "train_exit_rate": 0.9505562422744128,
+      "train_estimated_latency_ms": 35.619532255865465,
+      "meets_quality_constraint": false
+    },
+    {
+      "thresholds": {
+        "tau_high": 20.0,
+        "tau_gap": 3.0,
+        "tau_idf": 2.5
+      },
+      "train_recall@100": 0.9129171817058096,
+      "train_static_recall@100": 0.9583848372476308,
+      "train_recall_ratio": 0.9525580395528804,
+      "train_quality_target_recall@100": 0.9392171405026781,
+      "train_exit_count": 760,
+      "train_exit_rate": 0.9394313967861557,
+      "train_estimated_latency_ms": 35.826408088999834,
+      "meets_quality_constraint": false
+    },
+    {
+      "thresholds": {
+        "tau_high": 20.0,
+        "tau_gap": 3.0,
+        "tau_idf": 3.5
+      },
+      "train_recall@100": 0.9129171817058096,
+      "train_static_recall@100": 0.9583848372476308,
+      "train_recall_ratio": 0.9525580395528804,
+      "train_quality_target_recall@100": 0.9392171405026781,
+      "train_exit_count": 760,
+      "train_exit_rate": 0.9394313967861557,
+      "train_estimated_latency_ms": 35.82668861556644,
+      "meets_quality_constraint": false
+    },
+    {
+      "thresholds": {
+        "tau_high": 20.0,
+        "tau_gap": 3.0,
+        "tau_idf": 4.5
+      },
+      "train_recall@100": 0.9129171817058096,
+      "train_static_recall@100": 0.9583848372476308,
+      "train_recall_ratio": 0.9525580395528804,
+      "train_quality_target_recall@100": 0.9392171405026781,
+      "train_exit_count": 760,
+      "train_exit_rate": 0.9394313967861557,
+      "train_estimated_latency_ms": 35.82702360322665,
+      "meets_quality_constraint": false
+    },
+    {
+      "thresholds": {
+        "tau_high": 20.0,
+        "tau_gap": 4.0,
+        "tau_idf": 2.5
+      },
+      "train_recall@100": 0.915389369592089,
+      "train_static_recall@100": 0.9583848372476308,
+      "train_recall_ratio": 0.9551375752364575,
+      "train_quality_target_recall@100": 0.9392171405026781,
+      "train_exit_count": 751,
+      "train_exit_rate": 0.9283065512978986,
+      "train_estimated_latency_ms": 36.03494108281664,
+      "meets_quality_constraint": false
+    },
+    {
+      "thresholds": {
+        "tau_high": 20.0,
+        "tau_gap": 4.0,
+        "tau_idf": 3.5
+      },
+      "train_recall@100": 0.915389369592089,
+      "train_static_recall@100": 0.9583848372476308,
+      "train_recall_ratio": 0.9551375752364575,
+      "train_quality_target_recall@100": 0.9392171405026781,
+      "train_exit_count": 751,
+      "train_exit_rate": 0.9283065512978986,
+      "train_estimated_latency_ms": 36.03479707538957,
+      "meets_quality_constraint": false
+    },
+    {
+      "thresholds": {
+        "tau_high": 20.0,
+        "tau_gap": 4.0,
+        "tau_idf": 4.5
+      },
+      "train_recall@100": 0.915389369592089,
+      "train_static_recall@100": 0.9583848372476308,
+      "train_recall_ratio": 0.9551375752364575,
+      "train_quality_target_recall@100": 0.9392171405026781,
+      "train_exit_count": 751,
+      "train_exit_rate": 0.9283065512978986,
+      "train_estimated_latency_ms": 36.034357464759005,
+      "meets_quality_constraint": false
+    },
+    {
+      "thresholds": {
+        "tau_high": 20.0,
+        "tau_gap": 5.0,
+        "tau_idf": 2.5
+      },
+      "train_recall@100": 0.915389369592089,
+      "train_static_recall@100": 0.9583848372476308,
+      "train_recall_ratio": 0.9551375752364575,
+      "train_quality_target_recall@100": 0.9392171405026781,
+      "train_exit_count": 751,
+      "train_exit_rate": 0.9283065512978986,
+      "train_estimated_latency_ms": 36.03390640418823,
+      "meets_quality_constraint": false
+    },
+    {
+      "thresholds": {
+        "tau_high": 20.0,
+        "tau_gap": 5.0,
+        "tau_idf": 3.5
+      },
+      "train_recall@100": 0.915389369592089,
+      "train_static_recall@100": 0.9583848372476308,
+      "train_recall_ratio": 0.9551375752364575,
+      "train_quality_target_recall@100": 0.9392171405026781,
+      "train_exit_count": 751,
+      "train_exit_rate": 0.9283065512978986,
+      "train_estimated_latency_ms": 36.03378714338744,
+      "meets_quality_constraint": false
+    },
+    {
+      "thresholds": {
+        "tau_high": 20.0,
+        "tau_gap": 5.0,
+        "tau_idf": 4.5
+      },
+      "train_recall@100": 0.915389369592089,
+      "train_static_recall@100": 0.9583848372476308,
+      "train_recall_ratio": 0.9551375752364575,
+      "train_quality_target_recall@100": 0.9392171405026781,
+      "train_exit_count": 751,
+      "train_exit_rate": 0.9283065512978986,
+      "train_estimated_latency_ms": 36.03408197526524,
+      "meets_quality_constraint": false
+    },
+    {
+      "thresholds": {
+        "tau_high": 20.0,
+        "tau_gap": 6.0,
+        "tau_idf": 2.5
+      },
+      "train_recall@100": 0.915389369592089,
+      "train_static_recall@100": 0.9583848372476308,
+      "train_recall_ratio": 0.9551375752364575,
+      "train_quality_target_recall@100": 0.9392171405026781,
+      "train_exit_count": 751,
+      "train_exit_rate": 0.9283065512978986,
+      "train_estimated_latency_ms": 36.03497324103553,
+      "meets_quality_constraint": false
+    },
+    {
+      "thresholds": {
+        "tau_high": 20.0,
+        "tau_gap": 6.0,
+        "tau_idf": 3.5
+      },
+      "train_recall@100": 0.915389369592089,
+      "train_static_recall@100": 0.9583848372476308,
+      "train_recall_ratio": 0.9551375752364575,
+      "train_quality_target_recall@100": 0.9392171405026781,
+      "train_exit_count": 751,
+      "train_exit_rate": 0.9283065512978986,
+      "train_estimated_latency_ms": 36.034644613094024,
+      "meets_quality_constraint": false
+    },
+    {
+      "thresholds": {
+        "tau_high": 20.0,
+        "tau_gap": 6.0,
+        "tau_idf": 4.5
+      },
+      "train_recall@100": 0.915389369592089,
+      "train_static_recall@100": 0.9583848372476308,
+      "train_recall_ratio": 0.9551375752364575,
+      "train_quality_target_recall@100": 0.9392171405026781,
+      "train_exit_count": 751,
+      "train_exit_rate": 0.9283065512978986,
+      "train_estimated_latency_ms": 36.03437941037038,
+      "meets_quality_constraint": false
+    },
+    {
+      "thresholds": {
+        "tau_high": 22.0,
+        "tau_gap": 2.0,
+        "tau_idf": 2.5
+      },
+      "train_recall@100": 0.9141532756489493,
+      "train_static_recall@100": 0.9583848372476308,
+      "train_recall_ratio": 0.953847807394669,
+      "train_quality_target_recall@100": 0.9392171405026781,
+      "train_exit_count": 751,
+      "train_exit_rate": 0.9283065512978986,
+      "train_estimated_latency_ms": 36.04202104697181,
+      "meets_quality_constraint": false
+    },
+    {
+      "thresholds": {
+        "tau_high": 22.0,
+        "tau_gap": 2.0,
+        "tau_idf": 3.5
+      },
+      "train_recall@100": 0.9141532756489493,
+      "train_static_recall@100": 0.9583848372476308,
+      "train_recall_ratio": 0.953847807394669,
+      "train_quality_target_recall@100": 0.9392171405026781,
+      "train_exit_count": 751,
+      "train_exit_rate": 0.9283065512978986,
+      "train_estimated_latency_ms": 36.041641834374566,
+      "meets_quality_constraint": false
+    },
+    {
+      "thresholds": {
+        "tau_high": 22.0,
+        "tau_gap": 2.0,
+        "tau_idf": 4.5
+      },
+      "train_recall@100": 0.9141532756489493,
+      "train_static_recall@100": 0.9583848372476308,
+      "train_recall_ratio": 0.953847807394669,
+      "train_quality_target_recall@100": 0.9392171405026781,
+      "train_exit_count": 751,
+      "train_exit_rate": 0.9283065512978986,
+      "train_estimated_latency_ms": 36.041543478367394,
+      "meets_quality_constraint": false
+    },
+    {
+      "thresholds": {
+        "tau_high": 22.0,
+        "tau_gap": 3.0,
+        "tau_idf": 2.5
+      },
+      "train_recall@100": 0.9141532756489493,
+      "train_static_recall@100": 0.9583848372476308,
+      "train_recall_ratio": 0.953847807394669,
+      "train_quality_target_recall@100": 0.9392171405026781,
+      "train_exit_count": 738,
+      "train_exit_rate": 0.9122373300370828,
+      "train_estimated_latency_ms": 36.33795503954926,
+      "meets_quality_constraint": false
+    },
+    {
+      "thresholds": {
+        "tau_high": 22.0,
+        "tau_gap": 3.0,
+        "tau_idf": 3.5
+      },
+      "train_recall@100": 0.9141532756489493,
+      "train_static_recall@100": 0.9583848372476308,
+      "train_recall_ratio": 0.953847807394669,
+      "train_quality_target_recall@100": 0.9392171405026781,
+      "train_exit_count": 738,
+      "train_exit_rate": 0.9122373300370828,
+      "train_estimated_latency_ms": 36.337905394305416,
+      "meets_quality_constraint": false
+    },
+    {
+      "thresholds": {
+        "tau_high": 22.0,
+        "tau_gap": 3.0,
+        "tau_idf": 4.5
+      },
+      "train_recall@100": 0.9141532756489493,
+      "train_static_recall@100": 0.9583848372476308,
+      "train_recall_ratio": 0.953847807394669,
+      "train_quality_target_recall@100": 0.9392171405026781,
+      "train_exit_count": 738,
+      "train_exit_rate": 0.9122373300370828,
+      "train_estimated_latency_ms": 36.337864604445556,
+      "meets_quality_constraint": false
+    },
+    {
+      "thresholds": {
+        "tau_high": 22.0,
+        "tau_gap": 4.0,
+        "tau_idf": 2.5
+      },
+      "train_recall@100": 0.9166254635352287,
+      "train_static_recall@100": 0.9583848372476308,
+      "train_recall_ratio": 0.956427343078246,
+      "train_quality_target_recall@100": 0.9392171405026781,
+      "train_exit_count": 728,
+      "train_exit_rate": 0.899876390605686,
+      "train_estimated_latency_ms": 36.56883375525525,
+      "meets_quality_constraint": false
+    },
+    {
+      "thresholds": {
+        "tau_high": 22.0,
+        "tau_gap": 4.0,
+        "tau_idf": 3.5
+      },
+      "train_recall@100": 0.9166254635352287,
+      "train_static_recall@100": 0.9583848372476308,
+      "train_recall_ratio": 0.956427343078246,
+      "train_quality_target_recall@100": 0.9392171405026781,
+      "train_exit_count": 728,
+      "train_exit_rate": 0.899876390605686,
+      "train_estimated_latency_ms": 36.56903672187252,
+      "meets_quality_constraint": false
+    },
+    {
+      "thresholds": {
+        "tau_high": 22.0,
+        "tau_gap": 4.0,
+        "tau_idf": 4.5
+      },
+      "train_recall@100": 0.9166254635352287,
+      "train_static_recall@100": 0.9583848372476308,
+      "train_recall_ratio": 0.956427343078246,
+      "train_quality_target_recall@100": 0.9392171405026781,
+      "train_exit_count": 728,
+      "train_exit_rate": 0.899876390605686,
+      "train_estimated_latency_ms": 36.56936797156179,
+      "meets_quality_constraint": false
+    },
+    {
+      "thresholds": {
+        "tau_high": 22.0,
+        "tau_gap": 5.0,
+        "tau_idf": 2.5
+      },
+      "train_recall@100": 0.9166254635352287,
+      "train_static_recall@100": 0.9583848372476308,
+      "train_recall_ratio": 0.956427343078246,
+      "train_quality_target_recall@100": 0.9392171405026781,
+      "train_exit_count": 728,
+      "train_exit_rate": 0.899876390605686,
+      "train_estimated_latency_ms": 36.56902482569419,
+      "meets_quality_constraint": false
+    },
+    {
+      "thresholds": {
+        "tau_high": 22.0,
+        "tau_gap": 5.0,
+        "tau_idf": 3.5
+      },
+      "train_recall@100": 0.9166254635352287,
+      "train_static_recall@100": 0.9583848372476308,
+      "train_recall_ratio": 0.956427343078246,
+      "train_quality_target_recall@100": 0.9392171405026781,
+      "train_exit_count": 728,
+      "train_exit_rate": 0.899876390605686,
+      "train_estimated_latency_ms": 36.569126124839144,
+      "meets_quality_constraint": false
+    },
+    {
+      "thresholds": {
+        "tau_high": 22.0,
+        "tau_gap": 5.0,
+        "tau_idf": 4.5
+      },
+      "train_recall@100": 0.9166254635352287,
+      "train_static_recall@100": 0.9583848372476308,
+      "train_recall_ratio": 0.956427343078246,
+      "train_quality_target_recall@100": 0.9392171405026781,
+      "train_exit_count": 728,
+      "train_exit_rate": 0.899876390605686,
+      "train_estimated_latency_ms": 36.568767200240714,
+      "meets_quality_constraint": false
+    },
+    {
+      "thresholds": {
+        "tau_high": 22.0,
+        "tau_gap": 6.0,
+        "tau_idf": 2.5
+      },
+      "train_recall@100": 0.9166254635352287,
+      "train_static_recall@100": 0.9583848372476308,
+      "train_recall_ratio": 0.956427343078246,
+      "train_quality_target_recall@100": 0.9392171405026781,
+      "train_exit_count": 728,
+      "train_exit_rate": 0.899876390605686,
+      "train_estimated_latency_ms": 36.56889407539692,
+      "meets_quality_constraint": false
+    },
+    {
+      "thresholds": {
+        "tau_high": 22.0,
+        "tau_gap": 6.0,
+        "tau_idf": 3.5
+      },
+      "train_recall@100": 0.9166254635352287,
+      "train_static_recall@100": 0.9583848372476308,
+      "train_recall_ratio": 0.956427343078246,
+      "train_quality_target_recall@100": 0.9392171405026781,
+      "train_exit_count": 728,
+      "train_exit_rate": 0.899876390605686,
+      "train_estimated_latency_ms": 36.568725765122466,
+      "meets_quality_constraint": false
+    },
+    {
+      "thresholds": {
+        "tau_high": 22.0,
+        "tau_gap": 6.0,
+        "tau_idf": 4.5
+      },
+      "train_recall@100": 0.9166254635352287,
+      "train_static_recall@100": 0.9583848372476308,
+      "train_recall_ratio": 0.956427343078246,
+      "train_quality_target_recall@100": 0.9392171405026781,
+      "train_exit_count": 728,
+      "train_exit_rate": 0.899876390605686,
+      "train_estimated_latency_ms": 36.568664707032084,
+      "meets_quality_constraint": false
+    },
+    {
+      "thresholds": {
+        "tau_high": 24.0,
+        "tau_gap": 2.0,
+        "tau_idf": 2.5
+      },
+      "train_recall@100": 0.9160074165636588,
+      "train_static_recall@100": 0.9583848372476308,
+      "train_recall_ratio": 0.9557824591573517,
+      "train_quality_target_recall@100": 0.9392171405026781,
+      "train_exit_count": 734,
+      "train_exit_rate": 0.907292954264524,
+      "train_estimated_latency_ms": 36.462914558721025,
+      "meets_quality_constraint": false
+    },
+    {
+      "thresholds": {
+        "tau_high": 24.0,
+        "tau_gap": 2.0,
+        "tau_idf": 3.5
+      },
+      "train_recall@100": 0.9160074165636588,
+      "train_static_recall@100": 0.9583848372476308,
+      "train_recall_ratio": 0.9557824591573517,
+      "train_quality_target_recall@100": 0.9392171405026781,
+      "train_exit_count": 734,
+      "train_exit_rate": 0.907292954264524,
+      "train_estimated_latency_ms": 36.462005878871416,
+      "meets_quality_constraint": false
+    },
+    {
+      "thresholds": {
+        "tau_high": 24.0,
+        "tau_gap": 2.0,
+        "tau_idf": 4.5
+      },
+      "train_recall@100": 0.9160074165636588,
+      "train_static_recall@100": 0.9583848372476308,
+      "train_recall_ratio": 0.9557824591573517,
+      "train_quality_target_recall@100": 0.9392171405026781,
+      "train_exit_count": 734,
+      "train_exit_rate": 0.907292954264524,
+      "train_estimated_latency_ms": 36.462146244731166,
+      "meets_quality_constraint": false
+    },
+    {
+      "thresholds": {
+        "tau_high": 24.0,
+        "tau_gap": 3.0,
+        "tau_idf": 2.5
+      },
+      "train_recall@100": 0.9160074165636588,
+      "train_static_recall@100": 0.9583848372476308,
+      "train_recall_ratio": 0.9557824591573517,
+      "train_quality_target_recall@100": 0.9392171405026781,
+      "train_exit_count": 718,
+      "train_exit_rate": 0.8875154511742892,
+      "train_estimated_latency_ms": 36.82956868478576,
+      "meets_quality_constraint": false
+    },
+    {
+      "thresholds": {
+        "tau_high": 24.0,
+        "tau_gap": 3.0,
+        "tau_idf": 3.5
+      },
+      "train_recall@100": 0.9160074165636588,
+      "train_static_recall@100": 0.9583848372476308,
+      "train_recall_ratio": 0.9557824591573517,
+      "train_quality_target_recall@100": 0.9392171405026781,
+      "train_exit_count": 718,
+      "train_exit_rate": 0.8875154511742892,
+      "train_estimated_latency_ms": 36.82913998886058,
+      "meets_quality_constraint": false
+    },
+    {
+      "thresholds": {
+        "tau_high": 24.0,
+        "tau_gap": 3.0,
+        "tau_idf": 4.5
+      },
+      "train_recall@100": 0.9160074165636588,
+      "train_static_recall@100": 0.9583848372476308,
+      "train_recall_ratio": 0.9557824591573517,
+      "train_quality_target_recall@100": 0.9392171405026781,
+      "train_exit_count": 718,
+      "train_exit_rate": 0.8875154511742892,
+      "train_estimated_latency_ms": 36.831636730525915,
+      "meets_quality_constraint": false
+    },
+    {
+      "thresholds": {
+        "tau_high": 24.0,
+        "tau_gap": 4.0,
+        "tau_idf": 2.5
+      },
+      "train_recall@100": 0.9197156983930779,
+      "train_static_recall@100": 0.9583848372476308,
+      "train_recall_ratio": 0.9596517626827171,
+      "train_quality_target_recall@100": 0.9392171405026781,
+      "train_exit_count": 706,
+      "train_exit_rate": 0.8726823238566132,
+      "train_estimated_latency_ms": 37.1064445945437,
+      "meets_quality_constraint": false
+    },
+    {
+      "thresholds": {
+        "tau_high": 24.0,
+        "tau_gap": 4.0,
+        "tau_idf": 3.5
+      },
+      "train_recall@100": 0.9197156983930779,
+      "train_static_recall@100": 0.9583848372476308,
+      "train_recall_ratio": 0.9596517626827171,
+      "train_quality_target_recall@100": 0.9392171405026781,
+      "train_exit_count": 706,
+      "train_exit_rate": 0.8726823238566132,
+      "train_estimated_latency_ms": 37.10678171444566,
+      "meets_quality_constraint": false
+    },
+    {
+      "thresholds": {
+        "tau_high": 24.0,
+        "tau_gap": 4.0,
+        "tau_idf": 4.5
+      },
+      "train_recall@100": 0.9197156983930779,
+      "train_static_recall@100": 0.9583848372476308,
+      "train_recall_ratio": 0.9596517626827171,
+      "train_quality_target_recall@100": 0.9392171405026781,
+      "train_exit_count": 706,
+      "train_exit_rate": 0.8726823238566132,
+      "train_estimated_latency_ms": 37.106254578483984,
+      "meets_quality_constraint": false
+    },
+    {
+      "thresholds": {
+        "tau_high": 24.0,
+        "tau_gap": 5.0,
+        "tau_idf": 2.5
+      },
+      "train_recall@100": 0.9197156983930779,
+      "train_static_recall@100": 0.9583848372476308,
+      "train_recall_ratio": 0.9596517626827171,
+      "train_quality_target_recall@100": 0.9392171405026781,
+      "train_exit_count": 706,
+      "train_exit_rate": 0.8726823238566132,
+      "train_estimated_latency_ms": 37.10660220888896,
+      "meets_quality_constraint": false
+    },
+    {
+      "thresholds": {
+        "tau_high": 24.0,
+        "tau_gap": 5.0,
+        "tau_idf": 3.5
+      },
+      "train_recall@100": 0.9197156983930779,
+      "train_static_recall@100": 0.9583848372476308,
+      "train_recall_ratio": 0.9596517626827171,
+      "train_quality_target_recall@100": 0.9392171405026781,
+      "train_exit_count": 706,
+      "train_exit_rate": 0.8726823238566132,
+      "train_estimated_latency_ms": 37.10622278985946,
+      "meets_quality_constraint": false
+    },
+    {
+      "thresholds": {
+        "tau_high": 24.0,
+        "tau_gap": 5.0,
+        "tau_idf": 4.5
+      },
+      "train_recall@100": 0.9197156983930779,
+      "train_static_recall@100": 0.9583848372476308,
+      "train_recall_ratio": 0.9596517626827171,
+      "train_quality_target_recall@100": 0.9392171405026781,
+      "train_exit_count": 706,
+      "train_exit_rate": 0.8726823238566132,
+      "train_estimated_latency_ms": 37.10641275153555,
+      "meets_quality_constraint": false
+    },
+    {
+      "thresholds": {
+        "tau_high": 24.0,
+        "tau_gap": 6.0,
+        "tau_idf": 2.5
+      },
+      "train_recall@100": 0.9197156983930779,
+      "train_static_recall@100": 0.9583848372476308,
+      "train_recall_ratio": 0.9596517626827171,
+      "train_quality_target_recall@100": 0.9392171405026781,
+      "train_exit_count": 705,
+      "train_exit_rate": 0.8714462299134734,
+      "train_estimated_latency_ms": 37.12935908898107,
+      "meets_quality_constraint": false
+    },
+    {
+      "thresholds": {
+        "tau_high": 24.0,
+        "tau_gap": 6.0,
+        "tau_idf": 3.5
+      },
+      "train_recall@100": 0.9197156983930779,
+      "train_static_recall@100": 0.9583848372476308,
+      "train_recall_ratio": 0.9596517626827171,
+      "train_quality_target_recall@100": 0.9392171405026781,
+      "train_exit_count": 705,
+      "train_exit_rate": 0.8714462299134734,
+      "train_estimated_latency_ms": 37.1296167527671,
+      "meets_quality_constraint": false
+    },
+    {
+      "thresholds": {
+        "tau_high": 24.0,
+        "tau_gap": 6.0,
+        "tau_idf": 4.5
+      },
+      "train_recall@100": 0.9197156983930779,
+      "train_static_recall@100": 0.9583848372476308,
+      "train_recall_ratio": 0.9596517626827171,
+      "train_quality_target_recall@100": 0.9392171405026781,
+      "train_exit_count": 705,
+      "train_exit_rate": 0.8714462299134734,
+      "train_estimated_latency_ms": 37.13040889986382,
+      "meets_quality_constraint": false
+    },
+    {
+      "thresholds": {
+        "tau_high": 26.0,
+        "tau_gap": 2.0,
+        "tau_idf": 2.5
+      },
+      "train_recall@100": 0.9172435105067985,
+      "train_static_recall@100": 0.9583848372476308,
+      "train_recall_ratio": 0.9570722269991402,
+      "train_quality_target_recall@100": 0.9392171405026781,
+      "train_exit_count": 709,
+      "train_exit_rate": 0.8763906056860321,
+      "train_estimated_latency_ms": 37.065831326325664,
+      "meets_quality_constraint": false
+    },
+    {
+      "thresholds": {
+        "tau_high": 26.0,
+        "tau_gap": 2.0,
+        "tau_idf": 3.5
+      },
+      "train_recall@100": 0.9172435105067985,
+      "train_static_recall@100": 0.9583848372476308,
+      "train_recall_ratio": 0.9570722269991402,
+      "train_quality_target_recall@100": 0.9392171405026781,
+      "train_exit_count": 708,
+      "train_exit_rate": 0.8751545117428925,
+      "train_estimated_latency_ms": 37.088396401721496,
+      "meets_quality_constraint": false
+    },
+    {
+      "thresholds": {
+        "tau_high": 26.0,
+        "tau_gap": 2.0,
+        "tau_idf": 4.5
+      },
+      "train_recall@100": 0.9172435105067985,
+      "train_static_recall@100": 0.9583848372476308,
+      "train_recall_ratio": 0.9570722269991402,
+      "train_quality_target_recall@100": 0.9392171405026781,
+      "train_exit_count": 707,
+      "train_exit_rate": 0.8739184177997528,
+      "train_estimated_latency_ms": 37.11110946228411,
+      "meets_quality_constraint": false
+    },
+    {
+      "thresholds": {
+        "tau_high": 26.0,
+        "tau_gap": 3.0,
+        "tau_idf": 2.5
+      },
+      "train_recall@100": 0.9172435105067985,
+      "train_static_recall@100": 0.9583848372476308,
+      "train_recall_ratio": 0.9570722269991402,
+      "train_quality_target_recall@100": 0.9392171405026781,
+      "train_exit_count": 690,
+      "train_exit_rate": 0.8529048207663782,
+      "train_estimated_latency_ms": 37.50505289864157,
+      "meets_quality_constraint": false
+    },
+    {
+      "thresholds": {
+        "tau_high": 26.0,
+        "tau_gap": 3.0,
+        "tau_idf": 3.5
+      },
+      "train_recall@100": 0.9172435105067985,
+      "train_static_recall@100": 0.9583848372476308,
+      "train_recall_ratio": 0.9570722269991402,
+      "train_quality_target_recall@100": 0.9392171405026781,
+      "train_exit_count": 689,
+      "train_exit_rate": 0.8516687268232386,
+      "train_estimated_latency_ms": 37.529069114946836,
+      "meets_quality_constraint": false
+    },
+    {
+      "thresholds": {
+        "tau_high": 26.0,
+        "tau_gap": 3.0,
+        "tau_idf": 4.5
+      },
+      "train_recall@100": 0.9172435105067985,
+      "train_static_recall@100": 0.9583848372476308,
+      "train_recall_ratio": 0.9570722269991402,
+      "train_quality_target_recall@100": 0.9392171405026781,
+      "train_exit_count": 688,
+      "train_exit_rate": 0.8504326328800988,
+      "train_estimated_latency_ms": 37.552335202707724,
+      "meets_quality_constraint": false
+    },
+    {
+      "thresholds": {
+        "tau_high": 26.0,
+        "tau_gap": 4.0,
+        "tau_idf": 2.5
+      },
+      "train_recall@100": 0.9224351050679852,
+      "train_static_recall@100": 0.9583848372476308,
+      "train_recall_ratio": 0.9624892519346518,
+      "train_quality_target_recall@100": 0.9392171405026781,
+      "train_exit_count": 673,
+      "train_exit_rate": 0.8318912237330037,
+      "train_estimated_latency_ms": 37.89766971445441,
+      "meets_quality_constraint": false
+    },
+    {
+      "thresholds": {
+        "tau_high": 26.0,
+        "tau_gap": 4.0,
+        "tau_idf": 3.5
+      },
+      "train_recall@100": 0.9224351050679852,
+      "train_static_recall@100": 0.9583848372476308,
+      "train_recall_ratio": 0.9624892519346518,
+      "train_quality_target_recall@100": 0.9392171405026781,
+      "train_exit_count": 672,
+      "train_exit_rate": 0.830655129789864,
+      "train_estimated_latency_ms": 37.92192579356352,
+      "meets_quality_constraint": false
+    },
+    {
+      "thresholds": {
+        "tau_high": 26.0,
+        "tau_gap": 4.0,
+        "tau_idf": 4.5
+      },
+      "train_recall@100": 0.9224351050679852,
+      "train_static_recall@100": 0.9583848372476308,
+      "train_recall_ratio": 0.9624892519346518,
+      "train_quality_target_recall@100": 0.9392171405026781,
+      "train_exit_count": 672,
+      "train_exit_rate": 0.830655129789864,
+      "train_estimated_latency_ms": 37.92161348577032,
+      "meets_quality_constraint": false
+    },
+    {
+      "thresholds": {
+        "tau_high": 26.0,
+        "tau_gap": 5.0,
+        "tau_idf": 2.5
+      },
+      "train_recall@100": 0.9224351050679852,
+      "train_static_recall@100": 0.9583848372476308,
+      "train_recall_ratio": 0.9624892519346518,
+      "train_quality_target_recall@100": 0.9392171405026781,
+      "train_exit_count": 673,
+      "train_exit_rate": 0.8318912237330037,
+      "train_estimated_latency_ms": 37.89772041038779,
+      "meets_quality_constraint": false
+    },
+    {
+      "thresholds": {
+        "tau_high": 26.0,
+        "tau_gap": 5.0,
+        "tau_idf": 3.5
+      },
+      "train_recall@100": 0.9224351050679852,
+      "train_static_recall@100": 0.9583848372476308,
+      "train_recall_ratio": 0.9624892519346518,
+      "train_quality_target_recall@100": 0.9392171405026781,
+      "train_exit_count": 672,
+      "train_exit_rate": 0.830655129789864,
+      "train_estimated_latency_ms": 37.923459421501335,
+      "meets_quality_constraint": false
+    },
+    {
+      "thresholds": {
+        "tau_high": 26.0,
+        "tau_gap": 5.0,
+        "tau_idf": 4.5
+      },
+      "train_recall@100": 0.9224351050679852,
+      "train_static_recall@100": 0.9583848372476308,
+      "train_recall_ratio": 0.9624892519346518,
+      "train_quality_target_recall@100": 0.9392171405026781,
+      "train_exit_count": 672,
+      "train_exit_rate": 0.830655129789864,
+      "train_estimated_latency_ms": 37.9219749629033,
+      "meets_quality_constraint": false
+    },
+    {
+      "thresholds": {
+        "tau_high": 26.0,
+        "tau_gap": 6.0,
+        "tau_idf": 2.5
+      },
+      "train_recall@100": 0.9224351050679852,
+      "train_static_recall@100": 0.9583848372476308,
+      "train_recall_ratio": 0.9624892519346518,
+      "train_quality_target_recall@100": 0.9392171405026781,
+      "train_exit_count": 671,
+      "train_exit_rate": 0.8294190358467244,
+      "train_estimated_latency_ms": 37.944728359691965,
+      "meets_quality_constraint": false
+    },
+    {
+      "thresholds": {
+        "tau_high": 26.0,
+        "tau_gap": 6.0,
+        "tau_idf": 3.5
+      },
+      "train_recall@100": 0.9224351050679852,
+      "train_static_recall@100": 0.9583848372476308,
+      "train_recall_ratio": 0.9624892519346518,
+      "train_quality_target_recall@100": 0.9392171405026781,
+      "train_exit_count": 670,
+      "train_exit_rate": 0.8281829419035847,
+      "train_estimated_latency_ms": 37.96787434240209,
+      "meets_quality_constraint": false
+    },
+    {
+      "thresholds": {
+        "tau_high": 26.0,
+        "tau_gap": 6.0,
+        "tau_idf": 4.5
+      },
+      "train_recall@100": 0.9224351050679852,
+      "train_static_recall@100": 0.9583848372476308,
+      "train_recall_ratio": 0.9624892519346518,
+      "train_quality_target_recall@100": 0.9392171405026781,
+      "train_exit_count": 670,
+      "train_exit_rate": 0.8281829419035847,
+      "train_estimated_latency_ms": 37.96843388379265,
+      "meets_quality_constraint": false
+    },
+    {
+      "thresholds": {
+        "tau_high": 28.0,
+        "tau_gap": 2.0,
+        "tau_idf": 2.5
+      },
+      "train_recall@100": 0.9209517923362176,
+      "train_static_recall@100": 0.9583848372476308,
+      "train_recall_ratio": 0.9609415305245057,
+      "train_quality_target_recall@100": 0.9392171405026781,
+      "train_exit_count": 688,
+      "train_exit_rate": 0.8504326328800988,
+      "train_estimated_latency_ms": 37.55370814710305,
+      "meets_quality_constraint": false
+    },
+    {
+      "thresholds": {
+        "tau_high": 28.0,
+        "tau_gap": 2.0,
+        "tau_idf": 3.5
+      },
+      "train_recall@100": 0.9209517923362176,
+      "train_static_recall@100": 0.9583848372476308,
+      "train_recall_ratio": 0.9609415305245057,
+      "train_quality_target_recall@100": 0.9392171405026781,
+      "train_exit_count": 687,
+      "train_exit_rate": 0.8491965389369592,
+      "train_estimated_latency_ms": 37.57809274658413,
+      "meets_quality_constraint": false
+    },
+    {
+      "thresholds": {
+        "tau_high": 28.0,
+        "tau_gap": 2.0,
+        "tau_idf": 4.5
+      },
+      "train_recall@100": 0.9209517923362176,
+      "train_static_recall@100": 0.9583848372476308,
+      "train_recall_ratio": 0.9609415305245057,
+      "train_quality_target_recall@100": 0.9392171405026781,
+      "train_exit_count": 686,
+      "train_exit_rate": 0.8479604449938195,
+      "train_estimated_latency_ms": 37.60050087019991,
+      "meets_quality_constraint": false
+    },
+    {
+      "thresholds": {
+        "tau_high": 28.0,
+        "tau_gap": 3.0,
+        "tau_idf": 2.5
+      },
+      "train_recall@100": 0.9209517923362176,
+      "train_static_recall@100": 0.9583848372476308,
+      "train_recall_ratio": 0.9609415305245057,
+      "train_quality_target_recall@100": 0.9392171405026781,
+      "train_exit_count": 667,
+      "train_exit_rate": 0.8244746600741656,
+      "train_estimated_latency_ms": 38.04228519405197,
+      "meets_quality_constraint": false
+    },
+    {
+      "thresholds": {
+        "tau_high": 28.0,
+        "tau_gap": 3.0,
+        "tau_idf": 3.5
+      },
+      "train_recall@100": 0.9209517923362176,
+      "train_static_recall@100": 0.9583848372476308,
+      "train_recall_ratio": 0.9609415305245057,
+      "train_quality_target_recall@100": 0.9392171405026781,
+      "train_exit_count": 666,
+      "train_exit_rate": 0.823238566131026,
+      "train_estimated_latency_ms": 38.06599219034464,
+      "meets_quality_constraint": false
+    },
+    {
+      "thresholds": {
+        "tau_high": 28.0,
+        "tau_gap": 3.0,
+        "tau_idf": 4.5
+      },
+      "train_recall@100": 0.9209517923362176,
+      "train_static_recall@100": 0.9583848372476308,
+      "train_recall_ratio": 0.9609415305245057,
+      "train_quality_target_recall@100": 0.9392171405026781,
+      "train_exit_count": 665,
+      "train_exit_rate": 0.8220024721878862,
+      "train_estimated_latency_ms": 38.08926366007191,
+      "meets_quality_constraint": false
+    },
+    {
+      "thresholds": {
+        "tau_high": 28.0,
+        "tau_gap": 4.0,
+        "tau_idf": 2.5
+      },
+      "train_recall@100": 0.9273794808405439,
+      "train_static_recall@100": 0.9583848372476308,
+      "train_recall_ratio": 0.9676483233018057,
+      "train_quality_target_recall@100": 0.9392171405026781,
+      "train_exit_count": 647,
+      "train_exit_rate": 0.799752781211372,
+      "train_estimated_latency_ms": 38.504936123610335,
+      "meets_quality_constraint": false
+    },
+    {
+      "thresholds": {
+        "tau_high": 28.0,
+        "tau_gap": 4.0,
+        "tau_idf": 3.5
+      },
+      "train_recall@100": 0.9273794808405439,
+      "train_static_recall@100": 0.9583848372476308,
+      "train_recall_ratio": 0.9676483233018057,
+      "train_quality_target_recall@100": 0.9392171405026781,
+      "train_exit_count": 646,
+      "train_exit_rate": 0.7985166872682324,
+      "train_estimated_latency_ms": 38.52923847093639,
+      "meets_quality_constraint": false
+    },
+    {
+      "thresholds": {
+        "tau_high": 28.0,
+        "tau_gap": 4.0,
+        "tau_idf": 4.5
+      },
+      "train_recall@100": 0.9273794808405439,
+      "train_static_recall@100": 0.9583848372476308,
+      "train_recall_ratio": 0.9676483233018057,
+      "train_quality_target_recall@100": 0.9392171405026781,
+      "train_exit_count": 646,
+      "train_exit_rate": 0.7985166872682324,
+      "train_estimated_latency_ms": 38.529782699625585,
+      "meets_quality_constraint": false
+    },
+    {
+      "thresholds": {
+        "tau_high": 28.0,
+        "tau_gap": 5.0,
+        "tau_idf": 2.5
+      },
+      "train_recall@100": 0.9286155747836835,
+      "train_static_recall@100": 0.9583848372476308,
+      "train_recall_ratio": 0.9689380911435941,
+      "train_quality_target_recall@100": 0.9392171405026781,
+      "train_exit_count": 644,
+      "train_exit_rate": 0.796044499381953,
+      "train_estimated_latency_ms": 38.576796601969434,
+      "meets_quality_constraint": false
+    },
+    {
+      "thresholds": {
+        "tau_high": 28.0,
+        "tau_gap": 5.0,
+        "tau_idf": 3.5
+      },
+      "train_recall@100": 0.9286155747836835,
+      "train_static_recall@100": 0.9583848372476308,
+      "train_recall_ratio": 0.9689380911435941,
+      "train_quality_target_recall@100": 0.9392171405026781,
+      "train_exit_count": 643,
+      "train_exit_rate": 0.7948084054388134,
+      "train_estimated_latency_ms": 38.59985631642358,
+      "meets_quality_constraint": false
+    },
+    {
+      "thresholds": {
+        "tau_high": 28.0,
+        "tau_gap": 5.0,
+        "tau_idf": 4.5
+      },
+      "train_recall@100": 0.9286155747836835,
+      "train_static_recall@100": 0.9583848372476308,
+      "train_recall_ratio": 0.9689380911435941,
+      "train_quality_target_recall@100": 0.9392171405026781,
+      "train_exit_count": 643,
+      "train_exit_rate": 0.7948084054388134,
+      "train_estimated_latency_ms": 38.599954153257116,
+      "meets_quality_constraint": false
+    },
+    {
+      "thresholds": {
+        "tau_high": 28.0,
+        "tau_gap": 6.0,
+        "tau_idf": 2.5
+      },
+      "train_recall@100": 0.9286155747836835,
+      "train_static_recall@100": 0.9583848372476308,
+      "train_recall_ratio": 0.9689380911435941,
+      "train_quality_target_recall@100": 0.9392171405026781,
+      "train_exit_count": 638,
+      "train_exit_rate": 0.788627935723115,
+      "train_estimated_latency_ms": 38.7204739814536,
+      "meets_quality_constraint": false
+    },
+    {
+      "thresholds": {
+        "tau_high": 28.0,
+        "tau_gap": 6.0,
+        "tau_idf": 3.5
+      },
+      "train_recall@100": 0.9286155747836835,
+      "train_static_recall@100": 0.9583848372476308,
+      "train_recall_ratio": 0.9689380911435941,
+      "train_quality_target_recall@100": 0.9392171405026781,
+      "train_exit_count": 637,
+      "train_exit_rate": 0.7873918417799752,
+      "train_estimated_latency_ms": 38.74437575276399,
+      "meets_quality_constraint": false
+    },
+    {
+      "thresholds": {
+        "tau_high": 28.0,
+        "tau_gap": 6.0,
+        "tau_idf": 4.5
+      },
+      "train_recall@100": 0.9286155747836835,
+      "train_static_recall@100": 0.9583848372476308,
+      "train_recall_ratio": 0.9689380911435941,
+      "train_quality_target_recall@100": 0.9392171405026781,
+      "train_exit_count": 637,
+      "train_exit_rate": 0.7873918417799752,
+      "train_estimated_latency_ms": 38.744313367110394,
+      "meets_quality_constraint": false
+    }
+  ],
+  "hardware": {
+    "cuda_available": true,
+    "cuda_device": "Tesla T4"
+  }
+}

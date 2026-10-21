@@ -1,0 +1,10 @@
+{
+  "archive_sha256": "89159cc3b733c61f885df765ac414c2a1d4b685041336df78381f9c28c4b1870",
+  "first_pass_records": 8000,
+  "query_timings": 24000,
+  "frozen_assets_and_source_match": true,
+  "saved_recalls_reaggregate": true,
+  "timings_and_branch_counts_match": true,
+  "rankings_stable_as_reported": true,
+  "scope": "Artifact consistency checks; raw relevance grades and timing instrumentation are not independently rerun."
+}
